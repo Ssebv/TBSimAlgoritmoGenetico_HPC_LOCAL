@@ -21,26 +21,6 @@ import EDU.gatech.cc.is.abstractrobot.*;
  */
 public class BasicTeamAG extends ControlSystemSS {
 
-    public double[] getDisPos() {
-        return disPos;
-    }
-    
-    public double[] getDisKick() {
-        return disKick;
-    }
-    
-    public double[] getDisTeam() {
-        return disTeam;
-    }
-    
-    public double getSumBallX() {
-        return sum_ballx;
-    }
-    
-    public long getConBallX() {
-        return con_ballx;
-    }
-
     /**
      * Configure the control system. This method is called once at
      * initialization time. You can use it to do whatever you like.

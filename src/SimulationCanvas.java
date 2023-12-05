@@ -858,7 +858,7 @@ public class SimulationCanvas extends Canvas implements Runnable {
     public SimulationCanvas(Frame p, int w, int h,
             String dscfile, NewRobotSpec[] robotos, long new_seed, long new_time, long new_maxtimestep) {
         this(p, w, h, dscfile, true, robotos, new_seed, new_time, new_maxtimestep);
-        System.out.println("XXX 2");
+
         visionNoiseStddev = 0.0; //default is no noise
         visionNoiseSeed = 31337; //default noise seed
     }
@@ -868,8 +868,6 @@ public class SimulationCanvas extends Canvas implements Runnable {
      */
     public SimulationCanvas(Frame p, int w, int h,
             String dscfile, boolean preserveSize, NewRobotSpec[] new_robotos, long new_seed, long new_time, long new_maxtimestep) {
-        System.out.println("XXX 1");
-
         this.new_seed = new_seed;
         this.new_time = new_time;
         this.new_maxtimestep = new_maxtimestep;
@@ -1203,7 +1201,6 @@ public class SimulationCanvas extends Canvas implements Runnable {
      * Handle a start/resume event.
      */
     public void start() {
-        
         if (description_file_loaded) {
             pause = false;
             if (graphics_on) {

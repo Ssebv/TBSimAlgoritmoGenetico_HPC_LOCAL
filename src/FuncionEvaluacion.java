@@ -20,6 +20,8 @@ public class FuncionEvaluacion extends FitnessFunction {
     FuncionEvaluacion(int ptos){
         MAXDIF = ptos;
     }
+
+
     
     //Este método debe mantener su nombre y parámetros, solo cambiar implementación del cuerpo
     //Este método es usado internamente por "evolve" para evaluar a los individuos de una población
@@ -59,11 +61,9 @@ public class FuncionEvaluacion extends FitnessFunction {
         // con esta configuración, entonces el cromosoma deberá ser descartado evaluandolo muy mal
         for (int jj=0; jj<5; jj++){
             if (disKick[jj] >= disPos[jj]) {
-                    this.println(cromosoma);
-                    System.out.println("\t>>>>>>>(individuo descartado para simulacion)");
+                    // this.println(cromosoma);
+                    // System.out.println("\t>>>>>>>(individuo descartado para simulacion)");
                     return 0; //retorna la peor evalaución posible
-            } else {
-                System.out.println("VALIDO");
             }
         }
         
@@ -94,7 +94,7 @@ public class FuncionEvaluacion extends FitnessFunction {
                              posx[i],  posy[i], theta[i],  forecolor2, backcolor2, vclas[i]);
         
         //instanciamos simulador sin gráficos
-        TBSimNoGraphics tb = new TBSimNoGraphics (null, "C:\\Standalone\\robocup.dsc", new_robotos, 3, 2, 50);     
+        TBSimNoGraphics tb = new TBSimNoGraphics (null, "robocup.dsc", new_robotos, 3, 2, 50);     
         tb.start();
         tb.sem1 = new Semaphore(0);
         try {tb.sem1.acquire();} catch (Exception e){System.out.println(e);}
@@ -104,10 +104,12 @@ public class FuncionEvaluacion extends FitnessFunction {
         //propuesto por el algoritmo genético
         for (int ri=0; ri<5; ri++)     
             ((BasicTeamAG)(tb.simulation.control_systems[ri])).setParam(disPos, disKick, disTeam);
+           
 
         //Iniciamos y esperamos a que termine simulación
         tb.sem2.release();
         try { tb.join(); } catch (Exception e){ System.out.println(e); }
+        
 
         //El detalle del resultado se obtiene de la variable "estado" dentro del simulador
         //dividos y parseamos para obtener el último resultado y diferencia "diff"
@@ -116,8 +118,8 @@ public class FuncionEvaluacion extends FitnessFunction {
         diff = Integer.parseInt(lst[0]) - Integer.parseInt(lst[1]);  
         
         //Imprimimos resultado por pantalla
-        this.println(cromosoma);
-        System.out.println("\t(FITNESS:" + (MAXDIF+diff) + "   DIFF. GOLES:" + diff + ")");
+        // this.println(cromosoma);
+        // System.out.println("\t(FITNESS:" + (MAXDIF+diff) + "   DIFF. GOLES:" + diff + ")");
  
         //Retornamos la evaluación del resultado, a mayor valor mejor es evaluado.
         return Math.max(0, MAXDIF+diff);
