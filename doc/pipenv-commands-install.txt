@@ -1,0 +1,45 @@
+
+1. Install Python and Pipenv (if you haven't already):
+
+Make sure you have Python installed on your system, and then install Pipenv using pip:
+
+```bash
+pip install pipenv
+```
+
+2. Initialize a new virtual environment for your project:
+
+Navigate to your project directory and create a new virtual environment with Pipenv:
+
+```bash
+cd /path/to/your/project
+pipenv install
+```
+
+This will create a `Pipfile` containing your project's dependencies and a virtual environment in the `.venv` directory.
+
+3. Add Python dependencies to your project:
+
+You can add Python dependencies required for your project using the `pipenv install package_name` command. For example:
+
+```bash
+pipenv install requests
+```
+
+This will add the `requests` package to your virtual environment and register it in the `Pipfile`.
+
+4. Activate the virtual environment:
+
+To activate the virtual environment and use the installed dependencies, run:
+
+```bash
+pipenv shell
+```
+
+This will put you inside the virtual environment, and your project's dependencies will be available.
+
+5. Deactivate the virtual environment:
+
+To exit the virtual environment, simply type `exit` or close the terminal.
+
+Remember that Pipenv is specific to Python projects, and for managing Java versions, you would need to use Java-specific tools like `jenv`, as you mentioned in your original example.
