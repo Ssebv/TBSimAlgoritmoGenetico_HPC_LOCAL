@@ -68,7 +68,6 @@ public class FuncionEvaluacion extends FitnessFunction {
         // Instanciamos simulador sin gráficos con el archivo de configuración "robocup.dsc" y los 10 agentes
         TBSimNoGraphics tb = new TBSimNoGraphics(null, "robocup.dsc", new_robotos, 3, 2, 50);
 
-
         tb.start(); // Inicia simulación en un hilo aparte
         tb.sem1 = new Semaphore(0); // Semáforo para sincronizar la simulación donde se envían los parámetros a los agentes
         try {
@@ -97,7 +96,7 @@ public class FuncionEvaluacion extends FitnessFunction {
 
         // Se imprime el cromosoma y la evaluación del resultado
         // this.println(cromosoma);
-        System.out.println("\t(FITNESS:" + (MAXDIF+diff) + " DIFF. GOLES:" + diff +")");
+        System.out.println("\t(FITNESS:" + (MAXDIF+diff) + " DIFF. GOLES:" + diff +")"); // 
 
         // Retorna la evaluación del cromosoma basada en la diferencia de goles.
         // A mayor valor, mejor es la evaluación.
