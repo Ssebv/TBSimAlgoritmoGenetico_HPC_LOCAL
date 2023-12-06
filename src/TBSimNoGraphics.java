@@ -2,29 +2,9 @@
  * TBSimNoGraphics.java
  */
 
-import java.io.*;
-import EDU.gatech.cc.is.abstractrobot.*;
-import EDU.gatech.cc.is.clay.*;
-import EDU.gatech.cc.is.util.*;
 import EDU.gatech.cc.is.simulation.NewSim;
 import java.util.concurrent.Semaphore;
 
-/**
- * Application that runs a control system in simulation with no graphics.
- * <P>
- * To run this program, first ensure you have set your CLASSPATH correctly, then
- * type "java TBSim.TBSimNoGraphics".
- * <P>
- * For more detailed information, see the
- * <A HREF="docs/index.html">TBSim page</A>.
- * <P>
- * <A HREF="../EDU/cmu/cs/coral/COPYRIGHT.html">Copyright</A>
- * (c)1997, 1998 Tucker Balch and GTRC (c)1998 Tucker Balch and Carnegie Mellon
- * University
- *
- * @author Tucker Balch
- * @version $Revision: 1.1 $
- */
 public class TBSimNoGraphics extends Thread {
 
     public SimulationCanvas simulation;
@@ -51,7 +31,6 @@ public class TBSimNoGraphics extends Thread {
 
     @Override
     public void run() {
-        String args[] = this.args;
         simulation = new SimulationCanvas(null, 0, 0, dsc_file, this.new_robotos, this.new_seed, this.new_time, this.new_maxtimestep);
         simulation.reset();
       

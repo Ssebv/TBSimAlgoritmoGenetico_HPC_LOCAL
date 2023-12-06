@@ -6,7 +6,6 @@ import java.io.*;
 import java.awt.*;
 import java.lang.System;
 import java.lang.Class;
-import java.lang.reflect.*;
 import EDU.gatech.cc.is.abstractrobot.*;
 import EDU.gatech.cc.is.simulation.*;
 import EDU.gatech.cc.is.util.*;
