@@ -1,139 +1,94 @@
+/*
+ * Main.java
+ * Punto de entrada principal para la ejecución del algoritmo genético utilizando JGAP.
+ * Optimiza las estrategias de un equipo de fútbol robot simulado.
+ */
+
 import org.jgap.*;
 import org.jgap.impl.*;
 import java.io.FileWriter;
 import java.io.IOException;
 
-/**
- *
- * @author kbern
- */
 public class Main {
 
     /**
-     * @param args the command line arguments
+     * @param args Argumentos de la línea de comandos
      */
     public static void main(String[] args) throws InvalidConfigurationException {
+       
         try {
+            // Configuración del algoritmo genético JGAP
             Configuration conf = new DefaultConfiguration();
-            conf.setPreservFittestIndividual(true);
-            conf.setKeepPopulationSizeConstant(false);
+            conf.setPreservFittestIndividual(true); // Conserva el mejor individuo
+            conf.setKeepPopulationSizeConstant(false); // Permite que la población evolucione
 
             //Ejemplo de individuos:
             //Inicializa ejemplo de Genes con 15 elementos (15 alelos)
             //cada el alelo es un parametro del agente BasicTeamAG
             //cada agente tiene 3 parámetros (3x5 agentes = 15)
-            //
-            //InterGene permite definir los rangos máximos y mínimos que puede tomar un alelo
-            //Para este ejemplo los valores pueden ser entre 1 y 9
+
 
             Gene[] sampleGenes = new Gene[15]; 
             for (int jj=0; jj<15; jj++){
-                sampleGenes[jj] = new IntegerGene(conf, 1, 9); 
+                sampleGenes[jj] = new IntegerGene(conf, 1, 9); // IntegerGene es un alelo de tipo entero entre 1 y 9 que permite representar los parámetros de los agentes
             }
 
-            //Establece tamaño de la población (cantidad de genes)
+            //Establece tamaño de la población (cantidad de genes) aqui se puede ir aumentando en cada iteración
             conf.setPopulationSize(10);
 
-            //Establece la funcion de fitness como una Clase FuncionEvaluación 
-            //dicha clase es la que se debe implementar con la función de fitness. 
-            //Se puede parametrizar un objetivo o cualquier valor necesario
-            //En este caso solo se inicializa el valor de MAXDIF
+            // Establece la función de evaluación (fitness) de los individuos
             conf.setFitnessFunction(new FuncionEvaluacion(50));
 
-            //Se estable un cromosoma de muestra como parte de la configuración.
+
+            // Define el cromosoma de muestra para la configuración
             IChromosome sampleChromosome = new Chromosome(conf, sampleGenes);
             conf.setSampleChromosome(sampleChromosome);
 
-            //inicializa la población
+            conf.addGeneticOperator(new CrossoverOperator(conf, 0.35f)); // Operador de cruce
+
+            // Inicializa la población de genotipos de manera aleatoria
             Genotype poblacion = Genotype.randomInitialGenotype(conf);  
 
             // Inicialización del Archivo CSV
+            // Configuración inicial del archivo CSV para almacenar resultados
             try (FileWriter csvWriter = new FileWriter("ResultadosAlgoritmoGenetico.csv")) {
-                // Escribir los títulos de las columnas
-                csvWriter.append("Generación");
-                csvWriter.append(",");
-                csvWriter.append("Aptitud Mejor Individuo");
-                // Valores del cromosoma
-                csvWriter.append(",");
-                csvWriter.append("DisPos1");
-                csvWriter.append(",");
-                csvWriter.append("DisPos2");
-                csvWriter.append(",");
-                csvWriter.append("DisPos3");
-                csvWriter.append(",");
-                csvWriter.append("DisPos4");
-                csvWriter.append(",");
-                csvWriter.append("DisPos5");
-                csvWriter.append(",");
-                csvWriter.append("DisKick1");
-                csvWriter.append(",");
-                csvWriter.append("DisKick2");
-                csvWriter.append(",");
-                csvWriter.append("DisKick3");
-                csvWriter.append(",");
-                csvWriter.append("DisKick4");
-                csvWriter.append(",");
-                csvWriter.append("DisKick5");
-                csvWriter.append(",");
-                csvWriter.append("DisTeam1");
-                csvWriter.append(",");
-                csvWriter.append("DisTeam2");
-                csvWriter.append(",");
-                csvWriter.append("DisTeam3");
-                csvWriter.append(",");
-                csvWriter.append("DisTeam4");
-                csvWriter.append(",");
-                csvWriter.append("DisTeam5");
-                csvWriter.append("\n");
+                // Escribe los encabezados de las columnas en el archivo CSV
+                csvWriter.append("Generación,Aptitud Mejor Individuo,DisPos1,DisPos2,DisPos3,DisPos4,DisPos5,DisKick1,DisKick2,DisKick3,DisKick4,DisKick5,DisTeam1,DisTeam2,DisTeam3,DisTeam4,DisTeam5\n");
 
+                // Realiza la evolución por un número determinado de generaciones
+                for (int i = 0; i < 5; i++) {
 
-                System.out.println("Mejor individuo inicial");
-                FuncionEvaluacion.println(poblacion.getFittestChromosome()); //muestra su conformación
-                //iteramos una cantidad fija o bajo un criterio haciendo evoluacionar la población
-                for (int i=0; i<5; i++) {
-                    //Hace evoluacionar a la poblacion 
-                    System.out.println("\nEvoluacionando poblacion " + (i) + "...");
-                    poblacion.evolve();
+                    System.out.println("\n\nGENERACION " + i + ":");
+                    poblacion.evolve(); // Evoluciona la población
 
-                    //obtiene el mejor cromosoma de la población actual
-                    //IChromosome mejor = poblacion.getFittestChromosome(); 
-                    //System.out.println("\nResultados Evolucion poblacion " + i);
-                    //FuncionEvaluacion.println(mejor); //muestra su conformación
-                    //System.out.println("\tFitness:" + mejor.getFitnessValue()); //muestra su evaluación
-                    // Escribir los datos de cada generación
+                    // Obtiene el mejor cromosoma de la generación actual
                     IChromosome mejor = poblacion.getFittestChromosome();
-                    csvWriter.append(String.valueOf(i));
-                    csvWriter.append(",");
-                    csvWriter.append(String.valueOf(mejor.getFitnessValue()));
-                    csvWriter.append(",");
-                    for (int jj=0; jj<5; jj++){
+
+
+                    // Escribe los resultados de la generación actual en el archivo CSV
+                    csvWriter.append(String.valueOf(i)).append(",");
+                    csvWriter.append(String.valueOf(mejor.getFitnessValue())).append(",");
+                    for (int jj = 0; jj < 15; jj++) {
                         csvWriter.append(String.valueOf(mejor.getGene(jj).getAllele()));
-                        csvWriter.append(",");
-                    }
-                    for (int jj=5; jj<10; jj++){
-                        csvWriter.append(String.valueOf(mejor.getGene(jj).getAllele()));
-                        csvWriter.append(",");
-                    }
-                    for (int jj=10; jj<15; jj++){
-                        csvWriter.append(String.valueOf(mejor.getGene(jj).getAllele()));
-                        csvWriter.append(",");
+                        if (jj < 14) csvWriter.append(",");
                     }
                     csvWriter.append("\n");
-
+                    System.out.println("\tMejor cromosoma de la generación:");
+                    FuncionEvaluacion.println(mejor); //muestra su conformación
+                    System.out.println("\tFitness:" + mejor.getFitnessValue()); //muestra su evaluación
                 }
             }
-            //Si finaliza evoluacion, obtiene el mejor y lo imprime
+
+            // Imprime el mejor individuo encontrado después de todas las generaciones
             IChromosome mejor = poblacion.getFittestChromosome();
             System.out.println("\n\nMEJOR INDIVIDUO:");
             FuncionEvaluacion.println(mejor); //muestra su conformación
             System.out.println("\tFitness:" + mejor.getFitnessValue()); //muestra su evaluación
+
         } catch (InvalidConfigurationException e) {
             System.err.println("Error de configuración en JGAP: " + e.getMessage());
         } catch (IOException e) {
             System.err.println("Error al escribir el archivo CSV: " + e.getMessage());
         }
-        
-        
-        
     }
 }

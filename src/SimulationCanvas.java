@@ -1,5 +1,7 @@
 /*
  * SimulationCanvas.java
+ * 
+ * 
  */
 
 import java.io.*;
@@ -13,22 +15,8 @@ import EDU.cmu.cs.coral.util.*;
 import EDU.cmu.cs.coral.simulation.*;
 import java.util.concurrent.Semaphore;
 
-/**
- * Used within TBSim to control and draw a simulation.
- * <P>
- * For more detailed information, see the
- * <A HREF="docs/index.html">TBSim page</A>.
- * <P>
- * <A HREF="../EDU/cmu/cs/coral/COPYRIGHT.html">Copyright</A>
- * (c)1997 Tucker Balch and Georgia Tech Research Corporation (c)1998 Tucker
- * Balch and Carnegie Mellon University
- *
- * @author Tucker Balch
- * @version $Revision: 1.11 $
- */
 public class SimulationCanvas extends Canvas implements Runnable {
 
-    private Graphics g;
     private Frame parent;
     private int height, width;
     private boolean preserveSize = false;
@@ -42,8 +30,6 @@ public class SimulationCanvas extends Canvas implements Runnable {
     public SimulatedObject simulated_objects[] = new SimulatedObject[0];
     public ControlSystemS control_systems[];// = new ControlSystemS[0];
     private double top, bottom, left, right;
-    private double time_compression = 1;
-    private long current_time = 0;
     private long sim_time = 0;
     private long timestep = 100;
     private long timeout = -1;
@@ -296,7 +282,6 @@ public class SimulationCanvas extends Canvas implements Runnable {
                     if (token.equalsIgnoreCase("time")) {
                         if (in.nextToken()
                                 == StreamTokenizer.TT_NUMBER) {
-                            time_compression = in.nval;
                         } else {
                             token = in.sval; // for error report
                             throw new IOException();
@@ -874,8 +859,8 @@ public class SimulationCanvas extends Canvas implements Runnable {
         this.new_use_file = new_robotos == null;
         if (this.new_robotos != null) {
             this.e1 = new_robotos[0].controlsystem;
-            this.e2 = new_robotos[5].controlsystem;
-            //System.out.println("..."+this.e1);
+            this.e2 = new_robotos[5].controlsystem; // Equipo o equipos que se van a enfrentar
+            // System.out.println("..."+this.e1); // Imprime el equipo 1 en este caso el del algoritmo genetico parametrizado
         }
 
         ////System.out.println("USE FILE: " + this.new_use_file);
@@ -907,7 +892,7 @@ public class SimulationCanvas extends Canvas implements Runnable {
         run_sim_thread.start();
     }
 
-    private boolean description_file_loaded = false;
+    private boolean description_file_loaded = false; // Para saber si se ha cargado el fichero de descripcion
 
     /**
      * Provide info about whether we have successufully loaded the file.
@@ -939,7 +924,7 @@ public class SimulationCanvas extends Canvas implements Runnable {
                 }
             }
 
-            current_time = System.currentTimeMillis();
+            System.currentTimeMillis();
             sim_timestep = timestep;
 
             //--- deprecated
@@ -1264,7 +1249,7 @@ public class SimulationCanvas extends Canvas implements Runnable {
                     this_sim);
         }
         ///else
-        ///	//System.out.println(this_sim);
+        // System.out.println(this_sim); // Para que lo muestre en consola en cada iteracion
     }
 
     /**
@@ -1326,104 +1311,3 @@ public class SimulationCanvas extends Canvas implements Runnable {
     }
 
 }
-/*
-$Log: SimulationCanvas.java,v $
-Revision 1.11  2000/03/13 00:08:14  trb
-*** empty log message ***
-
-# Revision 1.10  2000/03/08  00:59:18  jds
-# fixed small visionNoise related bug
-# 
-# Revision 1.9  2000/03/07  23:37:19  jds
-# this refines support for "vision_noise"  by allowing a mean to be
-# specified.  an improvement for this command in general is that it would
-# be nice to specify noise parameters for individual sensors...
-# 
-# Revision 1.8  2000/03/07  15:31:08  jds
-# added support for a "vision_noise" command which will give the std dev
-# for a normal dist of noise on all sensors of type VisualObjectSensor.  it
-# also lets you give it a seed value for repeatable noise.
-# this noise feature should be expanded to allow different noise values
-# per robot, but that is for later....
-# 
-# Revision 1.7  2000/03/07  00:06:20  jds
-# the commands used in the dsc file are no longer case sensitive
-# 
-# Revision 1.6  99/12/06  16:37:30  trb
-# *** empty log message ***
-# 
-# Revision 1.5  99/11/23  23:55:23  jds
-# *** empty log message ***
-# 
-# Revision 1.4  99/11/23  23:21:06  jds
-# added Will's changes :
-#  - added the windowsize keyword to the description file format
-#  - fixed the implementation of setSize()
-#   - added a getPreferredSize() method
-#   - added a reSizeWindow() window method (this walks the component tree to
-# get our window then resizes it to fit our new size.  Call after setSize().)
-#  - added a new constructor with a boolean argument that indicates whether
-# to ignore any windowsize keywords you read
-# 
-# Revision 1.3  99/11/18  19:59:19  jds
-# now looks for dictionary keyword and adds the key string pair to the dictionary
-# then it sets the robot's dictionary reference
-# 
-# Revision 1.2  99/11/16  18:24:59  jds
-# Added dsc file support for view_robot_IDs, view_robot_trails, view_robot_state, view_object_info, view_icons.  They default to false, but read "on" as true.  made the vars package scope so TBSim could use them to update the menus
-# 
-# Revision 1.1  99/11/05  15:53:52  trb
-# Initial revision
-# 
-# Revision 1.2  99/03/09  13:17:20  slenser
-# Made the default to draw icons.
-# 
-# Revision 1.1  99/03/07  14:54:21  trb
-# Changed name from JavaBotSim to TBSim
-# 
-# Revision 1.1.1.1  98/07/25  18:44:38  slenser
-# Initial version.
-# 
-Revision 1.8  1998/07/25 22:42:24  tucker
-*** empty log message ***
-
-# Revision 1.7  1998/06/02  20:52:41  tucker
-# *** empty log message ***
-#
-Revision 1.6  1998/04/06 21:13:32  tucker
-*** empty log message ***
-
-Revision 1.5  1998/02/23 22:57:31  tucker
-faster
-
-Revision 1.4  1998/02/04 17:48:57  tucker
-*** empty log message ***
-
-Revision 1.3  1998/02/02 04:52:23  tucker
-fixed class naming bug
-
-# Revision 1.2  1998/01/30  22:56:18  tucker
-# *** empty log message ***
-#
-Revision 1.1  1998/01/29 02:49:03  tucker
-Initial revision
-
-# Revision 1.6  1997/10/28  01:19:27  tucker
-# added maxtimestep
-#
-Revision 1.5  1997/10/14 00:43:44  tucker
-added capability to simulate Pebbles robot.
-
-Revision 1.4  1997/09/09 19:14:50  tucker
-*** empty log message ***
-
-Revision 1.3  1997/08/17 17:00:06  tucker
-*** empty log message ***
-
-# Revision 1.2  1997/08/07  15:13:27  tucker
-# *** empty log message ***
-#
-Revision 1.1  1997/08/05 22:54:55  tucker
-Initial revision
-
- */
