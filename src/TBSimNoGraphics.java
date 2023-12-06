@@ -65,7 +65,7 @@ public class TBSimNoGraphics extends Thread {
             this.estado = "0,0,-1"; // Estado final de la simulación.
         }
 
-        System.out.println("#FIN: {" + this.estado + "}"); // Imprime el estado final
+        // System.out.println("#FIN: {" + this.estado + "}"); // Imprime el estado final
         // de la simulación
         // System.out.println(((NewSim)simulation.simulated_objects[5]).getStat() );
     }

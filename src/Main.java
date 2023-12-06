@@ -73,7 +73,7 @@ public class Main {
                         if (jj < 14) csvWriter.append(",");
                     }
                     csvWriter.append("\n");
-                    System.out.println("\tMejor cromosoma de la generación:");
+                    System.out.println("\tMejor cromosoma de la generación: " +  i);
                     FuncionEvaluacion.println(mejor); //muestra su conformación
                     System.out.println("\tFitness:" + mejor.getFitnessValue()); //muestra su evaluación
                 }
