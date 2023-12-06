@@ -90,7 +90,7 @@ public class Main {
                 System.out.println("Mejor individuo inicial");
                 FuncionEvaluacion.println(poblacion.getFittestChromosome()); //muestra su conformación
                 //iteramos una cantidad fija o bajo un criterio haciendo evoluacionar la población
-                for (int i=0; i<3; i++) {
+                for (int i=0; i<5; i++) {
                     //Hace evoluacionar a la poblacion 
                     System.out.println("\nEvoluacionando poblacion " + (i) + "...");
                     poblacion.evolve();
