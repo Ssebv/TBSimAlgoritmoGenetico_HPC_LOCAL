@@ -10,36 +10,36 @@ BINDIR = bin
 LIBDIR = lib
 DOCDIR = doc
 CLASSPATH = $(LIBDIR)/jgap-3.4.4.jar:
-SOURCES = $(shell find $(SRCDIR) -name '*.java') # Encuentra todos los archivos .java en SRCDIR
-CLASSES = $(SOURCES:$(SRCDIR)/%.java=$(BINDIR)/%.class) # Mapeo de archivos fuente a archivos de clase
-MAINCLASS = Main              # Clase principal para ejecutar
-JFLAGS = -g -sourcepath $(SRCDIR) -d $(BINDIR) -classpath $(CLASSPATH) # Flags para el compilador Java
-JAVAFLAGS = -classpath $(CLASSPATH) # Flags para ejecutar programas Java
-MANIFEST = Manifest.txt       # Nombre del archivo de manifiesto para archivos JAR
+SOURCES = $(shell find $(SRCDIR) -name '*.java')
+CLASSES = $(SOURCES:$(SRCDIR)/%.java=$(BINDIR)/%.class)
+MAINCLASS = Main
+JFLAGS = -g -sourcepath $(SRCDIR) -d $(BINDIR) -classpath $(CLASSPATH)
+JAVAFLAGS = -classpath $(CLASSPATH)
+MANIFEST = Manifest.txt
 
-# Regla por defecto para hacer todo
+# Default rule
 all: $(CLASSES)
 
-# Regla para compilar .java a .class
+# Rule to compile .java to .class
 $(BINDIR)/%.class: $(SRCDIR)/%.java
-	mkdir -p $(@D)            # Crea el directorio para los archivos de clase si no existe
-	$(JAVAC) $(JFLAGS) $<     # Compila el archivo fuente
+	mkdir -p $(@D)
+	$(JAVAC) $(JFLAGS) $<
 
-# Regla para ejecutar el programa
+# Rule to run the program
 run: all
 	$(JAVA) -classpath $(CLASSPATH):$(BINDIR) $(MAINCLASS)
 
-# Regla para limpiar el proyecto (eliminar archivos .class y el directorio bin)
+# Rule to clean the project (remove .class files and bin directory)
 clean:
-	$(RM) -r $(BINDIR)/*      # Elimina todos los archivos en el directorio BINDIR
+	$(RM) -r $(BINDIR)/*
 
-# Regla para generar documentación con Javadoc
+# Rule to generate documentation with Javadoc
 doc:
-	javadoc -d $(DOCDIR) -sourcepath $(SRCDIR) $(SOURCES) # Genera documentación para todos los archivos fuente
+	javadoc -d $(DOCDIR) -sourcepath $(SRCDIR) $(SOURCES)
 
-# Regla para crear un archivo JAR ejecutable
+# Rule to create an executable JAR file
 jar: $(CLASSES)
-	echo "Main-Class: $(MAINCLASS)" > $(MANIFEST) # Crea el archivo de manifiesto
-	$(JAR) cfm $(MAINCLASS).jar $(MANIFEST) -C $(BINDIR) . # Crea el archivo JAR
+	echo "Main-Class: $(MAINCLASS)" > $(MANIFEST)
+	$(JAR) cfm $(MAINCLASS).jar $(MANIFEST) -C $(BINDIR) .
 
-.PHONY: all clean doc run jar # Declara objetivos que no corresponden a archivos
+.PHONY: all clean doc run jar

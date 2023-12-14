@@ -34,7 +34,7 @@ public class Main {
             }
 
             //Establece tamaño de la población (cantidad de genes) aqui se puede ir aumentando en cada iteración
-            conf.setPopulationSize(10);
+            conf.setPopulationSize(10); // 10 individuos en la población porque son 10 agentes
 
             // Establece la función de evaluación (fitness) de los individuos
             conf.setFitnessFunction(new FuncionEvaluacion(50));
@@ -53,13 +53,18 @@ public class Main {
             // Configuración inicial del archivo CSV para almacenar resultados
             try (FileWriter csvWriter = new FileWriter("ResultadosAlgoritmoGenetico.csv")) {
                 // Escribe los encabezados de las columnas en el archivo CSV
-                csvWriter.append("Generación,Aptitud Mejor Individuo,DisPos1,DisPos2,DisPos3,DisPos4,DisPos5,DisKick1,DisKick2,DisKick3,DisKick4,DisKick5,DisTeam1,DisTeam2,DisTeam3,DisTeam4,DisTeam5\n");
-
+                csvWriter.append("Generación,Aptitud Mejor Individuo,DisPos1,DisPos2,DisPos3,DisPos4,DisPos5,DisKick1,DisKick2,DisKick3,DisKick4,DisKick5,DisTeam1,DisTeam2,DisTeam3,DisTeam4,DisTeam5,Tiempo por generacion,Tiempo total\n");
+                long sumatime = 0;
                 // Realiza la evolución por un número determinado de generaciones
-                for (int i = 0; i < 5; i++) {
-
+                for (int i = 0; i < 30; i++) {
+                    long startTime = System.nanoTime(); 
                     System.out.println("\n\nGENERACION " + i + ":");
-                    poblacion.evolve(); // Evoluciona la población
+                    poblacion.evolve(); // Evoluciona la población aaaaa
+
+                    long endTime = System.nanoTime();
+                    long duration = (endTime - startTime);  //divide by 1000000 to get milliseconds.
+                    sumatime += duration;
+
 
                     // Obtiene el mejor cromosoma de la generación actual
                     IChromosome mejor = poblacion.getFittestChromosome();
@@ -72,10 +77,13 @@ public class Main {
                         csvWriter.append(String.valueOf(mejor.getGene(jj).getAllele()));
                         if (jj < 14) csvWriter.append(",");
                     }
+                    csvWriter.append(",").append(String.valueOf(duration));
+                    csvWriter.append(",").append(String.valueOf(sumatime));
                     csvWriter.append("\n");
                     System.out.println("\tMejor cromosoma de la generación: " +  i);
                     FuncionEvaluacion.println(mejor); //muestra su conformación
                     System.out.println("\tFitness:" + mejor.getFitnessValue()); //muestra su evaluación
+
                 }
             }
 
