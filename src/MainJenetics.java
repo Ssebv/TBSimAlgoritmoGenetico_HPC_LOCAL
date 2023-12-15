@@ -3,6 +3,8 @@ import io.jenetics.engine.*;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class MainJenetics {
     private static final FuncionEvaluacionJenetics FUNCION_EVALUACION = new FuncionEvaluacionJenetics();
@@ -14,14 +16,12 @@ public class MainJenetics {
             IntegerChromosome.of(1, 9, 15)
         );
 
-        // Configuración y ejecución del motor genético
+        ExecutorService executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
         Engine<IntegerGene, Double> engine = Engine
             .builder(MainJenetics::evaluar, GT)
             .populationSize(10)
-            .alterers(
-                new Mutator<>(0.1),
-                new MeanAlterer<>(0.6)
-            )
+            .alterers(new Mutator<>(0.1), new MeanAlterer<>(0.6))
+            .executor(executor)  // Habilita el procesamiento en paralelo
             .build();
         final long[] sumatime = new long[1];
         // Ejecución del algoritmo genético
@@ -80,6 +80,8 @@ public class MainJenetics {
             System.out.println(statistics);
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            executor.shutdown();
         }
     }
     // Función de evaluación adaptada para Jenetics
