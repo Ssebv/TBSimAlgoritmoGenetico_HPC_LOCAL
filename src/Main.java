@@ -9,13 +9,15 @@ import org.jgap.impl.*;
 import java.io.FileWriter;
 import java.io.IOException;
 
+
 public class Main {
 
     /**
      * @param args Argumentos de la línea de comandos
+     * @throws InterruptedException
      */
-    public static void main(String[] args) throws InvalidConfigurationException {
-       
+    public static void main(String[] args) throws InvalidConfigurationException, InterruptedException {
+              
         try {
             // Configuración del algoritmo genético JGAP
             Configuration conf = new DefaultConfiguration();
@@ -29,6 +31,7 @@ public class Main {
 
 
             Gene[] sampleGenes = new Gene[15]; 
+
             for (int jj=0; jj<15; jj++){
                 sampleGenes[jj] = new IntegerGene(conf, 1, 9); // IntegerGene es un alelo de tipo entero entre 1 y 9 que permite representar los parámetros de los agentes
             }
@@ -53,20 +56,25 @@ public class Main {
             // Configuración inicial del archivo CSV para almacenar resultados
             try (FileWriter csvWriter = new FileWriter("ResultadosAlgoritmoGenetico.csv")) {
                 // Escribe los encabezados de las columnas en el archivo CSV
-                csvWriter.append("Generación,Aptitud Mejor Individuo,DisPos1,DisPos2,DisPos3,DisPos4,DisPos5,DisKick1,DisKick2,DisKick3,DisKick4,DisKick5,DisTeam1,DisTeam2,DisTeam3,DisTeam4,DisTeam5,Tiempo por generacion,Tiempo total\n");
+                csvWriter.append("Generacion,Aptitud Mejor Individuo,DisPos1,DisPos2,DisPos3,DisPos4,DisPos5,DisKick1,DisKick2,DisKick3,DisKick4,DisKick5,DisTeam1,DisTeam2,DisTeam3,DisTeam4,DisTeam5,Tiempo por generacion,Tiempo total,Uso CPU\n");
                 long sumatime = 0;
                 // Realiza la evolución por un número determinado de generaciones
                 for (int i = 0; i < 30; i++) {
-                    long startTime = System.nanoTime(); 
+                    CpuMonitor cpuMonitor = new CpuMonitor();
+                    Thread monitorThread = new Thread(cpuMonitor);
+                    monitorThread.start(); 
+
+                    long startTime = System.currentTimeMillis();
+                    
                     System.out.println("\n\nGENERACION " + i + ":");
                     poblacion.evolve(); // Evoluciona la población aaaaa
 
-                    long endTime = System.nanoTime();
-                    long duration = (endTime - startTime);  //divide by 1000000 to get milliseconds.
+                    long endTime = System.currentTimeMillis();
+                    long duration = (endTime - startTime) / 1000; // Tiempo de ejecución en segundos
+                    
                     sumatime += duration;
 
-
-                    // Obtiene el mejor cromosoma de la generación actual
+                                       // Obtiene el mejor cromosoma de la generación actual
                     IChromosome mejor = poblacion.getFittestChromosome();
 
 
@@ -79,6 +87,11 @@ public class Main {
                     }
                     csvWriter.append(",").append(String.valueOf(duration));
                     csvWriter.append(",").append(String.valueOf(sumatime));
+                    
+                    cpuMonitor.stop();
+                    monitorThread.join();
+                    double averageCpuLoad = cpuMonitor.getAverageCpuLoad();
+                    csvWriter.append(",").append(String.format("%.2f", averageCpuLoad * 100)); // Uso de CPU como porcentaje
                     csvWriter.append("\n");
                     System.out.println("\tMejor cromosoma de la generación: " +  i);
                     FuncionEvaluacion.println(mejor); //muestra su conformación
@@ -97,6 +110,6 @@ public class Main {
             System.err.println("Error de configuración en JGAP: " + e.getMessage());
         } catch (IOException e) {
             System.err.println("Error al escribir el archivo CSV: " + e.getMessage());
-        }
+        }  
     }
 }
