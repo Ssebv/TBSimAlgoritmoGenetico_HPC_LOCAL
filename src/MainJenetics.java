@@ -41,7 +41,7 @@ public class MainJenetics {
 
                     long generation = result.generation();
                     
-                    System.out.println("Generación " + generation + ":");
+                    // System.out.println("Generación " + generation + ":");
 
                     // Obteniendo el mejor genotipo
                     Genotype<IntegerGene> mejorGenotipo = result.bestPhenotype().genotype();
@@ -61,9 +61,9 @@ public class MainJenetics {
                         monitorThread.join();
                         double averageCpuLoad = cpuMonitor.getAverageCpuLoad();
 
-                        System.out.println("Generación: " + result.generation() + 
-                                   ", Duración: " + duration + " ns, " +
-                                   "Suma de tiempo: " + sumatime[0] + " ns");
+                        // System.out.println("Generación: " + result.generation() + 
+                                   //", Duración: " + duration + " ns, " +
+                                  // "Suma de tiempo: " + sumatime[0] + " ns");
 
                         csvWriter.append("," + duration + "," + sumatime[0]);
                         csvWriter.append(",").append(String.format("%.2f", averageCpuLoad * 100)); // Uso de CPU como porcentaje

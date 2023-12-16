@@ -59,14 +59,14 @@ public class Main {
                 csvWriter.append("Generacion,Aptitud Mejor Individuo,DisPos1,DisPos2,DisPos3,DisPos4,DisPos5,DisKick1,DisKick2,DisKick3,DisKick4,DisKick5,DisTeam1,DisTeam2,DisTeam3,DisTeam4,DisTeam5,Tiempo por generacion,Tiempo total,Uso CPU\n");
                 long sumatime = 0;
                 // Realiza la evolución por un número determinado de generaciones
-                for (int i = 0; i < 30; i++) {
+                for (int i = 0; i < 300; i++) {
                     CpuMonitor cpuMonitor = new CpuMonitor();
                     Thread monitorThread = new Thread(cpuMonitor);
                     monitorThread.start(); 
 
                     long startTime = System.currentTimeMillis();
                     
-                    System.out.println("\n\nGENERACION " + i + ":");
+                    //System.out.println("\n\nGENERACION " + i + ":");
                     poblacion.evolve(); // Evoluciona la población aaaaa
 
                     long endTime = System.currentTimeMillis();
@@ -93,16 +93,16 @@ public class Main {
                     double averageCpuLoad = cpuMonitor.getAverageCpuLoad();
                     csvWriter.append(",").append(String.format("%.2f", averageCpuLoad * 100)); // Uso de CPU como porcentaje
                     csvWriter.append("\n");
-                    System.out.println("\tMejor cromosoma de la generación: " +  i);
-                    FuncionEvaluacion.println(mejor); //muestra su conformación
-                    System.out.println("\tFitness:" + mejor.getFitnessValue()); //muestra su evaluación
+                    // System.out.println("\tMejor cromosoma de la generación: " +  i);
+                    // FuncionEvaluacion.println(mejor); //muestra su conformación
+                    // System.out.println("\tFitness:" + mejor.getFitnessValue()); //muestra su evaluación
 
                 }
             }
 
             // Imprime el mejor individuo encontrado después de todas las generaciones
             IChromosome mejor = poblacion.getFittestChromosome();
-            System.out.println("\n\nMEJOR INDIVIDUO:");
+            // System.out.println("\n\nMEJOR INDIVIDUO:");
             FuncionEvaluacion.println(mejor); //muestra su conformación
             System.out.println("\tFitness:" + mejor.getFitnessValue()); //muestra su evaluación
 

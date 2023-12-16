@@ -20,7 +20,7 @@ public class CpuMonitor implements Runnable {
                 samples++;
             }
             try {
-                Thread.sleep(1000); // Espera un segundo entre muestras para no saturar el procesador
+               // Thread.sleep(1000); // Espera un segundo entre muestras para no saturar el procesador
                 pass();
             } catch (Exception e) {
                 System.out.println(e);
