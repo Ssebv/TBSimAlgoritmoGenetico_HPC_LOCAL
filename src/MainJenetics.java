@@ -3,9 +3,7 @@ import io.jenetics.engine.*;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ForkJoinPool;
+
 
 public class MainJenetics {
     private static final FuncionEvaluacionJenetics FUNCION_EVALUACION = new FuncionEvaluacionJenetics();
@@ -38,7 +36,7 @@ public class MainJenetics {
             EvolutionStatistics<Double, ?> statistics = EvolutionStatistics.ofNumber();
 
             engine.stream()
-                .limit(30)
+                .limit(250)
                 .peek(statistics)
 
                 .peek(result -> {
@@ -62,17 +60,12 @@ public class MainJenetics {
                         long duration = (endTime - startTime); 
                         sumatime[0] += duration;
 
-                        System.out.println("Generación: " + result.generation() + 
-                                   ", Duración: " + duration + " ns, " +
-                                  "Suma de tiempo: " + sumatime[0] + " ns");
 
                         csvWriter.append("," + duration + "," + sumatime[0]);
+                        csvWriter.append(",").append(String.format("%.2f", CpuUsage.getCpuUsage().getUsage()));
                         csvWriter.append("\n");
 
                     } catch (IOException e) {
-                        e.printStackTrace();
-                    } catch (InterruptedException e) {
-                        // TODO Auto-generated catch block
                         e.printStackTrace();
                     }
                 })

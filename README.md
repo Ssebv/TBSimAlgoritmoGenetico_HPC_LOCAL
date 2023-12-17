@@ -80,6 +80,10 @@ El archivo Main.java sirve como punto de entrada principal para la ejecución de
 
 `TBSimNoGraphics.java` es la clase que maneja la simulación del fútbol de robots sin interfaz gráfica. Utiliza semáforos para controlar el flujo de la simulación y para sincronizar el inicio. Esta clase permite ejecutar simulaciones en un entorno sin necesidad de interacción visual, lo que es ideal para ejecuciones en HPC.
 
+
+Por defecto, Jenetics utiliza el ForkJoinPool.commonPool(), que tiene un nivel de paralelismo igual al número de procesadores disponibles en la máquina.
+
+
 ![Test simulacion](./img/simulacion_test.png)
 
 ### Autor
