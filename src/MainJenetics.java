@@ -5,6 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ForkJoinPool;
 
 public class MainJenetics {
     private static final FuncionEvaluacionJenetics FUNCION_EVALUACION = new FuncionEvaluacionJenetics();
@@ -12,16 +13,23 @@ public class MainJenetics {
     public static void main(String[] args) { // Nombre del método corregido a 'main'
 
         // Definición del genotipo (estructura del cromosoma)
+        // ExecutorService executor = Executors.newFixedThreadPool(8);
         final Genotype<IntegerGene> GT = Genotype.of(
             IntegerChromosome.of(1, 9, 15)
         );
 
-        ExecutorService executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
-        Engine<IntegerGene, Double> engine = Engine
+        // Configuración y ejecución del motor genético
+        final Engine<IntegerGene, Double> engine = Engine // 
             .builder(MainJenetics::evaluar, GT)
             .populationSize(10)
-            .alterers(new Mutator<>(0.1), new MeanAlterer<>(0.6))
-            .executor(executor)  // Habilita el procesamiento en paralelo
+            // .executor(executor)
+            .alterers(
+                new Mutator<>(0.1),
+                new MeanAlterer<>(0.6)
+            )
+            // .executor(executor)
+
+            
             .build();
         final long[] sumatime = new long[1];
         // Ejecución del algoritmo genético
@@ -30,15 +38,14 @@ public class MainJenetics {
             EvolutionStatistics<Double, ?> statistics = EvolutionStatistics.ofNumber();
 
             engine.stream()
-                
                 .limit(30)
                 .peek(statistics)
+
                 .peek(result -> {
                     long startTime = System.nanoTime();
                     CpuMonitor cpuMonitor = new CpuMonitor();
                     Thread monitorThread = new Thread(cpuMonitor);
                     monitorThread.start(); 
-
                     long generation = result.generation();
                     
                     System.out.println("Generación " + generation + ":");
@@ -63,7 +70,7 @@ public class MainJenetics {
 
                         System.out.println("Generación: " + result.generation() + 
                                    ", Duración: " + duration + " ns, " +
-                                   "Suma de tiempo: " + sumatime[0] + " ns");
+                                  "Suma de tiempo: " + sumatime[0] + " ns");
 
                         csvWriter.append("," + duration + "," + sumatime[0]);
                         csvWriter.append(",").append(String.format("%.2f", averageCpuLoad * 100)); // Uso de CPU como porcentaje
@@ -72,17 +79,21 @@ public class MainJenetics {
                     } catch (IOException e) {
                         e.printStackTrace();
                     } catch (InterruptedException e) {
+                        // TODO Auto-generated catch block
                         e.printStackTrace();
                     }
                 })
                 .collect(EvolutionResult.toBestPhenotype());
 
             System.out.println(statistics);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            executor.shutdown();
+         } catch (IOException e) {
+            System.err.println("Error al escribir el archivo CSV: " + e.getMessage()); 
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage()); 
         }
+        // finally {
+        //     executor.shutdown();
+        // }
     }
     // Función de evaluación adaptada para Jenetics
     private static double evaluar(Genotype<IntegerGene> genotype) {

@@ -89,8 +89,8 @@ public class FuncionEvaluacionJenetics {
         //     System.out.print(genotype.get(i).get(i).allele() + "," + genotype.get(i + 5).get(i).allele() + ","
         //             + genotype.get(i + 10).get(i).allele() + " ");
         // }
-        System.out.println(genotype.toString());
-        System.out.println("\t(FITNESS:" + (MAXDIF + diff) + " DIFF. GOLES:" + diff +")"); // 
+        //System.out.println(genotype.toString());
+        // System.out.println("\t(FITNESS:" + (MAXDIF + diff) + " DIFF. GOLES:" + diff +")"); // 
         
 
         // Retorna la evaluación del cromosoma basada en la diferencia de goles.
