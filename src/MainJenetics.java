@@ -43,9 +43,7 @@ public class MainJenetics {
 
                 .peek(result -> {
                     long startTime = System.nanoTime();
-                    CpuMonitor cpuMonitor = new CpuMonitor();
-                    Thread monitorThread = new Thread(cpuMonitor);
-                    monitorThread.start(); 
+                    
                     long generation = result.generation();
                     
                     System.out.println("Generación " + generation + ":");
@@ -64,16 +62,11 @@ public class MainJenetics {
                         long duration = (endTime - startTime); 
                         sumatime[0] += duration;
 
-                        cpuMonitor.stop();
-                        monitorThread.join();
-                        double averageCpuLoad = cpuMonitor.getAverageCpuLoad();
-
                         System.out.println("Generación: " + result.generation() + 
                                    ", Duración: " + duration + " ns, " +
                                   "Suma de tiempo: " + sumatime[0] + " ns");
 
                         csvWriter.append("," + duration + "," + sumatime[0]);
-                        csvWriter.append(",").append(String.format("%.2f", averageCpuLoad * 100)); // Uso de CPU como porcentaje
                         csvWriter.append("\n");
 
                     } catch (IOException e) {
