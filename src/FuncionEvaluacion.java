@@ -96,7 +96,7 @@ public class FuncionEvaluacion extends FitnessFunction {
 
         // Se imprime el cromosoma y la evaluación del resultado
         // this.println(cromosoma);
-        System.out.println("\t(FITNESS:" + (MAXDIF+diff) + " DIFF. GOLES:" + diff +")"); // 
+        // System.out.println("\t(FITNESS:" + (MAXDIF+diff) + " DIFF. GOLES:" + diff +")"); // 
 
         // Retorna la evaluación del cromosoma basada en la diferencia de goles.
         // A mayor valor, mejor es la evaluación.

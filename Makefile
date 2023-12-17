@@ -9,7 +9,7 @@ SRCDIR = src
 BINDIR = bin
 LIBDIR = lib
 DOCDIR = doc
-CLASSPATH = $(LIBDIR)/jgap-3.4.4.jar:
+CLASSPATH = $(LIBDIR)/jgap-3.4.4.jar:$(LIBDIR)/oshi-core-3.4.1.jar:$(LIBDIR)/jna-5.14.0.jar:$(LIBDIR)/jna-platform-jpms-5.14.0.jar:$(LIBDIR)/slf4j.jar
 SOURCES = $(shell find $(SRCDIR) -name '*.java')
 CLASSES = $(SOURCES:$(SRCDIR)/%.java=$(BINDIR)/%.class)
 MAINCLASS = Main

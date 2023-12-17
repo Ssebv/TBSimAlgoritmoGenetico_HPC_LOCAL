@@ -8,13 +8,16 @@ import org.jgap.*;
 import org.jgap.impl.*;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.List;
+
+// Import CpuUsageMonitor
 
 public class Main {
-
     /**
      * @param args Argumentos de la línea de comandos
+     * @throws Exception
      */
-    public static void main(String[] args) throws InvalidConfigurationException {
+    public static void main(String[] args) throws Exception {
        
         try {
             // Configuración del algoritmo genético JGAP
@@ -42,33 +45,36 @@ public class Main {
 
             // Define el cromosoma de muestra para la configuración
             IChromosome sampleChromosome = new Chromosome(conf, sampleGenes);
+
             conf.setSampleChromosome(sampleChromosome);
 
             conf.addGeneticOperator(new CrossoverOperator(conf, 0.35f)); // Operador de cruce
 
             // Inicializa la población de genotipos de manera aleatoria
-            Genotype poblacion = Genotype.randomInitialGenotype(conf);  
+            Genotype poblacion = Genotype.randomInitialGenotype(conf);
+            
+            
 
             // Inicialización del Archivo CSV
             // Configuración inicial del archivo CSV para almacenar resultados
             try (FileWriter csvWriter = new FileWriter("ResultadosAlgoritmoGenetico.csv")) {
                 // Escribe los encabezados de las columnas en el archivo CSV
-                csvWriter.append("Generación,Aptitud Mejor Individuo,DisPos1,DisPos2,DisPos3,DisPos4,DisPos5,DisKick1,DisKick2,DisKick3,DisKick4,DisKick5,DisTeam1,DisTeam2,DisTeam3,DisTeam4,DisTeam5,Tiempo por generacion,Tiempo total\n");
+                csvWriter.append("Generación,Aptitud Mejor Individuo,DisPos1,DisPos2,DisPos3,DisPos4,DisPos5,DisKick1,DisKick2,DisKick3,DisKick4,DisKick5,DisTeam1,DisTeam2,DisTeam3,DisTeam4,DisTeam5,Tiempo por generacion,Tiempo Acumulado,Uso CPU (%)\n");
                 long sumatime = 0;
                 // Realiza la evolución por un número determinado de generaciones
-                for (int i = 0; i < 30; i++) {
+                for (int i = 0; i < 250; i++) {
                     long startTime = System.nanoTime(); 
-                    System.out.println("\n\nGENERACION " + i + ":");
+                    // System.out.println("\n\nGENERACION " + i + ":");
                     poblacion.evolve(); // Evoluciona la población aaaaa
-
+                    CpuUsage usage = CpuUsage.getCpuUsage();
+                    System.out.println("Cpu usage: " + usage.getUsage());
+                   
                     long endTime = System.nanoTime();
-                    long duration = (endTime - startTime);  //divide by 1000000 to get milliseconds.
-                    sumatime += duration;
-
+                    long duration = (endTime - startTime) / 1000000; // Tiempo de ejecución de la generación actual
+                    sumatime += duration;   
 
                     // Obtiene el mejor cromosoma de la generación actual
                     IChromosome mejor = poblacion.getFittestChromosome();
-
 
                     // Escribe los resultados de la generación actual en el archivo CSV
                     csvWriter.append(String.valueOf(i)).append(",");
@@ -79,6 +85,9 @@ public class Main {
                     }
                     csvWriter.append(",").append(String.valueOf(duration));
                     csvWriter.append(",").append(String.valueOf(sumatime));
+
+                    csvWriter.append(",").append(String.format("%.2f", usage.getUsage())); // Uso de CPU como porcentaje
+
                     csvWriter.append("\n");
                     System.out.println("\tMejor cromosoma de la generación: " +  i);
                     FuncionEvaluacion.println(mejor); //muestra su conformación
