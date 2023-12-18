@@ -3,6 +3,8 @@ import io.jenetics.engine.*;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 
 public class MainJenetics {
@@ -11,7 +13,7 @@ public class MainJenetics {
     public static void main(String[] args) { // Nombre del método corregido a 'main'
 
         // Definición del genotipo (estructura del cromosoma)
-        // ExecutorService executor = Executors.newFixedThreadPool(8);
+        final ExecutorService executor = Executors.newFixedThreadPool(8);
         final Genotype<IntegerGene> GT = Genotype.of(
             IntegerChromosome.of(1, 9, 15)
         );
@@ -19,16 +21,17 @@ public class MainJenetics {
         // Configuración y ejecución del motor genético
         final Engine<IntegerGene, Double> engine = Engine // 
             .builder(MainJenetics::evaluar, GT)
-            .populationSize(10)
+            .populationSize(80)
             // .executor(executor)
             .alterers(
                 new Mutator<>(0.1),
-                new MeanAlterer<>(0.6)
+                new MultiPointCrossover<>(0.6)
             )
+            .executor((executor))
             // .executor(executor)
-
             
             .build();
+        
         final long[] sumatime = new long[1];
         // Ejecución del algoritmo genético
         try (FileWriter csvWriter = new FileWriter("ResultadosAlgoritmoGenetico.csv")) {
@@ -37,6 +40,7 @@ public class MainJenetics {
 
             engine.stream()
                 .limit(250)
+
                 .peek(statistics)
 
                 .peek(result -> {
@@ -57,11 +61,13 @@ public class MainJenetics {
                         }
 
                         long endTime = System.nanoTime();
-                        long duration = (endTime - startTime); 
+                        // Converting nanoseconds to milliseconds
+                        double duration = (endTime - startTime) /100000; // Tiempo en milisegundos 
                         sumatime[0] += duration;
-
-
+                        
+                        
                         csvWriter.append("," + duration + "," + sumatime[0]);
+
                         csvWriter.append(",").append(String.format("%.2f", CpuUsage.getCpuUsage().getUsage()));
                         csvWriter.append("\n");
 
@@ -77,9 +83,9 @@ public class MainJenetics {
         } catch (Exception e) {
             System.err.println("Error: " + e.getMessage()); 
         }
-        // finally {
-        //     executor.shutdown();
-        // }
+        finally {
+            executor.shutdown();
+        }
     }
     // Función de evaluación adaptada para Jenetics
     private static double evaluar(Genotype<IntegerGene> genotype) {
