@@ -62,7 +62,7 @@ public class Main {
                 csvWriter.append("Generación,Aptitud Mejor Individuo,DisPos1,DisPos2,DisPos3,DisPos4,DisPos5,DisKick1,DisKick2,DisKick3,DisKick4,DisKick5,DisTeam1,DisTeam2,DisTeam3,DisTeam4,DisTeam5,Tiempo por generacion,Tiempo Acumulado,Uso CPU (%)\n");
                 long sumatime = 0;
                 // Realiza la evolución por un número determinado de generaciones
-                for (int i = 0; i < 250; i++) {
+                for (int i = 0; i < 100; i++) {
                     long startTime = System.nanoTime(); 
                     // System.out.println("\n\nGENERACION " + i + ":");
                     poblacion.evolve(); // Evoluciona la población aaaaa
@@ -70,7 +70,7 @@ public class Main {
                     System.out.println("Cpu usage: " + usage.getUsage());
                    
                     long endTime = System.nanoTime();
-                    long duration = (endTime - startTime) / 1000000; // Tiempo de ejecución de la generación actual
+                    long duration = (endTime - startTime) / 1000000; // Tiempo en milisegundos
                     sumatime += duration;   
 
                     // Obtiene el mejor cromosoma de la generación actual

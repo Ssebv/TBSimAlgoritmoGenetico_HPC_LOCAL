@@ -1,10 +1,5 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
-
-import oshi.SystemInfo;
-import oshi.hardware.CentralProcessor;
 
 public class CpuUsage {
     private double usage;
