@@ -1,0 +1,20 @@
+TeamBots 2.0e (c)2000 Tucker Balch, CMU and GTRC
+1784
+maxtimestep statement read, treated as timestep
+0 1
+1 1
+2 1
+2 2
+3 2
+ trial number	: -1 (counts down)
+ sim time    	: 600000 milliseconds
+ timestep 		: 50 milliseconds
+ timeout      	: 600000 milliseconds
+ frames/second	: 17242.816091954024
+ free memory	: 66449424
+ total memory	: 134217728
+ os.name	: Mac OS X
+ os.version	: 14.2
+ os.arch	: aarch64
+ java.version	: 17.0.8.1
+

@@ -1,0 +1,2398 @@
+TeamBots 2.0e (c)2000 Tucker Balch, CMU and GTRC
+1764
+maxtimestep statement read, treated as timestep
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+0 1
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+0 2
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+0 3
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+0 4
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+0 5
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+0 6
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+0 7
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+0 8
+2 received:
+sender: 0
+val: 3 can kick
+
+0 9
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+0 10
+2 received:
+sender: 0
+val: 3 can kick
+
+0 11
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+0 12
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+0 13
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+0 14
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+0 15
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+2 received:
+sender: 0
+val: 3 can kick
+
+ trial number	: -1 (counts down)
+ sim time    	: 600000 milliseconds
+ timestep 		: 50 milliseconds
+ timeout      	: 600000 milliseconds
+ frames/second	: 15937.583001328021
+ free memory	: 94184272
+ total memory	: 134217728
+ os.name	: Mac OS X
+ os.version	: 14.2
+ os.arch	: aarch64
+ java.version	: 17.0.8.1
+

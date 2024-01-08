@@ -1,0 +1,77 @@
+TeamBots 2.0e (c)2000 Tucker Balch, CMU and GTRC
+1764
+maxtimestep statement read, treated as timestep
+--> Goalie clear the ball!
+0 1
+0 2
+0 3
+0 4
+--> Goalie clear the ball!
+--> Goalie clear the ball!
+--> Goalie clear the ball!
+--> Goalie clear the ball!
+--> Goalie clear the ball!
+--> Goalie clear the ball!
+--> Goalie clear the ball!
+--> Goalie clear the ball!
+--> Goalie clear the ball!
+--> Goalie clear the ball!
+--> Goalie clear the ball!
+--> Goalie clear the ball!
+--> Goalie clear the ball!
+--> Goalie clear the ball!
+--> Goalie clear the ball!
+--> Goalie clear the ball!
+--> Goalie clear the ball!
+--> Goalie clear the ball!
+--> Goalie clear the ball!
+--> Goalie clear the ball!
+--> Goalie clear the ball!
+--> Goalie clear the ball!
+--> Goalie clear the ball!
+--> Goalie clear the ball!
+--> Goalie clear the ball!
+0 5
+--> Goalie clear the ball!
+--> Goalie clear the ball!
+--> Goalie clear the ball!
+--> Goalie clear the ball!
+--> Goalie clear the ball!
+--> Goalie clear the ball!
+--> Goalie clear the ball!
+--> Goalie clear the ball!
+--> Goalie clear the ball!
+--> Goalie clear the ball!
+--> Goalie clear the ball!
+--> Goalie clear the ball!
+--> Goalie clear the ball!
+--> Goalie clear the ball!
+--> Goalie clear the ball!
+--> Goalie clear the ball!
+--> Goalie clear the ball!
+--> Goalie clear the ball!
+--> Goalie clear the ball!
+--> Goalie clear the ball!
+--> Goalie clear the ball!
+--> Goalie clear the ball!
+--> Goalie clear the ball!
+--> Goalie clear the ball!
+--> Goalie clear the ball!
+--> Goalie clear the ball!
+--> Goalie clear the ball!
+--> Goalie clear the ball!
+--> Goalie clear the ball!
+0 6
+0 7
+ trial number	: -1 (counts down)
+ sim time    	: 600000 milliseconds
+ timestep 		: 50 milliseconds
+ timeout      	: 600000 milliseconds
+ frames/second	: 16808.12324929972
+ free memory	: 73890704
+ total memory	: 136314880
+ os.name	: Mac OS X
+ os.version	: 14.2
+ os.arch	: aarch64
+ java.version	: 17.0.9
+

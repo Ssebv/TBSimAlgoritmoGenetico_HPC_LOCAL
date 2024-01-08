@@ -1,0 +1,68 @@
+TeamBots 2.0e (c)2000 Tucker Balch, CMU and GTRC
+1784
+maxtimestep statement read, treated as timestep
+shot: 0.7
+shot: 0.7
+shot: 0.19568895239520478
+shot: 0.7
+shot: 0.7
+shot: 0.7
+1 0
+shot: 0.28857285279954115
+2 0
+shot: 0.7
+shot: 0.7
+3 0
+shot: 0.5778523487889063
+4 0
+shot: 0.17968909964802848
+shot: 0.7
+5 0
+shot: 0.607336474058709
+shot: 0.7
+shot: 3.5
+shot: 3.5
+6 0
+7 0
+shot: 0.37395142581399055
+shot: 0.08189531781612736
+shot: 0.7
+8 0
+shot: 0.7
+shot: 0.7
+9 0
+10 0
+11 0
+shot: 0.7
+12 0
+shot: 0.5957364594576617
+shot: 0.7
+13 0
+shot: 0.7
+14 0
+shot: 0.07224515348852856
+15 0
+shot: 0.06275421769220668
+shot: 0.12997268176303656
+shot: 0.7
+16 0
+shot: 0.5173027938448236
+shot: 0.7
+shot: 0.7
+shot: 0.21171629051104168
+shot: 3.5
+shot: 3.5
+17 0
+shot: 0.7
+ trial number	: -1 (counts down)
+ sim time    	: 600000 milliseconds
+ timestep 		: 50 milliseconds
+ timeout      	: 600000 milliseconds
+ frames/second	: 11731.182795698925
+ free memory	: 104833352
+ total memory	: 136314880
+ os.name	: Mac OS X
+ os.version	: 14.2
+ os.arch	: aarch64
+ java.version	: 17.0.9
+
