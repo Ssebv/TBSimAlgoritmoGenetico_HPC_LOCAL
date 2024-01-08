@@ -1,0 +1,293 @@
+Ejercicio 1 consta de varias partes, en las que se trabajará con el comando "hostname" utilizando srun en la partición Slims. A continuación, se detallan los pasos para cada parte:
+
+Ejecute el comando hostname en la partición Slims con srun, usando un único proceso:
+css
+
+	srun -p slims -n 1 hostname
+Ejecute el comando hostname en la partición Slims con srun, usando dos procesos iguales:
+
+	srun -p slims -n 2 --ntasks-per-node=2 hostname
+Ejecute el comando hostname en la partición Slims con srun, usando dos procesos en distintos nodos:
+
+	srun -p slims -n 2 --ntasks-per-node=1 hostname
+
+Lanzar un proceso que tenga dos hilos utilizando el comando hostname en la partición Slims con srun:
+	srun -p slims -n 1 -c 2 hostname
+
+-------------------
+Para realizar el ejercicio 2, primero crea un script de ejecución para lanzarlo con sbatch. Aquí hay un ejemplo de cómo hacerlo:
+
+Abre tu editor de texto favorito y crea un nuevo archivo llamado, por ejemplo, stress_test.sh.
+
+Agrega las siguientes líneas al archivo:
+
+
+		#!/bin/bash
+		#SBATCH --partition=slims
+		#SBATCH --ntasks=1
+		#SBATCH --cpus-per-task=1
+
+		stress -c 1
+
+Guarda y cierra el archivo.
+
+Ahora, ejecuta el script con sbatch:
+
+		sbatch stress_test.sh
+--------------
+
+Para el ejercicio numero 3 Primero, crea un script para lanzarlo con sbatch:
+
+Abre tu editor de texto favorito y crea un nuevo archivo llamado, por ejemplo, stress_test_node.sh.
+
+Agrega las siguientes líneas al archivo:
+
+		#!/bin/bash
+		#SBATCH --partition=slims
+		#SBATCH --nodes=1
+		#SBATCH --ntasks-per-node=40
+
+		stress -c 40 -t 10m
+
+Guarda y cierra el archivo.
+
+Ejecuta el script con sbatch:
+
+
+		sbatch stress_test_node.sh
+
+-----------------------
+
+
+Para el ejercicio 4 original, el script sería así:
+
+bash
+Copy code
+#!/bin/bash
+#SBATCH --partition=slims
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=1
+#SBATCH --mem=0
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=your@email.com
+
+stress -m 1 --vm-bytes 2048M -t 15m
+
+Recuerda que en este caso, la ejecución fallaría debido a la falta de asignación de memoria RAM (--mem=0). Si esto es lo que deseas para el ejercicio 4, puedes seguir adelante y usar este script.
+
+-------------------------
+
+
+Para completar el ejercicio 5, sigue los pasos a continuación:
+
+Descarga el archivo n-queens-problem-3.py en tu directorio de trabajo usando wget (asegúrate de reemplazar la URL con la ubicación correcta del archivo):
+
+		wget https://example.com/path/to/n-queens-problem-3.py
+Crea un archivo de script de ejecución para sbatch llamado n_queens_job.sh y ábrelo con un editor de texto (como nano o vim):
+	
+		nano n_queens_job.sh
+Añade el siguiente contenido al archivo de script n_queens_job.sh:
+
+
+		#!/bin/bash
+
+		#SBATCH --partition=slims
+		#SBATCH --ntasks=1
+		#SBATCH --cpus-per-task=1
+		#SBATCH --mem=2300M
+
+		module load Python/3.9.5
+		python n-queens-problem-3.py
+
+
+
+Ejecuta el script de sbatch con el siguiente comando:
+
+
+		sbatch n_queens_job.sh
+
+El sistema de trabajo en cluster ejecutará el script y asignará los recursos según las directivas especificadas en el script. El programa Python n-queens-problem-3.py se ejecutará utilizando la versión 3.9.5 de Python.
+
+Recuerda que para monitorear el progreso del trabajo, puedes utilizar los siguientes comandos:
+
+squeue para ver el estado de tu trabajo en la cola.
+scontrol show job <job_id> para obtener información detallada sobre un trabajo específico (reemplaza <job_id> con el ID de tu trabajo).
+sacct para ver el historial de trabajos.
+
+
+
+----------
+
+less para mostrar el contenido de .err o .out
+
+ejercicio 1
+
+	#!/bin/bash
+
+
+	#SBATSH -J ejemplo
+	#SBATCH -p slims
+	#SBATCH --ntasks=1
+	#SBATCH --cpus-per-task=20
+	#SBATCH --mem-per-cpu=2300MB
+	#SBATCH -o archivo_%j.out
+	#SBATCH -e archivo-%j.err
+	#SBATCH --mail-user=sallendec@outlook.com
+	#SBATCH --mail-type=ALL
+
+	export OMP_NUM_THREADS=20
+
+	./pi_omp
+
+-less archivo_25456067.out
+
+Hay 20 hilos en ejecución
+Pi es aproximadamente 3.1415926535897922, el error cometido es 0.0000000000000009
+Tiempo de ejecución: 1.403127 segundos
+
+link prueba de escalamiento para saber que modelo y cuanto ocupar : https://wiki.nlhpc.cl/Escalamiento
+
+link de generador de scripts : https://wiki.nlhpc.cl/Generador_Scriptsm
+
+Ejercicio 2
+
+cat pi_mpi.sh
+#!/bin/bash
+# ---- Template -----
+# ------- Script SBATSH - NLHPC --------------
+#SBATSH -J mpi
+#SBATCH -p slims
+#SBATCH -n 40
+#SBATCH --ntasks-per-node=20
+#SBATCH --mem-per-cpu=2300MB
+#SBATCH -o archivo1_%j.out
+#SBATCH -e archivo1_%j.err
+#SBATCH --mail-user=sallendec@outlook.com
+#SBATCH --mail-type=ALL
+
+# ----- Toolchain ------
+
+# ------ Modulos ------
+
+# ------ Comando ------
+srun pi_mpi
+
+watch squeue -- para ejecutar squeue cada 2 segundo y ver los procesos
+scancel [25456210] cancelar procesos de squeue con el id 
+ 
+--------
+
+Ejercicio 3
+
+#!/bin/bash
+# ---- Template -----
+# ------- Script SBATSH - NLHPC --------------
+#SBATSH -J hybrid
+#SBATCH -p general
+#SBATCH -n 2
+#SBATCH -c 44
+#SBATCH --mem-per-cpu=2300MB
+#SBATCH -o hybrid_%j.out
+#SBATCH -e hybrid_%j.err
+#SBATCH --mail-user=sallendec@outlook.com
+#SBATCH --mail-type=ALL
+
+# ----- Toolchain ------
+
+# ------ Modulos ------
+
+# ------ Comando ------
+srun ./pi_hybrid
+
+
+------------
+
+Ejemplo 4
+
+#!/bin/sh
+# ---- Template -----
+# ------- Script SBATSH - NLHPC --------------
+#SBATSH -J secuencial_array
+#SBATCH -p slims
+#SBATCH -n 1
+#SBATCH -c 1
+#SBATCH --mem-per-cpu=2300
+#SBATCH --mail-user=sallendec@outlook.com
+#SBATCH --mail-type=ALL
+#SBATCH --array=1-100%10
+#SBATCH -o secuencial_array_%A_%a.out
+
+# ----- Toolchain ------
+
+# ------ Modulos ------
+ml Python/3.8.2
+# ------ Comando ------
+python average.py $SLURM_ARRAY_TASK_ID
+
+cat *.out #listar todos los outputs
+
+--------
+
+ejercicio 5
+
+aplicacion uso de gpu y lanzarla en la gpu
+
+curl https://raw.githubusercontent.com/nlhpc-training/Curso-Avanzado/master/source/Makefile >> Makefile
+
+de los dos 
+
+
+cuda nunca lo habia escuchado pero es similar a c y se utiliza en las graficas de nvidea
+
+make para compilar ek makefile
+
+ml para listar los paketes
+
+ml purge elimina todos los paquetes
+
+ml fusscoda para instalar el pakete a utilizar
+
+	#!/bin/sh
+	##---------------SLURM Parameters - NLHPC ----------------
+	#SBATCH -J ejercicio5
+	#SBATCH -p gpus
+	#SBATCH -n 1
+	#SBATCH --gres=gpu:1
+	#SBATCH -c 1
+	#SBATCH --mem-per-cpu=2300
+	#SBATCH --mail-user=foo@bar.com
+	#SBATCH --mail-type=ALL
+	#SBATCH -o ejercicio5_%j.out
+	#SBATCH -e ejercicio5_%j.err
+
+	ml purge
+	ml fosscuda/2019b
+
+	./mulBy2
+
+
+sbatch mulby2.sh
+
+less ...
+
+
+---------
+
+ejercicio 6
+
+para crear colas de trabajo de los .sh
+
+[prueba@leftraru1 ~]$ sbatch job1.sh
+Submitted batch job 21363626
+
+[prueba@leftraru1 ~]$ sbatch --dependency=afterok:21363626 job2.sh
+
+
+
+
+
+
+
+
+
+
