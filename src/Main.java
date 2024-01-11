@@ -102,7 +102,7 @@ public class Main {
 
             // Imprime el mejor individuo encontrado después de todas las generaciones
             IChromosome mejor = poblacion.getFittestChromosome();
-            // System.out.println("\n\nMEJOR INDIVIDUO:");
+            System.out.println("\n\nMEJOR INDIVIDUO:");
             FuncionEvaluacion.println(mejor); //muestra su conformación
             System.out.println("\tFitness:" + mejor.getFitnessValue()); //muestra su evaluación
 

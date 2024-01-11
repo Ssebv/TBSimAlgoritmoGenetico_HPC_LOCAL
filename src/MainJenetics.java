@@ -6,6 +6,7 @@ import java.io.IOException;
 
 public class MainJenetics {
     private static final FuncionEvaluacionJenetics FUNCION_EVALUACION = new FuncionEvaluacionJenetics();
+    private static Phenotype<IntegerGene, Double> mejorCromosoma; // Variable para almacenar el mejor cromosoma
 
     public static void main(String[] args) { // Nombre del método corregido a 'main'
 
@@ -29,9 +30,9 @@ public class MainJenetics {
             csvWriter.append("Generacion,Aptitud Mejor Individuo,DisPos1,DisPos2,DisPos3,DisPos4,DisPos5,DisKick1,DisKick2,DisKick3,DisKick4,DisKick5,DisTeam1,DisTeam2,DisTeam3,DisTeam4,DisTeam5,Tiempo por generacion,Tiempo total,Uso CPU\n");
             EvolutionStatistics<Double, ?> statistics = EvolutionStatistics.ofNumber();
 
-            engine.stream()
+            mejorCromosoma = engine.stream()
                 
-                .limit(30)
+                .limit(10)
                 .peek(statistics)
                 .peek(result -> {
                     long startTime = System.nanoTime();
@@ -53,6 +54,10 @@ public class MainJenetics {
                             csvWriter.append("," + chromosome.get(i).allele());
                         }
 
+                        System.out.println("Generación " + generation + ": " + result.bestFitness());
+                        // Cromosoma
+                        System.out.println("Cromosoma: " + chromosome);
+
                         long endTime = System.nanoTime();
                         long duration = (endTime - startTime); 
                         sumatime[0] += duration;
@@ -69,6 +74,12 @@ public class MainJenetics {
                         csvWriter.append(",").append(String.format("%.2f", averageCpuLoad * 100)); // Uso de CPU como porcentaje
                         csvWriter.append("\n");
 
+                        // Almacena el chromosoma en una variable global
+                        // para poder acceder a él desde la interfaz gráfica
+                        // de la aplicación
+                        System.out.println("Cromosoma: " + chromosome);
+                        System.out.println(result);
+
                     } catch (IOException e) {
                         e.printStackTrace();
                     } catch (InterruptedException e) {
@@ -78,6 +89,8 @@ public class MainJenetics {
                 .collect(EvolutionResult.toBestPhenotype());
 
             System.out.println(statistics);
+            System.out.println("Mejor cromosoma: " + mejorCromosoma.genotype().chromosome());
+            
         } catch (IOException e) {
             e.printStackTrace();
         }

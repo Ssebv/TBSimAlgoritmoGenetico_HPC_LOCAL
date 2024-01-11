@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 # Carga los datos desde el archivo CSV
-datos = pd.read_csv('../ResultadosAlgoritmoGenetico.csv')
+datos = pd.read_csv('../ResultadosAlgoritmoGeneticoa.csv')
 
 # Graficar la aptitud del mejor individuo por generación
 plt.figure(figsize=(10, 6))
