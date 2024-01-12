@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 # Carga los datos desde el archivo CSV
-datos = pd.read_csv('../ResultadosAlgoritmoGeneticoA.csv')
+datos = pd.read_csv('../ResultadosAlgoritmoGenetico.csv')
 
 # Ajustes para los gráficos
 fig_size = (12, 8)  # Tamaño de la figura aumentado
