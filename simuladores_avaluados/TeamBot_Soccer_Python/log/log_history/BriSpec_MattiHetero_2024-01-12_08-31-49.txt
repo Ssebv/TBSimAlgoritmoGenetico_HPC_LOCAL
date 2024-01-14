@@ -1,0 +1,37 @@
+TeamBots 2.0e (c)2000 Tucker Balch, CMU and GTRC
+1774
+maxtimestep statement read, treated as timestep
+shot: 0.7
+shot: 0.0751766348548808
+shot: 0.7
+shot: 0.6479648263647574
+shot: 0.5635446415690617
+shot: 0.7
+shot: 0.7
+--> Goalie clear the ball!
+shot: 0.7
+shot: 0.7
+shot: 0.08509013244755537
+shot: 0.7052734572421995
+shot: 0.7
+shot: 0.7
+shot: 0.7
+shot: 0.4634991600127423
+shot: 0.3180289641570818
+shot: 0.34720359401141165
+shot: 0.4708775616298885
+shot: 0.27584228688702495
+shot: 0.057751410752626575
+shot: 0.7
+ trial number	: -1 (counts down)
+ sim time    	: 600000 milliseconds
+ timestep 		: 50 milliseconds
+ timeout      	: 600000 milliseconds
+ frames/second	: 13058.759521218715
+ free memory	: 89539224
+ total memory	: 136314880
+ os.name	: Mac OS X
+ os.version	: 14.3
+ os.arch	: aarch64
+ java.version	: 21.0.1
+

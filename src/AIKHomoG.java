@@ -10,25 +10,44 @@ import EDU.gatech.cc.is.abstractrobot.*;
  * @author H&aring;kan L. Younes
  */
 public class AIKHomoG extends ControlSystemSS {
-    private static final double FIELD_WIDTH = 1.525;
 
-    private static final double FIELD_LENGTH = 2.74;
+    private static final double FIELD_WIDTH = 1.525; // Define el ancho del campo de juego
 
-    private static final double GOAL_WIDTH = 0.5;
+    private static final double FIELD_LENGTH = 2.74; // Define el largo del campo de juego
 
+    private static final double GOAL_WIDTH = 0.5; //    Define el ancho del arco
 
-    private static final double MARGIN = 0.02;
+ // ---------------
 
-    private static final double RANGE = 0.3;
+    private double margin = 0.02; // Define el margen de error
+    private double range = 0.3; // Define el rango de acción
+    private double teammateG = 1.0; // Define la fuerza de repulsión entre compañeros
+    private double wallG = 1.0; // Define la fuerza de repulsión entre paredes
+    private double goalieG = 2.0; // Define la fuerza de repulsión del arquero
+    private double forceLimit = 1.0; // Define el límite de fuerza
+    
+    private int side; // -1 if left, 1 if right
+    private double forward_angle; // angle to move forward
+    private double goalie_x; // x-coordinate of goalie position
+    private Vec2 offensive_pos1, offensive_pos2; // offensive positions
 
-    private static final double TEAMMATE_G = 1.0;
+ 
+    public void setParam(double margin, double range, double teammateG, double wallG, 
+                     double goalieG, double forceLimit, int side, double forward_angle, 
+                     double goalie_x, Vec2 offensivePos1, Vec2 offensivePos2) {
+    this.margin = margin;
+    this.range = range;
+    this.teammateG = teammateG;
+    this.wallG = wallG;
+    this.goalieG = goalieG;
+    this.forceLimit = forceLimit;
 
-    private static final double WALL_G = 1.0;
-
-    private static final double GOALIE_G = 2.0;
-
-    private static final double FORCE_LIMIT = 1.0;
-
+    this.side = side;
+    this.forward_angle = forward_angle;
+    this.goalie_x = goalie_x;
+    this.offensive_pos1 = offensivePos1;
+    this.offensive_pos2 = offensivePos2;
+}
 
     /**
      * @return the cross product of the two given vectors.
@@ -45,7 +64,6 @@ public class AIKHomoG extends ControlSystemSS {
         return v.x * u.x + v.y * u.y;
     }
 
-
     /**
      * @return the angle, in the range 0 through <I>pi</I>, between
      * the two given vectors.
@@ -53,7 +71,6 @@ public class AIKHomoG extends ControlSystemSS {
     protected static double angle(Vec2 v, Vec2 u) {
         return Math.acos(dot(v, u) / (v.r * u.r));
     }
-
 
     /**
      * @return the angle, in the range 0 through <I>pi</I>, between
@@ -69,12 +86,7 @@ public class AIKHomoG extends ControlSystemSS {
     protected static int rad2deg(double alpha) {
         return (int)(180.0 * alpha / Math.PI);
     }
-
-
-    private int side;
-    private double forward_angle;
-    private double goalie_x;
-    private Vec2 offensive_pos1, offensive_pos2;
+  
 
     public void Configure() {
         Vec2 goal = abstract_robot.getOpponentsGoal(0L);
@@ -115,12 +127,12 @@ public class AIKHomoG extends ControlSystemSS {
         if (!isClosestToBall(ball, time)) {
             Vec2 f = getForce(time);
 
-            if (f.r < FORCE_LIMIT) {
+            if (f.r < forceLimit) {
                 abstract_robot.setSteerHeading(time, ball.t);
                 abstract_robot.setSpeed(time, 0.0);
                 abstract_robot.setDisplayString("tracking ball");
             } else {
-                abstract_robot.setSteerHeading(time, getFreeDirection(f, RANGE,
+                abstract_robot.setSteerHeading(time, getFreeDirection(f, range,
                                                                       time));
                 abstract_robot.setSpeed(time, 0.5);
                 abstract_robot.setDisplayString("force: "
@@ -143,7 +155,7 @@ public class AIKHomoG extends ControlSystemSS {
                                     oppGoal,
                                     time);
         if (!abstract_robot.canKick(time)) {
-            double dir = getFreeDirection(goal, RANGE, time);
+            double dir = getFreeDirection(goal, range, time);
             abstract_robot.setSteerHeading(time, dir);
             abstract_robot.setSpeed(time, 1.0);
         } else {
@@ -169,10 +181,10 @@ public class AIKHomoG extends ControlSystemSS {
             Vec2 diff = new Vec2(ball);
             diff.sub(mates[i]);
             if (isBehind(mates[i].x, ball.x) && isBehind(ball.x, 0.0)
-                    && diff.r < RANGE) {
+                    && diff.r < range) {
                 return false;
             }
-            if (ball.r >= RANGE && diff.r + MARGIN < ball.r) {
+            if (ball.r >= range && diff.r + margin < ball.r) {
                 return false;
             }
         }
@@ -199,7 +211,6 @@ public class AIKHomoG extends ControlSystemSS {
         return v;
     }
 
-    // Should also consider walls!!!
     private double getFreeDirection(Vec2 goal, double range, long time) {
         ObstacleList obstacles = new ObstacleList();
         for (int k = 0; k < 2; k++) {
@@ -211,7 +222,7 @@ public class AIKHomoG extends ControlSystemSS {
                 players[i].setr(players[i].r + abstract_robot.RADIUS);
                 Vec2 diff = new Vec2(goal);
                 diff.sub(players[i]);
-                if ((players[i].r < 2 * abstract_robot.RADIUS + MARGIN)
+                if ((players[i].r < 2 * abstract_robot.RADIUS + margin)
                         || (players[i].r < range
                             && players[i].r < goal.r + abstract_robot.RADIUS
                             && diff.r < goal.r)) {
@@ -258,18 +269,18 @@ public class AIKHomoG extends ControlSystemSS {
             Vec2 p = new Vec2(teammates[i]);
             p.setr(p.r + abstract_robot.RADIUS);
             p.rotate(Math.PI);
-            p.setr(TEAMMATE_G / (p.r * p.r));
+            p.setr(teammateG / (p.r * p.r));
             f.add(p);
         }
         /* add negative force for walls on the long sides */
         double r1 = FIELD_WIDTH / 2 - pos.y;
         double r2 = FIELD_WIDTH / 2 + pos.y;
-        Vec2 w = new Vec2(0.0, WALL_G / (r2 * r2) - WALL_G / (r1 * r1));
+        Vec2 w = new Vec2(0.0, wallG / (r2 * r2) - wallG / (r1 * r1));
         f.add(w);
         /* add negative force for walls on the short sides */
         r1 = FIELD_LENGTH / 2 - pos.x;
         r2 = FIELD_LENGTH / 2 + pos.x;
-        w = new Vec2(WALL_G / (r2 * r2) - WALL_G / (r1 * r1), 0.0);
+        w = new Vec2(wallG / (r2 * r2) - wallG / (r1 * r1), 0.0);
         f.add(w);
         /* add positive force for goalie position */
         Vec2 gp = new Vec2(goalie_x, 0.0);
@@ -281,7 +292,7 @@ public class AIKHomoG extends ControlSystemSS {
         gp = new Vec2(goalie_x, k * GOAL_WIDTH / 2);
         gp.sub(pos);
         /* check if I'm already acting goalie */
-        if (gp.r < MARGIN) {
+        if (gp.r < margin) {
             return new Vec2(0.0, 0.0);
         }
         boolean goalie = false;
@@ -290,21 +301,21 @@ public class AIKHomoG extends ControlSystemSS {
             Vec2 p = new Vec2(teammates[i]);
             p.setr(p.r + abstract_robot.RADIUS);
             p.sub(gp);
-            if (p.r < MARGIN) {
+            if (p.r < margin) {
                 goalie = true;
             }
         }
         if (!goalie) {
-            gp.setr(GOALIE_G / (gp.r * gp.r));
+            gp.setr(goalieG / (gp.r * gp.r));
             f.add(gp);
         }
         /* add positive force for offensive positions */
-        Vec2 rf = getRoleForce(offensive_pos1, GOALIE_G, time);
+        Vec2 rf = getRoleForce(offensive_pos1, goalieG, time);
         if (rf == null) {
             return new Vec2(0.0, 0.0);
         }
         f.add(rf);
-        rf = getRoleForce(offensive_pos2, GOALIE_G, time);
+        rf = getRoleForce(offensive_pos2, goalieG, time);
         if (rf == null) {
             return new Vec2(0.0, 0.0);
         }
@@ -313,13 +324,14 @@ public class AIKHomoG extends ControlSystemSS {
         return f;
     }
 
+    // Obtiene el rol del jugador en la posición dada
     private Vec2 getRoleForce(Vec2 rolePos, double roleG, long time) {
         Vec2 pos = abstract_robot.getPosition(time);
         Vec2[] teammates = abstract_robot.getTeammates(time);
         Vec2 rp = new Vec2(rolePos);
         rp.sub(pos);
         /* check if I'm already acting in this role */
-        if (rp.r < MARGIN) {
+        if (rp.r < margin) {
 
             return null;
         }
@@ -329,7 +341,7 @@ public class AIKHomoG extends ControlSystemSS {
             Vec2 p = new Vec2(teammates[i]);
             p.setr(p.r + abstract_robot.RADIUS);
             p.sub(rp);
-            if (p.r < MARGIN) {
+            if (p.r < margin) {
                 roleFilled = true;
             }
         }
@@ -371,7 +383,7 @@ public class AIKHomoG extends ControlSystemSS {
 
         protected Obstacle(Vec2 g, Vec2 p, double r, double ownR) {
             double cp = cross(g, p);
-            double d = ownR + r + MARGIN;
+            double d = ownR + r + margin;
             double t = g.t;
             if (cp >= 0.0) {
                 if (p.r <= d) {

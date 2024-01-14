@@ -1,0 +1,24 @@
+TeamBots 2.0e (c)2000 Tucker Balch, CMU and GTRC
+1819
+maxtimestep statement read, treated as timestep
+1 0
+2 0
+2 1
+--> Goalie clear the ball!
+--> Goalie clear the ball!
+2 2
+3 2
+--> Goalie clear the ball!
+--> Goalie clear the ball!
+ trial number	: -1 (counts down)
+ sim time    	: 600000 milliseconds
+ timestep 		: 50 milliseconds
+ timeout      	: 600000 milliseconds
+ frames/second	: 15133.669609079445
+ free memory	: 102651160
+ total memory	: 136314880
+ os.name	: Mac OS X
+ os.version	: 14.3
+ os.arch	: aarch64
+ java.version	: 21.0.1
+

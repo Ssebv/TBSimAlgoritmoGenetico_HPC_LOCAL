@@ -4,17 +4,25 @@
 
 import  EDU.gatech.cc.is.util.Vec2;
 import  EDU.gatech.cc.is.abstractrobot.*;
-//Clay not used
-
-/**
- * Doog's fubar strategy.
- * 
- * 
- */
 
 
 public class DoogHomoG extends ControlSystemSS
 {
+    // Variables para el algoritmo genético
+    public double[] disAttack = new double[3]; // Distancias para el modo de ataque
+    public double[] disDefend = new double[3]; // Distancias para el modo de defensa
+    public double[] disGoalie = new double[3]; // Distancias para el modo de portero
+    public double[] disKick = new double[3]; // Distancias para el modo de patear
+    public double[] disTeam = new double[3]; // Distancias para el modo de equipo
+    public double[] disPos = new double[3]; // Distancias para el modo de posicionamiento
+    public double[] disBall = new double[3]; // Distancias para el modo de pelota
+    public double[] disGoal = new double[3]; // Distancias para el modo de gol
+    public double[] disOpponent = new double[3]; // Distancias para el modo de oponente
+    public double[] disTeammate = new double[3]; // Distancias para el modo de compañero
+    public double[] disGoalieBall = new double[3]; // Distancias para el modo de portero con pelota
+    public double[] disGoalieOpponent = new double[3]; // Distancias para el modo de portero con oponente
+    public double[] disGoalieTeammate = new double[3]; // Distancias para el modo de portero con compañero
+
     // Current state variables
     Vec2 CurMyPos, CurBallPos, CurBallPosEgo;
     long CurTime;
@@ -47,6 +55,8 @@ public class DoogHomoG extends ControlSystemSS
     final double STUCK_LIMIT = 50;
     final double KICK_DISTANCE = 1.0;
 
+
+    
     // Initialize the important previous values
     public void Configure()
     {
@@ -54,8 +64,31 @@ public class DoogHomoG extends ControlSystemSS
         PrevBallPos = new Vec2(0,0);
         PrevBallPosEgo = new Vec2(0,0);
     }
-  
-  
+
+    // Método para configurar los parámetros genéticos
+    public void setGeneticParams(Integer[] params) {
+        // Asegúrate de que params tiene la longitud adecuada
+        if (params.length != 36) {
+            throw new IllegalArgumentException("Se esperan 36 parámetros genéticos");
+        }
+
+        int index = 0;
+        for (int i = 0; i < 3; i++, index++) { this.disAttack[i] = params[index] / 10.0; }
+        for (int i = 0; i < 3; i++, index++) { this.disDefend[i] = params[index] / 10.0; }
+        for (int i = 0; i < 3; i++, index++) { this.disGoalie[i] = params[index] / 10.0; }
+        for (int i = 0; i < 3; i++, index++) { this.disKick[i] = params[index] / 10.0; }
+        for (int i = 0; i < 3; i++, index++) { this.disTeam[i] = params[index] / 10.0; }
+        for (int i = 0; i < 3; i++, index++) { this.disPos[i] = params[index] / 10.0; }
+        for (int i = 0; i < 3; i++, index++) { this.disBall[i] = params[index] / 10.0; }
+        for (int i = 0; i < 3; i++, index++) { this.disGoal[i] = params[index] / 10.0; }
+        for (int i = 0; i < 3; i++, index++) { this.disOpponent[i] = params[index] / 10.0; }
+        for (int i = 0; i < 3; i++, index++) { this.disTeammate[i] = params[index] / 10.0; }
+        for (int i = 0; i < 3; i++, index++) { this.disGoalieBall[i] = params[index] / 10.0; }
+        for (int i = 0; i < 3; i++, index++) { this.disGoalieOpponent[i] = params[index] / 10.0; }
+        for (int i = 0; i < 2; i++, index++) { this.disGoalieTeammate[i] = params[index] / 10.0; }
+    }
+    
+
     /**
     Called every timestep to allow the control system to
     run.
@@ -180,6 +213,13 @@ public class DoogHomoG extends ControlSystemSS
         abstract_robot.setDisplayString("Attack");
         Vec2 TargetSpot = new Vec2(CurBallPosEgo.x, CurBallPosEgo.y);
         Vec2 GoalSpot = new Vec2(CurOpponentsGoal.x, CurOpponentsGoal.y);
+
+        // Adaptar el comportamiento basándose en los parámetros genéticos
+        double attackDistance = disAttack[MyNum % disAttack.length];
+        double kickDistance = disKick[MyNum % disKick.length];
+        double ballDistance = disBall[MyNum % disBall.length];
+        double goalDistance = disGoal[MyNum % disGoal.length];
+
         if(CurMyPos.y > 0) GoalSpot.y += 0.9 * (GOAL_WIDTH / 2.0);
         if(CurMyPos.y < 0) GoalSpot.y -= 0.9 * (GOAL_WIDTH / 2.0);
         TargetSpot.sub(GoalSpot);

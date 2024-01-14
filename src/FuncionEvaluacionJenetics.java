@@ -1,8 +1,11 @@
-import io.jenetics.Chromosome;
+
+import io.jenetics.DoubleGene;
 import io.jenetics.Genotype;
 import io.jenetics.IntegerGene;
 
 import java.util.concurrent.Semaphore;
+
+import EDU.gatech.cc.is.util.Vec2;
 
 public class FuncionEvaluacionJenetics {
     
@@ -13,25 +16,41 @@ public class FuncionEvaluacionJenetics {
         MAXDIF = ptos; // En este caso solo se inicializa el valor de MAXDIF
     }
 
-    public double evaluar(Genotype<IntegerGene> genotype) {
-        // Extraer los valores de los genes
-        Integer[] disPos = new Integer[5];
-        Integer[] disKick = new Integer[5];
-        Integer[] disTeam = new Integer[5];
+    public double evaluar(Genotype<DoubleGene> genotype) {
+        // Verificar si el genotipo tiene cromosomas y genes
+        if (genotype.length() == 0 || genotype.get(0).length() == 0) {
+            System.out.println("El genotipo no tiene ningún cromosoma o el primer cromosoma no tiene ningún gen");
+            return -2; // Valor específico para genotipo vacío
+        }
 
-        // Asume que cada cromosoma representa un conjunto de parámetros para un agente (robot)
-        Chromosome<IntegerGene> chromosome = genotype.chromosome();
-        for (int i = 0; i < 5; i++) {
-            disPos[i] = chromosome.get(i).allele();
-            disKick[i] = chromosome.get(i + 5).allele();
-            disTeam[i] = chromosome.get(i + 10).allele();
+        // Extrae y valida los parámetros del genotipo
+        if (!sonParametrosValidos(genotype)) {
+            return -1; // Parámetros inválidos
+        }else{
+            // System.out.println("Parámetros válidos");
         }
-        // Revisa si los parámetros son válidos antes de ejecutar la simulación
-        for (int i = 0; i < 5; i++) { 
-            if (disKick[i] >= disPos[i]) {
-                return 0; // retorna la peor evaluación posible
-            }
-        }
+
+         // Extracción y escalado de parámetros.
+         double margin = genotype.get(0).get(0).allele(); // Escalado a rango [0, 1]
+         double range = genotype.get(1).get(0).allele(); // Escalado a rango [0, 1]
+         double teammateG = genotype.get(2).get(0).allele(); // Escalado a rango [0, 10]
+         double wallG = genotype.get(3).get(0).allele(); // Escalado a rango [0, 10]
+         double goalieG = genotype.get(4).get(0).allele(); // Escalado a rango [0, 10]
+         double forceLimit = genotype.get(5).get(0).allele(); // Escalado a rango [0, 10]
+         double sideAllele = genotype.get(6).get(0).allele(); // Escalado a rango [-1, 1]
+ 
+ 
+         int side;
+         if (sideAllele > 0) {
+             side = 1;
+         } else {
+             side = -1;
+         }
+ 
+         double forward_angle = genotype.get(7).get(0).allele(); // Escalado a rango [0, 2*PI]
+         double goalie_x = genotype.get(8).get(0).allele(); // Escalado a rango [-1, 1]
+         Vec2 offensive_pos1 = new Vec2(genotype.get(9).get(0).allele(), genotype.get(10).get(0).allele()); // Escalado a rango [-1, 1]
+         Vec2 offensive_pos2 = new Vec2(genotype.get(11).get(0).allele(), genotype.get(12).get(0).allele()); // Escalado a rango [-1, 1]
 
         int diff = 0;
 
@@ -49,10 +68,10 @@ public class FuncionEvaluacionJenetics {
         // indicamos la clase "BasicTeamAG" para equipo1 y "AIKHomoG" para equipo2 pero esto no es relevante ya que se puede cambiar en el archivo de configuración
         NewRobotSpec[] new_robotos = new NewRobotSpec[10];
         for (int i = 0; i < 5; i++)
-            new_robotos[i] = new NewRobotSpec("EDU.gatech.cc.is.abstractrobot.SocSmallSim", "BasicTeamAG",
+            new_robotos[i] = new NewRobotSpec("EDU.gatech.cc.is.abstractrobot.SocSmallSim", "AIKHomoG",
                     posx[i], posy[i], theta[i], forecolor1, backcolor1, vclas[i]);
         for (int i = 5; i < 10; i++)
-            new_robotos[i] = new NewRobotSpec("EDU.gatech.cc.is.abstractrobot.SocSmallSim", "AIKHomoG",
+            new_robotos[i] = new NewRobotSpec("EDU.gatech.cc.is.abstractrobot.SocSmallSim", "BrianTeam",
                     posx[i], posy[i], theta[i], forecolor2, backcolor2, vclas[i]);
 
         // Instanciamos simulador sin gráficos con el archivo de configuración "robocup.dsc" y los 10 agentes
@@ -67,8 +86,13 @@ public class FuncionEvaluacionJenetics {
         }
 
         // Enviamos parámetros a los agentes (robots) del equipo 1 (BasicTeamAG) en este caso
+        // Enviamos parámetros a los agentes (robots) del equipo AIKHomoG en este caso
+        // Enviamos parámetros a los agentes (robots) del equipo AIKHomoG en este caso
+
+        // Enviamos parámetros a los agentes (robots) del equipo 1 (BasicTeamAG) en este caso
         for (int ri = 0; ri < 5; ri++)
-            ((BasicTeamAG) (tb.simulation.control_systems[ri])).setParam(disPos, disKick, disTeam); // Setea los parámetros para el agente
+            ((AIKHomoG) (tb.simulation.control_systems[ri])).setParam(margin, range, teammateG, wallG, goalieG,
+                    forceLimit, side, forward_angle, goalie_x, offensive_pos1, offensive_pos2);
 
         tb.sem2.release(); // Libera la simulación para que continúe
         try {
@@ -76,6 +100,7 @@ public class FuncionEvaluacionJenetics {
         } catch (Exception e) {
             System.out.println(e);
         }
+
 
         // Calcula la diferencia de goles a favor al final de la simulación. Estado es una cadena de texto con el detalle de los resultados de cada partido.
         String[] line = tb.estado.split("\n"); 
@@ -99,14 +124,93 @@ public class FuncionEvaluacionJenetics {
 
     }
 
+    private boolean sonParametrosValidos(Genotype<DoubleGene> genotype) {
+        
+        // Extracción y escalado de parámetros.
+        double margin = genotype.get(0).get(0).allele(); // Escalado a rango [0, 1]
+        double range = genotype.get(1).get(0).allele(); // Escalado a rango [0, 1]
+        double teammateG = genotype.get(2).get(0).allele(); // Escalado a rango [0, 10]
+        double wallG = genotype.get(3).get(0).allele(); // Escalado a rango [0, 10]
+        double goalieG = genotype.get(4).get(0).allele(); // Escalado a rango [0, 10]
+        double forceLimit = genotype.get(5).get(0).allele(); // Escalado a rango [0, 10]
+        double sideAllele = genotype.get(6).get(0).allele(); // Escalado a rango [-1, 1]
+
+
+        int side;
+        if (sideAllele > 0) {
+            side = 1;
+        } else {
+            side = -1;
+        }
+
+        double forward_angle = genotype.get(7).get(0).allele(); // Escalado a rango [0, 2*PI]
+        double goalie_x = genotype.get(8).get(0).allele(); // Escalado a rango [-1, 1]
+        Vec2 offensive_pos1 = new Vec2(genotype.get(9).get(0).allele(), genotype.get(10).get(0).allele()); // Escalado a rango [-1, 1]
+        Vec2 offensive_pos2 = new Vec2(genotype.get(11).get(0).allele(), genotype.get(12).get(0).allele()); // Escalado a rango [-1, 1]
+
+        // Validación de parámetros
+        if (margin < 0 || margin > 1) {
+            System.out.println("Parámetro inválido: margin = " + margin);
+            return false;
+        }
+        if (range < 0 || range > 1) {
+            System.out.println("Parámetro inválido: range = " + range);
+            return false;
+        }
+        if (teammateG < 0 || teammateG > 10) {
+            System.out.println("Parámetro inválido: teammateG = " + teammateG);
+            return false;
+        }
+        if (wallG < 0 || wallG > 10) {
+            System.out.println("Parámetro inválido: wallG = " + wallG);
+            return false;
+        }
+        if (goalieG < 0 || goalieG > 10) {
+            System.out.println("Parámetro inválido: goalieG = " + goalieG);
+            return false;
+        }
+        if (forceLimit < 0 || forceLimit > 10) {
+            System.out.println("Parámetro inválido: forceLimit = " + forceLimit);
+            return false;
+        }
+        if (side != -1 && side != 1) {
+            System.out.println("Parámetro inválido: side = " + side);
+            return false;
+        }
+        if (forward_angle < 0 || forward_angle > 2 * Math.PI) {
+            System.out.println("Parámetro inválido: forward_angle = " + forward_angle);
+            return false;
+        }
+        if (goalie_x < -1 || goalie_x > 1) {
+            System.out.println("Parámetro inválido: goalie_x = " + goalie_x);
+            return false;
+        }
+
+        if (offensive_pos1.x < -1 || offensive_pos1.x > 1) {
+            System.out.println("Parámetro inválido: offensive_pos1.x = " + offensive_pos1.x);
+            return false;
+        }
+        if (offensive_pos1.y < -1 || offensive_pos1.y > 1) {
+            System.out.println("Parámetro inválido: offensive_pos1.y = " + offensive_pos1.y);
+            return false;
+        }
+        if (offensive_pos2.x < -1 || offensive_pos2.x > 1) {
+            System.out.println("Parámetro inválido: offensive_pos2.x = " + offensive_pos2.x);
+            return false;
+        }
+        if (offensive_pos2.y < -1 || offensive_pos2.y > 1) {
+            System.out.println("Parámetro inválido: offensive_pos2.y = " + offensive_pos2.y);
+            return false;
+        }
+
+        return true;
+
+    }
+
     // Método auxiliar para imprimir un Genotype.
     public static void printlna(Genotype<IntegerGene> genotype) {
         System.out.print("\tGenotype: ");
-        for (int i = 0; i < 5; i++) {
-            System.out.print(genotype.get(i).get(i).allele() + "," + genotype.get(i + 5).get(i).allele() + ","
-                    + genotype.get(i + 10).get(i).allele() + " ");
-        }
 
-        System.out.println();
+
     }
 }

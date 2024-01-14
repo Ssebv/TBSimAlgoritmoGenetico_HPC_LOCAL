@@ -27,7 +27,7 @@ bounds -1.47 1.47 -.8625 .8625
 // The seed statement sets the random number seed.  The default is
 // -1
 
-seed 2501
+seed 5353
 
 
 //======

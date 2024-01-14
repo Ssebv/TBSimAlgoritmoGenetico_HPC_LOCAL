@@ -10,24 +10,44 @@ import EDU.gatech.cc.is.abstractrobot.*;
  * @author H&aring;kan L. Younes
  */
 public class AIKHomoG extends ControlSystemSS {
-    private static final double FIELD_WIDTH = 1.525;
+        // Variables de instancia
+        private double fieldWidth; // Ancho del campo
+        private double fieldLength; // Largo del campo
+        private double goalWidth; // Ancho del arco 
+        private double margin; // Margen
+        private double range; // Rango 
+        private double teammateG; // Fuerza del compañero 
+        private double wallG; // Fuerza de la pared
+        private double goalieG; // Fuerza del arquero 
+        private double forceLimit; // Límite de fuerza
 
-    private static final double FIELD_LENGTH = 2.74;
+        // Constructor con valores por defecto
+        public AIKHomoG() {
+            fieldWidth = 1.525;
+            fieldLength = 2.74;
+            goalWidth = 0.5;
+            margin = 0.02;
+            range = 0.3;
+            teammateG = 1.0;
+            wallG = 1.0;
+            goalieG = 2.0;
+            forceLimit = 1.0;
+        }
 
-    private static final double GOAL_WIDTH = 0.5;
-
-
-    private static final double MARGIN = 0.02;
-
-    private static final double RANGE = 0.3;
-
-    private static final double TEAMMATE_G = 1.0;
-
-    private static final double WALL_G = 1.0;
-
-    private static final double GOALIE_G = 2.0;
-
-    private static final double FORCE_LIMIT = 1.0;
+        // Método para configurar parámetros
+        public void setParameters(double fieldWidth, double fieldLength, double goalWidth,
+                                double margin, double range, double teammateG,
+                                double wallG, double goalieG, double forceLimit) {
+            this.fieldWidth = fieldWidth;
+            this.fieldLength = fieldLength;
+            this.goalWidth = goalWidth;
+            this.margin = margin;
+            this.range = range;
+            this.teammateG = teammateG;
+            this.wallG = wallG;
+            this.goalieG = goalieG;
+            this.forceLimit = forceLimit;
+        } 
 
 
     /**
@@ -71,10 +91,10 @@ public class AIKHomoG extends ControlSystemSS {
     }
 
 
-    private int side;
-    private double forward_angle;
-    private double goalie_x;
-    private Vec2 offensive_pos1, offensive_pos2;
+    private int side; // -1 for left, 1 for right
+    private double forward_angle; // angle to move forward 
+    private double goalie_x; // x coordinate of goalie position 
+    private Vec2 offensive_pos1, offensive_pos2; // offensive positions 
 
     public void Configure() {
         Vec2 goal = abstract_robot.getOpponentsGoal(0L);
