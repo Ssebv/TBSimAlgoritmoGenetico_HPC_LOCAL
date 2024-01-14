@@ -23,13 +23,6 @@ public class FuncionEvaluacionJenetics {
             return -2; // Valor específico para genotipo vacío
         }
 
-        // Extrae y valida los parámetros del genotipo
-        if (!sonParametrosValidos(genotype)) {
-            return -1; // Parámetros inválidos
-        }else{
-            // System.out.println("Parámetros válidos");
-        }
-
          // Extracción y escalado de parámetros.
          double margin = genotype.get(0).get(0).allele(); // Escalado a rango [0, 1]
          double range = genotype.get(1).get(0).allele(); // Escalado a rango [0, 1]
@@ -104,113 +97,20 @@ public class FuncionEvaluacionJenetics {
 
         // Calcula la diferencia de goles a favor al final de la simulación. Estado es una cadena de texto con el detalle de los resultados de cada partido.
         String[] line = tb.estado.split("\n"); 
-        String[] lst = line[line.length - 1].split(","); 
-        diff = Integer.parseInt(lst[0]) - Integer.parseInt(lst[1]); // Diferencia de goles a favor
+        String[] lst = line[line.length - 1].split(",");
+        // Ciomprobar el tipo de dato de lst[0] y lst[1]
+        // System.out.println("lst[0] = " + lst[0] + " lst[1] = " + lst[1]);
 
 
-        // Se imprime el cromosoma y la evaluación del resultado
-        // System.out.print("\tGenotype: ");
-        // for (int i = 0; i < 5; i++) {
-        //     System.out.print(genotype.get(i).get(i).allele() + "," + genotype.get(i + 5).get(i).allele() + ","
-        //             + genotype.get(i + 10).get(i).allele() + " ");
-        // }
-        //System.out.println(genotype.toString());
-        // System.out.println("\t(FITNESS:" + (MAXDIF + diff) + " DIFF. GOLES:" + diff +")"); // 
-        
-
-        // Retorna la evaluación del cromosoma basada en la diferencia de goles.
-        // A mayor valor, mejor es la evaluación.
-        return Math.max(0, MAXDIF + Math.abs(diff));
-
-    }
-
-    private boolean sonParametrosValidos(Genotype<DoubleGene> genotype) {
-        
-        // Extracción y escalado de parámetros.
-        double margin = genotype.get(0).get(0).allele(); // Escalado a rango [0, 1]
-        double range = genotype.get(1).get(0).allele(); // Escalado a rango [0, 1]
-        double teammateG = genotype.get(2).get(0).allele(); // Escalado a rango [0, 10]
-        double wallG = genotype.get(3).get(0).allele(); // Escalado a rango [0, 10]
-        double goalieG = genotype.get(4).get(0).allele(); // Escalado a rango [0, 10]
-        double forceLimit = genotype.get(5).get(0).allele(); // Escalado a rango [0, 10]
-        double sideAllele = genotype.get(6).get(0).allele(); // Escalado a rango [-1, 1]
-
-
-        int side;
-        if (sideAllele > 0) {
-            side = 1;
+        // Validacion de no esta vacia  y sean validas como numeros enteros
+        if (!lst[0].isEmpty() && lst[0].matches("\\d+")) {
+            diff = Integer.parseInt(lst[0]) - Integer.parseInt(lst[1]);
         } else {
-            side = -1;
+            diff = 0;
+            System.out.println("Error al obtener la diferencia de goles");
         }
 
-        double forward_angle = genotype.get(7).get(0).allele(); // Escalado a rango [0, 2*PI]
-        double goalie_x = genotype.get(8).get(0).allele(); // Escalado a rango [-1, 1]
-        Vec2 offensive_pos1 = new Vec2(genotype.get(9).get(0).allele(), genotype.get(10).get(0).allele()); // Escalado a rango [-1, 1]
-        Vec2 offensive_pos2 = new Vec2(genotype.get(11).get(0).allele(), genotype.get(12).get(0).allele()); // Escalado a rango [-1, 1]
-
-        // Validación de parámetros
-        if (margin < 0 || margin > 1) {
-            System.out.println("Parámetro inválido: margin = " + margin);
-            return false;
-        }
-        if (range < 0 || range > 1) {
-            System.out.println("Parámetro inválido: range = " + range);
-            return false;
-        }
-        if (teammateG < 0 || teammateG > 10) {
-            System.out.println("Parámetro inválido: teammateG = " + teammateG);
-            return false;
-        }
-        if (wallG < 0 || wallG > 10) {
-            System.out.println("Parámetro inválido: wallG = " + wallG);
-            return false;
-        }
-        if (goalieG < 0 || goalieG > 10) {
-            System.out.println("Parámetro inválido: goalieG = " + goalieG);
-            return false;
-        }
-        if (forceLimit < 0 || forceLimit > 10) {
-            System.out.println("Parámetro inválido: forceLimit = " + forceLimit);
-            return false;
-        }
-        if (side != -1 && side != 1) {
-            System.out.println("Parámetro inválido: side = " + side);
-            return false;
-        }
-        if (forward_angle < 0 || forward_angle > 2 * Math.PI) {
-            System.out.println("Parámetro inválido: forward_angle = " + forward_angle);
-            return false;
-        }
-        if (goalie_x < -1 || goalie_x > 1) {
-            System.out.println("Parámetro inválido: goalie_x = " + goalie_x);
-            return false;
-        }
-
-        if (offensive_pos1.x < -1 || offensive_pos1.x > 1) {
-            System.out.println("Parámetro inválido: offensive_pos1.x = " + offensive_pos1.x);
-            return false;
-        }
-        if (offensive_pos1.y < -1 || offensive_pos1.y > 1) {
-            System.out.println("Parámetro inválido: offensive_pos1.y = " + offensive_pos1.y);
-            return false;
-        }
-        if (offensive_pos2.x < -1 || offensive_pos2.x > 1) {
-            System.out.println("Parámetro inválido: offensive_pos2.x = " + offensive_pos2.x);
-            return false;
-        }
-        if (offensive_pos2.y < -1 || offensive_pos2.y > 1) {
-            System.out.println("Parámetro inválido: offensive_pos2.y = " + offensive_pos2.y);
-            return false;
-        }
-
-        return true;
-
-    }
-
-    // Método auxiliar para imprimir un Genotype.
-    public static void printlna(Genotype<IntegerGene> genotype) {
-        System.out.print("\tGenotype: ");
-
+        return Math.max(0, MAXDIF + Math.abs(diff));
 
     }
 }
