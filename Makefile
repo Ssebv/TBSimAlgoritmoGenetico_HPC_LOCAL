@@ -23,11 +23,12 @@ all: $(CLASSES)
 # Rule to compile .java to .class
 $(BINDIR)/%.class: $(SRCDIR)/%.java
 	mkdir -p $(@D)
-	$(JAVAC) $(JFLAGS) $<
+	$(JAVAC) $(JFLAGS) $< 2> /dev/null
 
 # Rule to run the program
 run: all
-	$(JAVA) -classpath $(CLASSPATH):$(BINDIR) $(MAINCLASS)
+	$(JAVA) -classpath $(CLASSPATH):$(BINDIR) $(MAINCLASS) 2> /dev/null
+
 
 # Rule to clean the project (remove .class files and bin directory)
 clean:

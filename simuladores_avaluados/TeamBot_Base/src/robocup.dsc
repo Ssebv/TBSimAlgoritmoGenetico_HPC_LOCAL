@@ -162,14 +162,14 @@ robot EDU.gatech.cc.is.abstractrobot.SocSmallSim DoogHomoG
 	-.15  -.5  0 xEAEA00 xFFFFFF 1
 
 //======EAST TEAM======
-robot EDU.gatech.cc.is.abstractrobot.SocSmallSim BasicTeamCromosomaFinal
+robot EDU.gatech.cc.is.abstractrobot.SocSmallSim AIKHomoG
 	 1.2  0    0 xFF0000 x0000FF 2
-robot EDU.gatech.cc.is.abstractrobot.SocSmallSim BasicTeamCromosomaFinal
+robot EDU.gatech.cc.is.abstractrobot.SocSmallSim AIKHomoG
 	 .5   0    0 xFF0000 x0000FF 2
-robot EDU.gatech.cc.is.abstractrobot.SocSmallSim BasicTeamCromosomaFinal
+robot EDU.gatech.cc.is.abstractrobot.SocSmallSim AIKHomoG
 	 .15  .5   0 xFF0000 x0000FF 2
-robot EDU.gatech.cc.is.abstractrobot.SocSmallSim BasicTeamCromosomaFinal
+robot EDU.gatech.cc.is.abstractrobot.SocSmallSim AIKHomoG
 	 .15  0    0 xFF0000 x0000FF 2
-robot EDU.gatech.cc.is.abstractrobot.SocSmallSim BasicTeamCromosomaFinal
+robot EDU.gatech.cc.is.abstractrobot.SocSmallSim AIKHomoG
 	 .15  -.5  0 xFF0000 x0000FF 2
 
