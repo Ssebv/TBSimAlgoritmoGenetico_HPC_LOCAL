@@ -13,6 +13,8 @@ import EDU.gatech.cc.is.simulation.*;
 import EDU.gatech.cc.is.util.*;
 import EDU.cmu.cs.coral.util.*;
 import EDU.cmu.cs.coral.simulation.*;
+
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Semaphore;
 
 public class SimulationCanvas extends Canvas implements Runnable {
@@ -51,6 +53,14 @@ public class SimulationCanvas extends Canvas implements Runnable {
     public int nrobot = 0;
     public boolean parada = false;
     public Label label = null;
+
+    private boolean keep_running = true;
+    private CountDownLatch simulationEndLatch;
+
+    public void setSimulationEndLatch(CountDownLatch latch) {
+        this.simulationEndLatch = latch;
+    }
+
     public Semaphore sem3 = new Semaphore(0);;
 
     /*make these package scope so TBSim can access for updating menu on startup*/
@@ -903,8 +913,6 @@ public class SimulationCanvas extends Canvas implements Runnable {
         return (description_file_loaded);
     }
 
-    private boolean keep_running = true;
-
     /**
      * Run the simulation.
      */
@@ -1009,7 +1017,6 @@ public class SimulationCanvas extends Canvas implements Runnable {
             sim_time += sim_timestep;
         }
     }
-
     /**
      * Handle a drawing request.
      */

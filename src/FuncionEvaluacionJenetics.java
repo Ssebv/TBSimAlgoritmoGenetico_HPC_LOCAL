@@ -1,7 +1,9 @@
 
 /*
  * FuncionEvaluacionJenetics.java 
+ * Función de evaluación para el algoritmo genético
  */
+
 import io.jenetics.DoubleGene;
 import io.jenetics.Genotype;
 import java.util.concurrent.Semaphore;
@@ -31,16 +33,13 @@ public class FuncionEvaluacionJenetics {
         return params;
     }
 
-    public double evaluar(Genotype<DoubleGene> genotype) {
+    public double evaluar(Genotype<DoubleGene> genotype) throws InterruptedException {
         // Verificar si el genotipo tiene cromosomas y genes
         if (genotype.length() == 0 || genotype.get(0).length() == 0) {
             // System.out.println("El genotipo no tiene ningún cromosoma o el primer
             // cromosoma no tiene ningún gen");
             return -2; // Valor específico para genotipo vacío
         }
-
-        // Inicializar simulador
-        int diff = 0;
 
         // Configuracion de los parámetros del simulador, como colores de los equipos y
         // posiciones iniciales.
@@ -59,7 +58,7 @@ public class FuncionEvaluacionJenetics {
             new_robotos[i] = new NewRobotSpec("EDU.gatech.cc.is.abstractrobot.SocSmallSim", "DoogHomoG",
                     posx[i], posy[i], theta[i], forecolor1, backcolor1, vclas[i]);
         for (int i = 5; i < 10; i++)
-            new_robotos[i] = new NewRobotSpec("EDU.gatech.cc.is.abstractrobot.SocSmallSim", "BrianTeam",
+            new_robotos[i] = new NewRobotSpec("EDU.gatech.cc.is.abstractrobot.SocSmallSim", "AIKHomoG",
                     posx[i], posy[i], theta[i], forecolor2, backcolor2, vclas[i]);
 
         // Instanciamos simulador sin gráficos con el archivo de configuración
@@ -85,32 +84,28 @@ public class FuncionEvaluacionJenetics {
             robot.setParam(params);
         }
 
-
         tb.sem2.release(); // Libera la simulación para que continúe
         try {
-            tb.join(); // Espera a que termine la simulación
+            tb.join(); // Espera a que la simulación termine
         } catch (Exception e) {
             System.out.println(e);
         }
 
-        // Calcula la diferencia de goles a favor al final de la simulación. Estado es
-        // una cadena de texto con el detalle de los resultados de cada partido.
-        String[] line = tb.estado.split("\n");
-        String[] lst = line[line.length - 1].split(",");
-        // Ciomprobar el tipo de dato de lst[0] y lst[1]
-        // System.out.println("lst[0] = " + lst[0] + " lst[1] = " + lst[1]);
+        return calcularResultado(tb);
 
-        // Validacion de no esta vacia y sean validas como numeros enteros
+    }
+    private double calcularResultado(TBSimNoGraphics tb) {
+   
+        String[] line = tb.estado.split("\n");
+        // System.out.println("Estado final de la simulación: " + line[line.length - 1]);
+        String[] lst = line[line.length - 1].split(",");
+
+        int diff = 0;
         if (!lst[0].isEmpty() && lst[0].matches("\\d+")) {
             diff = Integer.parseInt(lst[0]) - Integer.parseInt(lst[1]);
-        } else {
-            diff = 0;
-            // System.out.println("Empate");
         }
-
-        // System.out.println("Diferencia de goles: " + diff);
+        System.out.println("Diferencia de goles: " + diff);
 
         return Math.max(0, MAXDIF + Math.abs(diff));
-
     }
 }

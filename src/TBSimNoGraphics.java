@@ -5,6 +5,8 @@
  */
 
 import EDU.gatech.cc.is.simulation.NewSim;
+
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Semaphore;
 
 public class TBSimNoGraphics extends Thread {
@@ -17,7 +19,7 @@ public class TBSimNoGraphics extends Thread {
     private NewRobotSpec[] new_robotos; // Especificaciones de los robots participantes.
     public String estado; // Estado final de la simulación.
     public int realstart = 0; // Indica si la simulación ha comenzado realmente.
-    Semaphore sem1 = null; // Semáforo para sincronización de inicio de la simulación.
+    Semaphore sem1 = null; // Semáforo para sincronización de inicio de la simulación.    Semaphore sem2 = new Semaphore(0); // Semáforo para control de flujo de la simulación.
     Semaphore sem2 = new Semaphore(0); // Semáforo para control de flujo de la simulación.
 
     // Constructor de la clase.
@@ -37,10 +39,8 @@ public class TBSimNoGraphics extends Thread {
                 this.new_maxtimestep);
         simulation.reset();
 
-        // Verifica que el archivo de descripción de la simulación se haya cargado
-        // correctamente.
         if (simulation.descriptionLoaded()) {
-            // Si es asi inicia la simulación.
+
             try {
                 // Si sem1 no es nulo, libera el semáforo para comenzar la simulación.
                 if (sem1 != null) {
@@ -64,6 +64,7 @@ public class TBSimNoGraphics extends Thread {
             simulation.parada = true;
             this.estado = "0,0,-1"; // Estado final de la simulación.
         }
+
 
         // System.out.println("#FIN: {" + this.estado + "}"); // Imprime el estado final
         // de la simulación

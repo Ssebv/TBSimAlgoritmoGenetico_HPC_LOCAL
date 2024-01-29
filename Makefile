@@ -1,6 +1,6 @@
 ## MAKEFILE PARA PROYECTO DE ALGORITMOS GENÉTICOS 
-# java version "21.0.1" 2023-10-17 LTS
-# javac 21.0.1
+# java version "17.0.2"
+# javac 17.0.2
 
 JAVAC = javac
 JAVA = java
@@ -17,28 +17,21 @@ JFLAGS = -g -sourcepath $(SRCDIR) -d $(BINDIR) -classpath $(CLASSPATH)
 JAVAFLAGS = -classpath $(CLASSPATH)
 MANIFEST = Manifest.txt
 
-# Default rule
 all: $(CLASSES)
 
-# Rule to compile .java to .class
 $(BINDIR)/%.class: $(SRCDIR)/%.java
 	mkdir -p $(@D)
-	$(JAVAC) $(JFLAGS) $< 2> /dev/null
+	$(JAVAC) $(JFLAGS) $< 
 
-# Rule to run the program
 run: all
-	$(JAVA) -classpath $(CLASSPATH):$(BINDIR) $(MAINCLASS) 2> /dev/null
+	$(JAVA) -classpath $(CLASSPATH):$(BINDIR) $(MAINCLASS) $(TASKID)
 
-
-# Rule to clean the project (remove .class files and bin directory)
 clean:
 	$(RM) -r $(BINDIR)/*
 
-# Rule to generate documentation with Javadoc
 doc:
 	javadoc -d $(DOCDIR) -sourcepath $(SRCDIR) $(SOURCES)
 
-# Rule to create an executable JAR file
 jar: $(CLASSES)
 	echo "Main-Class: $(MAINCLASS)" > $(MANIFEST)
 	$(JAR) cfm $(MAINCLASS).jar $(MANIFEST) -C $(BINDIR) .
