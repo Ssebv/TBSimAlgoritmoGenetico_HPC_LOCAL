@@ -19,7 +19,7 @@ public class TBSimNoGraphics extends Thread {
     private NewRobotSpec[] new_robotos; // Especificaciones de los robots participantes.
     public String estado; // Estado final de la simulación.
     public int realstart = 0; // Indica si la simulación ha comenzado realmente.
-    Semaphore sem1 = null; // Semáforo para sincronización de inicio de la simulación.    Semaphore sem2 = new Semaphore(0); // Semáforo para control de flujo de la simulación.
+    Semaphore sem1 = null; // Semáforo para sincronización de inicio de la simulación.
     Semaphore sem2 = new Semaphore(0); // Semáforo para control de flujo de la simulación.
 
     // Constructor de la clase.
@@ -49,26 +49,21 @@ public class TBSimNoGraphics extends Thread {
                 }
 
                 simulation.start(); // Inicia simulación en un hilo aparte
-                simulation.sem3.acquire(); // Espera a que la simulación inicie
+                simulation.sem3.acquire(); // Espera a que la simulación termine
 
                 // Almacena el estado final de la simulación.
                 this.estado = ((NewSim) simulation.simulated_objects[5]).getStat(true);
 
             } catch (Exception e) {
-                System.out.println(e);
+                System.err.println("Error durante la ejecución de la simulación: " + e.getMessage());
             }
 
         } else {
-            System.out.println(
-                    "Error description file..." + new_robotos[0].controlsystem + " vs " + new_robotos[5].controlsystem);
+            System.err.println("Error en el archivo de descripción: "
+                    + new_robotos[0].controlsystem + " vs " + new_robotos[5].controlsystem);
             simulation.parada = true;
             this.estado = "0,0,-1"; // Estado final de la simulación.
         }
-
-
-        // System.out.println("#FIN: {" + this.estado + "}"); // Imprime el estado final
-        // de la simulación
-        // System.out.println(((NewSim)simulation.simulated_objects[5]).getStat() );
     }
 
 }
