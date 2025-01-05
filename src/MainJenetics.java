@@ -1,193 +1,312 @@
-/* * MainJenetics.java
+/*
+ * MainJenetics.java
  *
  * Programa principal que ejecuta el algoritmo genético con Jenetics,
- * con un selector dinámico que ajusta el número de élites basado en el rendimiento promedio de la población.
+ * generando un archivo CSV (stats.csv) con métricas de cada generación.
  */
-import java.util.Map;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.logging.ConsoleHandler;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.util.logging.SimpleFormatter;
-import java.util.logging.Handler;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
 
-import java.util.List; // Para usar la interfaz List
-import java.util.stream.Collectors; // Para usar Collectors y convertir el Stream en una lista
+ import java.io.FileWriter;
+ import java.io.IOException;
+ import java.io.PrintWriter;
+ 
+ import java.util.HashSet;
+ import java.util.Set;
+ import java.util.concurrent.ExecutorService;
+ import java.util.concurrent.Executors;
+ import java.util.logging.*;
+ 
+ import io.jenetics.*;
+ import io.jenetics.engine.*;
+ import io.jenetics.util.*;
+ 
+ import sun.misc.Signal;
+ import sun.misc.SignalHandler;
+ 
+ import java.lang.management.ManagementFactory;
+ import java.lang.management.OperatingSystemMXBean;
 
-import io.jenetics.*;
-import io.jenetics.engine.*;
-import io.jenetics.util.*;
-
-public class MainJenetics {
-    private static final Logger LOGGER = Logger.getLogger(MainJenetics.class.getName());
-    private static final FuncionEvaluacionJenetics FUNCION_EVALUACION = new FuncionEvaluacionJenetics();
-
-    private static final int INITIAL_POPULATION_SIZE = 100;
-    private static final int DEFAULT_GENERATIONS = 1000;
-    private static double mutationRate = 0.4;
-    private static double crossoverRate = 0.8;
-
-    private static int totalEvaluations = 0;
-    private static int totalCrossovers = 0;
-    private static double previousBestFitness = -1.0;
-    private static double previousAverageFitness = -1.0;
-
-    static {
-        Logger rootLogger = Logger.getLogger("");
-        for (Handler handler : rootLogger.getHandlers()) {
-            rootLogger.removeHandler(handler);
-        }
-        ConsoleHandler consoleHandler = new ConsoleHandler();
-        consoleHandler.setFormatter(new SimpleFormatter() {
-            @Override
-            public synchronized String format(java.util.logging.LogRecord record) {
-                return String.format("%s: %s%n", record.getLevel(), record.getMessage());
-            }
-        });
-        rootLogger.addHandler(consoleHandler);
-    }
-
-    public static void main(String[] args) {
-        logEnvironment();
-
-        ExecutorService executorService = configureExecutor();
-
-        Factory<Genotype<DoubleGene>> genotypeFactory = Genotype.of(DoubleChromosome.of(0, 10, 50));
-
-        Engine<DoubleGene, Double> engine = Engine.builder(MainJenetics::evaluar, genotypeFactory)
-                .populationSize(INITIAL_POPULATION_SIZE)
-                .offspringFraction(0.8)
-                .alterers(new Mutator<>(mutationRate), new SinglePointCrossover<>(crossoverRate))
-                .selector(new EliteSelector<>(3))  // Usamos un selector de élite que selecciona a los 3 mejores individuos
-                .executor(executorService)
-                .build();
-
-        try {
-            Phenotype<DoubleGene, Double> bestPhenotype = engine.stream()
-                    .limit(DEFAULT_GENERATIONS)
-                    .peek(MainJenetics::logGeneration)
-                    .collect(EvolutionResult.toBestPhenotype());
-
-            LOGGER.info("Mejor resultado global: " + bestPhenotype.genotype());
-            LOGGER.info("Mejor aptitud global: " + bestPhenotype.fitness());
-
-        } catch (Exception e) {
-            LOGGER.log(Level.SEVERE, "Error en la ejecución del algoritmo genético", e);
-        } finally {
-            executorService.shutdown();
-        }
-    }
-
-    private static void logEnvironment() {
-        if (isHPC()) {
-            LOGGER.info("Ejecutando en un entorno HPC.");
-        } else {
-            LOGGER.info("Ejecutando en un entorno local.");
-        }
-    }
-
-    private static boolean isHPC() {
-        return detectByHostName() || detectByEnvVariables() || detectByResources();
-    }
-
-    private static boolean detectByHostName() {
-        try {
-            String hostname = InetAddress.getLocalHost().getHostName();
-            return hostname.contains("hpc") || hostname.matches(".*cluster.*");
-        } catch (UnknownHostException e) {
-            LOGGER.warning("Error al obtener el nombre del host: " + e.getMessage());
-            return false;
-        }
-    }
-
-    private static boolean detectByEnvVariables() {
-        Map<String, String> env = System.getenv();
-        return env.containsKey("SLURM_JOB_ID") || env.containsKey("PBS_JOBID");
-    }
-
-    private static boolean detectByResources() {
-        int availableProcessors = Runtime.getRuntime().availableProcessors();
-        long maxMemory = Runtime.getRuntime().maxMemory();
-        return availableProcessors > 16 || maxMemory > 32L * 1024 * 1024 * 1024;
-    }
-
-    private static double evaluar(Genotype<DoubleGene> genotype) {
-        try {
-            return FUNCION_EVALUACION.evaluar(genotype);
-        } catch (Exception e) {
-            LOGGER.log(Level.SEVERE, "Error durante la evaluación del genotipo.", e);
-            return -1.0;
-        }
-    }
-
-    private static ExecutorService configureExecutor() {
-        return Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
-    }
-
-    private static void logGeneration(EvolutionResult<DoubleGene, Double> result) {
-        int generation = (int) result.generation();
-        Phenotype<DoubleGene, Double> bestPhenotype = result.bestPhenotype();
-        double bestFitness = bestPhenotype.fitness();
-
-        // Obtener goles a favor y en contra
-        int golesFavor = FUNCION_EVALUACION.getLastGolesFavor();
-        int golesContra = FUNCION_EVALUACION.getLastGolesContra();
-
-        // Promedio de fitness y desviación estándar
-        double averageFitness = result.population().stream()
-                .mapToDouble(phenotype -> phenotype.fitness().doubleValue())
-                .average()
-                .orElse(0.0);
-
-        double fitnessVariance = result.population().stream()
-                .mapToDouble(phenotype -> Math.pow(phenotype.fitness().doubleValue() - averageFitness, 2))
-                .average()
-                .orElse(0.0);
-
-        double fitnessStdDev = Math.sqrt(fitnessVariance);
-
-        // Cálculo del porcentaje de mejora en el mejor fitness
-        double improvementPercentageBest = (previousBestFitness > 0) 
-            ? ((bestFitness - previousBestFitness) / previousBestFitness) * 100 
-            : 0.0;
-
-        // Cálculo del porcentaje de mejora en el promedio de fitness
-        double improvementPercentageAverage = (previousAverageFitness > 0) 
-            ? ((averageFitness - previousAverageFitness) / previousAverageFitness) * 100 
-            : 0.0;
-
-        // Actualizar los valores anteriores
-        previousBestFitness = bestFitness;
-        previousAverageFitness = averageFitness;
-
-        // Mostrar en log
-        LOGGER.info("--------------------------------------------------");
-        LOGGER.info(String.format("Generación: %d", generation));
-        LOGGER.info(String.format("Mejor fitness de la generación: %.4f", bestFitness));
-        LOGGER.info(String.format("Goles a favor del mejor individuo: %d, Goles en contra: %d", golesFavor, golesContra));
-        LOGGER.info(String.format("Promedio de fitness: %.4f, Desviación estándar: %.4f", averageFitness, fitnessStdDev));
-        LOGGER.info(String.format("Porcentaje de mejora en promedio respecto a la generación anterior: %.2f%%", improvementPercentageAverage));
-        LOGGER.info(String.format("Porcentaje de mejora en el mejor fitness respecto a la generación anterior: %.2f%%", improvementPercentageBest));
-        LOGGER.info("--------------------------------------------------");
-
-        // Guardar métricas en CSV
-        saveMetricsToCSV(generation, bestFitness, averageFitness, fitnessStdDev, improvementPercentageAverage);
-    }
-
-    private static void saveMetricsToCSV(int generation, double bestFitness, double averageFitness, double fitnessStdDev, double improvementPercentageAverage) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("metrics.csv", true))) {
-            if (generation == 1) {
-                writer.write("Generación,Mejor Fitness,Promedio Fitness,Desviación Estándar,Porcentaje Mejora Promedio\n");
-            }
-            writer.write(String.format("%d,%.4f,%.4f,%.4f,%.2f\n", generation, bestFitness, averageFitness, fitnessStdDev, improvementPercentageAverage));
-        } catch (IOException e) {
-            LOGGER.log(Level.SEVERE, "Error al guardar métricas en CSV", e);
-        }
-    }
-}
+ 
+ public class MainJenetics {
+     private static final Logger LOGGER = Logger.getLogger(MainJenetics.class.getName());
+     private static final FuncionEvaluacionJenetics FUNCION_EVALUACION = new FuncionEvaluacionJenetics();
+ 
+     private static final int INITIAL_POPULATION_SIZE = 100;
+     private static final int DEFAULT_GENERATIONS = 1000;
+     private static double mutationRate = 0.5;
+     private static double crossoverRate = 0.8;
+     private static double prevAverageFitness = 0.0;
+ 
+     // Para medir tiempo total
+     private static long startTime = System.currentTimeMillis();
+ 
+     // CSV
+     private static PrintWriter csvWriter = null;
+ 
+     static {
+         // Limpiamos handlers
+         Logger rootLogger = Logger.getLogger("");
+         for (Handler handler : rootLogger.getHandlers()) {
+             rootLogger.removeHandler(handler);
+         }
+ 
+         // Creamos un ConsoleHandler
+         ConsoleHandler consoleHandler = new ConsoleHandler();
+         consoleHandler.setFormatter(new SimpleFormatter() {
+             @Override
+             public synchronized String format(LogRecord record) {
+                 return String.format("%s: %s%n", record.getLevel(), record.getMessage());
+             }
+         });
+         rootLogger.addHandler(consoleHandler);
+ 
+         rootLogger.setLevel(Level.INFO);
+     }
+ 
+     public static void main(String[] args) {
+         // Detectar HPC vs local
+         String slurmCpusPerTask = System.getenv("SLURM_CPUS_PER_TASK");
+         String slurmJobId = System.getenv("SLURM_JOB_ID");
+         boolean isHPC = (slurmCpusPerTask != null || slurmJobId != null);
+ 
+         if (isHPC) {
+             LOGGER.info("Iniciando en HPC...");
+             try {
+                 Signal.handle(new Signal("USR1"), new SignalHandler() {
+                     @Override
+                     public void handle(Signal sig) {
+                         LOGGER.info("Señal USR1 recibida (HPC).");
+                         // Podrías forzar checkpoint
+                     }
+                 });
+             } catch (Throwable t) {
+                 LOGGER.log(Level.WARNING, "No se pudo capturar USR1.", t);
+             }
+         } else {
+             LOGGER.info("Iniciando en local...");
+         }
+ 
+         final int threads;
+         if (isHPC) {
+             int cpus = 1;
+             try {
+                 if (slurmCpusPerTask != null) {
+                     cpus = Integer.parseInt(slurmCpusPerTask);
+                 }
+             } catch (NumberFormatException e) {
+                 LOGGER.warning("Valor inválido en SLURM_CPUS_PER_TASK, usando 1 hilo.");
+             }
+             threads = (slurmCpusPerTask != null) ? Integer.parseInt(slurmCpusPerTask) : 1;
+         } else {
+             threads = Runtime.getRuntime().availableProcessors();
+         }
+ 
+         ExecutorService executorService = configureExecutor(threads);
+ 
+         // Genotype con 50 genes en [0..10]
+         Factory<Genotype<DoubleGene>> genotypeFactory =
+                 Genotype.of(DoubleChromosome.of(0, 10, 50));
+ 
+         DynamicSelector<DoubleGene, Double> dynamicSelector =
+                 new DynamicSelector<>(DEFAULT_GENERATIONS);
+ 
+         // Preparamos stats.csv
+         try {
+             csvWriter = new PrintWriter(new FileWriter("stats.csv"));
+             // Encabezado (añade las columnas que gustes)
+             csvWriter.println("Generacion,MejorFitness,PromFitness,Diversidad,Convergencia," +
+                               "GolesFavor,GolesContra,CpuPercent,MemMB,TimeSec,SlurmJobID," +
+                               "OSName,OSArch,OSVersion,SysCores,SysLoad,SysFreeMemMB,SysTotalMemMB");
+         } catch (IOException e) {
+             LOGGER.log(Level.WARNING, "No se pudo crear stats.csv", e);
+         }
+ 
+         try {
+             Engine<DoubleGene, Double> engine = Engine.builder(MainJenetics::evaluar, genotypeFactory)
+                     .populationSize(INITIAL_POPULATION_SIZE)
+                     .offspringFraction(0.8)
+                     .alterers(new Mutator<>(mutationRate), new SinglePointCrossover<>(crossoverRate))
+                     .survivorsSelector(dynamicSelector)
+                     .executor(executorService)
+                     .build();
+ 
+             Phenotype<DoubleGene, Double> bestPhenotype = engine.stream()
+                     .peek(result -> {
+                         dynamicSelector.setGeneration((int) result.generation());
+                         adjustParameters(result);
+                         logGeneration(result, isHPC, slurmJobId);
+                     })
+                     .limit(DEFAULT_GENERATIONS)
+                     .collect(EvolutionResult.toBestPhenotype());
+ 
+             LOGGER.info("Mejor genotipo: " + bestPhenotype.genotype());
+             LOGGER.info("Mejor aptitud: " + bestPhenotype.fitness());
+         } catch (Exception e) {
+             LOGGER.log(Level.SEVERE, "Error en la ejecución del AG", e);
+         } finally {
+             if (csvWriter != null) {
+                 csvWriter.close();
+             }
+             executorService.shutdown();
+         }
+     }
+ 
+     private static double evaluar(Genotype<DoubleGene> genotype) {
+         try {
+             return FUNCION_EVALUACION.evaluar(genotype);
+         } catch (Exception e) {
+             LOGGER.log(Level.SEVERE, "Error evaluando genotipo.", e);
+             return -1.0;
+         }
+     }
+ 
+     private static ExecutorService configureExecutor(int nThreads) {
+         return Executors.newFixedThreadPool(nThreads);
+     }
+ 
+     private static void logGeneration(EvolutionResult<DoubleGene, Double> result, boolean isHPC, String slurmJobId) {
+         int generation = (int) result.generation();
+         Phenotype<DoubleGene, Double> bestPhenotype = result.bestPhenotype();
+ 
+         // CPU usage
+         double cpuLoad = CpuUsageMonitor.getProcessCpuLoad();
+         double cpuPercent = (cpuLoad < 0) ? -1 : (cpuLoad * 100.0);
+ 
+         // Memoria del proceso
+         long usedMem = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
+         double usedMemMB = usedMem / (1024.0 * 1024.0);
+ 
+         // Tiempo transcurrido
+         long now = System.currentTimeMillis();
+         double elapsedSec = (now - startTime) / 1000.0;
+ 
+         // Métricas de Jenetics
+         double diversidad = calcularDiversidad(result.population());
+         double bestFitness = bestPhenotype.fitness();
+         double averageFitness = result.population().stream()
+                 .mapToDouble(ph -> ph.fitness().doubleValue())
+                 .average()
+                 .orElse(0.0);
+         double convergence = Math.abs(averageFitness - prevAverageFitness);
+         prevAverageFitness = averageFitness;
+ 
+         int gf = FUNCION_EVALUACION.getBestGolesFavor();
+         int gc = FUNCION_EVALUACION.getBestGolesContra();
+ 
+         // Info de OS
+         String osName = System.getProperty("os.name");
+         String osArch = System.getProperty("os.arch");
+         String osVersion = System.getProperty("os.version");
+ 
+         OperatingSystemMXBean osBean = ManagementFactory.getPlatformMXBean(OperatingSystemMXBean.class);
+         int sysCores = osBean.getAvailableProcessors();
+         double sysLoad = osBean.getSystemLoadAverage(); // -1 si no soportado
+ 
+         // Si tenemos com.sun.management.OperatingSystemMXBean
+         long freeMemOS = -1, totalMemOS = -1;
+         if (osBean instanceof com.sun.management.OperatingSystemMXBean) {
+             com.sun.management.OperatingSystemMXBean unixBean = (com.sun.management.OperatingSystemMXBean) osBean;
+             freeMemOS = unixBean.getFreePhysicalMemorySize();
+             totalMemOS = unixBean.getTotalPhysicalMemorySize();
+         }
+         double freeMemMB = (freeMemOS < 0) ? -1 : (freeMemOS / (1024.0 * 1024.0));
+         double totalMemMB = (totalMemOS < 0) ? -1 : (totalMemOS / (1024.0 * 1024.0));
+ 
+         // Log mínimo en consola (opcional)
+         LOGGER.info(String.format("Gen %d -> BestF=%.4f, Prom=%.4f, CPU=%.2f%%, Mem=%.2fMB, OS=%s",
+                                   generation, bestFitness, averageFitness,
+                                   cpuPercent, usedMemMB, osName));
+ 
+         // Escribimos en CSV si csvWriter no es null
+         if (csvWriter != null) {
+             csvWriter.printf(
+                 "%d,%.4f,%.4f,%.4f,%.4f,%d,%d,%.2f,%.2f,%.2f,%s," +  // 11 columnas
+                 "%s,%s,%s,%d,%.2f,%.2f,%.2f%n",                      // 7 columnas extra
+                 generation,
+                 bestFitness,
+                 averageFitness,
+                 diversidad,
+                 convergence,
+                 gf,
+                 gc,
+                 cpuPercent,
+                 usedMemMB,
+                 elapsedSec,
+                 (isHPC && slurmJobId != null) ? slurmJobId : "local",
+                 osName,
+                 osArch,
+                 osVersion,
+                 sysCores,
+                 (sysLoad < 0 ? -1.0 : sysLoad),
+                 freeMemMB,
+                 totalMemMB
+             );
+             csvWriter.flush();
+         }
+     }
+ 
+     private static void adjustParameters(EvolutionResult<DoubleGene, Double> result) {
+         double diversidad = calcularDiversidad(result.population());
+         if (diversidad < 0.7) {
+             mutationRate = Math.min(mutationRate + 0.05, 0.8);
+             crossoverRate = Math.max(crossoverRate - 0.05, 0.5);
+         }
+     }
+ 
+     private static double calcularDiversidad(ISeq<Phenotype<DoubleGene, Double>> population) {
+         Set<String> uniqueGenotypes = new HashSet<>();
+         for (Phenotype<DoubleGene, Double> ph : population) {
+             uniqueGenotypes.add(ph.genotype().toString());
+         }
+         return uniqueGenotypes.size() / (double) population.size();
+     }
+ }
+ 
+ /**
+  * DynamicSelector para cambiar entre estrategias de selección
+  * según la diversidad genética y la generación.
+  */
+ class DynamicSelector<G extends Gene<?, G>, C extends Number & Comparable<? super C>>
+         implements Selector<G, C> {
+ 
+     private final int maxGenerations;
+     private int currentGeneration;
+     private double threshold;
+ 
+     public DynamicSelector(int maxGenerations) {
+         this.maxGenerations = maxGenerations;
+         this.currentGeneration = 0;
+         updateThreshold();
+     }
+ 
+     public void setGeneration(int generation) {
+         this.currentGeneration = generation;
+         updateThreshold();
+     }
+ 
+     private void updateThreshold() {
+         this.threshold = 0.9 - (0.1 * (currentGeneration / (double) maxGenerations));
+     }
+ 
+     @Override
+     public ISeq<Phenotype<G, C>> select(
+             Seq<Phenotype<G, C>> population,
+             int count,
+             Optimize opt
+     ) {
+         double diversidad = calcularDiversidad(population);
+         Selector<G, C> selector = (diversidad > threshold)
+                 ? new EliteSelector<>()
+                 : new RouletteWheelSelector<>();
+ 
+         return selector.select(population, count, opt);
+     }
+ 
+     private double calcularDiversidad(Seq<Phenotype<G, C>> population) {
+         long uniqueGenotypes = population.stream()
+                 .map(ph -> ph.genotype().toString().hashCode())
+                 .distinct()
+                 .count();
+         return uniqueGenotypes / (double) population.size();
+     }
+ }
+ 
