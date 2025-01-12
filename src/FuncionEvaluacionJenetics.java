@@ -1,175 +1,236 @@
 import io.jenetics.DoubleGene;
 import io.jenetics.Genotype;
 import io.jenetics.Chromosome;
-import io.jenetics.Phenotype;
-
-import java.util.Arrays;
 
 import java.util.concurrent.Semaphore;
 import java.util.logging.Logger;
+import java.util.logging.Level;
 
 public class FuncionEvaluacionJenetics {
     private static final Logger LOGGER = Logger.getLogger(FuncionEvaluacionJenetics.class.getName());
 
     // Constantes de fitness
-    private static final double BASE_FITNESS = 10000.0;
-    private static final double GOLES_A_FAVOR_RECOMPENSA = 300.0;
-    private static final double GOLES_EN_CONTRA_PENALIZACION = 20.0;
-    private static final double DIFERENCIA_GOL_RECOMPENSA = 200.0;
-    private static final double DIFERENCIA_GOL_PENALIZACION = 75.0;
-    private static final double SIN_GOLES_PENALIZACION = -2500.0;
-    private static final double LIMITE_SUPERIOR_FITNESS = 35000.0;
+    private static final double BASE_FITNESS = 80.0; 
+    private static final double LIMITE_SUPERIOR_FITNESS = 10000.0;
 
-    // Parámetros para la simulación
+    // Pesos para las recompensas y penalizaciones
+    private static final double PESO_GOLES_A_FAVOR = 2.0;
+    private static final double PESO_GOLES_EN_CONTRA = 1.5;
+
+    // Parámetros de simulación
     private static final double[] POSX = { -1.2, -0.5, -0.15, -0.15, -0.15, 1.2, 0.5, 0.15, 0.15, 0.15 };
     private static final double[] POSY = { 0, 0, 0.5, 0, -0.5, 0, 0, 0.5, 0, -0.5 };
     private static final double[] THETA = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
     private static final int[] VCLAS = { 1, 1, 1, 1, 1, 2, 2, 2, 2, 2 };
+    private static final int PARAM_COUNT = 60;
 
-    private static final int PARAM_COUNT = 50;
+    // Variables de estado
+    private int bestGolesFavor = 0;
+    private int bestGolesContra = 0;
+    private double bestFitness = Double.NEGATIVE_INFINITY;
 
-    // Variables para almacenar goles
-    private int currentGolesFavor = 0;
-    private int currentGolesContra = 0;
+    public int getBestGolesFavor() {
+        return bestGolesFavor;
+    }
 
-    public double evaluar(Genotype<DoubleGene> genotype) throws InterruptedException {
-        if (genotype == null || genotype.isEmpty()) {
-            LOGGER.warning("Genotipo nulo o vacío. Fitness=0");
-            return 0.0;
+    public int getBestGolesContra() {
+        return bestGolesContra;
+    }
+
+    // Métodos públicos principales
+    public ResultadoPartido evaluarResultado(Genotype<DoubleGene> genotype, int generation) {
+        if (!validarGenotipo(genotype)) {
+            LOGGER.warning("Genotipo inválido.");
+            return new ResultadoPartido(0, 0, 0.0);
         }
 
+        TBSimNoGraphics tbSim = inicializarSimulacion(genotype);
+        if (tbSim == null) {
+            LOGGER.warning("No se pudo inicializar la simulación.");
+            return new ResultadoPartido(0, 0, 0.0);
+        }
+
+        String estado = ejecutarSimulacion(tbSim);
+        if (!validarEstado(estado)) {
+            return new ResultadoPartido(0, 0, 0.0);
+        }
+
+        return procesarEstadoYActualizarMejorFitness(estado, generation);
+    }
+
+    // Métodos auxiliares de validación
+    private boolean validarGenotipo(Genotype<DoubleGene> genotype) {
+        if (genotype == null || genotype.isEmpty()) {
+            LOGGER.warning("Genotipo nulo o vacío.");
+            return false;
+        }
         long totalGenes = genotype.stream().flatMap(Chromosome::stream).count();
         if (totalGenes < PARAM_COUNT) {
-            LOGGER.warning("Menos de 50 genes (" + totalGenes + "). Fitness=0");
-            return 0.0;
+            LOGGER.warning("El genotipo no tiene suficientes genes. Se requieren " + PARAM_COUNT + " genes.");
+            return false;
         }
-
-        NewRobotSpec[] newRobots = configurarRobots();
-        TBSimNoGraphics tb = new TBSimNoGraphics(null, "robocup.dsc", newRobots, 3, 2, 50);
-        tb.start();
-        tb.sem1 = new Semaphore(0);
-        tb.sem1.acquire();
-
-        Double[] params = convertGenotypeToParams(genotype);
-        for (int i = 0; i < 5; i++) {
-            BasicTeamAG robot = (BasicTeamAG) (tb.simulation.control_systems[i]);
-            robot.setParam(params);
-        }
-
-        tb.sem2.release();
-        tb.join();
-        return ejecutarSimulacion(tb);
+        return true;
     }
 
-    private NewRobotSpec[] configurarRobots() {
-        NewRobotSpec[] newRobots = new NewRobotSpec[10];
-        for (int i = 0; i < 5; i++) {
-            newRobots[i] = new NewRobotSpec(
-                "EDU.gatech.cc.is.abstractrobot.SocSmallSim",
-                "BasicTeamAG",
-                POSX[i],
-                POSY[i],
-                THETA[i],
-                "xEAEA00",
-                "xFFFFFF",
-                VCLAS[i]
-            );
+    private boolean validarEstado(String estado) {
+        if (estado == null || estado.isEmpty()) {
+            LOGGER.warning("Estado vacío o nulo después de ejecutar la simulación.");
+            return false;
         }
-        for (int i = 5; i < 10; i++) {
-            newRobots[i] = new NewRobotSpec(
-                "EDU.gatech.cc.is.abstractrobot.SocSmallSim",
-                "AIKHomoG",
-                POSX[i],
-                POSY[i],
-                THETA[i],
-                "xFF0000",
-                "x0000FF",
-                VCLAS[i]
-            );
-        }
-        return newRobots;
+        return true;
     }
 
-    private double ejecutarSimulacion(TBSimNoGraphics simulacion) {
-        if (simulacion == null) {
-            LOGGER.warning("Simulación nula. Fitness=0");
-            return 0.0;
-        }
+    // Inicialización de la simulación
+    private TBSimNoGraphics inicializarSimulacion(Genotype<DoubleGene> genotype) {
+        NewRobotSpec[] robots = configurarRobots();
+        TBSimNoGraphics tbSim = new TBSimNoGraphics(null, "robocup.dsc", robots, 3, 2, 50);
 
         try {
-            String[] lines = simulacion.estado.split("\n");
-            @SuppressWarnings("unused")
-            String ultimaLinea = Arrays.stream(lines).filter(line -> !line.isBlank()).reduce((a, b) -> b).orElse(null);
-            if (ultimaLinea == null) {
-                LOGGER.warning("No se encontró línea válida en estado. Fitness=0");
-                return 0.0;
+            tbSim.start();
+            tbSim.sem1 = new Semaphore(0);
+            tbSim.sem1.acquire();
+
+            Double[] params = convertGenotypeToParams(genotype);
+            if (!validarParametros(params)) {
+                throw new IllegalArgumentException("Parámetros fuera de rango permitido.");
             }
 
-            String[] valores = ultimaLinea.split(",");
+            for (int i = 0; i < 5; i++) {
+                BasicTeamAG robot = (BasicTeamAG) tbSim.simulation.control_systems[i];
+                robot.setParam(params);
+            }
+
+            tbSim.sem2.release();
+        } catch (Exception e) {
+            LOGGER.log(Level.SEVERE, "Error configurando la simulación: ", e);
+            return null;
+        }
+
+        return tbSim;
+    }
+
+    private String ejecutarSimulacion(TBSimNoGraphics simulacion) {
+        try {
+            simulacion.join();
+            return simulacion.estado;
+        } catch (InterruptedException e) {
+            LOGGER.warning("Error ejecutando la simulación: " + e.getMessage());
+            return null;
+        }
+    }
+
+    // Procesamiento del estado
+    private ResultadoPartido procesarEstadoYActualizarMejorFitness(String estado, int generation) {
+        try {
+            String[] valores = extraerUltimaLinea(estado).split(",");
             if (valores.length < 2) {
-                LOGGER.warning("Formato inválido (no hay 2 valores). Fitness=0");
-                return 0.0;
+                LOGGER.warning("Formato inválido en el estado. Fitness=0");
+                return new ResultadoPartido(0, 0, 0.0);
             }
 
             int golesFavor = Integer.parseInt(valores[0].trim());
             int golesContra = Integer.parseInt(valores[1].trim());
+            double fitness = calcularFitness(golesFavor, golesContra, generation);
 
-            currentGolesFavor = golesFavor;
-            currentGolesContra = golesContra;
+            actualizarMejorFitness(golesFavor, golesContra, fitness);
 
-            return calcularFitness(golesFavor, golesContra, golesFavor - golesContra);
-        } catch (NumberFormatException e) {
-            LOGGER.warning("Error parseando resultados: " + e.getMessage());
-            return 0.0;
+            // Loggear el resultado del partido
+            // LOGGER.info(String.format("Resultado del partido: %s", new ResultadoPartido(golesFavor, golesContra, fitness)));
+
+            return new ResultadoPartido(golesFavor, golesContra, fitness);
+        } catch (Exception e) {
+            LOGGER.warning("Error procesando el estado: " + e.getMessage());
+            return new ResultadoPartido(0, 0, 0.0);
         }
     }
 
-    public Double[] convertGenotypeToParams(Genotype<DoubleGene> genotype) {
-        return genotype.stream().flatMap(Chromosome::stream).limit(PARAM_COUNT).map(DoubleGene::doubleValue)
+    private void actualizarMejorFitness(int golesFavor, int golesContra, double fitness) {
+        if (fitness > bestFitness || (fitness == bestFitness && golesFavor >= bestGolesFavor)) {
+            bestFitness = fitness;
+            bestGolesFavor = golesFavor;
+            bestGolesContra = golesContra;
+        }
+    }
+
+    private String extraerUltimaLinea(String estado) {
+        String[] lineas = estado.split("\n");
+        return lineas.length > 0 ? lineas[lineas.length - 1] : "0,0,-1";
+    }
+
+    private Double[] convertGenotypeToParams(Genotype<DoubleGene> genotype) {
+        return genotype.stream()
+                .flatMap(Chromosome::stream)
+                .limit(PARAM_COUNT)
+                .map(DoubleGene::doubleValue)
                 .toArray(Double[]::new);
     }
 
-    public double calcularFitness(int gf, int gc, int diff) {
+    private boolean validarParametros(Double[] params) {
+        for (int i = 0; i < params.length; i++) {
+            if (params[i] < 0 || params[i] > 5) {
+                LOGGER.warning(String.format("El parámetro %d está fuera de rango: %.2f", i, params[i]));
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private NewRobotSpec[] configurarRobots() {
+        NewRobotSpec[] robots = new NewRobotSpec[10];
+        for (int i = 0; i < 5; i++) {
+            robots[i] = new NewRobotSpec("EDU.gatech.cc.is.abstractrobot.SocSmallSim", "BasicTeamAG", POSX[i], POSY[i], THETA[i], "xEAEA00", "xFFFFFF", VCLAS[i]);
+        }
+        for (int i = 5; i < 10; i++) {
+            robots[i] = new NewRobotSpec("EDU.gatech.cc.is.abstractrobot.SocSmallSim", "AIKHomoG", POSX[i], POSY[i], THETA[i], "xFF0000", "x0000FF", VCLAS[i]);
+        }
+        return robots;
+    }
+
+    // Métodos para cálculo de fitness
+    private double calcularFitness(int gf, int gc, int generation) {
         double fitness = BASE_FITNESS;
-
-        // Recompensas y penalizaciones
-        fitness += recompensaPorGolesFavor(gf);
-        fitness -= penalizacionPorGolesContra(gc);
-        fitness += recompensaPorDiferencia(diff);
-        fitness += penalizacionPorJuegoAburrido(gf, gc);
-
+        fitness += calcularRecompensas(gf, gc);
+        fitness -= calcularPenalizaciones(gf, gc);
         return Math.min(fitness, LIMITE_SUPERIOR_FITNESS);
     }
 
-    private double recompensaPorGolesFavor(int gf) {
-        return gf * GOLES_A_FAVOR_RECOMPENSA;
+    private double calcularRecompensas(int gf, int gc) {
+        double recompensas = 0.0;
+        recompensas += gf * PESO_GOLES_A_FAVOR;
+        recompensas += recompensaPorEmpate(gf, gc);
+        return recompensas;
     }
 
-    private double penalizacionPorGolesContra(int gc) {
-        return gc * GOLES_EN_CONTRA_PENALIZACION;
+    private double calcularPenalizaciones(int gf, int gc) {
+        double penalizaciones = 0.0;
+        penalizaciones += gc * PESO_GOLES_EN_CONTRA;
+        return penalizaciones;
     }
 
-    private double recompensaPorDiferencia(int diff) {
-        return diff > 0 ? diff * DIFERENCIA_GOL_RECOMPENSA : diff * DIFERENCIA_GOL_PENALIZACION;
+    private double recompensaPorEmpate(int gf, int gc) {
+        if (gf == gc && gf > 0) return 2000.0;
+        if (gf == gc && gf == 0) return 500.0;
+        return 0.0;
     }
 
-    private double penalizacionPorJuegoAburrido(int gf, int gc) {
-        return (gf + gc) < 3 ? SIN_GOLES_PENALIZACION : 0.0;
-    }
+    public static class ResultadoPartido {
+        private final int golesFavor;
+        private final int golesContra;
+        private final double fitness;
 
-    public int getCurrentGolesFavor() {
-        return currentGolesFavor;
-    }
+        public ResultadoPartido(int golesFavor, int golesContra, double fitness) {
+            this.golesFavor = golesFavor;
+            this.golesContra = golesContra;
+            this.fitness = fitness;
+        }
 
-    public int getCurrentGolesContra() {
-        return currentGolesContra;
-    }
+        public int getGolesFavor() { return golesFavor; }
+        public int getGolesContra() { return golesContra; }
+        public double getFitness() { return fitness; }
 
-    public int getGolesFavorForPhenotype(Phenotype<DoubleGene, Double> phenotype) {
-        return phenotype != null ? currentGolesFavor : 0;
-    }
-
-    public int getGolesContraForPhenotype(Phenotype<DoubleGene, Double> phenotype) {
-        return phenotype != null ? currentGolesContra : 0;
+        @Override
+        public String toString() {
+            return String.format("Goles Favor: %d, Goles Contra: %d, Fitness: %.2f", golesFavor, golesContra, fitness);
+        }
     }
 }
