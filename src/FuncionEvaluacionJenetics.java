@@ -8,9 +8,10 @@ import java.util.logging.Level;
 
 public class FuncionEvaluacionJenetics {
     private static final Logger LOGGER = Logger.getLogger(FuncionEvaluacionJenetics.class.getName());
-
+    private static final FuncionEvaluacionJenetics INSTANCE = new FuncionEvaluacionJenetics();
+    
     // Constantes de fitness
-    private static final double BASE_FITNESS = 80.0; 
+    private static final double BASE_FITNESS = 80.0;
     private static final double LIMITE_SUPERIOR_FITNESS = 10000.0;
 
     // Pesos para las recompensas y penalizaciones
@@ -37,7 +38,7 @@ public class FuncionEvaluacionJenetics {
         return bestGolesContra;
     }
 
-    // Métodos públicos principales
+    // Método principal de evaluación
     public ResultadoPartido evaluarResultado(Genotype<DoubleGene> genotype, int generation) {
         if (!validarGenotipo(genotype)) {
             LOGGER.warning("Genotipo inválido.");
@@ -58,7 +59,11 @@ public class FuncionEvaluacionJenetics {
         return procesarEstadoYActualizarMejorFitness(estado, generation);
     }
 
-    // Métodos auxiliares de validación
+    public static FuncionEvaluacionJenetics getInstance() {
+        return INSTANCE;
+    }
+
+    // Validación del genotipo
     private boolean validarGenotipo(Genotype<DoubleGene> genotype) {
         if (genotype == null || genotype.isEmpty()) {
             LOGGER.warning("Genotipo nulo o vacío.");
@@ -83,7 +88,7 @@ public class FuncionEvaluacionJenetics {
     // Inicialización de la simulación
     private TBSimNoGraphics inicializarSimulacion(Genotype<DoubleGene> genotype) {
         NewRobotSpec[] robots = configurarRobots();
-        TBSimNoGraphics tbSim = new TBSimNoGraphics(null, "robocup.dsc", robots, 3, 2, 50);
+        TBSimNoGraphics tbSim = new TBSimNoGraphics(null, "robocup.dsc", robots, 3, 2, 200);
 
         try {
             tbSim.start();
@@ -109,6 +114,7 @@ public class FuncionEvaluacionJenetics {
         return tbSim;
     }
 
+    // Ejecución de la simulación
     private String ejecutarSimulacion(TBSimNoGraphics simulacion) {
         try {
             simulacion.join();
@@ -133,9 +139,6 @@ public class FuncionEvaluacionJenetics {
             double fitness = calcularFitness(golesFavor, golesContra, generation);
 
             actualizarMejorFitness(golesFavor, golesContra, fitness);
-
-            // Loggear el resultado del partido
-            // LOGGER.info(String.format("Resultado del partido: %s", new ResultadoPartido(golesFavor, golesContra, fitness)));
 
             return new ResultadoPartido(golesFavor, golesContra, fitness);
         } catch (Exception e) {
@@ -188,28 +191,23 @@ public class FuncionEvaluacionJenetics {
 
     // Métodos para cálculo de fitness
     private double calcularFitness(int gf, int gc, int generation) {
-        double fitness = BASE_FITNESS;
-        fitness += calcularRecompensas(gf, gc);
-        fitness -= calcularPenalizaciones(gf, gc);
+        // Cálculo directo sin necesidad de variables intermedias
+        double fitness = BASE_FITNESS + calcularRecompensas(gf, gc) - calcularPenalizaciones(gf, gc);
         return Math.min(fitness, LIMITE_SUPERIOR_FITNESS);
     }
 
     private double calcularRecompensas(int gf, int gc) {
-        double recompensas = 0.0;
-        recompensas += gf * PESO_GOLES_A_FAVOR;
-        recompensas += recompensaPorEmpate(gf, gc);
+        double recompensas = gf * PESO_GOLES_A_FAVOR + recompensaPorEmpate(gf, gc);
         return recompensas;
     }
 
     private double calcularPenalizaciones(int gf, int gc) {
-        double penalizaciones = 0.0;
-        penalizaciones += gc * PESO_GOLES_EN_CONTRA;
-        return penalizaciones;
+        return gc * PESO_GOLES_EN_CONTRA;
     }
 
     private double recompensaPorEmpate(int gf, int gc) {
-        if (gf == gc && gf > 0) return 2000.0;
-        if (gf == gc && gf == 0) return 500.0;
+        if (gf == gc && gf > 0) return 5000.0;  // Empate con goles a favor.
+        if (gf == gc && gf == 0) return 1000.0;  // Empate 0-0.
         return 0.0;
     }
 

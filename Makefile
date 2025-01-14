@@ -46,10 +46,11 @@ $(BINDIR)/%.class: $(SRCDIR)/%.java
 	mkdir -p $(@D)
 	$(JAVAC) $(JFLAGS) $<
 
-
 # Ejecutar el programa principal
 run: all
-	$(JAVA) $(JAVAFLAGS) $(MAINCLASS) $(TASKID)
+	@echo "Ejecutando el programa principal..."
+	@chmod +x run_program.sh  # Asegurarse de que el script tenga permisos de ejecución
+	./run_program.sh $(TASKID)
 
 # Limpiar archivos compilados
 clean:
