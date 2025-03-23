@@ -16,8 +16,9 @@ public class MainJenetics {
             // 1. Instanciar la Configuración (para saber si HPC, colores, etc.)
             Configuracion config = new Configuracion();
 
-            // 2. Crear LogManager pasando el ENABLE_COLORS
-            logManager = new LogManager(LOGGER, config.ENABLE_COLORS);
+            // 2. Crear LogManager pasando el ENABLE_COLORS y la configuración
+            logManager = new LogManager(LOGGER, config.ENABLE_COLORS, config);
+            // O alternativamente: logManager = new LogManager(LOGGER, config);
 
             // 3. Determinar HPC o local -> CSV
             boolean isHPC = config.IS_HPC;
@@ -28,7 +29,7 @@ public class MainJenetics {
             System.out.println("[DEBUG] El CSV se usará en -> " + debugFile.getAbsolutePath());
 
             // 5. Crear CSVManager (no borra ni recrea CSV a mitad)
-            csvManager = new CSVManager(csvFileName, isHPC);
+            csvManager = new CSVManager("local_stats.csv", config.IS_HPC, config);
 
             // 6. Loguear detalles del entorno
             logManager.logDetallesDelEntorno(isHPC);

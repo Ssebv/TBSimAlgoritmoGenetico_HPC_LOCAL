@@ -9,33 +9,31 @@ public class CSVManager {
     private static final Logger LOGGER = Logger.getLogger(CSVManager.class.getName());
     private PrintWriter csvWriter;
     private final String fileName;
+    private final Configuracion config;
 
-    public CSVManager(String fileName, boolean isHPC) {
+    public CSVManager(String fileName, boolean isHPC, Configuracion config) {
         this.fileName = fileName;
+        this.config = config;
+        // Sobrescribir el archivo en cada ejecución
         prepararCSV(isHPC);
     }
 
     private void prepararCSV(boolean isHPC) {
         try {
-            csvWriter = new PrintWriter(new FileWriter(fileName, true)); // Modo append
-
+            csvWriter = new PrintWriter(new FileWriter(fileName, false));
             File archivo = new File(fileName);
-            if (archivo.length() == 0) {
-                // Cabecera
-                csvWriter.println(
-                  "Generación,Mejor Fitness,Fitness Promedio,Diversidad," +
-                  "Peor Fitness,CPU (%),Memoria (%),Tiempo (s),Goles Favor,Goles Contra"
-                );
-                csvWriter.flush();
-            }
-
-            LOGGER.info("Archivo CSV preparado correctamente: " + fileName);
+            csvWriter.println(
+                "Generación,Mejor Fitness,Fitness Promedio,Diversidad,Peor Fitness,CPU (%),Memoria (%),Tiempo (s),Goles Favor,Goles Contra," +
+                "OS,OS Version,Java Version,CPUs,Population Size,Mutation Rate,Crossover Rate"
+            );
+            csvWriter.flush();
+            LOGGER.info("Archivo CSV preparado correctamente (sobrescrito): " + fileName);
         } catch (IOException e) {
             LOGGER.log(Level.SEVERE, "No se pudo crear o abrir el archivo CSV: " + e.getMessage(), e);
         }
     }
 
-    public void escribirLineaCSV(
+    public synchronized void escribirLineaCSV(
             int generacion,
             double mejorFitness,
             double avgFitness,
@@ -43,21 +41,24 @@ public class CSVManager {
             double worstFitness,
             double cpuLoad,
             double memoryLoad,
-            long elapsedTime,
+            long elapsedTime, // En milisegundos
             int golesFavor,
             int golesContra
     ) {
         try {
-            if (csvWriter == null) {
-                LOGGER.warning("El escritor CSV no está inicializado. Se omite la escritura.");
-                return;
-            }
-
-            // Debug
             System.out.println("[DEBUG CSV] Voy a escribir al CSV -> gen=" + generacion + ", bestFit=" + mejorFitness);
-
+            double timeSeconds = elapsedTime / 1000.0;
+            String osName = System.getProperty("os.name");
+            String osVersion = System.getProperty("os.version");
+            String javaVersion = System.getProperty("java.version");
+            int cpus = Runtime.getRuntime().availableProcessors();
+            int populationSize = config.INITIAL_POPULATION_SIZE;
+            double mutationRate = config.MUTATION_RATE;
+            double crossoverRate = config.CROSSOVER_RATE;
+            
             csvWriter.printf(
-                "%d,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%d,%d\n",
+                "%d,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.3f,%d,%d," +
+                "%s,%s,%s,%d,%d,%.2f,%.2f\n",
                 generacion,
                 mejorFitness,
                 avgFitness,
@@ -65,9 +66,16 @@ public class CSVManager {
                 worstFitness,
                 (cpuLoad * 100),
                 (memoryLoad * 100),
-                (elapsedTime / 1000.0),
+                timeSeconds,
                 golesFavor,
-                golesContra
+                golesContra,
+                osName,
+                osVersion,
+                javaVersion,
+                cpus,
+                populationSize,
+                mutationRate,
+                crossoverRate
             );
             csvWriter.flush();
         } catch (Exception e) {

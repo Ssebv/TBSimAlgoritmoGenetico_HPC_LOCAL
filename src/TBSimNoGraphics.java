@@ -46,8 +46,8 @@
      public TBSimNoGraphics(String[] args, String dscFile, NewRobotSpec[] robots, long seed, long time, long maxTimeStep) {
          // Inicializar LogManager internamente
          Logger LOGGER = Logger.getLogger(TBSimNoGraphics.class.getName());
-         this.logManager = new LogManager(LOGGER, true); // Ajusta 'true' según tu configuración de colores
- 
+         this.logManager = new LogManager(LOGGER, true, new Configuracion());
+
          this.seed = seed;
          this.time = time;
          this.maxTimeStep = maxTimeStep;

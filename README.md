@@ -89,3 +89,10 @@ Por defecto, Jenetics utiliza el ForkJoinPool.commonPool(), que tiene un nivel d
 ### Autor
 
 - Sebastian Allende
+
+
+❯ javac -cp lib/jenetics-7.2.0.jar:src -d bin src/CheckpointData.java
+
+❯ javac -cp lib/jenetics-7.2.0.jar:bin -d bin src/CheckpointInspector.java
+
+❯ java -cp lib/jenetics-7.2.0.jar:bin CheckpointInspector

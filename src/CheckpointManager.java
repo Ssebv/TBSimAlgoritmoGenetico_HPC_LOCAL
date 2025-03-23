@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 
 import io.jenetics.DoubleGene;
 import io.jenetics.Phenotype;
-import io.jenetics.engine.EvolutionResult;
+import io.jenetics.Genotype;
 
 public class CheckpointManager {
     private static final Logger LOGGER = Logger.getLogger(CheckpointManager.class.getName());
@@ -21,20 +21,15 @@ public class CheckpointManager {
         consoleHandler.setFormatter(new Formatter() {
             @Override
             public String format(LogRecord record) {
-                return String.format("%s: %s\n", record.getLevel(), record.getMessage());
+                return String.format("%s: %s%n", record.getLevel(), record.getMessage());
             }
         });
         LOGGER.addHandler(consoleHandler);
         LOGGER.setLevel(Level.ALL);
     }
 
-    public static void guardarCheckpoint(EvolutionResult<DoubleGene, Double> result, String checkpointFilePath) {
+    public static void guardarCheckpoint(CheckpointData checkpointData, String checkpointFilePath) {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(checkpointFilePath))) {
-            List<io.jenetics.Genotype<DoubleGene>> genotypes = result.population().asList().stream()
-                    .map(Phenotype::genotype)
-                    .collect(Collectors.toList());
-
-            CheckpointData checkpointData = new CheckpointData(genotypes, (int) result.generation());
             oos.writeObject(checkpointData);
             LOGGER.info("[INFO] Checkpoint guardado correctamente en " + checkpointFilePath);
         } catch (IOException e) {
