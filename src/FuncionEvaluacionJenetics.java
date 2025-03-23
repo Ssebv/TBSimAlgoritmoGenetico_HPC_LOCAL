@@ -1,38 +1,34 @@
 import io.jenetics.DoubleGene;
 import io.jenetics.Genotype;
 import io.jenetics.Chromosome;
+import io.jenetics.Phenotype;
+import io.jenetics.engine.EvolutionResult;
+import io.jenetics.util.ISeq;
 import java.util.List;
-import java.util.concurrent.Semaphore;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
-import java.util.logging.Logger;
 import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.stream.IntStream;
 
 public class FuncionEvaluacionJenetics {
     private static final Logger LOGGER = Logger.getLogger(FuncionEvaluacionJenetics.class.getName());
     private static final FuncionEvaluacionJenetics INSTANCE = new FuncionEvaluacionJenetics();
 
-    // Constantes de fitness
-    private static final double BASE_FITNESS = 50000.0;
+    private static final double BASE_FITNESS = 100.0;
     private static final double LIMITE_SUPERIOR_FITNESS = 100000.0;
     
-    // Pesos base para cada componente
+    // Parámetros de ponderación para el cálculo de fitness
     private double pesoOfensivo = 3.0;
     private double pesoDefensivo = 1.5;
-    private double bonusVictoria = 1500.0; // Bonus para victoria contundente con exponente 2.5
+    private double bonusVictoria = 1500.0;
     private double bonusEmpate = 200.0;
     
-    // Parámetros de simulación (fijos)
     private static final double[] POSX = { -1.2, -0.5, -0.15, -0.15, -0.15, 1.2, 0.5, 0.15, 0.15, 0.15 };
     private static final double[] POSY = { 0, 0, 0.5, 0, -0.5, 0, 0, 0.5, 0, -0.5 };
     private static final double[] THETA = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
     private static final int[] VCLAS = { 1, 1, 1, 1, 1, 2, 2, 2, 2, 2 };
     private static final int PARAM_COUNT = 60;
 
-    // Variables de estado para registrar los mejores resultados
     private int bestGolesFavor = 0;
     private int bestGolesContra = 0;
     private double bestFitness = Double.NEGATIVE_INFINITY;
@@ -46,57 +42,84 @@ public class FuncionEvaluacionJenetics {
     }
 
     /**
-     * Evalúa el fitness del genotipo realizando NUM_SIMULACIONES partidos y promediando los resultados.
+     * Evalúa el fitness del genotipo promediando NUM_SIMULACIONES partidos.
+     * Se utiliza procesamiento paralelo si el número de simulaciones es mayor a 1.
+     * Se amplifican las diferencias entre componentes del fitness con un factor de 1.5.
      */
     public ResultadoPartido evaluarResultado(Genotype<DoubleGene> genotype, int generation) {
         if (!validarGenotipo(genotype)) {
             LOGGER.warning("Genotipo inválido.");
             return new ResultadoPartido(0, 0, 0.0);
         }
-        int numSimulaciones = ConfiguracionSingleton.getInstance().getConfig().NUM_SIMULACIONES;
-        LOGGER.info("NUM_SIMULACIONES = " + numSimulaciones);
+        int numSimulaciones = ConfiguracionSingleton.getInstance().NUM_SIMULACIONES;
+        
+        // Usamos stream paralelo para simular cada partido
+        SimulationResult[] resultados = IntStream.range(0, numSimulaciones)
+                .parallel()
+                .mapToObj(i -> ejecutarSimulacionIndividual(genotype))
+                .filter(r -> r != null && r.isValido())
+                .toArray(SimulationResult[]::new);
+        
+        if (resultados.length == 0) {
+            LOGGER.warning("Ninguna simulación arrojó resultados válidos.");
+            return new ResultadoPartido(0, 0, 0.0);
+        }
+        
         int sumaGF = 0;
         int sumaGC = 0;
         double sumaFitness = 0.0;
-        
-        for (int i = 0; i < numSimulaciones; i++) {
-            TBSimNoGraphics tbSim = inicializarSimulacion(genotype);
-            if (tbSim == null) continue;
-            String estado = ejecutarSimulacion(tbSim);
-            if (!validarEstado(estado)) continue;
-            
-            String linea = extraerUltimaLinea(estado);
-            if (linea.contains("-1")) {
-                LOGGER.warning("Simulación no válida, se obtuvo: " + linea);
-                continue;
-            }
-            String[] valores = linea.split(",");
-            if (valores.length < 2) continue;
-            int gf = Integer.parseInt(valores[0].trim());
-            int gc = Integer.parseInt(valores[1].trim());
-            
-            double componenteOfensivo = gf * pesoOfensivo;
-            double bonusOfensivo = (gf > gc) ? bonusVictoria * Math.pow((gf - gc), 2.5) : 0.0;
-            double componenteDefensivo = -gc * pesoDefensivo;
-            double componenteBalance = (gf == gc) ? bonusEmpate : 0.0;
-            
-            double fitness = BASE_FITNESS + componenteOfensivo + bonusOfensivo + componenteDefensivo + componenteBalance;
-            fitness = Math.max(0, fitness);
-            fitness = Math.min(fitness, LIMITE_SUPERIOR_FITNESS);
-            
-            sumaGF += gf;
-            sumaGC += gc;
-            sumaFitness += fitness;
+        for (SimulationResult res : resultados) {
+            sumaGF += res.golesFavor;
+            sumaGC += res.golesContra;
+            sumaFitness += calcularFitness(res.golesFavor, res.golesContra);
         }
         
-        int promedioGF = (numSimulaciones > 0) ? sumaGF / numSimulaciones : 0;
-        int promedioGC = (numSimulaciones > 0) ? sumaGC / numSimulaciones : 0;
-        double promedioFitness = (numSimulaciones > 0) ? sumaFitness / numSimulaciones : 0.0;
+        int promedioGF = sumaGF / resultados.length;
+        int promedioGC = sumaGC / resultados.length;
+        double promedioFitness = sumaFitness / resultados.length;
         
         actualizarMejorFitness(promedioGF, promedioGC, promedioFitness);
         return new ResultadoPartido(promedioGF, promedioGC, promedioFitness);
     }
-
+    
+    /**
+     * Ejecuta una simulación individual y procesa el resultado.
+     */
+    private SimulationResult ejecutarSimulacionIndividual(Genotype<DoubleGene> genotype) {
+        TBSimNoGraphics tbSim = inicializarSimulacion(genotype);
+        if (tbSim == null) return null;
+        String estado = ejecutarSimulacion(tbSim);
+        if (!validarEstado(estado)) return null;
+        String linea = extraerUltimaLinea(estado);
+        if (linea.contains("-1")) {
+            LOGGER.warning("Simulación no válida, se obtuvo: " + linea);
+            return null;
+        }
+        String[] valores = linea.split(",");
+        if (valores.length < 2) return null;
+        try {
+            int gf = Integer.parseInt(valores[0].trim());
+            int gc = Integer.parseInt(valores[1].trim());
+            return new SimulationResult(gf, gc);
+        } catch (NumberFormatException e) {
+            LOGGER.warning("Error parseando los valores: " + e.getMessage());
+            return null;
+        }
+    }
+    
+    /**
+     * Calcula el fitness a partir de goles a favor y goles en contra.
+     */
+    private double calcularFitness(int gf, int gc) {
+        double componenteOfensivo = gf * pesoOfensivo;
+        double bonusOfensivo = (gf > gc) ? bonusVictoria * Math.pow((gf - gc), 2.5) : 0.0;
+        double componenteDefensivo = -gc * pesoDefensivo;
+        double componenteBalance = (gf == gc) ? bonusEmpate : 0.0;
+        // Amplificar las diferencias con un factor de 1.5
+        double fitness = BASE_FITNESS + 1.5 * (componenteOfensivo + bonusOfensivo + componenteDefensivo + componenteBalance);
+        return Math.min(Math.max(fitness, 0), LIMITE_SUPERIOR_FITNESS);
+    }
+    
     private void actualizarMejorFitness(int gf, int gc, double fitness) {
         if (fitness > bestFitness || (fitness == bestFitness && gf >= bestGolesFavor)) {
             bestFitness = fitness;
@@ -126,13 +149,12 @@ public class FuncionEvaluacionJenetics {
         return true;
     }
 
-    // Se usa maxTimeStep=200 (valor original) para que la simulación se ejecute correctamente.
     private TBSimNoGraphics inicializarSimulacion(Genotype<DoubleGene> genotype) {
         NewRobotSpec[] robots = configurarRobots();
         TBSimNoGraphics tbSim = new TBSimNoGraphics(null, "robocup.dsc", robots, 3, 2, 200);
         try {
             tbSim.start();
-            tbSim.sem1 = new Semaphore(0);
+            tbSim.sem1 = new java.util.concurrent.Semaphore(0);
             tbSim.sem1.acquire();
             Double[] params = convertGenotypeToParams(genotype);
             if (!validarParametros(params)) {
@@ -150,19 +172,15 @@ public class FuncionEvaluacionJenetics {
         return tbSim;
     }
 
-    /**
-     * Ejecuta la simulación con timeout para evitar bloqueos.
-     */
     private String ejecutarSimulacion(TBSimNoGraphics simulacion) {
-        ExecutorService exec = Executors.newSingleThreadExecutor();
+        java.util.concurrent.ExecutorService exec = java.util.concurrent.Executors.newSingleThreadExecutor();
         try {
-            Future<String> future = exec.submit(() -> {
+            java.util.concurrent.Future<String> future = exec.submit(() -> {
                 simulacion.join();
                 return simulacion.estado;
             });
-            // Espera un máximo de 5 segundos
             return future.get(5000, TimeUnit.MILLISECONDS);
-        } catch (TimeoutException e) {
+        } catch (java.util.concurrent.TimeoutException e) {
             LOGGER.warning("Timeout en la simulación. Se retorna estado por defecto.");
             return "0,0,-1";
         } catch (Exception e) {
@@ -207,6 +225,23 @@ public class FuncionEvaluacionJenetics {
                     POSX[i], POSY[i], THETA[i], "xFF0000", "x0000FF", VCLAS[i]);
         }
         return robots;
+    }
+
+    /**
+     * Clase interna para encapsular el resultado de una simulación.
+     */
+    private static class SimulationResult {
+        final int golesFavor;
+        final int golesContra;
+        
+        SimulationResult(int golesFavor, int golesContra) {
+            this.golesFavor = golesFavor;
+            this.golesContra = golesContra;
+        }
+        
+        boolean isValido() {
+            return golesFavor >= 0 && golesContra >= 0;
+        }
     }
 
     public static class ResultadoPartido {

@@ -1,5 +1,5 @@
-import io.jenetics.DoubleGene;
 import io.jenetics.DoubleChromosome;
+import io.jenetics.DoubleGene;
 import io.jenetics.Genotype;
 import io.jenetics.Phenotype;
 import io.jenetics.util.ISeq;
@@ -9,12 +9,11 @@ import java.util.Comparator;
 import java.util.List;
 
 public class DiversityInjector {
-
     private final Configuracion config;
     private final java.util.function.Function<Genotype<DoubleGene>, Double> evaluationFunction;
     private final LogManager logManager;
-
-    // Si no deseas modificar Configuracion, puedes definir valores por defecto:
+    
+    // Parámetros configurables para inyección de diversidad
     private final double minDiversityThreshold;
     private final double diversityInjectionPercentage;
 
@@ -24,35 +23,36 @@ public class DiversityInjector {
         this.config = config;
         this.evaluationFunction = evaluationFunction;
         this.logManager = logManager;
-        // Usar valores de configuración si existen, o valores fijos de lo contrario.
-        this.minDiversityThreshold = config.MIN_DIVERSITY_THRESHOLD; // o asignar un valor fijo: 0.5;
-        this.diversityInjectionPercentage = config.DIVERSITY_INJECTION_PERCENTAGE; // o, por ejemplo, 0.1;
+        this.minDiversityThreshold = config.MIN_DIVERSITY_THRESHOLD;
+        this.diversityInjectionPercentage = config.DIVERSITY_INJECTION_PERCENTAGE;
     }
 
+    /**
+     * Inyecta nuevos individuos en la población si la diversidad cae por debajo del umbral.
+     * Reemplaza aleatoriamente parte de los peores individuos.
+     */
     public ISeq<Phenotype<DoubleGene, Double>> injectDiversity(ISeq<Phenotype<DoubleGene, Double>> population) {
         double diversity = calculateDiversity(population);
         logManager.logInfo("Diversidad actual: " + diversity);
         if (diversity < minDiversityThreshold) {
             logManager.logInfo("Diversidad baja detectada. Inyectando nuevos individuos...");
             int numToInject = (int) (population.size() * diversityInjectionPercentage);
-            List<Phenotype<DoubleGene, Double>> newIndividuals = new ArrayList<>();
-
-            // Crear nuevos individuos aleatorios
-            for (int i = 0; i < numToInject; i++) {
+            if (numToInject <= 0) numToInject = 1;
+            List<Phenotype<DoubleGene, Double>> nuevaPoblacion = new ArrayList<>(population.asList());
+            
+            // Ordenar la población de menor a mayor fitness (los peores primero)
+            nuevaPoblacion.sort(Comparator.comparingDouble(Phenotype::fitness));
+            
+            // Reemplazar los peores individuos
+            for (int i = 0; i < numToInject && i < nuevaPoblacion.size(); i++) {
                 Genotype<DoubleGene> randomGenotype = Genotype.of(DoubleChromosome.of(1, 5, 60));
                 double fitness = evaluationFunction.apply(randomGenotype);
-                // Se asume generación 0 para el nuevo individuo; ajustar si es necesario.
-                Phenotype<DoubleGene, Double> pheno = Phenotype.of(randomGenotype, 0, fitness);
-                newIndividuals.add(pheno);
+                Phenotype<DoubleGene, Double> nuevoFenotipo = Phenotype.of(randomGenotype, 0, fitness);
+                nuevaPoblacion.set(i, nuevoFenotipo);
             }
-            // Ordenar la población de menor a mayor fitness
-            List<Phenotype<DoubleGene, Double>> sortedPopulation = new ArrayList<>(population.asList());
-            sortedPopulation.sort(Comparator.comparingDouble(Phenotype::fitness));
-            // Reemplazar los peores individuos
-            for (int i = 0; i < numToInject && i < sortedPopulation.size(); i++) {
-                sortedPopulation.set(i, newIndividuals.get(i));
-            }
-            return ISeq.of(sortedPopulation);
+            
+            logManager.logInfo("Se inyectaron " + numToInject + " nuevos individuos en la población.");
+            return ISeq.of(nuevaPoblacion);
         }
         return population;
     }

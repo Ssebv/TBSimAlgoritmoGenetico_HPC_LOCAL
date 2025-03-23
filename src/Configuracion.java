@@ -1,3 +1,5 @@
+import io.jenetics.Optimize;
+
 public class Configuracion {
     // Configuración de colores para los logs (true para habilitar ANSI colors)
     public final boolean ENABLE_COLORS = true;
@@ -9,14 +11,13 @@ public class Configuracion {
     public final boolean IS_HPC = (System.getenv("SLURM_JOB_ID") != null);
     
     // Tamaño de población
-    public final int INITIAL_POPULATION_SIZE = IS_HPC ? 20 : 20;
+    public final int INITIAL_POPULATION_SIZE = IS_HPC ? 100 : 300;
     
     // Número de generaciones por bloque y objetivo global
-    public final int DEFAULT_GENERATIONS = 50;
-    public final int TARGET_GENERATIONS = 50;
+    public final int DEFAULT_GENERATIONS = 1000;
+    public final int TARGET_GENERATIONS = 1000;
     
     // Número de partidos que se simulan para evaluar cada individuo.
-    // Para una evaluación rápida, lo dejamos en 1.
     public final int NUM_SIMULACIONES = 1;
     
     // Tasas de mutación y de cruce
@@ -39,6 +40,9 @@ public class Configuracion {
     
     // Flag para elegir operador de cruce: true para Uniform, false para SinglePoint
     public final boolean USE_UNIFORM_CROSSOVER = false;
+    
+    // Define la estrategia de optimización: MAXIMUM (para maximizar) o MINIMUM (para minimizar)
+    public final Optimize OPTIMIZE = Optimize.MAXIMUM;
     
     public Configuracion() {
         // Inicializaciones adicionales si fueran necesarias.
