@@ -1,0 +1,131 @@
+Guía de Ejecución de Experimentos
+
+Experimento 1: Núcleos vs. Tiempo y CPU
+
+Objetivo:
+Evaluar cómo varía el tiempo de ejecución y la carga de CPU al cambiar la cantidad de núcleos usados para la evaluación en paralelo.
+
+
+Configuración Inicial: En Configuracion.java, fija los siguientes parámetros:
+INITIAL_POPULATION_SIZE = 100
+TARGET_GENERATIONS = 1000
+DEFAULT_GENERATIONS = 50
+MUTATION_RATE = 0.40
+CROSSOVER_RATE = 0.70 (local)
+NUM_CORES: Se probarán 1, 2, 4 y 8 (modifica este parámetro para cada corrida).
+
+Ejecución:
+Para cada valor de NUM_CORES:
+Modifica NUM_CORES en Configuracion.java al valor deseado (por ejemplo, 1).
+Ejecuta make para compilar y luego make run para iniciar la simulación.
+Se generará un archivo CSV (por ejemplo, simulacion.csv) y un log (simulacion.log) en la carpeta resultados/.
+Registra el tiempo total de ejecución (en segundos) y la carga de CPU (en %).
+Generación de Gráficos:
+Exporta los datos del CSV y crea un archivo Excel llamado Tiempo_vs_CPU.xlsx.
+En este archivo, el eje X será el número de núcleos (1, 2, 4, 8) y el eje Y mostrará el tiempo y la carga de CPU.
+
+
+Experimento 2: Población vs. Carga de CPU
+
+Objetivo:
+Determinar cómo afecta el tamaño de la población al tiempo de ejecución y al uso de CPU.
+
+Pasos:
+
+Configuración Inicial:
+Fija en Configuracion.java:
+NUM_CORES = 4 (o cualquier valor fijo)
+TARGET_GENERATIONS = 1000
+DEFAULT_GENERATIONS = 50
+MUTATION_RATE = 0.40
+CROSSOVER_RATE = 0.70
+Varía INITIAL_POPULATION_SIZE entre 25, 50, 100 y 200.
+Ejecución:
+Para cada valor de INITIAL_POPULATION_SIZE:
+Modifica el parámetro en Configuracion.java.
+Ejecuta make y make run.
+Registra en el CSV el tamaño de población, tiempo de ejecución y carga de CPU.
+Generación de Gráficos:
+Crea un archivo Excel llamado CPU_vs_Poblacion.xlsx.
+Configura el eje X con el tamaño de la población y el eje Y con la carga de CPU.
+Experimento 3: Variación de Tasas de Mutación y Cruce
+
+Objetivo:
+Analizar el impacto de diferentes combinaciones de tasas de mutación y cruce en la convergencia del fitness.
+
+Pasos:
+
+Configuración Inicial:
+Mantén en Configuracion.java:
+NUM_CORES = 4
+TARGET_GENERATIONS = 1000
+DEFAULT_GENERATIONS = 50
+INITIAL_POPULATION_SIZE = 100
+Define un conjunto de combinaciones:
+Ejemplo:
+(MUTATION_RATE, CROSSOVER_RATE) = (0.30, 0.60), (0.30, 0.70), (0.30, 0.80),
+(0.40, 0.60), (0.40, 0.70), (0.40, 0.80), (0.50, 0.60), (0.50, 0.70), (0.50, 0.80).
+Ejecución:
+Para cada combinación:
+Ajusta MUTATION_RATE y CROSSOVER_RATE en Configuracion.java.
+Ejecuta make y make run.
+Recopila los datos del CSV, prestando atención a la evolución del fitness (mejor, promedio, peor) y la diversidad.
+Generación de Gráficos:
+Crea un archivo Excel llamado Fitness_vs_Generacion.xlsx.
+En este archivo, el eje X serán las generaciones (1 a 1000) y el eje Y los valores de fitness.
+Compara las curvas para identificar la combinación de parámetros que ofrece una mejor convergencia y diversidad.
+Experimento 4: Número de Simulaciones por Individuo
+
+Objetivo:
+Evaluar cómo varía la robustez de la evaluación del fitness al cambiar el número de simulaciones realizadas por cada individuo.
+
+Pasos:
+
+Configuración Inicial:
+Mantén los parámetros base:
+NUM_CORES = 4
+TARGET_GENERATIONS = 1000
+DEFAULT_GENERATIONS = 50
+INITIAL_POPULATION_SIZE = 100
+MUTATION_RATE = 0.40
+CROSSOVER_RATE = 0.70
+Modifica NUM_SIMULACIONES para probar con 1, 3 y 5.
+Ejecución:
+Para cada valor de NUM_SIMULACIONES:
+Ajusta el parámetro en Configuracion.java.
+Ejecuta make y make run.
+Registra en el CSV el tiempo de ejecución y la variabilidad de los valores de fitness.
+Generación de Gráficos:
+Crea un archivo Excel llamado Simulaciones_vs_Fitness.xlsx.
+El eje X será el número de simulaciones por individuo y el eje Y mostrará métricas de fitness (mejor, promedio) y tiempo de ejecución.
+Experimento 5: Comparación de Equipos Base
+
+Objetivo:
+Evaluar si las modificaciones realizadas en BasicTeamAG mejoran el desempeño del equipo en comparación con el equipo base original (TeamBot_Base o AIKHomoG).
+
+Pasos:
+
+Configuración Inicial:
+Usa la configuración base para el algoritmo genético (población, generaciones, tasas, etc.).
+Asegúrate de tener disponible el archivo de Python en TeamBot_Soccer_Python/ para simular enfrentamientos "todos contra todos".
+Ejecución:
+Ejecuta el algoritmo genético para optimizar BasicTeamAG.
+Una vez finalizado, extrae el mejor cromosoma (60 parámetros) resultante.
+Utiliza el script de Python para enfrentar a BasicTeamAG optimizado contra:
+El equipo base original (TeamBot_Base o AIKHomoG).
+Registra estadísticas de resultados (victorias, derrotas, goles) en un CSV.
+Generación de Gráficos:
+Crea un archivo Excel llamado Comparacion_Equipos.xlsx.
+Genera una tabla o gráfico comparativo que muestre el desempeño (resultados y métricas de goles) de BasicTeamAG optimizado frente al equipo base.
+Orden y Nomenclatura de Archivos Excel para Análisis
+
+Tiempo_vs_CPU.xlsx:
+Contendrá los datos y gráficos del Experimento 1 (núcleos vs. tiempo y carga de CPU).
+Fitness_vs_Generacion.xlsx:
+Mostrará la evolución del fitness (mejor, promedio, peor) a lo largo de las 1000 generaciones (Experimento 3).
+CPU_vs_Poblacion.xlsx:
+Datos y gráficos que relacionan el tamaño de la población con la carga de CPU (Experimento 2).
+Simulaciones_vs_Fitness.xlsx:
+Evaluará el impacto de variar el número de simulaciones por individuo (Experimento 4).
+Comparacion_Equipos.xlsx:
+Contendrá los resultados comparativos de desempeño entre BasicTeamAG optimizado y el equipo base original (Experimento 5).

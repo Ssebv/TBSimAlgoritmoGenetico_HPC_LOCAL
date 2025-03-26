@@ -12,11 +12,11 @@ public class Configuracion {
     public final boolean IS_HPC = (System.getenv("SLURM_JOB_ID") != null);
     
     // Tamaño de población
-    public final int INITIAL_POPULATION_SIZE = IS_HPC ? 100 : 10;
+    public final int INITIAL_POPULATION_SIZE = IS_HPC ? 100 : 100;
     
     // Número de generaciones por bloque y objetivo global
-    public final int DEFAULT_GENERATIONS = 50;
-    public final int TARGET_GENERATIONS = 50;  // Ajusta este valor según tu experimento
+    public final int DEFAULT_GENERATIONS = 1000;
+    public final int TARGET_GENERATIONS = 50;  
     
     // Número de partidos que se simulan para evaluar cada individuo.
     public final int NUM_SIMULACIONES = 1;
@@ -30,11 +30,11 @@ public class Configuracion {
     
     // Parámetros para detectar estancamiento
     public final int MAX_GENERACIONES_SIN_MEJORA = 15;
-    public final double THRESHOLD_MEJORA = 0.01;
+    public final double THRESHOLD_MEJORA = 0.09;
     
     // Parámetros para la diversidad
     public final double MIN_DIVERSITY_THRESHOLD = 0.5;
-    public final double DIVERSITY_INJECTION_PERCENTAGE = 0.1;
+    public final double DIVERSITY_INJECTION_PERCENTAGE = 0.3;
     
     // Intervalo para guardar checkpoints
     public final int CHECKPOINT_INTERVAL = 10;
