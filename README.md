@@ -1,98 +1,271 @@
-## Algoritmo Genetico TBSim - 
+# Algoritmo Genético TeamBots TBSim - Experimento Local
 
-### Descripcion del problema
+## Descripción del Proyecto
 
-Este proyecto se centra en la aplicación de algoritmos genéticos en entornos de Computación de Alto Rendimiento (HPC), con un enfoque en el multiprocesamiento para simular organismos inteligentes. Utiliza el simulador TBSim parametrizando un equipo basico, adaptado para entornos HPC, para investigar la evolución y el comportamiento de agentes en un entorno simulado de fútbol robótico.
+Este proyecto se centra en la aplicación de algoritmos genéticos en entornos locales, utilizando el simulador TBSim para modelar y optimizar el comportamiento de equipos de fútbol robótico. Aunque originalmente el proyecto estaba orientado a entornos de Computación de Alto Rendimiento (HPC), en este experimento se realizará la ejecución en un entorno local. Esto se debe a que en HPC las tareas están limitadas a 30 minutos y se usan checkpoints para reanudar la ejecución, mientras que en local se pueden ejecutar simulaciones completas y visualizar los resultados mediante gráficos para un análisis detallado. El trabajo queda abierto a futuras investigaciones en HPC.
 
 ![TBSim Soccerbot](./img/soccer.jpg)
 
-### Objetivos
+Para el algoritmo genético se utilizó la librería **Jenetics**, ya que aunque se probó **JGAP** en versiones anteriores, esta última no se encuentra actualizada a la fecha. La elección de Jenetics permitió implementar un algoritmo más robusto y modular, adaptado a las necesidades actuales del proyecto, además de aprovechar el paralelismo para intentar utilizar el 100% de los recursos disponibles en el sistema donde se procesará la simulación.
 
-#### Objetivo General: Evaluar el rendimiento y operación de un HPC en la optimización de un sistema multiagente, utilizando algoritmos genéticos para la liga RoboCup Sim.
+Dentro de la carpeta **simuladores_evaluados** se encuentran diferentes versiones del TBSim:
 
-#### Objetivos Específicos:
+- **TBSim Basic (Gráfico):** Incluye una interfaz gráfica para visualizar las simulaciones.
+- **TBSim No Graphics:** Una versión sin interfaz gráfica, utilizada en este experimento para permitir ejecuciones más rápidas y eficientes en local.
+- Además, se incluyó un archivo en **Python** diseñado para simular enfrentamientos "todos contra todos" y determinar el mejor equipo, que servirá como rival en las competiciones.
 
-    - Establecer un ambiente de desarrollo y simulación mediante contenedores usando Docker.
-    - Instrumentalizar el código de TBSim para parametrizar agentes de software.
-    - Integrar algoritmos genéticos en TBSim para ejecución paralela.
-    - Ejecutar simulaciones en HPC para optimizar parámetros del sistema multiagente.
-    - Evaluar la eficiencia y eficacia del HPC.
-    - Realizar análisis y documentación de resultados.
+Posteriormente, se procedió a crear y modularizar los archivos del proyecto (en la carpeta **src**) para que el programa funcione de manera óptima, integrando mecanismos de checkpoints, gestión de diversidad y adaptabilidad en la tasa de mutación. Esto permitió una mejor organización del código y facilitó la experimentación y el análisis de resultados mediante gráficos.
 
-### Requerimientos
+## Objetivos
 
-- Python 3.11 o superior
-- Java versión "21.0.1" 2023-10-17 LTS
-- JGAP library (incluida en el directorio lib/)
+### Objetivo General
+Evaluar el rendimiento y la evolución de un algoritmo genético aplicado a la simulación de fútbol robótico en un entorno local, analizando la convergencia del fitness, la eficiencia computacional y la relación entre tamaño de la población y uso de recursos.
 
-### Estrucutra del proyecto
+### Objetivos Específicos
+- Configurar un ambiente local de desarrollo y simulación.
+- Parametrizar y adaptar el simulador TBSim para la ejecución local.
+- Integrar algoritmos genéticos en TBSim para ejecución en local.
+- Implementar mecanismos de checkpoints para guardar el estado del algoritmo (aprovechables en HPC pero aplicados aquí para análisis).
+- Registrar y visualizar resultados (tiempo, uso de CPU, evolución del fitness, etc.).
+- Realizar análisis comparativos y generar gráficos para evaluar el comportamiento del sistema.
 
-- src/: Directorio que contiene el código fuente.
-- bin/: Directorio para los archivos compilados (.class).
-- lib/: Contiene las bibliotecas externas, incluyendo jgap-3.4.4.jar.
-- doc/: Directorio para la documentación generada.
-- Makefile: Utilizado para automatizar la compilación, ejecución y otras tareas.
+## Requerimientos
 
-### Compilación y ejecución
+- **Python:** 3.11 o superior  
+- **Java:** Versión "21.0.1" (2023-10-17 LTS)  
+- **Bibliotecas:** Jenetics (por ejemplo, jenetics-7.2.0.jar) y/o JGAP (según se utilice)  
+- **Herramientas de gráficos:** Excel, Python (matplotlib, seaborn)
 
-Utiliza el Makefile incluido para las siguientes tareas, en la raíz del proyecto:
+## Estructura del Proyecto
 
-- `make`: Compila el código fuente.
-- `make run`: Ejecuta el programa.
-- `make clean`: Elimina los archivos compilados.
-- `make doc`: Genera la documentación.
-- `make zip`: Empaqueta los archivos para su entrega.
+La estructura principal del proyecto es la siguiente:
 
-### Documentación
+- **analisis/**: Directorio para scripts o notebooks de análisis de datos y resultados - previos  
+- **bin/**: Archivos compilados (.class).  
+- **img/**: Contiene imágenes utilizadas en la documentación (por ejemplo, capturas de simulación).  
+- **lib/**: Bibliotecas externas, incluyendo jenetics-7.2.0.jar.  
+- **nhlpc/**: Scripts o configuraciones para HPC (se dejó en stand-by debido a los límites de tiempo de 30 minutos).  
+- **resultados/**: Almacena salidas (CSV, logs, gráficos) de las simulaciones ejecutadas.  
+- **simuladores_evaluados/**:  
+  - **Robocup_Rescue/**: Versiones o pruebas con otro simulador.  
+  - **TeamBot_Base/**: Contiene el TBSim base (gráfico).  
+  - **TeamBot_Jgap/**: Pruebas con JGAP (no actualizado).  
+  - **TeamBot_Soccer_Python/**: Scripts de Python para simulaciones “todos contra todos”.  
+- **src/**: Contiene el código fuente principal del proyecto (clases del algoritmo genético, lógica de TBSim adaptada, etc.).  
+- **teams/**: Directorio para configuraciones específicas de equipos.  
+- **.gitignore**: Lista de archivos y directorios que no se subirán al repositorio.
 
-#### Estrategias de Comportamiento de Robots en TBSim
+## Compilación y Ejecución
 
-##### Configuración de Parámetros del Robot
+Utiliza el Makefile incluido en la raíz del proyecto:
 
-El sistema utiliza tres parámetros clave para definir el comportamiento estratégico de los robots en un entorno simulado de fútbol:
+- `make`      : Compila el código fuente.  
+- `make run`  : Ejecuta el programa.  
+- `make clean`: Elimina los archivos compilados.  
+- `make doc`  : Genera la documentación.  
+- `make zip`  : Empaqueta los archivos para su entrega.
 
-- `disPo`: Distancia umbral que determina cuándo un robot debe considerarse en posición para patear la pelota. Este parámetro influye en la decisión del robot sobre cuándo prepararse para un ataque o un tiro.
-- `disKick`: Distancia a la que un robot intentará patear la pelota. Este valor es crucial para la ejecución de acciones ofensivas y defensivas.
-- `disTeam`: Distancia a mantener entre compañeros de equipo para evitar colisiones y aglomeraciones. Este parámetro asegura una distribución eficiente de los robots en el campo.
+---
 
-##### Lógica de Movimiento del Robot
+## Explicación de los Archivos en src
 
-La estrategia de movimiento varía según el rol del robot en el equipo, que puede ser portero, defensa, mediocampista, delantero o mediocampista ofensivo. Se definen posiciones estratégicas en el campo para cada robot, como Northspot, Southspot, Backspot, Kickspot, Goaliepos, y Awayfromclosest. Estas posiciones guían a los robots en sus decisiones tácticas durante el juego.
+### 1. MainJenetics.java
+**Función:**  
+Punto de entrada de la aplicación.
 
-* Northspot: Posición al norte de la posición defensiva.
-* Southspot: Posición al sur de la posición defensiva.
-* Backspot: Posición detrás de la pelota a una distancia mayor, utilizado para posiciones defensivas o de preparación.
-* Kickspot: Punto de patada, que es un lugar estratégico detrás de la pelota desde donde el robot puede patear efectivamente hacia la portería contraria.
-* Goaliepos: Posición ideal para el portero, entre la pelota y nuestra portería.
-* Awayfromclosest: Dirección para alejarse del compañero de equipo más cercano, útil para evitar aglomeraciones y mejorar la cobertura del campo.
-* Ball: Posición de la pelota.
-* Closestteammate: Posición del compañero de equipo más cercano.
+**Descripción:**  
+- Carga la configuración global a través de `ConfiguracionSingleton`.
+- Inicializa el sistema de logging (`LogManager`) y el registro en CSV (`CSVManager`).
+- Gestiona los checkpoints, originalmente diseñados para HPC, y los aplica también en local.
+- Crea y ejecuta la instancia de `EvolutionManager` para orquestar el proceso evolutivo en bloques de generaciones.
 
-#### Funcion de Evaluación para Algoritmos Genéticos (Aptitud)
+### 2. Configuracion.java & ConfiguracionSingleton.java
+**Configuracion.java:**  
+Define todos los parámetros clave del experimento, como el tamaño de la población, número de generaciones, tasas de mutación y cruce, umbrales de mejora, estrategias de diversidad, y el número de núcleos a utilizar.
 
-La clase FuncionEvaluacion se utiliza para evaluar la aptitud (fitness) de los individuos en una población de algoritmos genéticos. Utiliza un valor de MAXDIF para determinar la diferencia máxima de goles favorable. Esta clase es crucial para optimizar las estrategias del equipo de fútbol robot simulado.
+**ConfiguracionSingleton.java:**  
+Implementa el patrón Singleton para asegurar que la configuración sea única y accesible globalmente.
 
-#### Punto de Entrada Principal y Ejecución
+### 3. LogManager.java
+**Función:**  
+Gestiona y formatea los mensajes de log.
 
-El archivo Main.java sirve como punto de entrada principal para la ejecución del algoritmo genético. Aquí se configura el algoritmo genético, se define el cromosoma de muestra, y se ejecuta la evolución de la población. Además, se realiza la inicialización y escritura de los resultados en un archivo CSV.
+**Descripción:**  
+- Configura el logger para imprimir mensajes con colores (si se habilitan).
+- Registra información detallada de cada generación (mejor fitness por generación, fitness global, promedio, diversidad, tiempo transcurrido).
+- También registra eventos como la selección de élites, resultados de partidos, checkpoints y un resumen final.
+- Escribe los datos en el CSV mediante `CSVManager`.
 
-#### Simulacion Sin Interfaz Grafica
+### 4. CSVManager.java
+**Función:**  
+Administra la creación, escritura y cierre del archivo CSV.
 
-`TBSimNoGraphics.java` es la clase que maneja la simulación del fútbol de robots sin interfaz gráfica. Utiliza semáforos para controlar el flujo de la simulación y para sincronizar el inicio. Esta clase permite ejecutar simulaciones en un entorno sin necesidad de interacción visual, lo que es ideal para ejecuciones en HPC.
+**Descripción:**  
+- Prepara el archivo CSV con una cabecera que incluye columnas para:  
+  Generación, Mejor Fitness Generación, Fitness Global, Fitness Promedio, Diversidad, Peor Fitness, CPU (%), Memoria (%), Tiempo (s), Goles Favor, Goles Contra, OS, OS Version, Java Version, OS Arquitectura, CPUs (configurados), Population Size, Mutation Rate, Crossover Rate.
+- El método `escribirLineaCSV` escribe una línea con los datos capturados, asegurando que el tiempo se registre en segundos.
+- Se ha incluido un método de prueba para verificar la correcta escritura del archivo.
 
+### 5. GeneticEngineBuilder.java
+**Función:**  
+Construye y configura el engine del algoritmo genético utilizando la librería Jenetics.
 
-Por defecto, Jenetics utiliza el ForkJoinPool.commonPool(), que tiene un nivel de paralelismo igual al número de procesadores disponibles en la máquina.
+**Descripción:**  
+- Define la fábrica de genotipos (un cromosoma de 60 genes con valores entre 1 y 5).
+- Calcula dinámicamente las tasas de mutación y de cruce en función de la generación actual.
+- Configura los operadores de variación (mutador y cruce) y la selección (se utiliza un `RouletteWheelSelector` para favorecer la exploración).
+- Crea un `ExecutorService` configurado con `NUM_CORES` para ejecutar evaluaciones en paralelo.
 
+### 6. GenerationProcessor.java
+**Función:**  
+Procesa cada bloque de generaciones generado por el engine.
 
-![Test simulacion](./img/simulacion_test.png)
+**Descripción:**  
+- Incrementa el contador global de generaciones mediante `GenerationTracker`.
+- Calcula estadísticas (mejor, peor, promedio fitness y diversidad) y las registra a través de `LogManager` y `CSVManager`.
+- Invoca estrategias de diversificación mediante `DiversityInjector` en caso de estancamiento.
+- Gestiona el guardado de checkpoints a intervalos definidos.
 
-### Autor
+### 7. FuncionEvaluacionJenetics.java
+**Función:**  
+Evalúa el fitness de cada genotipo mediante simulaciones en TBSim.
 
-- Sebastian Allende
+**Descripción:**  
+- Valida que el genotipo tenga la cantidad mínima de genes.
+- Ejecuta simulaciones para obtener resultados (goles a favor y en contra) y calcula el fitness usando una fórmula que combina componentes ofensivos, defensivos y bonus, con un factor de amplificación de 1.5.
+- Registra y retorna el mejor fitness de la generación y actualiza el fitness global.
+- Utiliza procesamiento paralelo para acelerar la evaluación.
 
+### 8. DiversityManager.java & DiversityInjector.java
+**DiversityManager.java:**  
+Reintroduce diversidad reemplazando aleatoriamente un porcentaje de la población con nuevos individuos, asegurando que el mejor se preserve.
 
-❯ javac -cp lib/jenetics-7.2.0.jar:src -d bin src/CheckpointData.java
+**DiversityInjector.java:**  
+Calcula la diversidad de la población (basada en la distancia Euclidiana entre genotipos) y, si cae por debajo de un umbral, inyecta nuevos individuos reemplazando a los peores para evitar la convergencia prematura.
 
-❯ javac -cp lib/jenetics-7.2.0.jar:bin -d bin src/CheckpointInspector.java
+### 9. AdaptiveMutationController.java
+**Función:**  
+Ajusta la tasa de mutación de forma adaptativa según el número de generaciones sin mejora.
 
-❯ java -cp lib/jenetics-7.2.0.jar:bin CheckpointInspector
+**Descripción:**  
+- Si se detectan 15 generaciones consecutivas sin mejora, aumenta la tasa de mutación exponencialmente hasta un máximo, favoreciendo la exploración.
+
+### 10. GenerationTracker.java
+**Función:**  
+Lleva el conteo global de generaciones de forma sincronizada.
+
+**Descripción:**  
+- Proporciona métodos para incrementar y obtener el contador de generaciones, asegurando la coherencia en entornos concurrentes.
+
+### 11. BasicTeamAG.java
+**Función:**  
+Define el comportamiento del equipo de robots, modificando el BasicTeam base proporcionado por el simulador.
+
+**Descripción:**  
+- Se utilizan 60 parámetros en total: 10 para cada uno de los 5 jugadores y 6 parámetros adicionales para la coordinación del equipo.
+- Estos parámetros determinan la fuerza, precisión, velocidad, y otros aspectos críticos en la toma de decisiones tanto ofensivas como defensivas.
+- Se implementaron modificaciones para optimizar la ofensiva, basándose en pruebas "todos contra todos" realizadas con un archivo en Python, cuyo objetivo es encontrar el mejor equipo base que se utilizará como rival.
+- Entre los parámetros clave se encuentran:
+  - **NUM_PLAYERS:** 5
+  - **FIELD_LENGTH, GOAL_WIDTH, RANGE, IDEAL_DISTANCE:** Parámetros del campo y distancias relevantes.
+  - **PlayerParams:** Clase interna que encapsula parámetros individuales (fuerza, peso defensivo, ataque, umbral de pase, evasión de oponentes, velocidad, precisión de disparo y pase, posicionamiento).
+  - **Parámetros adicionales:** teamCoordinationWeight, proximityWeight, goalAlignmentWeight, gameStateAdaptation, aggressivenessWeight, defensiveLineWeight, que influyen en la estrategia global del equipo.
+
+---
+
+## Parámetros de Configuración del Experimento 1
+
+- **Generaciones:**  
+  - **TARGET_GENERATIONS:** 1000  
+  - **DEFAULT_GENERATIONS:** 50
+
+- **Población:**  
+  - **INITIAL_POPULATION_SIZE:** 50
+
+- **Tasas de Variación:**  
+  - **MUTATION_RATE:** 0.40  
+  - **CROSSOVER_RATE:** 0.70 (local)  
+  - **ELITE_COUNT:** 5
+
+- **Detección de Estancamiento:**  
+  - **THRESHOLD_MEJORA:** 0.01  
+  - **MAX_GENERACIONES_SIN_MEJORA:** 15
+
+- **Gestión de Diversidad:**  
+  - **MIN_DIVERSITY_THRESHOLD:** 0.5  
+  - **DIVERSITY_INJECTION_PERCENTAGE:** 0.1
+
+- **Checkpoints:**  
+  - **CHECKPOINT_INTERVAL:** 10
+
+- **Operador de Cruce y Optimización:**  
+  - **USE_UNIFORM_CROSSOVER:** false (cruce de un solo punto)  
+  - **OPTIMIZE:** Optimize.MAXIMUM
+
+- **Configuración de Núcleos:**  
+  - **NUM_CORES:** Se probarán configuraciones de 1, 2, 4 y 8
+
+- **Parámetros del Equipo (BasicTeamAG):**  
+  - **Total de parámetros:** 60 (10 por cada uno de los 5 jugadores + 6 parámetros adicionales para la coordinación del equipo).  
+  - Estos parámetros definen la estrategia ofensiva y defensiva, y se optimizaron tras evaluaciones previas (incluyendo simulaciones "todos contra todos" en Python) para determinar el mejor equipo base que servirá como rival en competiciones.
+
+---
+
+## Gráficos y Análisis Posteriores
+
+### Gráfico 1: Tiempo vs. CPU
+- **Objetivo:**  
+  Medir el tiempo total de ejecución y la carga de CPU para distintas configuraciones de núcleos (1, 2, 4, 8).
+- **Datos Capturados:**  
+  - **Tiempo (s):** Tiempo de ejecución en segundos.  
+  - **CPU (%):** Porcentaje de carga de CPU durante la ejecución.
+- **Interpretación:**  
+  - **Eje X:** Número de núcleos utilizados.  
+  - **Eje Y:** Tiempo de ejecución y carga de CPU.  
+  - **Análisis:** Se espera que al aumentar los núcleos, el tiempo disminuya gracias a la paralelización, mientras la carga de CPU se acerque a su valor máximo, evaluando así la escalabilidad del algoritmo.
+
+### Gráfico 2: Fitness vs. Generación
+- **Objetivo:**  
+  Visualizar la evolución del fitness a lo largo de las generaciones.
+- **Datos Capturados:**  
+  - **Mejor Fitness Generación:** Mejor valor obtenido en cada generación.
+  - **Fitness Global:** Mejor valor acumulado hasta ese momento.
+  - **Fitness Promedio:** Promedio del fitness en la generación.
+  - **Peor Fitness:** Valor mínimo en la generación.
+- **Interpretación:**  
+  - **Eje X:** Generaciones (1 a 1000).  
+  - **Eje Y:** Valores de fitness.  
+  - **Análisis:** La comparación entre estas curvas permitirá evaluar la convergencia del algoritmo y detectar posibles estancamientos.
+
+### Gráfico 3: CPU vs. Población
+- **Objetivo:**  
+  Evaluar el impacto del tamaño de la población en la carga de CPU.
+- **Datos Capturados:**  
+  - **Population Size:** Tamaño de la población (en este experimento se fija en 50, pero se podrá variar en futuros experimentos).  
+  - **CPU (%):** Porcentaje de carga de CPU.
+- **Interpretación:**  
+  - **Eje X:** Tamaño de la población.  
+  - **Eje Y:** Carga de CPU.  
+  - **Análisis:** Este gráfico ayudará a balancear la diversidad y la eficiencia, ya que un mayor tamaño de población puede incrementar la carga de CPU y el tiempo de ejecución.
+
+---
+
+## Conclusiones y Extensiones Futuras
+
+- **Tiempo vs. CPU:**  
+  Se determinará la escalabilidad del algoritmo y se identificarán cuellos de botella en la ejecución paralela.
+  
+- **Fitness vs. Generación:**  
+  Se evaluará la convergencia del algoritmo y la efectividad de las estrategias de diversificación para mantener la diversidad.
+  
+- **CPU vs. Población:**  
+  Permitirá optimizar el balance entre diversidad y eficiencia computacional.
+  
+- **Extensiones Optativas:**  
+  - Ajustar las tasas de mutación y cruce para optimizar la exploración y explotación.  
+  - Experimentar con diferentes operadores de cruce (uniforme vs. de un solo punto).  
+  - Modificar umbrales de mejora y la frecuencia de checkpoints.  
+  - Variar el tamaño de la población y aumentar el número de simulaciones por individuo para evaluaciones más robustas.
+
+---
+
