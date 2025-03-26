@@ -48,7 +48,7 @@ public class GenerationProcessor {
         
         long elapsedTimeMillis = (long)((System.nanoTime() - startTime) / 1_000_000.0);
 
-        var selector = new UniqueEliteSelector<DoubleGene, Double>(3);
+        var selector = new UniqueEliteSelector<DoubleGene, Double>(10);
         var elites = selector.select(result.population(), 6, io.jenetics.Optimize.MAXIMUM);
         var eliteFitnesses = elites.stream().map(Phenotype::fitness).toList();
 

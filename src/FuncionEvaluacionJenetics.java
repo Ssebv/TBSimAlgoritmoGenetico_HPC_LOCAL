@@ -1,10 +1,6 @@
 import io.jenetics.DoubleGene;
 import io.jenetics.Genotype;
 import io.jenetics.Chromosome;
-import io.jenetics.Phenotype;
-import io.jenetics.engine.EvolutionResult;
-import io.jenetics.util.ISeq;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,10 +10,11 @@ public class FuncionEvaluacionJenetics {
     private static final Logger LOGGER = Logger.getLogger(FuncionEvaluacionJenetics.class.getName());
     private static final FuncionEvaluacionJenetics INSTANCE = new FuncionEvaluacionJenetics();
 
+    // Constantes para el cálculo del fitness
     private static final double BASE_FITNESS = 100.0;
     private static final double LIMITE_SUPERIOR_FITNESS = 100000.0;
     
-    // Parámetros de ponderación para el cálculo de fitness
+    // Parámetros de ponderación
     private double pesoOfensivo = 3.0;
     private double pesoDefensivo = 1.5;
     private double bonusVictoria = 1500.0;
@@ -29,13 +26,14 @@ public class FuncionEvaluacionJenetics {
     private static final int[] VCLAS = { 1, 1, 1, 1, 1, 2, 2, 2, 2, 2 };
     private static final int PARAM_COUNT = 60;
 
-    private int bestGolesFavor = 0;
-    private int bestGolesContra = 0;
-    private double bestFitness = Double.NEGATIVE_INFINITY;
+    // Variables globales para el mejor fitness (si es necesario)
+    private double bestFitnessGlobal = Double.NEGATIVE_INFINITY;
+    private int bestGolesFavorGlobal = 0;
+    private int bestGolesContraGlobal = 0;
 
-    public int getBestGolesFavor() { return bestGolesFavor; }
-    public int getBestGolesContra() { return bestGolesContra; }
-    public double getBestFitness() { return bestFitness; }
+    public int getBestGolesFavor() { return bestGolesFavorGlobal; }
+    public int getBestGolesContra() { return bestGolesContraGlobal; }
+    public double getBestFitness() { return bestFitnessGlobal; }
 
     public static FuncionEvaluacionJenetics getInstance() {
         return INSTANCE;
@@ -43,8 +41,8 @@ public class FuncionEvaluacionJenetics {
 
     /**
      * Evalúa el fitness del genotipo promediando NUM_SIMULACIONES partidos.
-     * Se utiliza procesamiento paralelo si el número de simulaciones es mayor a 1.
-     * Se amplifican las diferencias entre componentes del fitness con un factor de 1.5.
+     * Se utiliza procesamiento paralelo para mayor eficiencia.
+     * Retorna un ResultadoPartido con el mejor fitness obtenido en la generación.
      */
     public ResultadoPartido evaluarResultado(Genotype<DoubleGene> genotype, int generation) {
         if (!validarGenotipo(genotype)) {
@@ -53,7 +51,6 @@ public class FuncionEvaluacionJenetics {
         }
         int numSimulaciones = ConfiguracionSingleton.getInstance().NUM_SIMULACIONES;
         
-        // Usamos stream paralelo para simular cada partido
         SimulationResult[] resultados = IntStream.range(0, numSimulaciones)
                 .parallel()
                 .mapToObj(i -> ejecutarSimulacionIndividual(genotype))
@@ -68,63 +65,49 @@ public class FuncionEvaluacionJenetics {
         int sumaGF = 0;
         int sumaGC = 0;
         double sumaFitness = 0.0;
+        double mejorFitnessGeneracion = Double.NEGATIVE_INFINITY;
+        
         for (SimulationResult res : resultados) {
             sumaGF += res.golesFavor;
             sumaGC += res.golesContra;
-            sumaFitness += calcularFitness(res.golesFavor, res.golesContra);
+            double fitnessCalculado = calcularFitness(res.golesFavor, res.golesContra);
+            sumaFitness += fitnessCalculado;
+            if (fitnessCalculado > mejorFitnessGeneracion) {
+                mejorFitnessGeneracion = fitnessCalculado;
+            }
         }
         
         int promedioGF = sumaGF / resultados.length;
         int promedioGC = sumaGC / resultados.length;
         double promedioFitness = sumaFitness / resultados.length;
         
-        actualizarMejorFitness(promedioGF, promedioGC, promedioFitness);
-        return new ResultadoPartido(promedioGF, promedioGC, promedioFitness);
-    }
-    
-    /**
-     * Ejecuta una simulación individual y procesa el resultado.
-     */
-    private SimulationResult ejecutarSimulacionIndividual(Genotype<DoubleGene> genotype) {
-        TBSimNoGraphics tbSim = inicializarSimulacion(genotype);
-        if (tbSim == null) return null;
-        String estado = ejecutarSimulacion(tbSim);
-        if (!validarEstado(estado)) return null;
-        String linea = extraerUltimaLinea(estado);
-        if (linea.contains("-1")) {
-            LOGGER.warning("Simulación no válida, se obtuvo: " + linea);
-            return null;
-        }
-        String[] valores = linea.split(",");
-        if (valores.length < 2) return null;
-        try {
-            int gf = Integer.parseInt(valores[0].trim());
-            int gc = Integer.parseInt(valores[1].trim());
-            return new SimulationResult(gf, gc);
-        } catch (NumberFormatException e) {
-            LOGGER.warning("Error parseando los valores: " + e.getMessage());
-            return null;
-        }
+        actualizarGlobal(promedioGF, promedioGC, promedioFitness);
+        
+        // Retorna el mejor fitness de esta generación
+        return new ResultadoPartido(promedioGF, promedioGC, mejorFitnessGeneracion);
     }
     
     /**
      * Calcula el fitness a partir de goles a favor y goles en contra.
+     * Se utiliza una fórmula que pondera los componentes y se amplifican las diferencias con un factor de 1.5.
      */
     private double calcularFitness(int gf, int gc) {
         double componenteOfensivo = gf * pesoOfensivo;
         double bonusOfensivo = (gf > gc) ? bonusVictoria * Math.pow((gf - gc), 2.5) : 0.0;
         double componenteDefensivo = -gc * pesoDefensivo;
         double componenteBalance = (gf == gc) ? bonusEmpate : 0.0;
-        // Amplificar las diferencias con un factor de 1.5
         double fitness = BASE_FITNESS + 1.5 * (componenteOfensivo + bonusOfensivo + componenteDefensivo + componenteBalance);
         return Math.min(Math.max(fitness, 0), LIMITE_SUPERIOR_FITNESS);
     }
     
-    private void actualizarMejorFitness(int gf, int gc, double fitness) {
-        if (fitness > bestFitness || (fitness == bestFitness && gf >= bestGolesFavor)) {
-            bestFitness = fitness;
-            bestGolesFavor = gf;
-            bestGolesContra = gc;
+    /**
+     * Actualiza el mejor fitness global si el promedio actual es mayor.
+     */
+    private void actualizarGlobal(int gf, int gc, double fitness) {
+        if (fitness > bestFitnessGlobal || (fitness == bestFitnessGlobal && gf >= bestGolesFavorGlobal)) {
+            bestFitnessGlobal = fitness;
+            bestGolesFavorGlobal = gf;
+            bestGolesContraGlobal = gc;
         }
     }
 
@@ -170,6 +153,28 @@ public class FuncionEvaluacionJenetics {
             return null;
         }
         return tbSim;
+    }
+
+    private SimulationResult ejecutarSimulacionIndividual(Genotype<DoubleGene> genotype) {
+        TBSimNoGraphics tbSim = inicializarSimulacion(genotype);
+        if (tbSim == null) return null;
+        String estado = ejecutarSimulacion(tbSim);
+        if (!validarEstado(estado)) return null;
+        String linea = extraerUltimaLinea(estado);
+        if (linea.contains("-1")) {
+            LOGGER.warning("Simulación no válida, se obtuvo: " + linea);
+            return null;
+        }
+        String[] valores = linea.split(",");
+        if (valores.length < 2) return null;
+        try {
+            int gf = Integer.parseInt(valores[0].trim());
+            int gc = Integer.parseInt(valores[1].trim());
+            return new SimulationResult(gf, gc);
+        } catch (NumberFormatException e) {
+            LOGGER.warning("Error parseando los valores: " + e.getMessage());
+            return null;
+        }
     }
 
     private String ejecutarSimulacion(TBSimNoGraphics simulacion) {
@@ -227,9 +232,7 @@ public class FuncionEvaluacionJenetics {
         return robots;
     }
 
-    /**
-     * Clase interna para encapsular el resultado de una simulación.
-     */
+    // Clase interna para encapsular el resultado de una simulación
     private static class SimulationResult {
         final int golesFavor;
         final int golesContra;

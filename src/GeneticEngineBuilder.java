@@ -5,7 +5,7 @@ import io.jenetics.engine.Engine;
 import io.jenetics.Mutator;
 import io.jenetics.SinglePointCrossover;
 import io.jenetics.UniformCrossover;
-import io.jenetics.RouletteWheelSelector; // Nuevo selector para mayor exploración
+import io.jenetics.RouletteWheelSelector;
 import io.jenetics.EliteSelector;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -17,7 +17,8 @@ public class GeneticEngineBuilder {
 
     public GeneticEngineBuilder(Configuracion config) {
         this.config = config;
-        this.executorService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
+        // Se utiliza el número de núcleos configurado en Configuracion
+        this.executorService = Executors.newFixedThreadPool(config.NUM_CORES);
     }
 
     // Se aumenta la tasa base en un 20%
@@ -45,16 +46,15 @@ public class GeneticEngineBuilder {
 
         return Engine.builder(fitnessFunction, genotypeFactory)
                 .executor(executorService)
-                // Aplicamos el mutador y el cruce
                 .alterers(
                         new Mutator<DoubleGene, Double>(tasaMutacion),
                         crossoverOperator
                 )
-                // Reemplazamos el TournamentSelector por un RouletteWheelSelector para permitir mayor diversidad
+                // Se utiliza RouletteWheelSelector para mayor exploración
                 .selector(new RouletteWheelSelector<>())
-                // Se reduce la influencia elitista; se mantiene el EliteSelector, pero podrías ajustar su fracción según convenga
-                .offspringSelector(new EliteSelector<>(7))
-                .offspringFraction(0.50) // Reducción de la fracción elitista para favorecer exploración
+                // Se conserva elitismo, pero se puede ajustar la fracción
+                .offspringSelector(new EliteSelector<>())
+                .offspringFraction(0.10)
                 .populationSize(config.INITIAL_POPULATION_SIZE)
                 .optimize(config.OPTIMIZE)
                 .build();

@@ -51,6 +51,10 @@ public class LogManager {
         logger.setLevel(Level.ALL);
     }
 
+    /**
+     * Registra información de la generación, incluyendo el mejor fitness por generación
+     * y el fitness global.
+     */
     public void logGeneracion(EvolutionResult<DoubleGene, Double> result,
                               double avgFitness,
                               double diversity,
@@ -60,21 +64,27 @@ public class LogManager {
                               CSVManager csvManager) {
 
         int gen = GenerationTracker.getCurrentGeneration();
-        double bestFit = result.bestFitness();
+        // bestFit es el mejor fitness de la generación actual
+        double bestFitGeneration = result.bestFitness();
+        // fitnessGlobal se obtiene de la instancia de FuncionEvaluacionJenetics
+        double fitnessGlobal = fitnessEvaluator.getBestFitness();
 
         logger.info("\n" + formatWithColor("===============================================", "\u001B[34m"));
         logger.info(formatWithColor("[GENÉTICO] GENERACIÓN " + gen + ":", "\u001B[34m"));
         logger.info(formatWithColor("===============================================", "\u001B[34m"));
-        logger.info(formatWithColor(String.format("[GENÉTICO]    Mejor Fitness:       %.2f", bestFit), "\u001B[32m"));
-        logger.info(formatWithColor(String.format("[GENÉTICO]    Promedio Fitness:    %.2f", avgFitness), "\u001B[32m"));
-        logger.info(formatWithColor(String.format("[GENÉTICO]    Diversidad:          %.2f", diversity), "\u001B[32m"));
-        logger.info(formatWithColor(String.format("[GENÉTICO]    Peor Fitness:        %.2f", worstFitness), "\u001B[31m"));
-        logger.info(formatWithColor(String.format("[GENÉTICO]    Tiempo Transcurrido: %.2f s", (elapsedTime / 1000.0)), "\u001B[33m"));
+        logger.info(formatWithColor(String.format("[GENÉTICO]    Mejor Fitness Generación: %.2f", bestFitGeneration), "\u001B[32m"));
+        logger.info(formatWithColor(String.format("[GENÉTICO]    Fitness Global:         %.2f", fitnessGlobal), "\u001B[32m"));
+        logger.info(formatWithColor(String.format("[GENÉTICO]    Promedio Fitness:       %.2f", avgFitness), "\u001B[32m"));
+        logger.info(formatWithColor(String.format("[GENÉTICO]    Diversidad:             %.2f", diversity), "\u001B[32m"));
+        logger.info(formatWithColor(String.format("[GENÉTICO]    Peor Fitness:           %.2f", worstFitness), "\u001B[31m"));
+        logger.info(formatWithColor(String.format("[GENÉTICO]    Tiempo Transcurrido:    %.2f s", (elapsedTime / 1000.0)), "\u001B[33m"));
         logger.info(formatWithColor("===============================================", "\u001B[34m"));
 
+        // Llamada actualizada para incluir Mejor Fitness de la generación y Fitness Global
         csvManager.escribirLineaCSV(
                 gen,
-                bestFit,
+                bestFitGeneration,
+                fitnessGlobal,
                 avgFitness,
                 diversity,
                 worstFitness,
@@ -118,7 +128,7 @@ public class LogManager {
         logger.info(formatWithColor("==================================================", "\u001B[34m"));
     }
 
-    // Nuevo método logDetallesDelEntorno para registrar información del entorno
+    // Registra detalles del entorno de ejecución
     public void logDetallesDelEntorno(boolean isHPC) {
         logger.info(formatWithColor("======================================================", "\u001B[34m"));
         logger.info(formatWithColor("[INFO] Configuración del Entorno", "\u001B[32m"));

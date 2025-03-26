@@ -3,7 +3,6 @@ import io.jenetics.Genotype;
 import io.jenetics.Phenotype;
 import io.jenetics.engine.Engine;
 import io.jenetics.engine.EvolutionResult;
-import io.jenetics.util.ISeq;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -18,8 +17,14 @@ public class EvolutionManager {
     private final DiversityInjector diversityInjector;
     private final AdaptiveMutationController adaptiveController;
 
-    private ISeq<Phenotype<DoubleGene, Double>> nextPopulation = null;
-
+    /**
+     * Constructor de la clase EvolutionManager.
+     *
+     * @param csvManager       Instancia de CSVManager para manejar archivos CSV.
+     * @param checkpointFile   Ruta del archivo de checkpoint.
+     * @param logger           Instancia de Logger para registrar información.
+     * @param config           Configuración del sistema.
+     */
     public EvolutionManager(CSVManager csvManager,
                             String checkpointFile,
                             Logger logger,
@@ -53,24 +58,30 @@ public class EvolutionManager {
         generationProcessor.setStartTime(startTime);
         
         int target = config.TARGET_GENERATIONS;
-        int blockSize = config.DEFAULT_GENERATIONS;
         
         while (GenerationTracker.getCurrentGeneration() < target) {
-            double currentMutationRate = adaptiveController.getAdaptiveMutationRate();
-            Engine<DoubleGene, Double> engine = engineBuilder.buildEngine(this::evaluate, GenerationTracker.getCurrentGeneration(), currentMutationRate > config.MUTATION_RATE);
+            int remaining = target - GenerationTracker.getCurrentGeneration();
+            int currentBlockSize = Math.min(config.DEFAULT_GENERATIONS, remaining);
             
-            // Procesamiento secuencial del bloque para asegurar que el contador avance correctamente.
+            Engine<DoubleGene, Double> engine = engineBuilder.buildEngine(
+                    this::evaluate,
+                    GenerationTracker.getCurrentGeneration(),
+                    false
+            );
+            
             engine.stream()
-                  .limit(blockSize)
+                  .limit(currentBlockSize)
                   .peek(result -> generationProcessor.processGeneration(result))
                   .collect(EvolutionResult.toBestPhenotype());
             
-            logManager.logInfo("Bloque de " + blockSize + " generaciones completado. Generación global: " + GenerationTracker.getCurrentGeneration());
+            logManager.logInfo("Bloque de " + currentBlockSize + " generaciones completado. Generación global: " 
+                    + GenerationTracker.getCurrentGeneration());
         }
         
         logManager.logResumenFinal(GenerationTracker.getCurrentGeneration(),
                 generationProcessor.getLastEvolutionResult().bestFitness());
         
+        // Guardar último checkpoint y cerrar el executor
         List<Genotype<DoubleGene>> genotypeList = generationProcessor.getLastEvolutionResult().population().stream()
                 .map(Phenotype::genotype)
                 .toList();

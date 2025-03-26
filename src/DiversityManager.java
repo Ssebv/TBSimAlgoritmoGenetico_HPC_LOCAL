@@ -18,8 +18,7 @@ public class DiversityManager {
     public DiversityManager(LogManager logManager, Configuracion config) {
         this.logManager = logManager;
         this.config = config;
-        // Por ejemplo, usar 0.3 (30%) o tomarlo de la configuración si lo defines allí.
-        this.porcentajeReemplazo = 0.3;
+        this.porcentajeReemplazo = 0.4;
     }
 
     /**

@@ -1,5 +1,5 @@
-Mar 23, 2025 7:18:31 PM CSVManager prepararCSV
-INFO: Archivo CSV preparado correctamente (sobrescrito): local_stats.csv
+Mar 26, 2025 2:49:39 PM CSVManager prepararCSV
+INFO: Archivo CSV preparado correctamente (sobrescrito): /Users/ressc/Desktop/Tesis/thesis/local_stats.csv
 [34m======================================================[0m
 [32m[INFO] Configuración del Entorno[0m
 [34m======================================================[0m
@@ -14,270 +14,911 @@ Checkpoint eliminado a petición del usuario.
 [35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
 [35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
 [35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
 [35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 30, Fitness: 32.50[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
 [35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 30, Fitness: 32.50[0m
 [35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
 [35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
 [35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 33, Fitness: 25.75[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
+[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 30, Fitness: 32.50[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 32.50[0m
+[33m[ELITE]    Fitness: 28.00[0m
+[37mDiversidad de la generación 1: 11.008408475978305[0m
+
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 1:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 32.50[0m
+[32m[GENÉTICO]    Fitness Global:         32.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       28.90[0m
+[32m[GENÉTICO]    Diversidad:             11.01[0m
+[31m[GENÉTICO]    Peor Fitness:           28.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    4.03 s[0m
+[34m===============================================[0m
+[33mDetectado estancamiento en la generación 1[0m
+[37mDiversidad actual: 11.008408475978305[0m
+[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 30, Fitness: 32.50[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 32.50[0m
+[33m[ELITE]    Fitness: 28.00[0m
+[37mDiversidad de la generación 2: 9.2930299861848[0m
+
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 2:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 32.50[0m
+[32m[GENÉTICO]    Fitness Global:         32.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       29.80[0m
+[32m[GENÉTICO]    Diversidad:             9.29[0m
+[31m[GENÉTICO]    Peor Fitness:           28.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    4.39 s[0m
+[34m===============================================[0m
+[33mDetectado estancamiento en la generación 2[0m
+[37mDiversidad actual: 9.2930299861848[0m
 [35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 31, Fitness: 30.25[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 32.50[0m
+[33m[ELITE]    Fitness: 30.25[0m
+[33m[ELITE]    Fitness: 28.00[0m
+[37mDiversidad de la generación 3: 9.79258305860718[0m
+
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 3:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 32.50[0m
+[32m[GENÉTICO]    Fitness Global:         32.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       30.03[0m
+[32m[GENÉTICO]    Diversidad:             9.79[0m
+[31m[GENÉTICO]    Peor Fitness:           28.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    4.73 s[0m
+[34m===============================================[0m
+[33mDetectado estancamiento en la generación 3[0m
+[37mDiversidad actual: 9.79258305860718[0m
 [35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 29, Fitness: 34.75[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 32.50[0m
+[33m[ELITE]    Fitness: 30.25[0m
+[33m[ELITE]    Fitness: 28.00[0m
+[37mDiversidad de la generación 4: 8.356812790232212[0m
+
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 4:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 32.50[0m
+[32m[GENÉTICO]    Fitness Global:         32.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       30.93[0m
+[32m[GENÉTICO]    Diversidad:             8.36[0m
+[31m[GENÉTICO]    Peor Fitness:           28.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    5.09 s[0m
+[34m===============================================[0m
+[33mDetectado estancamiento en la generación 4[0m
+[37mDiversidad actual: 8.356812790232212[0m
+[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 32.50[0m
+[33m[ELITE]    Fitness: 28.00[0m
+[37mDiversidad de la generación 5: 4.765560055199482[0m
+
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 5:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 32.50[0m
+[32m[GENÉTICO]    Fitness Global:         32.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       31.60[0m
+[32m[GENÉTICO]    Diversidad:             4.77[0m
+[31m[GENÉTICO]    Peor Fitness:           28.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    5.43 s[0m
+[34m===============================================[0m
+[33mDetectado estancamiento en la generación 5[0m
+[37mDiversidad actual: 4.765560055199482[0m
+[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 32.50[0m
+[33m[ELITE]    Fitness: 28.00[0m
+[37mDiversidad de la generación 6: 6.430195286082087[0m
+
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 6:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 32.50[0m
+[32m[GENÉTICO]    Fitness Global:         32.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       31.15[0m
+[32m[GENÉTICO]    Diversidad:             6.43[0m
+[31m[GENÉTICO]    Peor Fitness:           28.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    5.77 s[0m
+[34m===============================================[0m
+[33mDetectado estancamiento en la generación 6[0m
+[37mDiversidad actual: 6.430195286082087[0m
 [35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 30, Fitness: 32.50[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 32.50[0m
+[33m[ELITE]    Fitness: 28.00[0m
+[37mDiversidad de la generación 7: 7.952651729854195[0m
+
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 7:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 32.50[0m
+[32m[GENÉTICO]    Fitness Global:         32.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       31.15[0m
+[32m[GENÉTICO]    Diversidad:             7.95[0m
+[31m[GENÉTICO]    Peor Fitness:           28.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    6.16 s[0m
+[34m===============================================[0m
+[33mDetectado estancamiento en la generación 7[0m
+[37mDiversidad actual: 7.952651729854195[0m
 [35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 33, Fitness: 25.75[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 32.50[0m
+[33m[ELITE]    Fitness: 28.00[0m
+[37mDiversidad de la generación 8: 6.430557961182638[0m
+
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 8:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 32.50[0m
+[32m[GENÉTICO]    Fitness Global:         32.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       31.60[0m
+[32m[GENÉTICO]    Diversidad:             6.43[0m
+[31m[GENÉTICO]    Peor Fitness:           28.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    6.49 s[0m
+[34m===============================================[0m
+[33mDetectado estancamiento en la generación 8[0m
+[37mDiversidad actual: 6.430557961182638[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 32.50[0m
+[33m[ELITE]    Fitness: 28.00[0m
+[37mDiversidad de la generación 9: 2.2760419003910375[0m
+
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 9:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 32.50[0m
+[32m[GENÉTICO]    Fitness Global:         32.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       32.05[0m
+[32m[GENÉTICO]    Diversidad:             2.28[0m
+[31m[GENÉTICO]    Peor Fitness:           28.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    6.50 s[0m
+[34m===============================================[0m
+[33mDetectado estancamiento en la generación 9[0m
+[37mDiversidad actual: 2.2760419003910375[0m
 [35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 30, Fitness: 32.50[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 32.50[0m
+[37mDiversidad de la generación 10: 0.0[0m
+
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 10:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 32.50[0m
+[32m[GENÉTICO]    Fitness Global:         32.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       32.50[0m
+[32m[GENÉTICO]    Diversidad:             0.00[0m
+[31m[GENÉTICO]    Peor Fitness:           32.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    6.84 s[0m
+[34m===============================================[0m
+[32m[CHECKPOINT] Guardado correctamente en checkpoint.ser[0m
+[33mDetectado estancamiento en la generación 10[0m
+[37mDiversidad actual: 0.0[0m
+[37mDiversidad baja detectada. Inyectando nuevos individuos...[0m
 [35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 28, Fitness: 37.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
+[37mSe inyectaron 1 nuevos individuos en la población.[0m
 [35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 30, Fitness: 32.50[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 32.50[0m
+[37mDiversidad de la generación 11: 0.0[0m
+
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 11:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 32.50[0m
+[32m[GENÉTICO]    Fitness Global:         32.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       32.50[0m
+[32m[GENÉTICO]    Diversidad:             0.00[0m
+[31m[GENÉTICO]    Peor Fitness:           32.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    7.56 s[0m
+[34m===============================================[0m
+[33mDetectado estancamiento en la generación 11[0m
+[37mDiversidad actual: 0.0[0m
+[37mDiversidad baja detectada. Inyectando nuevos individuos...[0m
 [35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
+[37mSe inyectaron 1 nuevos individuos en la población.[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 32.50[0m
+[37mDiversidad de la generación 12: 0.0[0m
+
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 12:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 32.50[0m
+[32m[GENÉTICO]    Fitness Global:         32.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       32.50[0m
+[32m[GENÉTICO]    Diversidad:             0.00[0m
+[31m[GENÉTICO]    Peor Fitness:           32.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    7.93 s[0m
+[34m===============================================[0m
+[33mDetectado estancamiento en la generación 12[0m
+[37mDiversidad actual: 0.0[0m
+[37mDiversidad baja detectada. Inyectando nuevos individuos...[0m
 [35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
+[37mSe inyectaron 1 nuevos individuos en la población.[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 32.50[0m
+[37mDiversidad de la generación 13: 0.0[0m
+
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 13:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 32.50[0m
+[32m[GENÉTICO]    Fitness Global:         32.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       32.50[0m
+[32m[GENÉTICO]    Diversidad:             0.00[0m
+[31m[GENÉTICO]    Peor Fitness:           32.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    8.30 s[0m
+[34m===============================================[0m
+[33mDetectado estancamiento en la generación 13[0m
+[37mDiversidad actual: 0.0[0m
+[37mDiversidad baja detectada. Inyectando nuevos individuos...[0m
 [35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
+[37mSe inyectaron 1 nuevos individuos en la población.[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 32.50[0m
+[37mDiversidad de la generación 14: 0.0[0m
+
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 14:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 32.50[0m
+[32m[GENÉTICO]    Fitness Global:         32.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       32.50[0m
+[32m[GENÉTICO]    Diversidad:             0.00[0m
+[31m[GENÉTICO]    Peor Fitness:           32.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    8.64 s[0m
+[34m===============================================[0m
+[33mDetectado estancamiento en la generación 14[0m
+[37mDiversidad actual: 0.0[0m
+[37mDiversidad baja detectada. Inyectando nuevos individuos...[0m
 [35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
+[37mSe inyectaron 1 nuevos individuos en la población.[0m
 [35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 30, Fitness: 32.50[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 32.50[0m
+[37mDiversidad de la generación 15: 2.070840507108975[0m
+
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 15:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 32.50[0m
+[32m[GENÉTICO]    Fitness Global:         32.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       32.50[0m
+[32m[GENÉTICO]    Diversidad:             2.07[0m
+[31m[GENÉTICO]    Peor Fitness:           32.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    9.32 s[0m
+[34m===============================================[0m
+[33mDetectado estancamiento en la generación 15[0m
+[37mDiversidad actual: 2.070840507108975[0m
 [35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 32.50[0m
+[33m[ELITE]    Fitness: 28.00[0m
+[37mDiversidad de la generación 16: 2.069747894131385[0m
+
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 16:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 32.50[0m
+[32m[GENÉTICO]    Fitness Global:         32.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       32.05[0m
+[32m[GENÉTICO]    Diversidad:             2.07[0m
+[31m[GENÉTICO]    Peor Fitness:           28.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    9.68 s[0m
+[34m===============================================[0m
+[33mDetectado estancamiento en la generación 16[0m
+[37mDiversidad actual: 2.069747894131385[0m
 [35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 32.50[0m
+[33m[ELITE]    Fitness: 28.00[0m
+[37mDiversidad de la generación 17: 2.3368820872702463[0m
+
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 17:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 32.50[0m
+[32m[GENÉTICO]    Fitness Global:         32.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       32.05[0m
+[32m[GENÉTICO]    Diversidad:             2.34[0m
+[31m[GENÉTICO]    Peor Fitness:           28.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    10.03 s[0m
+[34m===============================================[0m
+[33mDetectado estancamiento en la generación 17[0m
+[37mDiversidad actual: 2.3368820872702463[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 32.50[0m
+[33m[ELITE]    Fitness: 28.00[0m
+[37mDiversidad de la generación 18: 5.452724870297244[0m
+
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 18:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 32.50[0m
+[32m[GENÉTICO]    Fitness Global:         32.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       31.15[0m
+[32m[GENÉTICO]    Diversidad:             5.45[0m
+[31m[GENÉTICO]    Peor Fitness:           28.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    10.03 s[0m
+[34m===============================================[0m
+[33mDetectado estancamiento en la generación 18[0m
+[37mDiversidad actual: 5.452724870297244[0m
 [35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 32.50[0m
+[33m[ELITE]    Fitness: 28.00[0m
+[37mDiversidad de la generación 19: 7.677634097850776[0m
+
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 19:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 32.50[0m
+[32m[GENÉTICO]    Fitness Global:         32.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       30.25[0m
+[32m[GENÉTICO]    Diversidad:             7.68[0m
+[31m[GENÉTICO]    Peor Fitness:           28.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    10.40 s[0m
+[34m===============================================[0m
+[33mDetectado estancamiento en la generación 19[0m
+[37mDiversidad actual: 7.677634097850776[0m
 [35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 30, Fitness: 32.50[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 32.50[0m
+[33m[ELITE]    Fitness: 28.00[0m
+[37mDiversidad de la generación 20: 6.173225644158405[0m
+
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 20:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 32.50[0m
+[32m[GENÉTICO]    Fitness Global:         32.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       31.15[0m
+[32m[GENÉTICO]    Diversidad:             6.17[0m
+[31m[GENÉTICO]    Peor Fitness:           28.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    10.77 s[0m
+[34m===============================================[0m
+[32m[CHECKPOINT] Guardado correctamente en checkpoint.ser[0m
+[33mDetectado estancamiento en la generación 20[0m
+[37mDiversidad actual: 6.173225644158405[0m
 [35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 30, Fitness: 32.50[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 29, Fitness: 34.75[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 32.50[0m
+[33m[ELITE]    Fitness: 28.00[0m
+[37mDiversidad de la generación 21: 7.677634097850776[0m
+
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 21:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 32.50[0m
+[32m[GENÉTICO]    Fitness Global:         32.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       30.25[0m
+[32m[GENÉTICO]    Diversidad:             7.68[0m
+[31m[GENÉTICO]    Peor Fitness:           28.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    11.14 s[0m
+[34m===============================================[0m
+[33mDetectado estancamiento en la generación 21[0m
+[37mDiversidad actual: 7.677634097850776[0m
 [35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 30, Fitness: 32.50[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 32.50[0m
+[33m[ELITE]    Fitness: 28.00[0m
+[37mDiversidad de la generación 22: 6.491339131306242[0m
+
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 22:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 32.50[0m
+[32m[GENÉTICO]    Fitness Global:         32.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       30.25[0m
+[32m[GENÉTICO]    Diversidad:             6.49[0m
+[31m[GENÉTICO]    Peor Fitness:           28.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    11.50 s[0m
+[34m===============================================[0m
+[33mDetectado estancamiento en la generación 22[0m
+[37mDiversidad actual: 6.491339131306242[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 32.50[0m
+[33m[ELITE]    Fitness: 28.00[0m
+[37mDiversidad de la generación 23: 4.154457044035994[0m
+
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 23:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 32.50[0m
+[32m[GENÉTICO]    Fitness Global:         32.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       31.60[0m
+[32m[GENÉTICO]    Diversidad:             4.15[0m
+[31m[GENÉTICO]    Peor Fitness:           28.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    11.50 s[0m
+[34m===============================================[0m
+[33mDetectado estancamiento en la generación 23[0m
+[37mDiversidad actual: 4.154457044035994[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 32.50[0m
+[37mDiversidad de la generación 24: 0.0[0m
+
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 24:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 32.50[0m
+[32m[GENÉTICO]    Fitness Global:         32.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       32.50[0m
+[32m[GENÉTICO]    Diversidad:             0.00[0m
+[31m[GENÉTICO]    Peor Fitness:           32.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    11.50 s[0m
+[34m===============================================[0m
+[33mDetectado estancamiento en la generación 24[0m
+[37mDiversidad actual: 0.0[0m
+[37mDiversidad baja detectada. Inyectando nuevos individuos...[0m
 [35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
+[37mSe inyectaron 1 nuevos individuos en la población.[0m
 [35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 29, Fitness: 34.75[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 32.50[0m
+[33m[ELITE]    Fitness: 28.00[0m
+[37mDiversidad de la generación 25: 1.9242457609635664[0m
+
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 25:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 32.50[0m
+[32m[GENÉTICO]    Fitness Global:         32.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       32.05[0m
+[32m[GENÉTICO]    Diversidad:             1.92[0m
+[31m[GENÉTICO]    Peor Fitness:           28.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    12.19 s[0m
+[34m===============================================[0m
+[33mDetectado estancamiento en la generación 25[0m
+[37mDiversidad actual: 1.9242457609635664[0m
 [35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 30, Fitness: 32.50[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 32.50[0m
+[33m[ELITE]    Fitness: 28.00[0m
+[37mDiversidad de la generación 26: 4.0146851910335535[0m
+
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 26:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 32.50[0m
+[32m[GENÉTICO]    Fitness Global:         32.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       32.05[0m
+[32m[GENÉTICO]    Diversidad:             4.01[0m
+[31m[GENÉTICO]    Peor Fitness:           28.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    12.53 s[0m
+[34m===============================================[0m
+[33mDetectado estancamiento en la generación 26[0m
+[37mDiversidad actual: 4.0146851910335535[0m
 [35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 32.50[0m
+[33m[ELITE]    Fitness: 28.00[0m
+[37mDiversidad de la generación 27: 4.304622137933093[0m
+
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 27:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 32.50[0m
+[32m[GENÉTICO]    Fitness Global:         32.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       32.05[0m
+[32m[GENÉTICO]    Diversidad:             4.30[0m
+[31m[GENÉTICO]    Peor Fitness:           28.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    12.88 s[0m
+[34m===============================================[0m
+[33mDetectado estancamiento en la generación 27[0m
+[37mDiversidad actual: 4.304622137933093[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 32.50[0m
+[37mDiversidad de la generación 28: 6.028764024535163[0m
+
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 28:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 32.50[0m
+[32m[GENÉTICO]    Fitness Global:         32.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       32.50[0m
+[32m[GENÉTICO]    Diversidad:             6.03[0m
+[31m[GENÉTICO]    Peor Fitness:           32.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    12.88 s[0m
+[34m===============================================[0m
+[33mDetectado estancamiento en la generación 28[0m
+[37mDiversidad actual: 6.028764024535163[0m
 [35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 30, Fitness: 32.50[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 27, Fitness: 39.25[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 28, Fitness: 37.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 32.50[0m
+[37mDiversidad de la generación 29: 5.697489120525332[0m
+
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 29:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 32.50[0m
+[32m[GENÉTICO]    Fitness Global:         32.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       32.50[0m
+[32m[GENÉTICO]    Diversidad:             5.70[0m
+[31m[GENÉTICO]    Peor Fitness:           32.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    13.22 s[0m
+[34m===============================================[0m
+[33mDetectado estancamiento en la generación 29[0m
+[37mDiversidad actual: 5.697489120525332[0m
 [35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 30, Fitness: 32.50[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 33, Fitness: 25.75[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 32.50[0m
+[37mDiversidad de la generación 30: 5.2751685214682675[0m
+
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 30:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 32.50[0m
+[32m[GENÉTICO]    Fitness Global:         32.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       32.50[0m
+[32m[GENÉTICO]    Diversidad:             5.28[0m
+[31m[GENÉTICO]    Peor Fitness:           32.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    13.58 s[0m
+[34m===============================================[0m
+[32m[CHECKPOINT] Guardado correctamente en checkpoint.ser[0m
+[33mDetectado estancamiento en la generación 30[0m
+[37mDiversidad actual: 5.2751685214682675[0m
 [35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 30, Fitness: 32.50[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 32.50[0m
+[37mDiversidad de la generación 31: 7.533084395370849[0m
+
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 31:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 32.50[0m
+[32m[GENÉTICO]    Fitness Global:         32.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       32.50[0m
+[32m[GENÉTICO]    Diversidad:             7.53[0m
+[31m[GENÉTICO]    Peor Fitness:           32.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    13.94 s[0m
+[34m===============================================[0m
+[33mDetectado estancamiento en la generación 31[0m
+[37mDiversidad actual: 7.533084395370849[0m
 [35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 30, Fitness: 32.50[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 31, Fitness: 30.25[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 32.50[0m
+[37mDiversidad de la generación 32: 8.196042281578075[0m
+
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 32:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 32.50[0m
+[32m[GENÉTICO]    Fitness Global:         32.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       32.50[0m
+[32m[GENÉTICO]    Diversidad:             8.20[0m
+[31m[GENÉTICO]    Peor Fitness:           32.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    14.28 s[0m
+[34m===============================================[0m
+[33mDetectado estancamiento en la generación 32[0m
+[37mDiversidad actual: 8.196042281578075[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 32.50[0m
+[37mDiversidad de la generación 33: 7.605878297971912[0m
+
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 33:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 32.50[0m
+[32m[GENÉTICO]    Fitness Global:         32.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       32.50[0m
+[32m[GENÉTICO]    Diversidad:             7.61[0m
+[31m[GENÉTICO]    Peor Fitness:           32.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    14.28 s[0m
+[34m===============================================[0m
+[33mDetectado estancamiento en la generación 33[0m
+[37mDiversidad actual: 7.605878297971912[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 32.50[0m
+[37mDiversidad de la generación 34: 8.420105513101916[0m
+
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 34:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 32.50[0m
+[32m[GENÉTICO]    Fitness Global:         32.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       32.50[0m
+[32m[GENÉTICO]    Diversidad:             8.42[0m
+[31m[GENÉTICO]    Peor Fitness:           32.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    14.28 s[0m
+[34m===============================================[0m
+[33mDetectado estancamiento en la generación 34[0m
+[37mDiversidad actual: 8.420105513101916[0m
 [35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 30, Fitness: 32.50[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 32.50[0m
+[37mDiversidad de la generación 35: 9.294729759262692[0m
+
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 35:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 32.50[0m
+[32m[GENÉTICO]    Fitness Global:         32.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       32.50[0m
+[32m[GENÉTICO]    Diversidad:             9.29[0m
+[31m[GENÉTICO]    Peor Fitness:           32.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    14.63 s[0m
+[34m===============================================[0m
+[33mDetectado estancamiento en la generación 35[0m
+[37mDiversidad actual: 9.294729759262692[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 32.50[0m
+[37mDiversidad de la generación 36: 8.420105513101918[0m
+
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 36:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 32.50[0m
+[32m[GENÉTICO]    Fitness Global:         32.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       32.50[0m
+[32m[GENÉTICO]    Diversidad:             8.42[0m
+[31m[GENÉTICO]    Peor Fitness:           32.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    14.64 s[0m
+[34m===============================================[0m
+[33mDetectado estancamiento en la generación 36[0m
+[37mDiversidad actual: 8.420105513101918[0m
 [35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 30, Fitness: 32.50[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 32.50[0m
+[37mDiversidad de la generación 37: 8.851927926745336[0m
+
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 37:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 32.50[0m
+[32m[GENÉTICO]    Fitness Global:         32.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       32.50[0m
+[32m[GENÉTICO]    Diversidad:             8.85[0m
+[31m[GENÉTICO]    Peor Fitness:           32.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    14.98 s[0m
+[34m===============================================[0m
+[33mDetectado estancamiento en la generación 37[0m
+[37mDiversidad actual: 8.851927926745336[0m
 [35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 29, Fitness: 34.75[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 32.50[0m
+[33m[ELITE]    Fitness: 28.00[0m
+[37mDiversidad de la generación 38: 9.76840659065205[0m
+
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 38:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 32.50[0m
+[32m[GENÉTICO]    Fitness Global:         32.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       32.05[0m
+[32m[GENÉTICO]    Diversidad:             9.77[0m
+[31m[GENÉTICO]    Peor Fitness:           28.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    15.34 s[0m
+[34m===============================================[0m
+[33mDetectado estancamiento en la generación 38[0m
+[37mDiversidad actual: 9.76840659065205[0m
 [35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 30, Fitness: 32.50[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 32.50[0m
+[33m[ELITE]    Fitness: 28.00[0m
+[37mDiversidad de la generación 39: 6.769018375644895[0m
+
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 39:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 32.50[0m
+[32m[GENÉTICO]    Fitness Global:         32.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       32.05[0m
+[32m[GENÉTICO]    Diversidad:             6.77[0m
+[31m[GENÉTICO]    Peor Fitness:           28.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    15.70 s[0m
+[34m===============================================[0m
+[33mDetectado estancamiento en la generación 39[0m
+[37mDiversidad actual: 6.769018375644895[0m
 [35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 32.50[0m
+[33m[ELITE]    Fitness: 28.00[0m
+[37mDiversidad de la generación 40: 6.987620168928531[0m
+
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 40:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 32.50[0m
+[32m[GENÉTICO]    Fitness Global:         32.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       32.05[0m
+[32m[GENÉTICO]    Diversidad:             6.99[0m
+[31m[GENÉTICO]    Peor Fitness:           28.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    16.06 s[0m
+[34m===============================================[0m
+[32m[CHECKPOINT] Guardado correctamente en checkpoint.ser[0m
+[33mDetectado estancamiento en la generación 40[0m
+[37mDiversidad actual: 6.987620168928531[0m
 [35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 30, Fitness: 32.50[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 28, Fitness: 37.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 32.50[0m
+[33m[ELITE]    Fitness: 28.00[0m
+[37mDiversidad de la generación 41: 5.0379740779024065[0m
+
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 41:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 32.50[0m
+[32m[GENÉTICO]    Fitness Global:         32.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       32.05[0m
+[32m[GENÉTICO]    Diversidad:             5.04[0m
+[31m[GENÉTICO]    Peor Fitness:           28.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    16.44 s[0m
+[34m===============================================[0m
+[33mDetectado estancamiento en la generación 41[0m
+[37mDiversidad actual: 5.0379740779024065[0m
 [35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 30, Fitness: 32.50[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 33, Fitness: 25.75[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 32.50[0m
+[33m[ELITE]    Fitness: 28.00[0m
+[37mDiversidad de la generación 42: 10.01341848580857[0m
+
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 42:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 32.50[0m
+[32m[GENÉTICO]    Fitness Global:         32.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       31.60[0m
+[32m[GENÉTICO]    Diversidad:             10.01[0m
+[31m[GENÉTICO]    Peor Fitness:           28.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    16.78 s[0m
+[34m===============================================[0m
+[33mDetectado estancamiento en la generación 42[0m
+[37mDiversidad actual: 10.01341848580857[0m
 [35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 30, Fitness: 32.50[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 29, Fitness: 34.75[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 33, Fitness: 25.75[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 32.50[0m
+[33m[ELITE]    Fitness: 28.00[0m
+[37mDiversidad de la generación 43: 10.370495744689489[0m
+
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 43:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 32.50[0m
+[32m[GENÉTICO]    Fitness Global:         32.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       32.05[0m
+[32m[GENÉTICO]    Diversidad:             10.37[0m
+[31m[GENÉTICO]    Peor Fitness:           28.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    17.15 s[0m
+[34m===============================================[0m
+[33mDetectado estancamiento en la generación 43[0m
+[37mDiversidad actual: 10.370495744689489[0m
 [35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 30, Fitness: 32.50[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 32.50[0m
+[37mDiversidad de la generación 44: 7.92194034658477[0m
+
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 44:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 32.50[0m
+[32m[GENÉTICO]    Fitness Global:         32.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       32.50[0m
+[32m[GENÉTICO]    Diversidad:             7.92[0m
+[31m[GENÉTICO]    Peor Fitness:           32.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    17.51 s[0m
+[34m===============================================[0m
+[33mDetectado estancamiento en la generación 44[0m
+[37mDiversidad actual: 7.92194034658477[0m
 [35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 32.50[0m
+[33m[ELITE]    Fitness: 28.00[0m
+[37mDiversidad de la generación 45: 8.12096204066476[0m
+
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 45:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 32.50[0m
+[32m[GENÉTICO]    Fitness Global:         32.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       32.05[0m
+[32m[GENÉTICO]    Diversidad:             8.12[0m
+[31m[GENÉTICO]    Peor Fitness:           28.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    17.88 s[0m
+[34m===============================================[0m
+[33mDetectado estancamiento en la generación 45[0m
+[37mDiversidad actual: 8.12096204066476[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 32.50[0m
+[33m[ELITE]    Fitness: 28.00[0m
+[37mDiversidad de la generación 46: 6.407631443578579[0m
+
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 46:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 32.50[0m
+[32m[GENÉTICO]    Fitness Global:         32.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       32.05[0m
+[32m[GENÉTICO]    Diversidad:             6.41[0m
+[31m[GENÉTICO]    Peor Fitness:           28.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    17.88 s[0m
+[34m===============================================[0m
+[33mDetectado estancamiento en la generación 46[0m
+[37mDiversidad actual: 6.407631443578579[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 32.50[0m
+[37mDiversidad de la generación 47: 4.530635007240828[0m
+
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 47:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 32.50[0m
+[32m[GENÉTICO]    Fitness Global:         32.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       32.50[0m
+[32m[GENÉTICO]    Diversidad:             4.53[0m
+[31m[GENÉTICO]    Peor Fitness:           32.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    17.88 s[0m
+[34m===============================================[0m
+[33mDetectado estancamiento en la generación 47[0m
+[37mDiversidad actual: 4.530635007240828[0m
+[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 32.50[0m
+[33m[ELITE]    Fitness: 28.00[0m
+[37mDiversidad de la generación 48: 7.437232041131788[0m
+
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 48:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 32.50[0m
+[32m[GENÉTICO]    Fitness Global:         32.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       32.05[0m
+[32m[GENÉTICO]    Diversidad:             7.44[0m
+[31m[GENÉTICO]    Peor Fitness:           28.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    18.23 s[0m
+[34m===============================================[0m
+[33mDetectado estancamiento en la generación 48[0m
+[37mDiversidad actual: 7.437232041131788[0m
 [35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 30, Fitness: 32.50[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 34, Fitness: 23.50[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 30, Fitness: 32.50[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 30, Fitness: 32.50[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 28, Fitness: 37.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 30, Fitness: 32.50[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 29, Fitness: 34.75[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 30, Fitness: 32.50[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 30, Fitness: 32.50[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 28, Fitness: 37.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 30, Fitness: 32.50[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 30, Fitness: 32.50[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 30, Fitness: 32.50[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 30, Fitness: 32.50[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 30, Fitness: 32.50[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 30, Fitness: 32.50[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 30, Fitness: 32.50[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 33, Fitness: 25.75[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 30, Fitness: 32.50[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 30, Fitness: 32.50[0m
-[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 32.50[0m
+[37mDiversidad de la generación 49: 4.298141873832077[0m
+
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 49:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 32.50[0m
+[32m[GENÉTICO]    Fitness Global:         32.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       32.50[0m
+[32m[GENÉTICO]    Diversidad:             4.30[0m
+[31m[GENÉTICO]    Peor Fitness:           32.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    18.59 s[0m
+[34m===============================================[0m
+[33mDetectado estancamiento en la generación 49[0m
+[37mDiversidad actual: 4.298141873832077[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 32.50[0m
+[37mDiversidad de la generación 50: 0.0[0m
+
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 50:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 32.50[0m
+[32m[GENÉTICO]    Fitness Global:         32.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       32.50[0m
+[32m[GENÉTICO]    Diversidad:             0.00[0m
+[31m[GENÉTICO]    Peor Fitness:           32.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    18.59 s[0m
+[34m===============================================[0m
+[32m[CHECKPOINT] Guardado correctamente en checkpoint.ser[0m
+[33mDetectado estancamiento en la generación 50[0m
+[37mDiversidad actual: 0.0[0m
+[37mDiversidad baja detectada. Inyectando nuevos individuos...[0m
+[35m[RESULTADO PARTIDO] Goles Favor: 0, Goles Contra: 32, Fitness: 28.00[0m
+[37mSe inyectaron 1 nuevos individuos en la población.[0m
+[37mBloque de 50 generaciones completado. Generación global: 50[0m
+[34m
+================== RESUMEN FINAL ==================[0m
+[32m[INFO] Generaciones ejecutadas: 50[0m
+[32m[INFO] Mejor Fitness Alcanzado: 32.50[0m
+[34m==================================================[0m
+[32m[CHECKPOINT] Guardado correctamente en checkpoint.ser[0m
+Mar 26, 2025 2:50:00 PM CSVManager cerrarCSV
+INFO: Archivo CSV cerrado correctamente.
+Recursos cerrados correctamente.
