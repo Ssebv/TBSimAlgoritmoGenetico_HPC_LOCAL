@@ -44,7 +44,7 @@ La estructura principal del proyecto es la siguiente:
 - **bin/**: Archivos compilados (.class).  
 - **img/**: Contiene imágenes utilizadas en la documentación (por ejemplo, capturas de simulación).  
 - **lib/**: Bibliotecas externas, incluyendo jenetics-7.2.0.jar.  
-- **nhlpc/**: Scripts o configuraciones para HPC (se dejó en stand-by debido a los límites de tiempo de 30 minutos).  
+- **nlhpc/**: Scripts o configuraciones para HPC (se dejó en stand-by debido a los límites de tiempo de 30 minutos).  
 - **resultados/**: Almacena salidas (CSV, logs, gráficos) de las simulaciones ejecutadas.  
 - **simuladores_evaluados/**:  
   - **Robocup_Rescue/**: Versiones o pruebas con otro simulador.  
