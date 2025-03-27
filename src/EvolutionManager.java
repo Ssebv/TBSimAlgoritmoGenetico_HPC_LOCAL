@@ -49,7 +49,7 @@ public class EvolutionManager {
             logManager.logWarning("Genotipo con fitness inválido. Saltando...");
             return 0.0;
         }
-        logManager.logResultadoPartido(resultado);
+        // logManager.logResultadoPartido(resultado);
         return resultado.getFitness();
     }
 

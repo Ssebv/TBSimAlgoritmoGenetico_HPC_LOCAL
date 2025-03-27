@@ -53,9 +53,10 @@ public class CSVManager {
             int golesContra
     ) {
         try {
-            System.out.println("[DEBUG CSV] Escribiendo CSV -> gen=" + generacion + 
-                               ", Mejor Fitness Generación=" + mejorFitnessGen + 
-                               ", Fitness Global=" + fitnessGlobal);
+            // Se reemplaza la salida de depuración con Logger para mantener la consistencia
+            LOGGER.info("[DEBUG CSV] Escribiendo CSV -> gen=" + generacion + 
+                        ", Mejor Fitness Generación=" + mejorFitnessGen + 
+                        ", Fitness Global=" + fitnessGlobal);
             // Convertir tiempo a segundos
             double timeSeconds = elapsedTime / 1000.0;
             // Información del sistema

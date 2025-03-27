@@ -33,9 +33,9 @@ public class DiversityInjector {
      */
     public ISeq<Phenotype<DoubleGene, Double>> injectDiversity(ISeq<Phenotype<DoubleGene, Double>> population) {
         double diversity = calculateDiversity(population);
-        logManager.logInfo("Diversidad actual: " + diversity);
+        // logManager.logInfo("Diversidad actual: " + diversity);
         if (diversity < minDiversityThreshold) {
-            logManager.logInfo("Diversidad baja detectada. Inyectando nuevos individuos...");
+            // logManager.logInfo("Diversidad baja detectada. Inyectando nuevos individuos...");
             int numToInject = (int) (population.size() * diversityInjectionPercentage);
             if (numToInject <= 0) numToInject = 1;
             List<Phenotype<DoubleGene, Double>> nuevaPoblacion = new ArrayList<>(population.asList());

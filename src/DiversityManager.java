@@ -52,7 +52,7 @@ public class DiversityManager {
         // Asegurar que el mejor fenotipo permanezca (lo ubicamos en la posición 0)
         nuevaPoblacion.set(0, Phenotype.of(mejorGenotipo, 0));
         
-        logManager.logInfo("Diversidad reintroducida en la población. (" + numReemplazo + " individuos reemplazados)");
+        // logManager.logInfo("Diversidad reintroducida en la población. (" + numReemplazo + " individuos reemplazados)");
         return ISeq.of(nuevaPoblacion);
     }
 }

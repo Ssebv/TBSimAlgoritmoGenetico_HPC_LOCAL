@@ -9,18 +9,19 @@ public class MainJenetics {
 
     public static void main(String[] args) {
         CSVManager csvManager = null;
+        LogManager logManager = null;
         try {
             // 1. Instanciar la Configuración
             Configuracion config = ConfiguracionSingleton.getInstance(); // Acceso global a la configuración
 
             // 2. Crear LogManager (con colores si está habilitado)
-            LogManager logManager = new LogManager(LOGGER, config.ENABLE_COLORS, config);
+            logManager = new LogManager(LOGGER, config.ENABLE_COLORS, config);
 
             // 3. Determinar entorno (HPC o local) y asignar nombre al CSV
             boolean isHPC = config.IS_HPC;
             String csvFileName = isHPC ? "hpc_stats.csv" : "local_stats.csv";
             File debugFile = new File(csvFileName);
-            System.out.println("[DEBUG] El CSV se usará en -> " + debugFile.getAbsolutePath());
+            logManager.logInfo("[DEBUG] El CSV se usará en -> " + debugFile.getAbsolutePath());
 
             // 4. Crear CSVManager (sobrescribe el archivo)
             csvManager = new CSVManager(csvFileName, isHPC, config);
@@ -33,7 +34,7 @@ public class MainJenetics {
             File checkpointFile = new File(config.CHECKPOINT_FILE);
             if (checkpointFile.exists()) {
                 try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
-                    System.out.println("¿Deseas USAR el checkpoint existente? (s/n)");
+                    logManager.logInfo("¿Deseas USAR el checkpoint existente? (s/n)");
                     String resp = reader.readLine().trim().toLowerCase();
                     if (resp.equals("s") || resp.equals("si")) {
                         checkpointData = CheckpointManager.cargarCheckpoint(config.CHECKPOINT_FILE);
@@ -41,7 +42,7 @@ public class MainJenetics {
                             LOGGER.warning("No se pudo cargar el checkpoint. Se iniciará vacío.");
                         }
                     } else {
-                        System.out.println("¿Quieres ELIMINAR el checkpoint existente? (s/n)");
+                        logManager.logInfo("¿Quieres ELIMINAR el checkpoint existente? (s/n)");
                         String respDel = reader.readLine().trim().toLowerCase();
                         if (respDel.equals("s") || respDel.equals("si")) {
                             if (checkpointFile.delete()) {
@@ -66,12 +67,15 @@ public class MainJenetics {
                 evolutionManager.setCheckpointData(checkpointData);
             }
             evolutionManager.runGeneticEngine();
-            
+
         } catch (Exception e) {
             LOGGER.severe("Error en la ejecución principal: " + e.getMessage());
         } finally {
             if (csvManager != null) {
                 csvManager.cerrarCSV();
+            }
+            if (logManager != null) {
+                logManager.shutdown();
             }
             LOGGER.info("Recursos cerrados correctamente.");
         }

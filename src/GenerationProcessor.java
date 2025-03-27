@@ -56,7 +56,7 @@ public class GenerationProcessor {
         var eliteFitnesses = elites.stream().map(Phenotype::fitness).toList();
 
         logManager.logElitesSeleccionados(eliteFitnesses);
-        logManager.logInfo("Diversidad de la generación " + genGlobal + ": " + diversidad);
+        // logManager.logInfo("Diversidad de la generación " + genGlobal + ": " + diversidad);
         logManager.logGeneracion(result, avgFitness, diversidad, peorFitness, elapsedTimeMillis, fitnessEvaluator, csvManager);
 
         // Guarda checkpoint cada CHECKPOINT_INTERVAL generaciones
@@ -70,7 +70,8 @@ public class GenerationProcessor {
             logManager.logWarning("Detectado estancamiento en la generación " + genGlobal);
             nextPopulation = diversityInjector.injectDiversity(result.population());
         }
-        System.out.println("[DEBUG] Generación " + genGlobal + " procesada. MejorFitness=" + mejorFitness);
+        // Reemplazamos la salida por System.out.println con una llamada al logger
+        logManager.logInfo("[DEBUG] Generación " + genGlobal + " procesada. MejorFitness=" + mejorFitness);
     }
 
     private double calculateAverageFitness(ISeq<Phenotype<DoubleGene, Double>> population) {
