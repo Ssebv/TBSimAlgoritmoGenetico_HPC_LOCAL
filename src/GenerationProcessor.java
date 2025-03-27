@@ -37,7 +37,10 @@ public class GenerationProcessor {
             logManager.logWarning("Resultado de generación vacío. Omitiendo...");
             return;
         }
+        // Actualiza el último resultado
         lastEvolutionResult = result;
+        
+        // Incrementa el contador de generaciones una sola vez por generación
         GenerationTracker.incrementGeneration();
         int genGlobal = GenerationTracker.getCurrentGeneration();
 
@@ -56,11 +59,13 @@ public class GenerationProcessor {
         logManager.logInfo("Diversidad de la generación " + genGlobal + ": " + diversidad);
         logManager.logGeneracion(result, avgFitness, diversidad, peorFitness, elapsedTimeMillis, fitnessEvaluator, csvManager);
 
+        // Guarda checkpoint cada CHECKPOINT_INTERVAL generaciones
         if (genGlobal % logManager.getConfig().CHECKPOINT_INTERVAL == 0) {
             checkpointHandler.saveCheckpoint(result);
             logManager.logCheckpointGuardado(checkpointHandler.getCheckpointFile());
         }
 
+        // Si se detecta estancamiento, inyecta diversidad
         if (isStagnant(mejorFitness)) {
             logManager.logWarning("Detectado estancamiento en la generación " + genGlobal);
             nextPopulation = diversityInjector.injectDiversity(result.population());

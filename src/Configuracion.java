@@ -12,21 +12,21 @@ public class Configuracion {
     public final boolean IS_HPC = (System.getenv("SLURM_JOB_ID") != null);
     
     // Tamaño de población
-    public final int INITIAL_POPULATION_SIZE = IS_HPC ? 100 : 100;
+    public final int INITIAL_POPULATION_SIZE = IS_HPC ? 100 : 150;
     
     // Número de generaciones por bloque y objetivo global
     public final int DEFAULT_GENERATIONS = 1000;
-    public final int TARGET_GENERATIONS = 50;  
+    public final int TARGET_GENERATIONS = 1000;  
     
     // Número de partidos que se simulan para evaluar cada individuo.
-    public final int NUM_SIMULACIONES = 1;
+    public final int NUM_SIMULACIONES = 1; // Ajustar según el experimento en este caso se mantiene en 3 para que cada chromosoma
     
     // Tasas de mutación y de cruce
     public final double MUTATION_RATE = 0.4;
     public final double CROSSOVER_RATE = IS_HPC ? 0.85 : 0.7;
     
     // Número de élites a conservar
-    public final int ELITE_COUNT = 5;
+    public final int ELITE_COUNT = 4;
     
     // Parámetros para detectar estancamiento
     public final int MAX_GENERACIONES_SIN_MEJORA = 15;
@@ -46,7 +46,7 @@ public class Configuracion {
     public final Optimize OPTIMIZE = Optimize.MAXIMUM;
     
     // Número de núcleos a utilizar para la ejecución paralela (puede ser 1, 2, 4, 8, etc.)
-    public final int NUM_CORES = 1;  // Cambia este valor según el experimento
+    public final int NUM_CORES = 8;  // Cambia este valor según el experimento
     
     public Configuracion() {
         // Inicializaciones adicionales si fueran necesarias.

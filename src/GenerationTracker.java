@@ -1,13 +1,12 @@
 public class GenerationTracker {
-    // Contador global de generaciones
     private static int currentGeneration = 0;
 
-    // Incrementa de forma sincronizada para evitar condiciones de carrera
+    // Incrementa el contador de generaciones de forma sincronizada
     public static synchronized void incrementGeneration() {
         currentGeneration++;
     }
 
-    // Obtiene el número actual de generaciones
+    // Retorna el contador actual de generaciones de forma sincronizada
     public static synchronized int getCurrentGeneration() {
         return currentGeneration;
     }

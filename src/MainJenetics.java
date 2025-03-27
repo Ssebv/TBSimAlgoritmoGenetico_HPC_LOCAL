@@ -11,7 +11,7 @@ public class MainJenetics {
         CSVManager csvManager = null;
         try {
             // 1. Instanciar la Configuración
-            Configuracion config = ConfiguracionSingleton.getInstance(); // Permite acceder a la configuración de forma global
+            Configuracion config = ConfiguracionSingleton.getInstance(); // Acceso global a la configuración
 
             // 2. Crear LogManager (con colores si está habilitado)
             LogManager logManager = new LogManager(LOGGER, config.ENABLE_COLORS, config);

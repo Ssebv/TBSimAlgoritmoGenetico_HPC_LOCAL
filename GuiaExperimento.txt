@@ -7,7 +7,7 @@ Evaluar cómo varía el tiempo de ejecución y la carga de CPU al cambiar la can
 
 
 Configuración Inicial: En Configuracion.java, fija los siguientes parámetros:
-INITIAL_POPULATION_SIZE = 100
+INITIAL_POPULATION_SIZE = 150
 TARGET_GENERATIONS = 1000
 DEFAULT_GENERATIONS = 50
 MUTATION_RATE = 0.40

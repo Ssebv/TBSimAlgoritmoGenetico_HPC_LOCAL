@@ -56,31 +56,33 @@ public class EvolutionManager {
     public void runGeneticEngine() {
         long startTime = System.nanoTime();
         generationProcessor.setStartTime(startTime);
-        
+    
         int target = config.TARGET_GENERATIONS;
-        
+        // Reiniciar el contador al inicio (opcional, en caso de múltiples ejecuciones)
+        GenerationTracker.reset();
+    
         while (GenerationTracker.getCurrentGeneration() < target) {
             int remaining = target - GenerationTracker.getCurrentGeneration();
             int currentBlockSize = Math.min(config.DEFAULT_GENERATIONS, remaining);
-            
+    
             Engine<DoubleGene, Double> engine = engineBuilder.buildEngine(
-                    this::evaluate,
-                    GenerationTracker.getCurrentGeneration(),
-                    false
+                this::evaluate,
+                GenerationTracker.getCurrentGeneration(),
+                false
             );
-            
+    
             engine.stream()
                   .limit(currentBlockSize)
                   .peek(result -> generationProcessor.processGeneration(result))
                   .collect(EvolutionResult.toBestPhenotype());
-            
-            logManager.logInfo("Bloque de " + currentBlockSize + " generaciones completado. Generación global: " 
-                    + GenerationTracker.getCurrentGeneration());
+    
+            logManager.logInfo("Bloque de " + currentBlockSize + " generaciones completado. Generación global actual: " 
+                                + GenerationTracker.getCurrentGeneration());
         }
-        
+    
         logManager.logResumenFinal(GenerationTracker.getCurrentGeneration(),
                 generationProcessor.getLastEvolutionResult().bestFitness());
-        
+    
         // Guardar último checkpoint y cerrar el executor
         List<Genotype<DoubleGene>> genotypeList = generationProcessor.getLastEvolutionResult().population().stream()
                 .map(Phenotype::genotype)
@@ -88,9 +90,10 @@ public class EvolutionManager {
         CheckpointData finalCheckpoint = new CheckpointData(genotypeList, GenerationTracker.getCurrentGeneration(), 2);
         checkpointHandler.saveCheckpoint(finalCheckpoint);
         logManager.logCheckpointGuardado(checkpointHandler.getCheckpointFile());
-        
+    
         engineBuilder.shutdownExecutor();
     }
+    
 
     public void setCheckpointData(CheckpointData checkpointData) {
         checkpointHandler.setCheckpointData(checkpointData);

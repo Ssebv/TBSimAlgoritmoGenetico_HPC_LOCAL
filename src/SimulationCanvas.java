@@ -998,6 +998,7 @@
  
                      //this.parada = true;
                      this.sem3.release();
+                     System.err.println();
                      Thread.currentThread().interrupt();
                      return;
                      ///System.exit(0);

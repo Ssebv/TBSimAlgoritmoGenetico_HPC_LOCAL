@@ -17,6 +17,7 @@ public class GeneticEngineBuilder {
 
     public GeneticEngineBuilder(Configuracion config) {
         this.config = config;
+        System.out.println("Número de núcleos configurados: " + config.NUM_CORES);
         // Se utiliza el número de núcleos configurado en Configuracion
         this.executorService = Executors.newFixedThreadPool(config.NUM_CORES);
     }
@@ -50,11 +51,12 @@ public class GeneticEngineBuilder {
                         new Mutator<DoubleGene, Double>(tasaMutacion),
                         crossoverOperator
                 )
-                // Se utiliza RouletteWheelSelector para mayor exploración
+                // Utiliza RouletteWheelSelector para favorecer la exploración
                 .selector(new RouletteWheelSelector<>())
-                // Se conserva elitismo, pero se puede ajustar la fracción
-                .offspringSelector(new EliteSelector<>())
-                .offspringFraction(0.10)
+                // Ajuste en el elitismo: se preserva solo 1 individuo para reducir presión
+                .offspringSelector(new EliteSelector<>(config.ELITE_COUNT))
+                // Aumenta la fracción de descendientes nuevos para que se evalúen más individuos
+                .offspringFraction(0.50)
                 .populationSize(config.INITIAL_POPULATION_SIZE)
                 .optimize(config.OPTIMIZE)
                 .build();

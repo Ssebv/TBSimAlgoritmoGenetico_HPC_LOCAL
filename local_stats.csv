@@ -1,0 +1,6 @@
+Generación,Mejor Fitness Generación,Fitness Global,Fitness Promedio,Diversidad,Peor Fitness,CPU (%),Memoria (%),Tiempo (s),Goles Favor,Goles Contra,OS,OS Version,Java Version,OS Arquitectura,CPUs (configurados),Population Size,Mutation Rate,Crossover Rate
+1,95.50,51.25,30.87,12.54,25.75,53.34,84.828,34.962,0,21,Mac OS X,15.4,17.0.8.1,aarch64,8,150,0.40,0.70
+2,95.50,51.25,30.55,12.44,25.75,42.73,83.649,46.887,0,21,Mac OS X,15.4,17.0.8.1,aarch64,8,150,0.40,0.70
+3,95.50,51.25,31.03,12.51,28.00,38.27,84.046,58.838,0,21,Mac OS X,15.4,17.0.8.1,aarch64,8,150,0.40,0.70
+4,95.50,51.25,31.99,12.53,25.75,21.87,83.506,74.193,0,21,Mac OS X,15.4,17.0.8.1,aarch64,8,150,0.40,0.70
+5,95.50,51.25,31.77,12.57,25.75,37.18,83.805,85.650,0,21,Mac OS X,15.4,17.0.8.1,aarch64,8,150,0.40,0.70

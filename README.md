@@ -4,6 +4,8 @@
 
 Este proyecto se centra en la aplicación de algoritmos genéticos en entornos locales, utilizando el simulador TBSim para modelar y optimizar el comportamiento de equipos de fútbol robótico. Aunque originalmente el proyecto estaba orientado a entornos de Computación de Alto Rendimiento (HPC), en este experimento se realizará la ejecución en un entorno local. Esto se debe a que en HPC las tareas están limitadas a 30 minutos y se usan checkpoints para reanudar la ejecución, mientras que en local se pueden ejecutar simulaciones completas y visualizar los resultados mediante gráficos para un análisis detallado. El trabajo queda abierto a futuras investigaciones en HPC.
 
+![TBSim Soccerbot](./img/soccer.jpg)
+
 Para el algoritmo genético se utilizó la librería **Jenetics**, ya que aunque se probó **JGAP** en versiones anteriores, esta última no se encuentra actualizada a la fecha. La elección de Jenetics permitió implementar un algoritmo más robusto y modular, adaptado a las necesidades actuales del proyecto, además de aprovechar el paralelismo para intentar utilizar el 100% de los recursos disponibles en el sistema donde se procesará la simulación.
 
 Dentro de la carpeta **simuladores_evaluados** se encuentran diferentes versiones del TBSim:

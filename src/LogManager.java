@@ -80,7 +80,7 @@ public class LogManager {
         logger.info(formatWithColor(String.format("[GENÉTICO]    Tiempo Transcurrido:    %.2f s", (elapsedTime / 1000.0)), "\u001B[33m"));
         logger.info(formatWithColor("===============================================", "\u001B[34m"));
 
-        // Llamada actualizada para incluir Mejor Fitness de la generación y Fitness Global
+        // Aquí se registra la línea en el CSV utilizando datos del sistema vía RuntimeConfig
         csvManager.escribirLineaCSV(
                 gen,
                 bestFitGeneration,
@@ -88,8 +88,8 @@ public class LogManager {
                 avgFitness,
                 diversity,
                 worstFitness,
-                RuntimeConfig.getSystemCpuLoad(),
-                RuntimeConfig.getSystemMemoryLoad(),
+                RuntimeConfig.getSystemCpuLoad(),   // Carga de CPU (promedio)
+                RuntimeConfig.getSystemMemoryLoad(),  // Carga de memoria
                 elapsedTime,
                 fitnessEvaluator.getBestGolesFavor(),
                 fitnessEvaluator.getBestGolesContra()
