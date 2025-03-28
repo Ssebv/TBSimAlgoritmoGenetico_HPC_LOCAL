@@ -5,6 +5,12 @@ public class MainJenetics {
     private static final Logger LOGGER = Logger.getLogger(MainJenetics.class.getName());
 
     public static void main(String[] args) {
+        // Controlador global para excepciones no capturadas
+        Thread.setDefaultUncaughtExceptionHandler((thread, throwable) -> {
+            LOGGER.severe("Excepción no capturada en " + thread.getName() + ": " + throwable.getMessage());
+            throwable.printStackTrace();
+        });
+
         CSVManager csvManager = null;
         LogManager logManager = null;
         try {
@@ -45,7 +51,9 @@ public class MainJenetics {
             if (checkpointData != null) {
                 evolutionManager.setCheckpointData(checkpointData);
             }
+            logManager.logInfo("[DEBUG] Inicio de la evolución.");
             evolutionManager.runGeneticEngine();
+            logManager.logInfo("[DEBUG] Evolución completada.");
 
         } catch (Exception e) {
             LOGGER.severe("Error en la ejecución principal: " + e.getMessage());

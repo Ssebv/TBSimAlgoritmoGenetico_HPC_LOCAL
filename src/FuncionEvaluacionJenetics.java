@@ -11,8 +11,8 @@ public class FuncionEvaluacionJenetics {
     private static final FuncionEvaluacionJenetics INSTANCE = new FuncionEvaluacionJenetics();
 
     // Constantes para el cálculo del fitness
-    private static final double BASE_FITNESS = 100.0;
-    private static final double LIMITE_SUPERIOR_FITNESS = 100000.0;
+    private static final double BASE_FITNESS = 44000.0;
+    private static final double LIMITE_SUPERIOR_FITNESS = 150000.0;
     
     // Parámetros de ponderación
     private double pesoOfensivo = 3.0;
@@ -92,13 +92,31 @@ public class FuncionEvaluacionJenetics {
      * Se utiliza una fórmula que pondera los componentes y se amplifican las diferencias con un factor de 1.5.
      */
     private double calcularFitness(int gf, int gc) {
-        double componenteOfensivo = gf * pesoOfensivo;
-        double bonusOfensivo = (gf > gc) ? bonusVictoria * Math.pow((gf - gc), 2.5) : 0.0;
-        double componenteDefensivo = -gc * pesoDefensivo;
-        double componenteBalance = (gf == gc) ? bonusEmpate : 0.0;
-        double fitness = BASE_FITNESS + 1.5 * (componenteOfensivo + bonusOfensivo + componenteDefensivo + componenteBalance);
-        return Math.min(Math.max(fitness, 0), LIMITE_SUPERIOR_FITNESS);
+        double diferencia = gf - gc;
+        double fitness = BASE_FITNESS;
+        
+        if (diferencia > 0) {
+            // Si gana, otorga un bonus fuerte; usamos un exponente mayor para amplificar la diferencia
+            fitness += (pesoOfensivo * gf) 
+                    + (bonusVictoria * Math.pow(diferencia, 3)) 
+                    - (pesoDefensivo * gc);
+        } else if (diferencia == 0) {
+            // Si empata, se otorga un bonus moderado
+            fitness += (pesoOfensivo * gf) 
+                    + bonusEmpate 
+                    - (pesoDefensivo * gc);
+        } else {
+            // Si pierde, penaliza fuertemente la diferencia negativa
+            fitness += (pesoOfensivo * gf) 
+                    - (500 * Math.abs(diferencia)) 
+                    - (pesoDefensivo * gc);
+        }
+        
+        // Permite que el fitness sea negativo para penalizar las soluciones muy malas,
+        // pero lo limita por un máximo superior.
+        return Math.min(fitness, LIMITE_SUPERIOR_FITNESS);
     }
+    
     
     /**
      * Actualiza el mejor fitness global si el promedio actual es mayor.

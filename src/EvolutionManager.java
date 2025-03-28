@@ -3,8 +3,10 @@ import io.jenetics.Genotype;
 import io.jenetics.Phenotype;
 import io.jenetics.engine.Engine;
 import io.jenetics.engine.EvolutionResult;
+import io.jenetics.util.ISeq;
 import java.util.List;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 public class EvolutionManager {
     private final GeneticEngineBuilder engineBuilder;
@@ -17,14 +19,6 @@ public class EvolutionManager {
     private final DiversityInjector diversityInjector;
     private final AdaptiveMutationController adaptiveController;
 
-    /**
-     * Constructor de la clase EvolutionManager.
-     *
-     * @param csvManager       Instancia de CSVManager para manejar archivos CSV.
-     * @param checkpointFile   Ruta del archivo de checkpoint.
-     * @param logger           Instancia de Logger para registrar información.
-     * @param config           Configuración del sistema.
-     */
     public EvolutionManager(CSVManager csvManager,
                             String checkpointFile,
                             Logger logger,
@@ -49,51 +43,65 @@ public class EvolutionManager {
             logManager.logWarning("Genotipo con fitness inválido. Saltando...");
             return 0.0;
         }
-        // logManager.logResultadoPartido(resultado);
         return resultado.getFitness();
     }
 
     public void runGeneticEngine() {
-    long startTime = System.nanoTime();
-    generationProcessor.setStartTime(startTime);
+        long startTime = System.nanoTime();
+        generationProcessor.setStartTime(startTime);
+        int target = config.TARGET_GENERATIONS;
+        GenerationTracker.reset();
+        List<Genotype<DoubleGene>> currentPopulation = null;
 
-    int target = config.TARGET_GENERATIONS;
-    // Reiniciar el contador al inicio (opcional, en caso de múltiples ejecuciones)
-    GenerationTracker.reset();
+        while (GenerationTracker.getCurrentGeneration() < target) {
+            int remaining = target - GenerationTracker.getCurrentGeneration();
+            int currentBlockSize = Math.min(config.DEFAULT_GENERATIONS, remaining);
 
-    while (GenerationTracker.getCurrentGeneration() < target) {
-        int remaining = target - GenerationTracker.getCurrentGeneration();
-        int currentBlockSize = Math.min(config.DEFAULT_GENERATIONS, remaining);
+            Engine<DoubleGene, Double> engine;
+            if (currentPopulation == null) {
+                engine = engineBuilder.buildEngine(this::evaluate, GenerationTracker.getCurrentGeneration(), false);
+            } else {
+                engine = engineBuilder.buildEngineWithPopulation(this::evaluate, currentPopulation);
+            }
 
-        Engine<DoubleGene, Double> engine = engineBuilder.buildEngine(
-            this::evaluate,
-            GenerationTracker.getCurrentGeneration(),
-            false
-        );
+            // Ejecutar el engine por un bloque de generaciones y procesar cada generación
+            EvolutionResult<DoubleGene, Double> result = engine.stream()
+                    .limit(currentBlockSize)
+                    .peek(generationProcessor::processGeneration)
+                    .collect(EvolutionResult.toBestEvolutionResult());
 
-        engine.stream()
-              .limit(currentBlockSize)
-              .peek(result -> generationProcessor.processGeneration(result))
-              .collect(EvolutionResult.toBestPhenotype());
+            // Actualizar la población para el siguiente bloque (convertir fenotipos a genotipos)
+            currentPopulation = generationProcessor.getLastEvolutionResult().population().stream()
+                    .map(Phenotype::genotype)
+                    .collect(Collectors.toList());
 
-        logManager.logInfo("Bloque de " + currentBlockSize + " generaciones completado. Generación global actual: " 
-                            + GenerationTracker.getCurrentGeneration());
+            logManager.logInfo("Bloque de " + currentBlockSize 
+                    + " generaciones completado. Generación global actual: " 
+                    + GenerationTracker.getCurrentGeneration());
+
+            // Si se inyectó diversidad, usar esa población para el siguiente bloque
+            ISeq<Phenotype<DoubleGene, Double>> injected = generationProcessor.getNextPopulation();
+            if (injected != null) {
+                currentPopulation = injected.stream()
+                        .map(Phenotype::genotype)
+                        .collect(Collectors.toList());
+                logManager.logInfo("Utilizando población con diversidad inyectada para el siguiente bloque.");
+                generationProcessor.resetNextPopulation();
+            }
+        }
+
+        logManager.logResumenFinal(GenerationTracker.getCurrentGeneration(),
+                generationProcessor.getLastEvolutionResult().bestFitness());
+
+        List<Genotype<DoubleGene>> genotypeList = generationProcessor.getLastEvolutionResult().population().stream()
+                .map(Phenotype::genotype)
+                .collect(Collectors.toList());
+        CheckpointData finalCheckpoint = new CheckpointData(genotypeList, GenerationTracker.getCurrentGeneration(), 2);
+        checkpointHandler.saveCheckpoint(finalCheckpoint);
+        logManager.logCheckpointGuardado(checkpointHandler.getCheckpointFile());
+
+        engineBuilder.shutdownExecutor();
     }
-
-    logManager.logResumenFinal(GenerationTracker.getCurrentGeneration(),
-            generationProcessor.getLastEvolutionResult().bestFitness());
-
-    // Guardar último checkpoint y cerrar el executor
-    List<Genotype<DoubleGene>> genotypeList = generationProcessor.getLastEvolutionResult().population().stream()
-            .map(Phenotype::genotype)
-            .toList();
-    CheckpointData finalCheckpoint = new CheckpointData(genotypeList, GenerationTracker.getCurrentGeneration(), 2);
-    checkpointHandler.saveCheckpoint(finalCheckpoint);
-    logManager.logCheckpointGuardado(checkpointHandler.getCheckpointFile());
-
-    engineBuilder.shutdownExecutor();
-}
-
 
     public void setCheckpointData(CheckpointData checkpointData) {
         checkpointHandler.setCheckpointData(checkpointData);

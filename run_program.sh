@@ -20,8 +20,9 @@ echo "Los logs se guardarán en '$LOG_FILE'. Puedes revisar el progreso con 'tai
 
 CLASSPATH="bin:lib/jenetics-7.2.0.jar:lib/oshi-core.jar:lib/jna-5.12.1.jar:lib/jna-platform-5.12.1.jar:lib/slf4j-api-1.7.36.jar:lib/slf4j-simple-1.7.36.jar"
 
-# Ejecuta la aplicación y, usando sed, elimina las líneas en blanco (que representan saltos de línea extras)
-java -classpath "$CLASSPATH" MainJenetics "$@" 2>&1 | sed '/^[[:space:]]*$/d' | tee "$LOG_FILE"
+# Ejecuta la aplicación, elimina líneas vacías y con tee escribe todo en el log,
+# mientras que la salida que se muestra en la terminal es filtrada para mostrar solo "[DEBUG]".
+java -classpath "$CLASSPATH" MainJenetics "$@" 2>&1 | sed '/^[[:space:]]*$/d' | tee "$LOG_FILE" | grep --line-buffered "\[DEBUG\]"
 
 EXIT_CODE=${PIPESTATUS[0]}
 if [ $EXIT_CODE -eq 0 ]; then

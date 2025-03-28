@@ -6,7 +6,7 @@ public class AdaptiveMutationController {
     private final double maxMutationRate;
     
     // Incremento más agresivo: usa 0.5 en lugar de 0.3
-    private final double factorMultiplier = 0.5;
+    private final double factorMultiplier = 0.3;
     
     public AdaptiveMutationController(double baseMutationRate, double maxMutationRate) {
         this.baseMutationRate = baseMutationRate;

@@ -3,6 +3,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.ConsoleHandler;
+import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.LogRecord;
 import java.util.logging.Logger;
@@ -37,7 +38,7 @@ public class LogManager {
     private void configureLogger() {
         logger.setUseParentHandlers(false);
         boolean hasConsole = false;
-        for (var handler : logger.getHandlers()) {
+        for (Handler handler : logger.getHandlers()) {
             if (handler instanceof ConsoleHandler) {
                 hasConsole = true;
                 break;
@@ -46,7 +47,7 @@ public class LogManager {
         if (!hasConsole) {
             ConsoleHandler consoleHandler = new ConsoleHandler();
             consoleHandler.setLevel(Level.ALL);
-            // Formatter que elimina saltos de línea internos (convertidos a espacio) y añade solo un salto al final.
+            // Formatter que elimina saltos de línea internos y añade un único salto al final.
             consoleHandler.setFormatter(new java.util.logging.SimpleFormatter() {
                 @Override
                 public String format(LogRecord record) {
@@ -59,9 +60,17 @@ public class LogManager {
         logger.setLevel(Level.ALL);
     }
 
-    // Método para enviar mensajes al logger de forma asíncrona
+    /**
+     * Envía mensajes al logger de forma asíncrona y fuerza flush inmediato en todos los handlers.
+     */
     private void submitLog(Level level, String message) {
-        logExecutor.submit(() -> logger.log(level, message));
+        logExecutor.submit(() -> {
+            logger.log(level, message);
+            // Forzar flush inmediato en cada handler
+            for (Handler h : logger.getHandlers()) {
+                h.flush();
+            }
+        });
     }
 
     public void logGeneracion(EvolutionResult<DoubleGene, Double> result,
@@ -83,18 +92,18 @@ public class LogManager {
         submitLog(Level.INFO, formatWithColor(String.format("[GENÉTICO]    Fitness Global:         %.2f", fitnessGlobal), "\u001B[32m"));
         submitLog(Level.INFO, formatWithColor(String.format("[GENÉTICO]    Promedio Fitness:       %.2f", avgFitness), "\u001B[32m"));
         submitLog(Level.INFO, formatWithColor(String.format("[GENÉTICO]    Diversidad:             %.2f", diversity), "\u001B[32m"));
-        submitLog(Level.INFO, formatWithColor(String.format("[GENÉTICO]    Peor Fitness:           %.2f", worstFitness), "\u001B[31m"));
+        // Aseguramos que el peor fitness no sea menor a 1
+        submitLog(Level.INFO, formatWithColor(String.format("[GENÉTICO]    Peor Fitness:           %.2f", Math.max(worstFitness, 1.0)), "\u001B[31m"));
         submitLog(Level.INFO, formatWithColor(String.format("[GENÉTICO]    Tiempo Transcurrido:    %.2f s", (elapsedTime / 1000.0)), "\u001B[33m"));
         submitLog(Level.INFO, formatWithColor("===============================================", "\u001B[34m"));
 
-        // Escritura en CSV se mantiene síncrona, pues es crítica para el análisis
         csvManager.escribirLineaCSV(
                 gen,
                 bestFitGeneration,
                 fitnessGlobal,
                 avgFitness,
                 diversity,
-                worstFitness,
+                Math.max(worstFitness, 1.0),
                 RuntimeConfig.getSystemCpuLoad(),
                 RuntimeConfig.getSystemMemoryLoad(),
                 elapsedTime,

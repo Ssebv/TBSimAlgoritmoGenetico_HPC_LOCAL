@@ -4,6 +4,9 @@ import io.jenetics.Phenotype;
 import io.jenetics.engine.EvolutionResult;
 import io.jenetics.util.ISeq;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 public class GenerationProcessor {
     private final LogManager logManager;
@@ -13,8 +16,6 @@ public class GenerationProcessor {
     private final DiversityInjector diversityInjector;
     private EvolutionResult<DoubleGene, Double> lastEvolutionResult;
     private ISeq<Phenotype<DoubleGene, Double>> nextPopulation = null;
-    
-    // Tiempo de inicio en nanosegundos para calcular elapsedTime
     private long startTime;
 
     public GenerationProcessor(LogManager logManager, CSVManager csvManager,
@@ -37,10 +38,7 @@ public class GenerationProcessor {
             logManager.logWarning("Resultado de generación vacío. Omitiendo...");
             return;
         }
-        // Actualiza el último resultado
         lastEvolutionResult = result;
-        
-        // Incrementa el contador de generaciones una sola vez por generación
         GenerationTracker.incrementGeneration();
         int genGlobal = GenerationTracker.getCurrentGeneration();
 
@@ -48,29 +46,24 @@ public class GenerationProcessor {
         double peorFitness = calculateWorstFitness(result.population());
         double diversidad = calculateDiversity(result.population());
         double avgFitness = calculateAverageFitness(result.population());
-        
         long elapsedTimeMillis = (long)((System.nanoTime() - startTime) / 1_000_000.0);
 
-        var selector = new UniqueEliteSelector<DoubleGene, Double>(10);
-        var elites = selector.select(result.population(), 6, io.jenetics.Optimize.MAXIMUM);
-        var eliteFitnesses = elites.stream().map(Phenotype::fitness).toList();
+        var elites = new UniqueEliteSelector<DoubleGene, Double>(10)
+                        .select(result.population(), 6, io.jenetics.Optimize.MAXIMUM);
+        var eliteFitnesses = elites.stream().map(Phenotype::fitness).collect(Collectors.toList());
 
         logManager.logElitesSeleccionados(eliteFitnesses);
-        // logManager.logInfo("Diversidad de la generación " + genGlobal + ": " + diversidad);
         logManager.logGeneracion(result, avgFitness, diversidad, peorFitness, elapsedTimeMillis, fitnessEvaluator, csvManager);
 
-        // Guarda checkpoint cada CHECKPOINT_INTERVAL generaciones
         if (genGlobal % logManager.getConfig().CHECKPOINT_INTERVAL == 0) {
             checkpointHandler.saveCheckpoint(result);
             logManager.logCheckpointGuardado(checkpointHandler.getCheckpointFile());
         }
 
-        // Si se detecta estancamiento, inyecta diversidad
         if (isStagnant(mejorFitness)) {
             logManager.logWarning("Detectado estancamiento en la generación " + genGlobal);
             nextPopulation = diversityInjector.injectDiversity(result.population());
         }
-        // Reemplazamos la salida por System.out.println con una llamada al logger
         logManager.logInfo("[DEBUG] Generación " + genGlobal + " procesada. MejorFitness=" + mejorFitness);
     }
 
@@ -93,7 +86,7 @@ public class GenerationProcessor {
         int comparisons = 0;
         List<Genotype<DoubleGene>> genotypes = population.stream()
                 .map(Phenotype::genotype)
-                .toList();
+                .collect(Collectors.toList());
         for (int i = 0; i < genotypes.size(); i++) {
             for (int j = i + 1; j < genotypes.size(); j++) {
                 totalDistance += calculateDistance(genotypes.get(i), genotypes.get(j));
@@ -128,5 +121,10 @@ public class GenerationProcessor {
 
     public ISeq<Phenotype<DoubleGene, Double>> getNextPopulation() {
         return nextPopulation;
+    }
+    
+    // Método para reiniciar la población inyectada
+    public void resetNextPopulation() {
+        nextPopulation = null;
     }
 }

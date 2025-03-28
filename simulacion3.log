@@ -1,0 +1,2889 @@
+[37m[DEBUG] El CSV se usará en -> /Users/ressc/Desktop/Tesis/thesis/local_stats.csv[0m
+Mar 28, 2025 3:59:34 PM CSVManager prepararCSV
+INFO: Archivo CSV preparado correctamente (sobrescrito): /Users/ressc/Desktop/Tesis/thesis/local_stats.csv
+[34m======================================================[0m
+[32m[INFO] Configuración del Entorno[0m
+[34m======================================================[0m
+[36m[LOCAL] Ejecutando en un entorno local:[0m
+[37m[LOCAL] Sistema Operativo: Mac OS X 15.4[0m
+[37m[LOCAL] Versión de Java: 17.0.8.1[0m
+[37m[LOCAL] CPUs disponibles: 8[0m
+[34m======================================================[0m
+INFO: [INFO] Checkpoint cargado correctamente desde checkpoint.ser
+Checkpoint cargado automáticamente desde /Users/ressc/Desktop/Tesis/thesis/checkpoint.ser
+Número de núcleos configurados: 8
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[33m[ELITE]    Fitness: 31973.00[0m
+[33m[ELITE]    Fitness: 31471.50[0m
+[33m[ELITE]    Fitness: 30970.00[0m
+[33m[ELITE]    Fitness: 28964.00[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 1:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 32976.00[0m
+[32m[GENÉTICO]    Fitness Global:         32976.00[0m
+[32m[GENÉTICO]    Promedio Fitness:       22314.11[0m
+[32m[GENÉTICO]    Diversidad:             12.75[0m
+[31m[GENÉTICO]    Peor Fitness:           6396.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    18.15 s[0m
+[34m===============================================[0m
+Mar 28, 2025 3:59:54 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=1, Mejor Fitness Generación=32976.0, Fitness Global=32976.0
+[33mDetectado estancamiento en la generación 1[0m
+[37mDiversidad actual: 12.745251248947655[0m
+[37m[DEBUG] Generación 1 procesada. MejorFitness=32976.0[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[33m[ELITE]    Fitness: 31471.50[0m
+[33m[ELITE]    Fitness: 30970.00[0m
+[33m[ELITE]    Fitness: 30468.50[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 2:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 33477.50[0m
+[32m[GENÉTICO]    Fitness Global:         33477.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       22374.29[0m
+[32m[GENÉTICO]    Diversidad:             12.73[0m
+[31m[GENÉTICO]    Peor Fitness:           5393.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    24.69 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:00:00 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=2, Mejor Fitness Generación=33477.5, Fitness Global=33477.5
+[33mDetectado estancamiento en la generación 2[0m
+[37mDiversidad actual: 12.731202001260813[0m
+[37m[DEBUG] Generación 2 procesada. MejorFitness=33477.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[33m[ELITE]    Fitness: 31973.00[0m
+[33m[ELITE]    Fitness: 31471.50[0m
+[33m[ELITE]    Fitness: 30970.00[0m
+[33m[ELITE]    Fitness: 30468.50[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 3:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 32976.00[0m
+[32m[GENÉTICO]    Fitness Global:         33477.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       22710.30[0m
+[32m[GENÉTICO]    Diversidad:             12.58[0m
+[31m[GENÉTICO]    Peor Fitness:           880.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    30.35 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:00:06 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=3, Mejor Fitness Generación=32976.0, Fitness Global=33477.5
+[37m[DEBUG] Generación 3 procesada. MejorFitness=32976.0[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 35985.00[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 31973.00[0m
+[33m[ELITE]    Fitness: 31471.50[0m
+[33m[ELITE]    Fitness: 30970.00[0m
+[33m[ELITE]    Fitness: 30468.50[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 4:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 35985.00[0m
+[32m[GENÉTICO]    Fitness Global:         35985.00[0m
+[32m[GENÉTICO]    Promedio Fitness:       23858.73[0m
+[32m[GENÉTICO]    Diversidad:             12.55[0m
+[31m[GENÉTICO]    Peor Fitness:           10408.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    35.75 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:00:11 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=4, Mejor Fitness Generación=35985.0, Fitness Global=35985.0
+[33mDetectado estancamiento en la generación 4[0m
+[37mDiversidad actual: 12.54567845000176[0m
+[37m[DEBUG] Generación 4 procesada. MejorFitness=35985.0[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 35985.00[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[33m[ELITE]    Fitness: 31973.00[0m
+[33m[ELITE]    Fitness: 31471.50[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 5:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         39495.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       25879.78[0m
+[32m[GENÉTICO]    Diversidad:             12.46[0m
+[31m[GENÉTICO]    Peor Fitness:           378.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    41.27 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:00:16 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=5, Mejor Fitness Generación=39495.5, Fitness Global=39495.5
+[33mDetectado estancamiento en la generación 5[0m
+[37mDiversidad actual: 12.464671716213248[0m
+[37m[DEBUG] Generación 5 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[33m[ELITE]    Fitness: 31973.00[0m
+[33m[ELITE]    Fitness: 30970.00[0m
+[33m[ELITE]    Fitness: 29967.00[0m
+[33m[ELITE]    Fitness: 28964.00[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 6:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 32976.00[0m
+[32m[GENÉTICO]    Fitness Global:         39495.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       26496.62[0m
+[32m[GENÉTICO]    Diversidad:             12.29[0m
+[31m[GENÉTICO]    Peor Fitness:           3889.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    47.21 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:00:22 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=6, Mejor Fitness Generación=32976.0, Fitness Global=39495.5
+[37m[DEBUG] Generación 6 procesada. MejorFitness=32976.0[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[33m[ELITE]    Fitness: 31973.00[0m
+[33m[ELITE]    Fitness: 30970.00[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 7:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 33979.00[0m
+[32m[GENÉTICO]    Fitness Global:         39495.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       26697.22[0m
+[32m[GENÉTICO]    Diversidad:             12.42[0m
+[31m[GENÉTICO]    Peor Fitness:           3889.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    53.48 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:00:29 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=7, Mejor Fitness Generación=33979.0, Fitness Global=39495.5
+[37m[DEBUG] Generación 7 procesada. MejorFitness=33979.0[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 40498.50[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[33m[ELITE]    Fitness: 31973.00[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 8:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 40498.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       28537.73[0m
+[32m[GENÉTICO]    Diversidad:             12.30[0m
+[31m[GENÉTICO]    Peor Fitness:           3889.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    58.82 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:00:34 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=8, Mejor Fitness Generación=40498.5, Fitness Global=40498.5
+[33mDetectado estancamiento en la generación 8[0m
+[37mDiversidad actual: 12.302538291307506[0m
+[37m[DEBUG] Generación 8 procesada. MejorFitness=40498.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[33m[ELITE]    Fitness: 31973.00[0m
+[33m[ELITE]    Fitness: 31471.50[0m
+[33m[ELITE]    Fitness: 30970.00[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 9:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 33477.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       28653.07[0m
+[32m[GENÉTICO]    Diversidad:             12.37[0m
+[31m[GENÉTICO]    Peor Fitness:           378.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    64.15 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:00:39 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=9, Mejor Fitness Generación=33477.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 9 procesada. MejorFitness=33477.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[33m[ELITE]    Fitness: 31973.00[0m
+[33m[ELITE]    Fitness: 31471.50[0m
+[33m[ELITE]    Fitness: 30970.00[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 10:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 33477.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       27424.40[0m
+[32m[GENÉTICO]    Diversidad:             12.33[0m
+[31m[GENÉTICO]    Peor Fitness:           -2630.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    69.59 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:00:45 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=10, Mejor Fitness Generación=33477.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 10 procesada. MejorFitness=33477.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[33m[ELITE]    Fitness: 31973.00[0m
+[33m[ELITE]    Fitness: 31471.50[0m
+[33m[ELITE]    Fitness: 30970.00[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 11:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 33477.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       28136.53[0m
+[32m[GENÉTICO]    Diversidad:             12.14[0m
+[31m[GENÉTICO]    Peor Fitness:           4892.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    74.98 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:00:50 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=11, Mejor Fitness Generación=33477.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 11 procesada. MejorFitness=33477.5[0m
+Mar 28, 2025 4:00:53 PM FuncionEvaluacionJenetics validarEstado
+WARNING: Estado vacío o nulo después de ejecutar la simulación.
+Mar 28, 2025 4:00:53 PM FuncionEvaluacionJenetics validarEstado
+WARNING: Estado vacío o nulo después de ejecutar la simulación.
+Mar 28, 2025 4:00:53 PM FuncionEvaluacionJenetics evaluarResultado
+WARNING: Ninguna simulación arrojó resultados válidos.
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 36486.50[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[33m[ELITE]    Fitness: 31973.00[0m
+[33m[ELITE]    Fitness: 31471.50[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 12:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 36486.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       29276.16[0m
+[32m[GENÉTICO]    Diversidad:             12.10[0m
+[31m[GENÉTICO]    Peor Fitness:           0.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    80.75 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:00:56 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=12, Mejor Fitness Generación=36486.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 12 procesada. MejorFitness=36486.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 36486.50[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[33m[ELITE]    Fitness: 31973.00[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 13:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 36486.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       28592.89[0m
+[32m[GENÉTICO]    Diversidad:             12.08[0m
+[31m[GENÉTICO]    Peor Fitness:           1883.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    86.36 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:01:02 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=13, Mejor Fitness Generación=36486.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 13 procesada. MejorFitness=36486.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 36486.50[0m
+[33m[ELITE]    Fitness: 34982.00[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 14:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 36486.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       28537.73[0m
+[32m[GENÉTICO]    Diversidad:             12.02[0m
+[31m[GENÉTICO]    Peor Fitness:           -624.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    91.83 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:01:07 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=14, Mejor Fitness Generación=36486.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 14 procesada. MejorFitness=36486.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 37991.00[0m
+[33m[ELITE]    Fitness: 34982.00[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 15:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       29139.53[0m
+[32m[GENÉTICO]    Diversidad:             12.08[0m
+[31m[GENÉTICO]    Peor Fitness:           8904.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    97.30 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:01:12 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=15, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[32m[CHECKPOINT] Guardado correctamente en checkpoint.ser[0m
+[37m[DEBUG] Generación 15 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 37991.00[0m
+[33m[ELITE]    Fitness: 34982.00[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 16:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 37991.00[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       28226.80[0m
+[32m[GENÉTICO]    Diversidad:             12.04[0m
+[31m[GENÉTICO]    Peor Fitness:           2384.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    102.60 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:01:18 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=16, Mejor Fitness Generación=37991.0, Fitness Global=40498.5
+[37m[DEBUG] Generación 16 procesada. MejorFitness=37991.0[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 37991.00[0m
+[33m[ELITE]    Fitness: 34982.00[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 17:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 37991.00[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       28121.48[0m
+[32m[GENÉTICO]    Diversidad:             12.17[0m
+[31m[GENÉTICO]    Peor Fitness:           7399.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    108.00 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:01:23 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=17, Mejor Fitness Generación=37991.0, Fitness Global=40498.5
+[37m[DEBUG] Generación 17 procesada. MejorFitness=37991.0[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 37991.00[0m
+[33m[ELITE]    Fitness: 34982.00[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 18:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       27976.05[0m
+[32m[GENÉTICO]    Diversidad:             12.11[0m
+[31m[GENÉTICO]    Peor Fitness:           5895.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    113.93 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:01:29 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=18, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 18 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 40498.50[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 34982.00[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 19:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 40498.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       28402.32[0m
+[32m[GENÉTICO]    Diversidad:             12.10[0m
+[31m[GENÉTICO]    Peor Fitness:           4390.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    119.38 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:01:35 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=19, Mejor Fitness Generación=40498.5, Fitness Global=40498.5
+[33mDetectado estancamiento en la generación 19[0m
+[37mDiversidad actual: 12.099775982683903[0m
+[37m[DEBUG] Generación 19 procesada. MejorFitness=40498.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 40498.50[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 34982.00[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 20:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 40498.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       27319.08[0m
+[32m[GENÉTICO]    Diversidad:             12.29[0m
+[31m[GENÉTICO]    Peor Fitness:           880.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    125.56 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:01:41 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=20, Mejor Fitness Generación=40498.5, Fitness Global=40498.5
+[33mDetectado estancamiento en la generación 20[0m
+[37mDiversidad actual: 12.286319040799341[0m
+[37m[DEBUG] Generación 20 procesada. MejorFitness=40498.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 40498.50[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 34982.00[0m
+[33m[ELITE]    Fitness: 34480.50[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 21:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 40498.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       26637.04[0m
+[32m[GENÉTICO]    Diversidad:             12.35[0m
+[31m[GENÉTICO]    Peor Fitness:           -123.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    131.56 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:01:47 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=21, Mejor Fitness Generación=40498.5, Fitness Global=40498.5
+[33mDetectado estancamiento en la generación 21[0m
+[37mDiversidad actual: 12.353539361140232[0m
+[37m[DEBUG] Generación 21 procesada. MejorFitness=40498.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 34982.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[33m[ELITE]    Fitness: 31973.00[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 22:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       27374.25[0m
+[32m[GENÉTICO]    Diversidad:             12.29[0m
+[31m[GENÉTICO]    Peor Fitness:           3889.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    137.11 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:01:52 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=22, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 22 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 34982.00[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 23:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       26747.37[0m
+[32m[GENÉTICO]    Diversidad:             12.40[0m
+[31m[GENÉTICO]    Peor Fitness:           8402.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    144.18 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:01:59 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=23, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 23 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[33m[ELITE]    Fitness: 31973.00[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 24:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       27068.33[0m
+[32m[GENÉTICO]    Diversidad:             12.40[0m
+[31m[GENÉTICO]    Peor Fitness:           -2630.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    150.32 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:02:05 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=24, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 24 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[33m[ELITE]    Fitness: 31973.00[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 25:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       26973.05[0m
+[32m[GENÉTICO]    Diversidad:             12.38[0m
+[31m[GENÉTICO]    Peor Fitness:           880.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    156.57 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:02:12 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=25, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 25 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[33m[ELITE]    Fitness: 31973.00[0m
+[33m[ELITE]    Fitness: 31471.50[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 26:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 33979.00[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       27158.60[0m
+[32m[GENÉTICO]    Diversidad:             12.28[0m
+[31m[GENÉTICO]    Peor Fitness:           -1126.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    163.18 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:02:18 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=26, Mejor Fitness Generación=33979.0, Fitness Global=40498.5
+[37m[DEBUG] Generación 26 procesada. MejorFitness=33979.0[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[33m[ELITE]    Fitness: 31973.00[0m
+[33m[ELITE]    Fitness: 31471.50[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 27:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 33979.00[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       27800.52[0m
+[32m[GENÉTICO]    Diversidad:             12.29[0m
+[31m[GENÉTICO]    Peor Fitness:           2384.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    168.92 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:02:24 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=27, Mejor Fitness Generación=33979.0, Fitness Global=40498.5
+[37m[DEBUG] Generación 27 procesada. MejorFitness=33979.0[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 37991.00[0m
+[33m[ELITE]    Fitness: 36988.00[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 28:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 37991.00[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       27108.45[0m
+[32m[GENÉTICO]    Diversidad:             12.30[0m
+[31m[GENÉTICO]    Peor Fitness:           378.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    174.91 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:02:30 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=28, Mejor Fitness Generación=37991.0, Fitness Global=40498.5
+[37m[DEBUG] Generación 28 procesada. MejorFitness=37991.0[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 37991.00[0m
+[33m[ELITE]    Fitness: 34982.00[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 29:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 37991.00[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       26983.08[0m
+[32m[GENÉTICO]    Diversidad:             12.29[0m
+[31m[GENÉTICO]    Peor Fitness:           5393.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    180.56 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:02:36 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=29, Mejor Fitness Generación=37991.0, Fitness Global=40498.5
+[37m[DEBUG] Generación 29 procesada. MejorFitness=37991.0[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 37991.00[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[33m[ELITE]    Fitness: 31973.00[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 30:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 37991.00[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       27810.55[0m
+[32m[GENÉTICO]    Diversidad:             12.23[0m
+[31m[GENÉTICO]    Peor Fitness:           9405.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    186.04 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:02:41 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=30, Mejor Fitness Generación=37991.0, Fitness Global=40498.5
+[32m[CHECKPOINT] Guardado correctamente en checkpoint.ser[0m
+[37m[DEBUG] Generación 30 procesada. MejorFitness=37991.0[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 37991.00[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[33m[ELITE]    Fitness: 31973.00[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 31:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 37991.00[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       29134.51[0m
+[32m[GENÉTICO]    Diversidad:             12.22[0m
+[31m[GENÉTICO]    Peor Fitness:           9405.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    191.47 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:02:47 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=31, Mejor Fitness Generación=37991.0, Fitness Global=40498.5
+[37m[DEBUG] Generación 31 procesada. MejorFitness=37991.0[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 38994.00[0m
+[33m[ELITE]    Fitness: 34982.00[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 32:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 38994.00[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       28708.24[0m
+[32m[GENÉTICO]    Diversidad:             12.29[0m
+[31m[GENÉTICO]    Peor Fitness:           7901.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    196.82 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:02:52 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=32, Mejor Fitness Generación=38994.0, Fitness Global=40498.5
+[37m[DEBUG] Generación 32 procesada. MejorFitness=38994.0[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 40498.50[0m
+[33m[ELITE]    Fitness: 34480.50[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 33:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 40498.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       28487.58[0m
+[32m[GENÉTICO]    Diversidad:             12.43[0m
+[31m[GENÉTICO]    Peor Fitness:           4390.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    202.79 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:02:58 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=33, Mejor Fitness Generación=40498.5, Fitness Global=40498.5
+[33mDetectado estancamiento en la generación 33[0m
+[37mDiversidad actual: 12.432644409386885[0m
+[37m[DEBUG] Generación 33 procesada. MejorFitness=40498.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 40498.50[0m
+[33m[ELITE]    Fitness: 34480.50[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 34:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 40498.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       27655.09[0m
+[32m[GENÉTICO]    Diversidad:             12.46[0m
+[31m[GENÉTICO]    Peor Fitness:           5895.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    208.11 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:03:03 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=34, Mejor Fitness Generación=40498.5, Fitness Global=40498.5
+[33mDetectado estancamiento en la generación 34[0m
+[37mDiversidad actual: 12.459609322494762[0m
+[37m[DEBUG] Generación 34 procesada. MejorFitness=40498.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 40498.50[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 34480.50[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 35:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 40498.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       27845.66[0m
+[32m[GENÉTICO]    Diversidad:             12.53[0m
+[31m[GENÉTICO]    Peor Fitness:           5895.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    213.56 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:03:09 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=35, Mejor Fitness Generación=40498.5, Fitness Global=40498.5
+[33mDetectado estancamiento en la generación 35[0m
+[37mDiversidad actual: 12.534371490196264[0m
+[37m[DEBUG] Generación 35 procesada. MejorFitness=40498.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 34480.50[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 36:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       29194.69[0m
+[32m[GENÉTICO]    Diversidad:             12.55[0m
+[31m[GENÉTICO]    Peor Fitness:           17931.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    218.94 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:03:14 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=36, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 36 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 34480.50[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32476.00[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 37:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       27945.97[0m
+[32m[GENÉTICO]    Diversidad:             12.66[0m
+[31m[GENÉTICO]    Peor Fitness:           3387.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    224.50 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:03:20 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=37, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 37 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 34480.50[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 38:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       27619.98[0m
+[32m[GENÉTICO]    Diversidad:             12.64[0m
+[31m[GENÉTICO]    Peor Fitness:           880.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    230.19 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:03:25 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=38, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 38 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 34480.50[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 39:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       27283.98[0m
+[32m[GENÉTICO]    Diversidad:             12.50[0m
+[31m[GENÉTICO]    Peor Fitness:           -1627.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    235.82 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:03:31 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=39, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 39 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 34480.50[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 40:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       27223.80[0m
+[32m[GENÉTICO]    Diversidad:             12.46[0m
+[31m[GENÉTICO]    Peor Fitness:           5393.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    241.26 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:03:36 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=40, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 40 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 34480.50[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 41:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       27258.90[0m
+[32m[GENÉTICO]    Diversidad:             12.45[0m
+[31m[GENÉTICO]    Peor Fitness:           -2630.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    246.73 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:03:42 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=41, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 41 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 34480.50[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 42:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       28276.95[0m
+[32m[GENÉTICO]    Diversidad:             12.39[0m
+[31m[GENÉTICO]    Peor Fitness:           7399.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    251.94 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:03:47 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=42, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 42 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39997.00[0m
+[33m[ELITE]    Fitness: 34480.50[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 43:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39997.00[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       27369.23[0m
+[32m[GENÉTICO]    Diversidad:             12.45[0m
+[31m[GENÉTICO]    Peor Fitness:           7901.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    257.47 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:03:53 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=43, Mejor Fitness Generación=39997.0, Fitness Global=40498.5
+[37m[DEBUG] Generación 43 procesada. MejorFitness=39997.0[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 34480.50[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[33m[ELITE]    Fitness: 31973.00[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 44:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 34480.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       28001.12[0m
+[32m[GENÉTICO]    Diversidad:             12.19[0m
+[31m[GENÉTICO]    Peor Fitness:           13417.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    263.57 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:03:59 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=44, Mejor Fitness Generación=34480.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 44 procesada. MejorFitness=34480.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 34480.50[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[33m[ELITE]    Fitness: 31973.00[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 45:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 34480.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       27971.03[0m
+[32m[GENÉTICO]    Diversidad:             12.23[0m
+[31m[GENÉTICO]    Peor Fitness:           -624.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    268.91 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:04:04 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=45, Mejor Fitness Generación=34480.5, Fitness Global=40498.5
+[32m[CHECKPOINT] Guardado correctamente en checkpoint.ser[0m
+[37m[DEBUG] Generación 45 procesada. MejorFitness=34480.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[33m[ELITE]    Fitness: 31973.00[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 46:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       28477.55[0m
+[32m[GENÉTICO]    Diversidad:             12.22[0m
+[31m[GENÉTICO]    Peor Fitness:           1381.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    274.19 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:04:09 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=46, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 46 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 35985.00[0m
+[33m[ELITE]    Fitness: 34982.00[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 47:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 35985.00[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       28958.99[0m
+[32m[GENÉTICO]    Diversidad:             12.34[0m
+[31m[GENÉTICO]    Peor Fitness:           3387.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    279.54 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:04:15 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=47, Mejor Fitness Generación=35985.0, Fitness Global=40498.5
+[37m[DEBUG] Generación 47 procesada. MejorFitness=35985.0[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 35985.00[0m
+[33m[ELITE]    Fitness: 34982.00[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 48:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 35985.00[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       28096.41[0m
+[32m[GENÉTICO]    Diversidad:             12.36[0m
+[31m[GENÉTICO]    Peor Fitness:           8402.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    284.92 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:04:20 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=48, Mejor Fitness Generación=35985.0, Fitness Global=40498.5
+[37m[DEBUG] Generación 48 procesada. MejorFitness=35985.0[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 35985.00[0m
+[33m[ELITE]    Fitness: 34982.00[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 49:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 35985.00[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       27514.67[0m
+[32m[GENÉTICO]    Diversidad:             12.47[0m
+[31m[GENÉTICO]    Peor Fitness:           5393.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    290.60 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:04:26 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=49, Mejor Fitness Generación=35985.0, Fitness Global=40498.5
+[37m[DEBUG] Generación 49 procesada. MejorFitness=35985.0[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 35985.00[0m
+[33m[ELITE]    Fitness: 34982.00[0m
+[33m[ELITE]    Fitness: 34480.50[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 50:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       27971.03[0m
+[32m[GENÉTICO]    Diversidad:             12.48[0m
+[31m[GENÉTICO]    Peor Fitness:           880.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    296.11 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:04:31 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=50, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 50 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 35985.00[0m
+[33m[ELITE]    Fitness: 34982.00[0m
+[33m[ELITE]    Fitness: 34480.50[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 51:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       27680.16[0m
+[32m[GENÉTICO]    Diversidad:             12.51[0m
+[31m[GENÉTICO]    Peor Fitness:           3387.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    301.61 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:04:37 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=51, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 51 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 35985.00[0m
+[33m[ELITE]    Fitness: 34982.00[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 52:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       28021.18[0m
+[32m[GENÉTICO]    Diversidad:             12.38[0m
+[31m[GENÉTICO]    Peor Fitness:           7901.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    306.91 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:04:42 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=52, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 52 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 34982.00[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 53:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       28141.54[0m
+[32m[GENÉTICO]    Diversidad:             12.29[0m
+[31m[GENÉTICO]    Peor Fitness:           1883.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    312.22 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:04:47 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=53, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 53 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 34982.00[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 54:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       27630.01[0m
+[32m[GENÉTICO]    Diversidad:             12.35[0m
+[31m[GENÉTICO]    Peor Fitness:           2886.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    317.80 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:04:53 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=54, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 54 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 34982.00[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 55:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       26351.19[0m
+[32m[GENÉTICO]    Diversidad:             12.42[0m
+[31m[GENÉTICO]    Peor Fitness:           -1627.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    323.93 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:04:59 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=55, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 55 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 34982.00[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 56:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       26526.71[0m
+[32m[GENÉTICO]    Diversidad:             12.38[0m
+[31m[GENÉTICO]    Peor Fitness:           3889.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    329.14 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:05:04 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=56, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 56 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 34982.00[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 57:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       26802.54[0m
+[32m[GENÉTICO]    Diversidad:             12.42[0m
+[31m[GENÉTICO]    Peor Fitness:           15423.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    334.43 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:05:10 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=57, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 57 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 34982.00[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[33m[ELITE]    Fitness: 31973.00[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 58:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 34982.00[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       26346.17[0m
+[32m[GENÉTICO]    Diversidad:             12.64[0m
+[31m[GENÉTICO]    Peor Fitness:           -123.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    339.82 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:05:15 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=58, Mejor Fitness Generación=34982.0, Fitness Global=40498.5
+[37m[DEBUG] Generación 58 procesada. MejorFitness=34982.0[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 34982.00[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[33m[ELITE]    Fitness: 31973.00[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 59:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 34982.00[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       26446.47[0m
+[32m[GENÉTICO]    Diversidad:             12.62[0m
+[31m[GENÉTICO]    Peor Fitness:           12414.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    345.13 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:05:20 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=59, Mejor Fitness Generación=34982.0, Fitness Global=40498.5
+[37m[DEBUG] Generación 59 procesada. MejorFitness=34982.0[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 34982.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[33m[ELITE]    Fitness: 31973.00[0m
+[33m[ELITE]    Fitness: 31471.50[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 60:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 34982.00[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       26973.05[0m
+[32m[GENÉTICO]    Diversidad:             12.49[0m
+[31m[GENÉTICO]    Peor Fitness:           5895.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    350.83 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:05:26 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=60, Mejor Fitness Generación=34982.0, Fitness Global=40498.5
+[32m[CHECKPOINT] Guardado correctamente en checkpoint.ser[0m
+[37m[DEBUG] Generación 60 procesada. MejorFitness=34982.0[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 34982.00[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[33m[ELITE]    Fitness: 31973.00[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 61:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 34982.00[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       26526.71[0m
+[32m[GENÉTICO]    Diversidad:             12.42[0m
+[31m[GENÉTICO]    Peor Fitness:           4892.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    356.88 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:05:32 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=61, Mejor Fitness Generación=34982.0, Fitness Global=40498.5
+[37m[DEBUG] Generación 61 procesada. MejorFitness=34982.0[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 34982.00[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[33m[ELITE]    Fitness: 31973.00[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 62:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 34982.00[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       26968.03[0m
+[32m[GENÉTICO]    Diversidad:             12.35[0m
+[31m[GENÉTICO]    Peor Fitness:           3387.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    362.33 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:05:37 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=62, Mejor Fitness Generación=34982.0, Fitness Global=40498.5
+[37m[DEBUG] Generación 62 procesada. MejorFitness=34982.0[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 34982.00[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 63:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       27123.50[0m
+[32m[GENÉTICO]    Diversidad:             12.34[0m
+[31m[GENÉTICO]    Peor Fitness:           8904.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    367.71 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:05:43 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=63, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 63 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 34982.00[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 64:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       27695.21[0m
+[32m[GENÉTICO]    Diversidad:             12.13[0m
+[31m[GENÉTICO]    Peor Fitness:           7901.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    373.18 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:05:48 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=64, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 64 procesada. MejorFitness=39495.5[0m
+Mar 28, 2025 4:05:51 PM FuncionEvaluacionJenetics validarEstado
+WARNING: Estado vacío o nulo después de ejecutar la simulación.
+Mar 28, 2025 4:05:51 PM FuncionEvaluacionJenetics validarEstado
+WARNING: Estado vacío o nulo después de ejecutar la simulación.
+Mar 28, 2025 4:05:51 PM FuncionEvaluacionJenetics evaluarResultado
+WARNING: Ninguna simulación arrojó resultados válidos.
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 34982.00[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 65:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       26407.58[0m
+[32m[GENÉTICO]    Diversidad:             12.34[0m
+[31m[GENÉTICO]    Peor Fitness:           0.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    378.51 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:05:54 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=65, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 65 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 37489.50[0m
+[33m[ELITE]    Fitness: 34982.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 66:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       27830.61[0m
+[32m[GENÉTICO]    Diversidad:             12.30[0m
+[31m[GENÉTICO]    Peor Fitness:           16426.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    384.26 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:05:59 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=66, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 66 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 37489.50[0m
+[33m[ELITE]    Fitness: 34480.50[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 67:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       27444.46[0m
+[32m[GENÉTICO]    Diversidad:             12.41[0m
+[31m[GENÉTICO]    Peor Fitness:           6396.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    389.58 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:06:05 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=67, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 67 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 37489.50[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 68:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       27093.41[0m
+[32m[GENÉTICO]    Diversidad:             12.37[0m
+[31m[GENÉTICO]    Peor Fitness:           4390.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    394.81 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:06:10 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=68, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 68 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 40498.50[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 37489.50[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 69:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 40498.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       28171.63[0m
+[32m[GENÉTICO]    Diversidad:             12.37[0m
+[31m[GENÉTICO]    Peor Fitness:           1883.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    400.21 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:06:15 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=69, Mejor Fitness Generación=40498.5, Fitness Global=40498.5
+[33mDetectado estancamiento en la generación 69[0m
+[37mDiversidad actual: 12.371883061561006[0m
+[37m[DEBUG] Generación 69 procesada. MejorFitness=40498.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 37489.50[0m
+[33m[ELITE]    Fitness: 34480.50[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 70:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       28447.46[0m
+[32m[GENÉTICO]    Diversidad:             12.38[0m
+[31m[GENÉTICO]    Peor Fitness:           4892.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    405.45 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:06:21 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=70, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 70 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 37489.50[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 71:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       27434.43[0m
+[32m[GENÉTICO]    Diversidad:             12.27[0m
+[31m[GENÉTICO]    Peor Fitness:           6898.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    411.27 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:06:26 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=71, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 71 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[33m[ELITE]    Fitness: 31973.00[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 72:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       27459.50[0m
+[32m[GENÉTICO]    Diversidad:             12.29[0m
+[31m[GENÉTICO]    Peor Fitness:           880.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    416.72 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:06:32 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=72, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 72 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 37991.00[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 73:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       27213.77[0m
+[32m[GENÉTICO]    Diversidad:             12.33[0m
+[31m[GENÉTICO]    Peor Fitness:           -624.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    422.12 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:06:37 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=73, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 73 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 40498.50[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 34480.50[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 74:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 40498.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       26802.54[0m
+[32m[GENÉTICO]    Diversidad:             12.43[0m
+[31m[GENÉTICO]    Peor Fitness:           1883.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    427.50 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:06:43 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=74, Mejor Fitness Generación=40498.5, Fitness Global=40498.5
+[33mDetectado estancamiento en la generación 74[0m
+[37mDiversidad actual: 12.43280902619507[0m
+[37m[DEBUG] Generación 74 procesada. MejorFitness=40498.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[33m[ELITE]    Fitness: 31973.00[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 75:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       27248.87[0m
+[32m[GENÉTICO]    Diversidad:             12.49[0m
+[31m[GENÉTICO]    Peor Fitness:           6396.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    432.81 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:06:48 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=75, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[32m[CHECKPOINT] Guardado correctamente en checkpoint.ser[0m
+[37m[DEBUG] Generación 75 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[33m[ELITE]    Fitness: 31973.00[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 76:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       26792.51[0m
+[32m[GENÉTICO]    Diversidad:             12.37[0m
+[31m[GENÉTICO]    Peor Fitness:           1381.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    438.21 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:06:53 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=76, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 76 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[33m[ELITE]    Fitness: 31973.00[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 77:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       27339.14[0m
+[32m[GENÉTICO]    Diversidad:             12.30[0m
+[31m[GENÉTICO]    Peor Fitness:           1381.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    444.23 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:06:59 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=77, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 77 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[33m[ELITE]    Fitness: 31973.00[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 78:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       27735.33[0m
+[32m[GENÉTICO]    Diversidad:             12.25[0m
+[31m[GENÉTICO]    Peor Fitness:           12414.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    449.87 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:07:05 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=78, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 78 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 38492.50[0m
+[33m[ELITE]    Fitness: 34982.00[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 79:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       27168.63[0m
+[32m[GENÉTICO]    Diversidad:             12.40[0m
+[31m[GENÉTICO]    Peor Fitness:           7901.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    455.27 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:07:10 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=79, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 79 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 38492.50[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 80:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       26652.09[0m
+[32m[GENÉTICO]    Diversidad:             12.33[0m
+[31m[GENÉTICO]    Peor Fitness:           6898.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    460.72 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:07:16 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=80, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 80 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 38492.50[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 31973.00[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 81:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       27339.14[0m
+[32m[GENÉTICO]    Diversidad:             12.24[0m
+[31m[GENÉTICO]    Peor Fitness:           10408.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    466.01 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:07:21 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=81, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 81 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[33m[ELITE]    Fitness: 31973.00[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 82:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       27334.13[0m
+[32m[GENÉTICO]    Diversidad:             12.27[0m
+[31m[GENÉTICO]    Peor Fitness:           15423.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    472.03 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:07:27 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=82, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 82 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[33m[ELITE]    Fitness: 31973.00[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 83:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       26311.07[0m
+[32m[GENÉTICO]    Diversidad:             12.31[0m
+[31m[GENÉTICO]    Peor Fitness:           5895.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    477.65 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:07:33 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=83, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 83 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[33m[ELITE]    Fitness: 31973.00[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 84:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       26872.75[0m
+[32m[GENÉTICO]    Diversidad:             12.34[0m
+[31m[GENÉTICO]    Peor Fitness:           16928.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    483.63 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:07:39 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=84, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 84 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 34480.50[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 85:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       26677.16[0m
+[32m[GENÉTICO]    Diversidad:             12.15[0m
+[31m[GENÉTICO]    Peor Fitness:           4892.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    490.03 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:07:45 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=85, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 85 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[33m[ELITE]    Fitness: 31973.00[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 86:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       27294.01[0m
+[32m[GENÉTICO]    Diversidad:             12.08[0m
+[31m[GENÉTICO]    Peor Fitness:           6898.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    495.57 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:07:51 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=86, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 86 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[33m[ELITE]    Fitness: 31973.00[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 87:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       27043.26[0m
+[32m[GENÉTICO]    Diversidad:             11.90[0m
+[31m[GENÉTICO]    Peor Fitness:           1883.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    501.33 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:07:56 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=87, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 87 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 34480.50[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 88:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       27469.53[0m
+[32m[GENÉTICO]    Diversidad:             11.68[0m
+[31m[GENÉTICO]    Peor Fitness:           4892.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    506.66 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:08:02 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=88, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 88 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 34480.50[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[33m[ELITE]    Fitness: 30970.00[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 89:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       27344.16[0m
+[32m[GENÉTICO]    Diversidad:             11.72[0m
+[31m[GENÉTICO]    Peor Fitness:           378.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    512.14 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:08:07 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=89, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 89 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 34480.50[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[33m[ELITE]    Fitness: 31471.50[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 90:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       26912.87[0m
+[32m[GENÉTICO]    Diversidad:             11.82[0m
+[31m[GENÉTICO]    Peor Fitness:           7901.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    517.53 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:08:13 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=90, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[32m[CHECKPOINT] Guardado correctamente en checkpoint.ser[0m
+[37m[DEBUG] Generación 90 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 34480.50[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[33m[ELITE]    Fitness: 31973.00[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 91:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       26622.00[0m
+[32m[GENÉTICO]    Diversidad:             11.95[0m
+[31m[GENÉTICO]    Peor Fitness:           880.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    522.96 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:08:18 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=91, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 91 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 34480.50[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[33m[ELITE]    Fitness: 31973.00[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 92:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       27755.39[0m
+[32m[GENÉTICO]    Diversidad:             11.79[0m
+[31m[GENÉTICO]    Peor Fitness:           5895.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    528.34 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:08:24 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=92, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 92 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 34480.50[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[33m[ELITE]    Fitness: 31973.00[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 93:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       27830.61[0m
+[32m[GENÉTICO]    Diversidad:             11.94[0m
+[31m[GENÉTICO]    Peor Fitness:           6898.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    534.26 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:08:29 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=93, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 93 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 34480.50[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 94:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       28271.93[0m
+[32m[GENÉTICO]    Diversidad:             11.84[0m
+[31m[GENÉTICO]    Peor Fitness:           1381.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    539.75 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:08:35 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=94, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 94 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 34480.50[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 95:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       27409.35[0m
+[32m[GENÉTICO]    Diversidad:             11.93[0m
+[31m[GENÉTICO]    Peor Fitness:           3889.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    545.08 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:08:40 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=95, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 95 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 34480.50[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[33m[ELITE]    Fitness: 31973.00[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 96:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       26501.64[0m
+[32m[GENÉTICO]    Diversidad:             12.12[0m
+[31m[GENÉTICO]    Peor Fitness:           6898.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    550.40 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:08:46 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=96, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 96 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 34480.50[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[33m[ELITE]    Fitness: 31973.00[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 97:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       26998.12[0m
+[32m[GENÉTICO]    Diversidad:             12.10[0m
+[31m[GENÉTICO]    Peor Fitness:           9907.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    555.76 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:08:51 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=97, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 97 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 34480.50[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[33m[ELITE]    Fitness: 31973.00[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 98:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       27163.62[0m
+[32m[GENÉTICO]    Diversidad:             12.09[0m
+[31m[GENÉTICO]    Peor Fitness:           4390.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    561.84 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:08:57 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=98, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 98 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 38492.50[0m
+[33m[ELITE]    Fitness: 36988.00[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 99:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       26937.94[0m
+[32m[GENÉTICO]    Diversidad:             12.04[0m
+[31m[GENÉTICO]    Peor Fitness:           4892.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    567.19 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:09:02 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=99, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 99 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 38492.50[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[33m[ELITE]    Fitness: 31973.00[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 100:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       27013.17[0m
+[32m[GENÉTICO]    Diversidad:             12.06[0m
+[31m[GENÉTICO]    Peor Fitness:           5393.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    572.54 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:09:08 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=100, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 100 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 34480.50[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[33m[ELITE]    Fitness: 31973.00[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 101:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       28176.65[0m
+[32m[GENÉTICO]    Diversidad:             11.78[0m
+[31m[GENÉTICO]    Peor Fitness:           8904.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    577.76 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:09:13 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=101, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 101 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 34480.50[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 102:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       27780.46[0m
+[32m[GENÉTICO]    Diversidad:             12.03[0m
+[31m[GENÉTICO]    Peor Fitness:           6396.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    583.19 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:09:18 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=102, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 102 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[33m[ELITE]    Fitness: 31973.00[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 103:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       27961.00[0m
+[32m[GENÉTICO]    Diversidad:             11.92[0m
+[31m[GENÉTICO]    Peor Fitness:           6898.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    588.48 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:09:24 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=103, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 103 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[33m[ELITE]    Fitness: 31973.00[0m
+[33m[ELITE]    Fitness: 30468.50[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 104:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       27825.60[0m
+[32m[GENÉTICO]    Diversidad:             11.81[0m
+[31m[GENÉTICO]    Peor Fitness:           6396.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    594.12 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:09:29 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=104, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 104 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[33m[ELITE]    Fitness: 31973.00[0m
+[33m[ELITE]    Fitness: 28462.50[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 105:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       27053.29[0m
+[32m[GENÉTICO]    Diversidad:             11.94[0m
+[31m[GENÉTICO]    Peor Fitness:           -624.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    599.51 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:09:35 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=105, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[32m[CHECKPOINT] Guardado correctamente en checkpoint.ser[0m
+[37m[DEBUG] Generación 105 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[33m[ELITE]    Fitness: 31973.00[0m
+[33m[ELITE]    Fitness: 30970.00[0m
+[33m[ELITE]    Fitness: 29967.00[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 106:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       27419.38[0m
+[32m[GENÉTICO]    Diversidad:             11.95[0m
+[31m[GENÉTICO]    Peor Fitness:           7901.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    604.98 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:09:40 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=106, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 106 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[33m[ELITE]    Fitness: 31973.00[0m
+[33m[ELITE]    Fitness: 31471.50[0m
+[33m[ELITE]    Fitness: 30468.50[0m
+[33m[ELITE]    Fitness: 26958.00[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 107:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       26556.80[0m
+[32m[GENÉTICO]    Diversidad:             12.00[0m
+[31m[GENÉTICO]    Peor Fitness:           5393.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    610.26 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:09:45 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=107, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 107 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[33m[ELITE]    Fitness: 31973.00[0m
+[33m[ELITE]    Fitness: 31471.50[0m
+[33m[ELITE]    Fitness: 30468.50[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 108:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       26100.44[0m
+[32m[GENÉTICO]    Diversidad:             12.15[0m
+[31m[GENÉTICO]    Peor Fitness:           4390.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    615.63 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:09:51 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=108, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 108 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[33m[ELITE]    Fitness: 31973.00[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 109:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       26080.38[0m
+[32m[GENÉTICO]    Diversidad:             12.04[0m
+[31m[GENÉTICO]    Peor Fitness:           -624.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    621.32 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:09:56 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=109, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 109 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[33m[ELITE]    Fitness: 31973.00[0m
+[33m[ELITE]    Fitness: 30970.00[0m
+[33m[ELITE]    Fitness: 30468.50[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 110:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       25904.85[0m
+[32m[GENÉTICO]    Diversidad:             12.02[0m
+[31m[GENÉTICO]    Peor Fitness:           5895.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    626.85 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:10:02 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=110, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 110 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 31973.00[0m
+[33m[ELITE]    Fitness: 31471.50[0m
+[33m[ELITE]    Fitness: 30468.50[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 111:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       27329.11[0m
+[32m[GENÉTICO]    Diversidad:             11.92[0m
+[31m[GENÉTICO]    Peor Fitness:           2886.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    632.16 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:10:07 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=111, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 111 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[33m[ELITE]    Fitness: 29967.00[0m
+[33m[ELITE]    Fitness: 27459.50[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 112:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       27454.49[0m
+[32m[GENÉTICO]    Diversidad:             12.00[0m
+[31m[GENÉTICO]    Peor Fitness:           2384.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    637.40 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:10:13 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=112, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 112 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[33m[ELITE]    Fitness: 30970.00[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 113:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       27519.68[0m
+[32m[GENÉTICO]    Diversidad:             11.99[0m
+[31m[GENÉTICO]    Peor Fitness:           4390.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    642.69 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:10:18 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=113, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 113 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[33m[ELITE]    Fitness: 31973.00[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 114:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       30443.43[0m
+[32m[GENÉTICO]    Diversidad:             11.72[0m
+[31m[GENÉTICO]    Peor Fitness:           13417.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    647.78 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:10:23 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=114, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 114 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[33m[ELITE]    Fitness: 30468.50[0m
+[33m[ELITE]    Fitness: 29465.50[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 115:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       28903.82[0m
+[32m[GENÉTICO]    Diversidad:             11.77[0m
+[31m[GENÉTICO]    Peor Fitness:           12414.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    653.92 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:10:29 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=115, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 115 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 30468.50[0m
+[33m[ELITE]    Fitness: 29465.50[0m
+[33m[ELITE]    Fitness: 28462.50[0m
+[33m[ELITE]    Fitness: 27961.00[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 116:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       28251.87[0m
+[32m[GENÉTICO]    Diversidad:             11.98[0m
+[31m[GENÉTICO]    Peor Fitness:           7399.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    659.46 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:10:35 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=116, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 116 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 30468.50[0m
+[33m[ELITE]    Fitness: 28462.50[0m
+[33m[ELITE]    Fitness: 27961.00[0m
+[33m[ELITE]    Fitness: 27459.50[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 117:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       28507.64[0m
+[32m[GENÉTICO]    Diversidad:             11.87[0m
+[31m[GENÉTICO]    Peor Fitness:           4390.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    664.81 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:10:40 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=117, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 117 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 33979.00[0m
+[33m[ELITE]    Fitness: 31973.00[0m
+[33m[ELITE]    Fitness: 31471.50[0m
+[33m[ELITE]    Fitness: 30468.50[0m
+[33m[ELITE]    Fitness: 29465.50[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 118:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       30112.44[0m
+[32m[GENÉTICO]    Diversidad:             11.81[0m
+[31m[GENÉTICO]    Peor Fitness:           13919.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    670.16 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:10:45 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=118, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 118 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 30468.50[0m
+[33m[ELITE]    Fitness: 29967.00[0m
+[33m[ELITE]    Fitness: 28462.50[0m
+[33m[ELITE]    Fitness: 27961.00[0m
+[33m[ELITE]    Fitness: 27459.50[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 119:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       28487.58[0m
+[32m[GENÉTICO]    Diversidad:             12.03[0m
+[31m[GENÉTICO]    Peor Fitness:           1381.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    675.34 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:10:51 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=119, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 119 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 30468.50[0m
+[33m[ELITE]    Fitness: 28462.50[0m
+[33m[ELITE]    Fitness: 27459.50[0m
+[33m[ELITE]    Fitness: 26958.00[0m
+[33m[ELITE]    Fitness: 25453.50[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 120:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       29801.51[0m
+[32m[GENÉTICO]    Diversidad:             11.95[0m
+[31m[GENÉTICO]    Peor Fitness:           16928.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    680.81 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:10:56 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=120, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[32m[CHECKPOINT] Guardado correctamente en checkpoint.ser[0m
+[37m[DEBUG] Generación 120 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 28462.50[0m
+[33m[ELITE]    Fitness: 27459.50[0m
+[33m[ELITE]    Fitness: 26958.00[0m
+[33m[ELITE]    Fitness: 25955.00[0m
+[33m[ELITE]    Fitness: 25453.50[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 121:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       29495.59[0m
+[32m[GENÉTICO]    Diversidad:             11.92[0m
+[31m[GENÉTICO]    Peor Fitness:           1883.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    686.14 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:11:01 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=121, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 121 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 31471.50[0m
+[33m[ELITE]    Fitness: 29465.50[0m
+[33m[ELITE]    Fitness: 28964.00[0m
+[33m[ELITE]    Fitness: 28462.50[0m
+[33m[ELITE]    Fitness: 27459.50[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 122:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       29009.14[0m
+[32m[GENÉTICO]    Diversidad:             12.12[0m
+[31m[GENÉTICO]    Peor Fitness:           15423.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    691.52 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:11:07 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=122, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 122 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 31471.50[0m
+[33m[ELITE]    Fitness: 29465.50[0m
+[33m[ELITE]    Fitness: 28462.50[0m
+[33m[ELITE]    Fitness: 27459.50[0m
+[33m[ELITE]    Fitness: 26456.50[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 123:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       28868.72[0m
+[32m[GENÉTICO]    Diversidad:             12.35[0m
+[31m[GENÉTICO]    Peor Fitness:           6396.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    696.77 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:11:12 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=123, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 123 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[33m[ELITE]    Fitness: 31973.00[0m
+[33m[ELITE]    Fitness: 31471.50[0m
+[33m[ELITE]    Fitness: 30970.00[0m
+[33m[ELITE]    Fitness: 29465.50[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 124:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       28251.87[0m
+[32m[GENÉTICO]    Diversidad:             12.10[0m
+[31m[GENÉTICO]    Peor Fitness:           3387.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    702.27 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:11:17 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=124, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 124 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[33m[ELITE]    Fitness: 30970.00[0m
+[33m[ELITE]    Fitness: 30468.50[0m
+[33m[ELITE]    Fitness: 29465.50[0m
+[33m[ELITE]    Fitness: 25453.50[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 125:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       29425.38[0m
+[32m[GENÉTICO]    Diversidad:             11.58[0m
+[31m[GENÉTICO]    Peor Fitness:           1883.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    707.39 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:11:23 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=125, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 125 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[33m[ELITE]    Fitness: 30970.00[0m
+[33m[ELITE]    Fitness: 29465.50[0m
+[33m[ELITE]    Fitness: 28964.00[0m
+[33m[ELITE]    Fitness: 25453.50[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 126:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       29254.87[0m
+[32m[GENÉTICO]    Diversidad:             11.54[0m
+[31m[GENÉTICO]    Peor Fitness:           3889.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    713.19 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:11:28 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=126, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 126 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 31471.50[0m
+[33m[ELITE]    Fitness: 30970.00[0m
+[33m[ELITE]    Fitness: 29465.50[0m
+[33m[ELITE]    Fitness: 28964.00[0m
+[33m[ELITE]    Fitness: 25955.00[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 127:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       27966.02[0m
+[32m[GENÉTICO]    Diversidad:             11.60[0m
+[31m[GENÉTICO]    Peor Fitness:           3889.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    718.71 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:11:34 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=127, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 127 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 31471.50[0m
+[33m[ELITE]    Fitness: 30970.00[0m
+[33m[ELITE]    Fitness: 27459.50[0m
+[33m[ELITE]    Fitness: 25955.00[0m
+[33m[ELITE]    Fitness: 24952.00[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 128:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       27549.77[0m
+[32m[GENÉTICO]    Diversidad:             11.82[0m
+[31m[GENÉTICO]    Peor Fitness:           8904.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    724.05 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:11:39 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=128, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 128 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 35483.50[0m
+[33m[ELITE]    Fitness: 31973.00[0m
+[33m[ELITE]    Fitness: 30970.00[0m
+[33m[ELITE]    Fitness: 27459.50[0m
+[33m[ELITE]    Fitness: 25955.00[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 129:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       27309.05[0m
+[32m[GENÉTICO]    Diversidad:             12.28[0m
+[31m[GENÉTICO]    Peor Fitness:           2886.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    729.30 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:11:44 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=129, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 129 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 35483.50[0m
+[33m[ELITE]    Fitness: 31973.00[0m
+[33m[ELITE]    Fitness: 29465.50[0m
+[33m[ELITE]    Fitness: 28462.50[0m
+[33m[ELITE]    Fitness: 26958.00[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 130:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       29189.68[0m
+[32m[GENÉTICO]    Diversidad:             12.24[0m
+[31m[GENÉTICO]    Peor Fitness:           13919.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    734.57 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:11:50 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=130, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 130 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 35483.50[0m
+[33m[ELITE]    Fitness: 31973.00[0m
+[33m[ELITE]    Fitness: 31471.50[0m
+[33m[ELITE]    Fitness: 27961.00[0m
+[33m[ELITE]    Fitness: 26958.00[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 131:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       28106.44[0m
+[32m[GENÉTICO]    Diversidad:             12.42[0m
+[31m[GENÉTICO]    Peor Fitness:           378.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    740.08 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:11:55 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=131, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 131 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 37991.00[0m
+[33m[ELITE]    Fitness: 35483.50[0m
+[33m[ELITE]    Fitness: 31973.00[0m
+[33m[ELITE]    Fitness: 31471.50[0m
+[33m[ELITE]    Fitness: 29465.50[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 132:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       27584.88[0m
+[32m[GENÉTICO]    Diversidad:             12.43[0m
+[31m[GENÉTICO]    Peor Fitness:           378.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    745.50 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:12:01 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=132, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 132 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 31973.00[0m
+[33m[ELITE]    Fitness: 30468.50[0m
+[33m[ELITE]    Fitness: 29465.50[0m
+[33m[ELITE]    Fitness: 28964.00[0m
+[33m[ELITE]    Fitness: 28462.50[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 133:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       27048.27[0m
+[32m[GENÉTICO]    Diversidad:             12.52[0m
+[31m[GENÉTICO]    Peor Fitness:           5393.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    750.95 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:12:06 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=133, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 133 procesada. MejorFitness=39495.5[0m
+Mar 28, 2025 4:12:07 PM FuncionEvaluacionJenetics validarEstado
+WARNING: Estado vacío o nulo después de ejecutar la simulación.
+Mar 28, 2025 4:12:07 PM FuncionEvaluacionJenetics validarEstado
+WARNING: Estado vacío o nulo después de ejecutar la simulación.
+Mar 28, 2025 4:12:07 PM FuncionEvaluacionJenetics evaluarResultado
+WARNING: Ninguna simulación arrojó resultados válidos.
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 31973.00[0m
+[33m[ELITE]    Fitness: 30468.50[0m
+[33m[ELITE]    Fitness: 28964.00[0m
+[33m[ELITE]    Fitness: 25453.50[0m
+[33m[ELITE]    Fitness: 24952.00[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 134:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       26161.85[0m
+[32m[GENÉTICO]    Diversidad:             12.62[0m
+[31m[GENÉTICO]    Peor Fitness:           0.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    756.24 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:12:11 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=134, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 134 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 40498.50[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 33477.50[0m
+[33m[ELITE]    Fitness: 31973.00[0m
+[33m[ELITE]    Fitness: 30468.50[0m
+[33m[ELITE]    Fitness: 28964.00[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 135:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 40498.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       28467.52[0m
+[32m[GENÉTICO]    Diversidad:             12.43[0m
+[31m[GENÉTICO]    Peor Fitness:           1883.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    761.59 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:12:17 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=135, Mejor Fitness Generación=40498.5, Fitness Global=40498.5
+[32m[CHECKPOINT] Guardado correctamente en checkpoint.ser[0m
+[33mDetectado estancamiento en la generación 135[0m
+[37mDiversidad actual: 12.42597085163641[0m
+[37m[DEBUG] Generación 135 procesada. MejorFitness=40498.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 40498.50[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 31973.00[0m
+[33m[ELITE]    Fitness: 31471.50[0m
+[33m[ELITE]    Fitness: 28964.00[0m
+[33m[ELITE]    Fitness: 27961.00[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 136:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 40498.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       29074.33[0m
+[32m[GENÉTICO]    Diversidad:             12.45[0m
+[31m[GENÉTICO]    Peor Fitness:           12916.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    766.89 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:12:22 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=136, Mejor Fitness Generación=40498.5, Fitness Global=40498.5
+[33mDetectado estancamiento en la generación 136[0m
+[37mDiversidad actual: 12.452390442332922[0m
+[37m[DEBUG] Generación 136 procesada. MejorFitness=40498.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 40498.50[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 31973.00[0m
+[33m[ELITE]    Fitness: 29967.00[0m
+[33m[ELITE]    Fitness: 27961.00[0m
+[33m[ELITE]    Fitness: 25955.00[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 137:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 40498.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       29014.15[0m
+[32m[GENÉTICO]    Diversidad:             12.49[0m
+[31m[GENÉTICO]    Peor Fitness:           16928.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    772.74 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:12:28 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=137, Mejor Fitness Generación=40498.5, Fitness Global=40498.5
+[33mDetectado estancamiento en la generación 137[0m
+[37mDiversidad actual: 12.491430530870867[0m
+[37m[DEBUG] Generación 137 procesada. MejorFitness=40498.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 40498.50[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[33m[ELITE]    Fitness: 31973.00[0m
+[33m[ELITE]    Fitness: 27961.00[0m
+[33m[ELITE]    Fitness: 25955.00[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 138:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 40498.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       28016.17[0m
+[32m[GENÉTICO]    Diversidad:             12.45[0m
+[31m[GENÉTICO]    Peor Fitness:           880.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    778.00 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:12:33 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=138, Mejor Fitness Generación=40498.5, Fitness Global=40498.5
+[33mDetectado estancamiento en la generación 138[0m
+[37mDiversidad actual: 12.450512454228193[0m
+[37m[DEBUG] Generación 138 procesada. MejorFitness=40498.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 40498.50[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 32976.00[0m
+[33m[ELITE]    Fitness: 32474.50[0m
+[33m[ELITE]    Fitness: 31973.00[0m
+[33m[ELITE]    Fitness: 30468.50[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 139:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 40498.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       27594.91[0m
+[32m[GENÉTICO]    Diversidad:             12.50[0m
+[31m[GENÉTICO]    Peor Fitness:           1381.50[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    783.57 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:12:39 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=139, Mejor Fitness Generación=40498.5, Fitness Global=40498.5
+[33mDetectado estancamiento en la generación 139[0m
+[37mDiversidad actual: 12.495381707446883[0m
+[37m[DEBUG] Generación 139 procesada. MejorFitness=40498.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 31973.00[0m
+[33m[ELITE]    Fitness: 30970.00[0m
+[33m[ELITE]    Fitness: 30468.50[0m
+[33m[ELITE]    Fitness: 27961.00[0m
+[33m[ELITE]    Fitness: 25955.00[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 140:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         40498.50[0m
+[32m[GENÉTICO]    Promedio Fitness:       27549.77[0m
+[32m[GENÉTICO]    Diversidad:             12.41[0m
+[31m[GENÉTICO]    Peor Fitness:           1883.00[0m
+[33m[GENÉTICO]    Tiempo Transcurrido:    788.99 s[0m
+[34m===============================================[0m
+Mar 28, 2025 4:12:44 PM CSVManager escribirLineaCSV
+INFO: [DEBUG CSV] Escribiendo CSV -> gen=140, Mejor Fitness Generación=39495.5, Fitness Global=40498.5
+[37m[DEBUG] Generación 140 procesada. MejorFitness=39495.5[0m
+[36m[ELITE] Selección de élites:[0m
+[33m[ELITE]    Fitness: 39495.50[0m
+[33m[ELITE]    Fitness: 31471.50[0m
+[33m[ELITE]    Fitness: 28964.00[0m
+[33m[ELITE]    Fitness: 27961.00[0m
+[33m[ELITE]    Fitness: 25955.00[0m
+[33m[ELITE]    Fitness: 25453.50[0m
+[34m===============================================[0m
+[34m[GENÉTICO] GENERACIÓN 141:[0m
+[34m===============================================[0m
+[32m[GENÉTICO]    Mejor Fitness Generación: 39495.50[0m
+[32m[GENÉTICO]    Fitness Global:         
