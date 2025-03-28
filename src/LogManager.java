@@ -46,7 +46,7 @@ public class LogManager {
         if (!hasConsole) {
             ConsoleHandler consoleHandler = new ConsoleHandler();
             consoleHandler.setLevel(Level.ALL);
-            // Formatter que elimina saltos de línea y retornos de carro, y añade exactamente un salto de línea al final.
+            // Formatter que elimina saltos de línea internos (convertidos a espacio) y añade solo un salto al final.
             consoleHandler.setFormatter(new java.util.logging.SimpleFormatter() {
                 @Override
                 public String format(LogRecord record) {
@@ -76,7 +76,6 @@ public class LogManager {
         double bestFitGeneration = result.bestFitness();
         double fitnessGlobal = fitnessEvaluator.getBestFitness();
 
-        // Se envían mensajes sin incluir saltos de línea manuales
         submitLog(Level.INFO, formatWithColor("===============================================", "\u001B[34m"));
         submitLog(Level.INFO, formatWithColor("[GENÉTICO] GENERACIÓN " + gen + ":", "\u001B[34m"));
         submitLog(Level.INFO, formatWithColor("===============================================", "\u001B[34m"));
@@ -88,7 +87,7 @@ public class LogManager {
         submitLog(Level.INFO, formatWithColor(String.format("[GENÉTICO]    Tiempo Transcurrido:    %.2f s", (elapsedTime / 1000.0)), "\u001B[33m"));
         submitLog(Level.INFO, formatWithColor("===============================================", "\u001B[34m"));
 
-        // Escritura en CSV se mantiene síncrona, pues suele ser crítica para el análisis
+        // Escritura en CSV se mantiene síncrona, pues es crítica para el análisis
         csvManager.escribirLineaCSV(
                 gen,
                 bestFitGeneration,
@@ -172,7 +171,6 @@ public class LogManager {
         return ansiColor + message + "\u001B[0m";
     }
 
-    // Método para cerrar el Executor cuando ya no se necesite el logging asíncrono
     public void shutdown() {
         logExecutor.shutdown();
         try {

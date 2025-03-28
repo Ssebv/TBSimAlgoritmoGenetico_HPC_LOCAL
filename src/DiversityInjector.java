@@ -13,7 +13,7 @@ public class DiversityInjector {
     private final java.util.function.Function<Genotype<DoubleGene>, Double> evaluationFunction;
     private final LogManager logManager;
     
-    // Parámetros configurables para inyección de diversidad
+    // Parámetros configurables para inyección de diversidad, obtenidos de Configuracion
     private final double minDiversityThreshold;
     private final double diversityInjectionPercentage;
 
@@ -29,13 +29,14 @@ public class DiversityInjector {
 
     /**
      * Inyecta nuevos individuos en la población si la diversidad cae por debajo del umbral.
-     * Reemplaza aleatoriamente parte de los peores individuos.
+     * Se reemplazan los peores individuos por nuevos cromosomas aleatorios.
      */
     public ISeq<Phenotype<DoubleGene, Double>> injectDiversity(ISeq<Phenotype<DoubleGene, Double>> population) {
         double diversity = calculateDiversity(population);
-        // logManager.logInfo("Diversidad actual: " + diversity);
+        logManager.logInfo("Diversidad actual: " + diversity);
+        
         if (diversity < minDiversityThreshold) {
-            // logManager.logInfo("Diversidad baja detectada. Inyectando nuevos individuos...");
+            logManager.logWarning("Diversidad baja detectada (" + diversity + "). Inyectando nuevos individuos...");
             int numToInject = (int) (population.size() * diversityInjectionPercentage);
             if (numToInject <= 0) numToInject = 1;
             List<Phenotype<DoubleGene, Double>> nuevaPoblacion = new ArrayList<>(population.asList());
@@ -57,6 +58,10 @@ public class DiversityInjector {
         return population;
     }
 
+    /**
+     * Calcula la diversidad promedio de la población basada en la distancia Euclidiana
+     * entre los genotipos de los fenotipos.
+     */
     private double calculateDiversity(ISeq<Phenotype<DoubleGene, Double>> population) {
         double totalDistance = 0.0;
         int comparisons = 0;
@@ -72,6 +77,9 @@ public class DiversityInjector {
         return (comparisons > 0) ? totalDistance / comparisons : 0.0;
     }
 
+    /**
+     * Calcula la distancia Euclidiana entre dos genotipos.
+     */
     private double calculateDistance(Genotype<DoubleGene> g1, Genotype<DoubleGene> g2) {
         double suma = 0.0;
         var genes1 = g1.stream().flatMap(chromosome -> chromosome.stream()).toList();

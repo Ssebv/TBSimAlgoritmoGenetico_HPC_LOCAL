@@ -1,7 +1,4 @@
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.logging.Logger;
 
 public class MainJenetics {
@@ -29,33 +26,15 @@ public class MainJenetics {
             // 5. Loguear detalles del entorno
             logManager.logDetallesDelEntorno(isHPC);
 
-            // 6. Manejo de checkpoint
+            // 6. Manejo de checkpoint: cargar automáticamente si existe.
             CheckpointData checkpointData = null;
             File checkpointFile = new File(config.CHECKPOINT_FILE);
             if (checkpointFile.exists()) {
-                try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
-                    logManager.logInfo("¿Deseas USAR el checkpoint existente? (s/n)");
-                    String resp = reader.readLine().trim().toLowerCase();
-                    if (resp.equals("s") || resp.equals("si")) {
-                        checkpointData = CheckpointManager.cargarCheckpoint(config.CHECKPOINT_FILE);
-                        if (checkpointData == null) {
-                            LOGGER.warning("No se pudo cargar el checkpoint. Se iniciará vacío.");
-                        }
-                    } else {
-                        logManager.logInfo("¿Quieres ELIMINAR el checkpoint existente? (s/n)");
-                        String respDel = reader.readLine().trim().toLowerCase();
-                        if (respDel.equals("s") || respDel.equals("si")) {
-                            if (checkpointFile.delete()) {
-                                LOGGER.info("Checkpoint eliminado a petición del usuario.");
-                            } else {
-                                LOGGER.warning("No se pudo eliminar el archivo de checkpoint.");
-                            }
-                        } else {
-                            LOGGER.info("Se mantiene el checkpoint en disco, pero no se usará.");
-                        }
-                    }
-                } catch (IOException e) {
-                    LOGGER.warning("Error leyendo respuesta del usuario: " + e.getMessage());
+                checkpointData = CheckpointManager.cargarCheckpoint(config.CHECKPOINT_FILE);
+                if (checkpointData != null) {
+                    LOGGER.info("Checkpoint cargado automáticamente desde " + checkpointFile.getAbsolutePath());
+                } else {
+                    LOGGER.warning("No se pudo cargar el checkpoint. Se iniciará desde cero.");
                 }
             } else {
                 LOGGER.info("No existe un checkpoint previo. Se iniciará desde cero.");

@@ -12,18 +12,17 @@ import java.util.List;
 public class DiversityManager {
     private final LogManager logManager;
     private final Configuracion config;
-    // Puedes definir un parámetro configurable para el porcentaje de reemplazo
+    // Porcentaje configurable (podrías obtenerlo de config si lo deseas)
     private final double porcentajeReemplazo;
 
     public DiversityManager(LogManager logManager, Configuracion config) {
         this.logManager = logManager;
         this.config = config;
-        this.porcentajeReemplazo = 0.4;
+        this.porcentajeReemplazo = 0.4; // O bien, config.PORCENTAJE_REEMPLAZO si lo defines en Configuracion
     }
 
     /**
-     * Reintroduce diversidad reemplazando aleatoriamente un porcentaje de la población
-     * con nuevos individuos, manteniendo siempre el mejor.
+     * Reintroduce diversidad reemplazando un porcentaje de los peores individuos por nuevos, preservando siempre el mejor.
      */
     public ISeq<Phenotype<DoubleGene, Double>> reintroduceDiversity(ISeq<Phenotype<DoubleGene, Double>> population) {
         List<Phenotype<DoubleGene, Double>> nuevaPoblacion = new ArrayList<>(population.asList());
@@ -33,26 +32,27 @@ public class DiversityManager {
         Phenotype<DoubleGene, Double> mejorFenotipo = nuevaPoblacion.stream()
                 .max(Comparator.comparingDouble(Phenotype::fitness))
                 .orElseThrow();
-        var mejorGenotipo = mejorFenotipo.genotype();
+        // Ordenar de menor a mayor fitness para identificar a los peores
+        nuevaPoblacion.sort(Comparator.comparingDouble(Phenotype::fitness));
         
         // Calcular el número de individuos a reemplazar
         int numReemplazo = (int) (nuevaPoblacion.size() * porcentajeReemplazo);
         if (numReemplazo <= 0) numReemplazo = 1;
         
-        // Barajar la población para elegir posiciones de forma aleatoria
-        Collections.shuffle(nuevaPoblacion);
-        
-        // Reemplazar los individuos seleccionados por nuevos aleatorios
-        for (int i = 0; i < numReemplazo; i++) {
+        // Reemplazar los peores individuos (los primeros en la lista)
+        for (int i = 0; i < numReemplazo && i < nuevaPoblacion.size(); i++) {
+            // No reemplazamos el mejor individuo (que estará al final tras ordenar)
+            if (nuevaPoblacion.get(i).equals(mejorFenotipo)) continue;
             Genotype<DoubleGene> nuevoGenotipo = Genotype.of(DoubleChromosome.of(1, 5, 60));
-            // Se puede mantener generación 0 o pasar un valor configurable
-            nuevaPoblacion.set(i, Phenotype.of(nuevoGenotipo, 0));
+            // Aquí, puedes evaluar o simplemente crear el fenotipo sin evaluación
+            Phenotype<DoubleGene, Double> nuevoFenotipo = Phenotype.of(nuevoGenotipo, 0);
+            nuevaPoblacion.set(i, nuevoFenotipo);
         }
         
-        // Asegurar que el mejor fenotipo permanezca (lo ubicamos en la posición 0)
-        nuevaPoblacion.set(0, Phenotype.of(mejorGenotipo, 0));
+        // Asegurar que el mejor fenotipo quede en la población: lo ubicamos en la posición 0
+        nuevaPoblacion.set(0, Phenotype.of(mejorFenotipo.genotype(), 0, mejorFenotipo.fitness()));
         
-        // logManager.logInfo("Diversidad reintroducida en la población. (" + numReemplazo + " individuos reemplazados)");
+        logManager.logInfo("Diversidad reintroducida: se reemplazaron " + numReemplazo + " individuos.");
         return ISeq.of(nuevaPoblacion);
     }
 }

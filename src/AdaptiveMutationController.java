@@ -1,14 +1,19 @@
 public class AdaptiveMutationController {
     private int stagnationCount = 0;
-    private final int STAGNATION_THRESHOLD = 5;
+    // Reducir el umbral para que se activen los cambios más pronto
+    private final int STAGNATION_THRESHOLD = 3;
     private final double baseMutationRate;
     private final double maxMutationRate;
+    
+    // Incremento más agresivo: usa 0.5 en lugar de 0.3
+    private final double factorMultiplier = 0.5;
     
     public AdaptiveMutationController(double baseMutationRate, double maxMutationRate) {
         this.baseMutationRate = baseMutationRate;
         this.maxMutationRate = maxMutationRate;
     }
     
+    // Llama a update(true) en generaciones sin mejora y update(false) si hay progreso
     public void update(boolean stagnant) {
         if (stagnant) {
             stagnationCount++;
@@ -19,7 +24,7 @@ public class AdaptiveMutationController {
     
     public double getAdaptiveMutationRate() {
         if (stagnationCount >= STAGNATION_THRESHOLD) {
-            double factor = Math.exp(0.3 * (stagnationCount - STAGNATION_THRESHOLD + 1));
+            double factor = Math.exp(factorMultiplier * (stagnationCount - STAGNATION_THRESHOLD + 1));
             double newRate = baseMutationRate * factor;
             return Math.min(newRate, maxMutationRate);
         }
