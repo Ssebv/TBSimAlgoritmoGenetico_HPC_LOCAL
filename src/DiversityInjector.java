@@ -7,18 +7,26 @@ import io.jenetics.util.ISeq;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.function.Function;
 
+/**
+ * DiversityInjector.java
+ *
+ * Clase encargada de mantener la diversidad genética durante el proceso evolutivo.
+ * Si la diversidad cae bajo un umbral definido, inyecta nuevos individuos aleatorios.
+ */
 public class DiversityInjector {
+
     private final Configuracion config;
-    private final java.util.function.Function<Genotype<DoubleGene>, Double> evaluationFunction;
+    private final Function<Genotype<DoubleGene>, Double> evaluationFunction;
     private final LogManager logManager;
-    
-    // Parámetros configurables para inyección de diversidad, obtenidos de Configuracion
+
     private final double minDiversityThreshold;
     private final double diversityInjectionPercentage;
 
+    // === Constructor ===
     public DiversityInjector(Configuracion config,
-                             java.util.function.Function<Genotype<DoubleGene>, Double> evaluationFunction,
+                             Function<Genotype<DoubleGene>, Double> evaluationFunction,
                              LogManager logManager) {
         this.config = config;
         this.evaluationFunction = evaluationFunction;
@@ -28,66 +36,101 @@ public class DiversityInjector {
     }
 
     /**
-     * Inyecta nuevos individuos en la población si la diversidad cae por debajo del umbral.
-     * Se reemplazan los peores individuos por nuevos cromosomas aleatorios.
+     * Evalúa la diversidad de la población y reemplaza individuos si es necesario.
+     *
+     * @param population Población actual
+     * @return Nueva población con individuos inyectados si se detecta baja diversidad
      */
     public ISeq<Phenotype<DoubleGene, Double>> injectDiversity(ISeq<Phenotype<DoubleGene, Double>> population) {
         double diversity = calculateDiversity(population);
-        logManager.logInfo("Diversidad actual: " + diversity);
-        
+        logManager.logInfo(String.format("Diversidad actual: %.4f", diversity));
+
         if (diversity < minDiversityThreshold) {
-            logManager.logWarning("Diversidad baja detectada (" + diversity + "). Inyectando nuevos individuos...");
-            int numToInject = (int) (population.size() * diversityInjectionPercentage);
-            if (numToInject <= 0) numToInject = 1;
+            logManager.logWarning(String.format("Diversidad baja (%.4f). Inyectando nuevos individuos...", diversity));
+            int toInject = Math.max(1, (int) (population.size() * diversityInjectionPercentage));
+
             List<Phenotype<DoubleGene, Double>> nuevaPoblacion = new ArrayList<>(population.asList());
-            
-            // Ordenar la población de menor a mayor fitness (los peores primero)
-            nuevaPoblacion.sort(Comparator.comparingDouble(Phenotype::fitness));
-            
-            // Reemplazar los peores individuos
-            for (int i = 0; i < numToInject && i < nuevaPoblacion.size(); i++) {
-                Genotype<DoubleGene> randomGenotype = Genotype.of(DoubleChromosome.of(1, 5, 60));
-                double fitness = evaluationFunction.apply(randomGenotype);
-                Phenotype<DoubleGene, Double> nuevoFenotipo = Phenotype.of(randomGenotype, 0, fitness);
-                nuevaPoblacion.set(i, nuevoFenotipo);
+            nuevaPoblacion.sort(Comparator.comparingDouble(Phenotype::fitness)); // Reemplaza los peores
+
+            int reemplazados = 0;
+
+            for (int i = 0; i < nuevaPoblacion.size() && reemplazados < toInject; i++) {
+                Genotype<DoubleGene> candidato = generateSafeRandomGenotype();
+                double fitness = evaluationFunction.apply(candidato);
+
+                if (candidato != null && isFitnessValido(fitness)) {
+                    Phenotype<DoubleGene, Double> nuevo = Phenotype.of(
+                            candidato,
+                            GenerationTracker.getCurrentGeneration(),
+                            fitness
+                    );
+                    nuevaPoblacion.set(i, nuevo);
+                    reemplazados++;
+                } else {
+                    logManager.logWarning("Se generó un individuo inválido. Reintentando...");
+                    i--; // Reintento
+                }
             }
-            
-            logManager.logInfo("Se inyectaron " + numToInject + " nuevos individuos en la población.");
+
+            logManager.logInfo("Individuos inyectados exitosamente: " + reemplazados);
             return ISeq.of(nuevaPoblacion);
         }
-        return population;
+
+        return population; // No se inyectó nada
     }
 
+    // === Genotipo aleatorio seguro ===
+    private Genotype<DoubleGene> generateSafeRandomGenotype() {
+        try {
+            Genotype<DoubleGene> g = Genotype.of(DoubleChromosome.of(1.0, 5.0, 60));
+            return (g != null && g.geneCount() >= 60) ? g : createDefaultGenotype();
+        } catch (Exception e) {
+            logManager.logError("Error generando genotype aleatorio: " + e.getMessage());
+            return createDefaultGenotype();
+        }
+    }
+
+    private Genotype<DoubleGene> createDefaultGenotype() {
+        return Genotype.of(DoubleChromosome.of(1.0, 5.0, 60));
+    }
+
+    private boolean isFitnessValido(double fitness) {
+        return !(Double.isNaN(fitness) || Double.isInfinite(fitness));
+    }
+
+    // === Diversidad ===
+
     /**
-     * Calcula la diversidad promedio de la población basada en la distancia Euclidiana
-     * entre los genotipos de los fenotipos.
+     * Calcula la diversidad promedio entre todos los pares de individuos.
      */
     private double calculateDiversity(ISeq<Phenotype<DoubleGene, Double>> population) {
-        double totalDistance = 0.0;
-        int comparisons = 0;
-        List<Genotype<DoubleGene>> genotypes = population.stream()
-                .map(Phenotype::genotype)
-                .toList();
+        List<Genotype<DoubleGene>> genotypes = population.stream().map(Phenotype::genotype).toList();
+        double totalDistancia = 0.0;
+        int comparaciones = 0;
+
         for (int i = 0; i < genotypes.size(); i++) {
             for (int j = i + 1; j < genotypes.size(); j++) {
-                totalDistance += calculateDistance(genotypes.get(i), genotypes.get(j));
-                comparisons++;
+                totalDistancia += calcularDistancia(genotypes.get(i), genotypes.get(j));
+                comparaciones++;
             }
         }
-        return (comparisons > 0) ? totalDistance / comparisons : 0.0;
+
+        return (comparaciones > 0) ? totalDistancia / comparaciones : 0.0;
     }
 
     /**
-     * Calcula la distancia Euclidiana entre dos genotipos.
+     * Distancia euclidiana entre dos genotipos.
      */
-    private double calculateDistance(Genotype<DoubleGene> g1, Genotype<DoubleGene> g2) {
+    private double calcularDistancia(Genotype<DoubleGene> g1, Genotype<DoubleGene> g2) {
+        var genes1 = g1.stream().flatMap(ch -> ch.stream()).toList();
+        var genes2 = g2.stream().flatMap(ch -> ch.stream()).toList();
+
         double suma = 0.0;
-        var genes1 = g1.stream().flatMap(chromosome -> chromosome.stream()).toList();
-        var genes2 = g2.stream().flatMap(chromosome -> chromosome.stream()).toList();
         for (int i = 0; i < genes1.size(); i++) {
             double diff = genes1.get(i).doubleValue() - genes2.get(i).doubleValue();
             suma += diff * diff;
         }
+
         return Math.sqrt(suma);
     }
 }

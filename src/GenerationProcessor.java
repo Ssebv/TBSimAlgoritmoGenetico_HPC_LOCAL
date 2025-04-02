@@ -3,111 +3,133 @@ import io.jenetics.Genotype;
 import io.jenetics.Phenotype;
 import io.jenetics.engine.EvolutionResult;
 import io.jenetics.util.ISeq;
+
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
+/**
+ * GenerationProcessor.java
+ *
+ * Responsable del procesamiento de cada generación durante la evolución:
+ * - Registro de métricas
+ * - Cálculo de diversidad y estancamiento
+ * - Inyección de diversidad si es necesario
+ */
 public class GenerationProcessor {
+
     private final LogManager logManager;
     private final CSVManager csvManager;
     private final FuncionEvaluacionJenetics fitnessEvaluator;
-    private final CheckpointHandler checkpointHandler;
     private final DiversityInjector diversityInjector;
+
     private EvolutionResult<DoubleGene, Double> lastEvolutionResult;
     private ISeq<Phenotype<DoubleGene, Double>> nextPopulation = null;
     private long startTime;
 
-    public GenerationProcessor(LogManager logManager, CSVManager csvManager,
+    public GenerationProcessor(LogManager logManager,
+                               CSVManager csvManager,
                                FuncionEvaluacionJenetics fitnessEvaluator,
-                               CheckpointHandler checkpointHandler,
                                DiversityInjector diversityInjector) {
         this.logManager = logManager;
         this.csvManager = csvManager;
         this.fitnessEvaluator = fitnessEvaluator;
-        this.checkpointHandler = checkpointHandler;
         this.diversityInjector = diversityInjector;
     }
-    
+
     public void setStartTime(long startTime) {
         this.startTime = startTime;
     }
 
+    /**
+     * Procesa los datos de la generación actual:
+     * - Registra métricas
+     * - Detecta estancamiento
+     * - Inyecta diversidad si es necesario
+     */
     public void processGeneration(EvolutionResult<DoubleGene, Double> result) {
         if (result == null || result.population().isEmpty()) {
             logManager.logWarning("Resultado de generación vacío. Omitiendo...");
             return;
         }
+
         lastEvolutionResult = result;
         GenerationTracker.incrementGeneration();
-        int genGlobal = GenerationTracker.getCurrentGeneration();
+        int currentGen = GenerationTracker.getCurrentGeneration();
 
-        double mejorFitness = result.bestFitness();
-        double peorFitness = calculateWorstFitness(result.population());
-        double diversidad = calculateDiversity(result.population());
-        double avgFitness = calculateAverageFitness(result.population());
-        long elapsedTimeMillis = (long)((System.nanoTime() - startTime) / 1_000_000.0);
+        double bestFitness = result.bestFitness();
+        double worstFitness = calcularPeorFitness(result.population());
+        double avgFitness = calcularFitnessPromedio(result.population());
+        double diversity = calcularDiversidad(result.population());
 
-        var elites = new UniqueEliteSelector<DoubleGene, Double>(10)
-                        .select(result.population(), 6, io.jenetics.Optimize.MAXIMUM);
-        var eliteFitnesses = elites.stream().map(Phenotype::fitness).collect(Collectors.toList());
+        long elapsedTime = (System.nanoTime() - startTime) / 1_000_000L;
 
-        logManager.logElitesSeleccionados(eliteFitnesses);
-        logManager.logGeneracion(result, avgFitness, diversidad, peorFitness, elapsedTimeMillis, fitnessEvaluator, csvManager);
+        var eliteFitness = new UniqueEliteSelector<DoubleGene, Double>(10)
+                .select(result.population(), 6, io.jenetics.Optimize.MAXIMUM)
+                .stream()
+                .map(Phenotype::fitness)
+                .collect(Collectors.toList());
 
-        if (genGlobal % logManager.getConfig().CHECKPOINT_INTERVAL == 0) {
-            checkpointHandler.saveCheckpoint(result);
-            logManager.logCheckpointGuardado(checkpointHandler.getCheckpointFile());
-        }
+        logManager.logElitesSeleccionados(eliteFitness);
+        logManager.logGeneracion(result, avgFitness, diversity, worstFitness, elapsedTime, fitnessEvaluator, csvManager);
 
-        if (isStagnant(mejorFitness)) {
-            logManager.logWarning("Detectado estancamiento en la generación " + genGlobal);
+        if (estancado(bestFitness)) {
+            logManager.logWarning("Estancamiento detectado en generación " + currentGen);
             nextPopulation = diversityInjector.injectDiversity(result.population());
         }
-        logManager.logInfo("[DEBUG] Generación " + genGlobal + " procesada. MejorFitness=" + mejorFitness);
+
+        logManager.logInfo("[DEBUG] Generación " + currentGen + " procesada. MejorFitness=" + bestFitness);
+
+        if (currentGen >= logManager.getConfig().MAX_GENERATIONS) {
+            logManager.logInfo("[INFO] Límite máximo de generaciones alcanzado: " + currentGen);
+        }
     }
 
-    private double calculateAverageFitness(ISeq<Phenotype<DoubleGene, Double>> population) {
+    private double calcularFitnessPromedio(ISeq<Phenotype<DoubleGene, Double>> population) {
         return population.stream()
                 .mapToDouble(Phenotype::fitness)
                 .average()
                 .orElse(0.0);
     }
 
-    private double calculateWorstFitness(ISeq<Phenotype<DoubleGene, Double>> population) {
+    private double calcularPeorFitness(ISeq<Phenotype<DoubleGene, Double>> population) {
         return population.stream()
                 .mapToDouble(Phenotype::fitness)
                 .min()
                 .orElse(0.0);
     }
 
-    private double calculateDiversity(ISeq<Phenotype<DoubleGene, Double>> population) {
-        double totalDistance = 0.0;
-        int comparisons = 0;
+    private double calcularDiversidad(ISeq<Phenotype<DoubleGene, Double>> population) {
         List<Genotype<DoubleGene>> genotypes = population.stream()
                 .map(Phenotype::genotype)
-                .collect(Collectors.toList());
+                .toList();
+
+        double total = 0.0;
+        int count = 0;
+
         for (int i = 0; i < genotypes.size(); i++) {
             for (int j = i + 1; j < genotypes.size(); j++) {
-                totalDistance += calculateDistance(genotypes.get(i), genotypes.get(j));
-                comparisons++;
+                total += calcularDistancia(genotypes.get(i), genotypes.get(j));
+                count++;
             }
         }
-        return (comparisons > 0) ? totalDistance / comparisons : 0.0;
+
+        return (count > 0) ? total / count : 0.0;
     }
 
-    private double calculateDistance(Genotype<DoubleGene> g1, Genotype<DoubleGene> g2) {
-        double suma = 0.0;
-        var genes1 = g1.stream().flatMap(chromosome -> chromosome.stream()).toList();
-        var genes2 = g2.stream().flatMap(chromosome -> chromosome.stream()).toList();
+    private double calcularDistancia(Genotype<DoubleGene> g1, Genotype<DoubleGene> g2) {
+        double sum = 0.0;
+        var genes1 = g1.stream().flatMap(c -> c.stream()).toList();
+        var genes2 = g2.stream().flatMap(c -> c.stream()).toList();
+
         for (int i = 0; i < genes1.size(); i++) {
             double diff = genes1.get(i).doubleValue() - genes2.get(i).doubleValue();
-            suma += diff * diff;
+            sum += diff * diff;
         }
-        return Math.sqrt(suma);
+
+        return Math.sqrt(sum);
     }
 
-    private boolean isStagnant(double currentBestFitness) {
+    private boolean estancado(double currentBestFitness) {
         return Math.abs(currentBestFitness - fitnessEvaluator.getBestFitness()) < logManager.getConfig().THRESHOLD_MEJORA;
     }
 
@@ -115,15 +137,10 @@ public class GenerationProcessor {
         return lastEvolutionResult;
     }
 
-    public int getCurrentGeneration() {
-        return GenerationTracker.getCurrentGeneration();
-    }
-
     public ISeq<Phenotype<DoubleGene, Double>> getNextPopulation() {
         return nextPopulation;
     }
-    
-    // Método para reiniciar la población inyectada
+
     public void resetNextPopulation() {
         nextPopulation = null;
     }

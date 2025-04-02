@@ -1,8 +1,4 @@
-## MAKEFILE PARA PROYECTO DE ALGORITMOS GENÉTICOS
-# Asegúrate de tener:
-# - JDK instalado (y accesible en PATH)
-# - Estructura: src/ para fuentes, bin/ para clases, lib/ para librerías.
-
+# Configuración básica
 JAVAC = javac
 JAVA = java
 JAR = jar
@@ -20,47 +16,60 @@ JNA_PLATFORM_JAR = $(LIBDIR)/jna-platform-5.12.1.jar
 SLF4J_API_JAR = $(LIBDIR)/slf4j-api-1.7.36.jar
 SLF4J_SIMPLE_JAR = $(LIBDIR)/slf4j-simple-1.7.36.jar
 
-# Classpath para compilación y ejecución
+# Classpath completo
 CLASSPATH = $(BINDIR):$(JENETICS_JAR):$(OSHI_JAR):$(JNA_JAR):$(JNA_PLATFORM_JAR):$(SLF4J_API_JAR):$(SLF4J_SIMPLE_JAR)
 
-# Buscamos todos los .java en src/
+# Fuentes
 SOURCES = $(shell find $(SRCDIR) -name '*.java')
 CLASSES = $(SOURCES:$(SRCDIR)/%.java=$(BINDIR)/%.class)
 
-# Opciones de compilación:
+# Opciones
 JFLAGS = -g -sourcepath $(SRCDIR) -d $(BINDIR) -classpath $(CLASSPATH) -Xlint:none
-
-# Opciones de ejecución:
 JAVAFLAGS = -classpath $(CLASSPATH)
-
-# Archivo Manifest para el jar
 MANIFEST = Manifest.txt
 
-.PHONY: all clean doc run jar
+.PHONY: all clean doc run jar check-libs
 
-# Compilar todo
-all: $(CLASSES)
+# -----------------------------------
+# Objetivos principales
+# -----------------------------------
 
-# Regla para compilar cada .java a .class
+all: check-libs $(CLASSES)
+
+# Compilar archivos .java
 $(BINDIR)/%.class: $(SRCDIR)/%.java
-	mkdir -p $(@D)
-	$(JAVAC) $(JFLAGS) $<
+	@mkdir -p $(@D)
+	@echo "Compilando $<..."
+	@$(JAVAC) $(JFLAGS) $<
 
-# Ejecutar el programa principal
+# Ejecutar con posibilidad de pasar parámetros (ej: make run TASKID=8)
 run: all
-	@echo "Ejecutando el programa principal..."
-	@chmod +x run_program.sh  # Asegúrate de que el script tenga permisos de ejecución
-	./run_program.sh $(TASKID)
+	@echo "Ejecutando $(MAINCLASS)..."
+	@$(JAVA) $(JAVAFLAGS) $(MAINCLASS) $(TASKID)
 
-# Limpiar archivos compilados
-clean:
-	rm -rf $(BINDIR) $(DOCDIR) $(MAINCLASS).jar
-
-# Generar la documentación
+# Documentación
 doc:
-	javadoc -d $(DOCDIR) -sourcepath $(SRCDIR) $(SOURCES)
+	@mkdir -p $(DOCDIR)
+	@javadoc -d $(DOCDIR) -sourcepath $(SRCDIR) $(SOURCES)
 
-# Empaquetar en un JAR ejecutable
+# JAR ejecutable
 jar: all
-	echo "Main-Class: $(MAINCLASS)" > $(MANIFEST)
-	$(JAR) cfm $(MAINCLASS).jar $(MANIFEST) -C $(BINDIR) .
+	@echo "Main-Class: $(MAINCLASS)" > $(MANIFEST)
+	@$(JAR) cfm $(MAINCLASS).jar $(MANIFEST) -C $(BINDIR) .
+	@echo "✅ JAR generado: $(MAINCLASS).jar"
+
+# Limpieza
+clean:
+	@rm -rf $(BINDIR) $(DOCDIR) $(MAINCLASS).jar $(MANIFEST)
+	@echo "🧹 Limpieza completada."
+
+# Validar existencia de librerías necesarias
+check-libs:
+	@if [ ! -f $(JENETICS_JAR) ]; then echo "Falta $(JENETICS_JAR)"; exit 1; fi
+	@if [ ! -f $(OSHI_JAR) ]; then echo "Falta $(OSHI_JAR)"; exit 1; fi
+	@if [ ! -f $(JNA_JAR) ]; then echo "Falta $(JNA_JAR)"; exit 1; fi
+	@if [ ! -f $(JNA_PLATFORM_JAR) ]; then echo "Falta $(JNA_PLATFORM_JAR)"; exit 1; fi
+	@if [ ! -f $(SLF4J_API_JAR) ]; then echo "Falta $(SLF4J_API_JAR)"; exit 1; fi
+	@if [ ! -f $(SLF4J_SIMPLE_JAR) ]; then echo "Falta $(SLF4J_SIMPLE_JAR)"; exit 1; fi
+	@echo "Todas las librerías requeridas están presentes."
+

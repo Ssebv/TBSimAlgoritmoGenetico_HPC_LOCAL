@@ -5,22 +5,20 @@ import java.util.Arrays;
 
 /**
  * BasicTeamAG.java
- * Equipo de robots parametrizado con lógica tanto ofensiva como defensiva.
+ * Equipo de robots autónomos con lógica ofensiva/defensiva optimizada.
  */
 public class BasicTeamAG extends ControlSystemSS {
 
+    // === Constantes de configuración ===
     private static final int NUM_PLAYERS = 5;
     private static final double FIELD_LENGTH = 2.74;
     private static final double GOAL_WIDTH = 0.5;
-    private static final double RANGE = 0.3;
     private static final double IDEAL_DISTANCE = 0.4;
-    
-    // Constante para disparo directo y defensa
+    private static final double RANGE = 0.3;
     private static final double CLOSE_TO_GOAL_DISTANCE = 1.0;
 
+    // === Parámetros individuales y de equipo ===
     private final PlayerParams[] playerParams = new PlayerParams[NUM_PLAYERS];
-    private Vec2 offensivePos1, offensivePos2;
-
     private double teamCoordinationWeight;
     private double proximityWeight;
     private double goalAlignmentWeight;
@@ -28,16 +26,13 @@ public class BasicTeamAG extends ControlSystemSS {
     private double aggressivenessWeight;
     private double defensiveLineWeight;
 
+    // === Posiciones ofensivas de referencia ===
+    private Vec2 offensivePos1, offensivePos2;
+
+    /** Clase interna para almacenar parámetros por jugador */
     private static class PlayerParams {
-        double forceLimit;
-        double defenseWeight;
-        double attackWeight;
-        double passThreshold;
-        double opponentAvoidance;
-        double speed;
-        double shootingAccuracy;
-        double passingAccuracy;
-        double positioning;
+        double forceLimit, defenseWeight, attackWeight, passThreshold;
+        double opponentAvoidance, speed, shootingAccuracy, passingAccuracy, positioning;
     }
 
     public BasicTeamAG() {
@@ -46,47 +41,64 @@ public class BasicTeamAG extends ControlSystemSS {
         }
     }
 
+    /** Configuración inicial al cargar el robot */
     @Override
     public void Configure() {
         Vec2 goal = abstract_robot.getOpponentsGoal(0L);
-        offensivePos1 = calculateOffensivePosition(goal.x > 0.0, true);
-        offensivePos2 = calculateOffensivePosition(goal.x > 0.0, false);
+        offensivePos1 = getOffensivePosition(goal.x > 0, true);
+        offensivePos2 = getOffensivePosition(goal.x > 0, false);
     }
 
-    private Vec2 calculateOffensivePosition(boolean isRightSide, boolean isUpper) {
-        double x = isRightSide ? 6.0 * FIELD_LENGTH / 10.0 : -6.0 * FIELD_LENGTH / 10.0;
-        double y = isUpper ? GOAL_WIDTH / 2.0 : -GOAL_WIDTH / 2.0;
+    /** Calcula una posición ofensiva preferida según lado del campo */
+    private Vec2 getOffensivePosition(boolean rightSide, boolean upper) {
+        double x = rightSide ? 0.6 * FIELD_LENGTH : -0.6 * FIELD_LENGTH;
+        double y = upper ? GOAL_WIDTH / 2.0 : -GOAL_WIDTH / 2.0;
         return new Vec2(x, y);
     }
 
-    /**
-     * Configura los 60 parámetros (10 para cada uno de los 5 jugadores).
-     */
+    /** Recibe los 60 parámetros del cromosoma y los asigna */
     public void setParam(Double[] params) {
-        if (params == null || params.length != 60) {
-            throw new IllegalArgumentException("Exactly 60 parameters are required.");
-        }
+        if (params == null || params.length != 60) throw new IllegalArgumentException("Se esperan 60 parámetros.");
+
         for (int i = 0; i < NUM_PLAYERS; i++) {
             PlayerParams p = playerParams[i];
-            int baseIndex = i * 10;
-            p.forceLimit = params[baseIndex];
-            p.defenseWeight = params[baseIndex + 1];
-            p.attackWeight = params[baseIndex + 2];
-            p.passThreshold = params[baseIndex + 3];
-            p.opponentAvoidance = params[baseIndex + 4];
-            p.speed = params[baseIndex + 5];
-            p.shootingAccuracy = params[baseIndex + 6];
-            p.passingAccuracy = params[baseIndex + 7];
-            p.positioning = params[baseIndex + 8];
+            int base = i * 10;
+            p.forceLimit = 1.0 + params[base];
+            p.defenseWeight = 5.0 + params[base + 1] * 0.5;
+            p.attackWeight = 5.0 + params[base + 2] * 0.5;
+            p.passThreshold = 0.1 + params[base + 3] * 0.5;
+            p.opponentAvoidance = 1.0 + params[base + 4];
+            p.speed = 2.0 + params[base + 5];
+            p.shootingAccuracy = 5.0 + params[base + 6] * 0.5;
+            p.passingAccuracy = 4.0 + params[base + 7] * 0.5;
+            p.positioning = 4.0 + params[base + 8];
+
+            // Roles específicos
+            if (i == 0) { // Arquero
+                p.defenseWeight *= 1.5;
+                p.attackWeight *= 0.2;
+                p.shootingAccuracy = 0;
+                p.passingAccuracy *= 0.8;
+                p.positioning *= 1.5;
+                p.speed *= 0.7;
+            } else if (i == 4) { // Defensa marcador
+                p.defenseWeight *= 1.3;
+                p.attackWeight *= 0.5;
+                p.positioning *= 1.2;
+                p.speed *= 0.9;
+            }
         }
-        this.teamCoordinationWeight = params[50];
-        this.proximityWeight = params[51];
-        this.goalAlignmentWeight = params[52];
-        this.gameStateAdaptation = params[53];
-        this.aggressivenessWeight = params[54];
-        this.defensiveLineWeight = params[55];
+
+        // Parámetros de equipo
+        teamCoordinationWeight = 5.0 + params[50] * 0.5;
+        proximityWeight = params[51] * 0.5;
+        goalAlignmentWeight = 5.0 + params[52] * 0.5;
+        gameStateAdaptation = 0.5 + params[53] * 1.5;
+        aggressivenessWeight = 1.0 + params[54];
+        defensiveLineWeight = 5.0 + params[55] * 0.5;
     }
 
+    /** Loop principal de cada jugador */
     @Override
     public int TakeStep() {
         long time = abstract_robot.getTime();
@@ -94,293 +106,241 @@ public class BasicTeamAG extends ControlSystemSS {
         int mynum = abstract_robot.getPlayerNumber(time);
         PlayerParams p = playerParams[mynum];
 
-        adaptWeightsBasedOnGameState(time);
-        Vec2 force = calculateForces(time, p, ball);
-        handlePlayerMovement(time, force, ball, p);
+        adaptWeights(time, ball);
+        Vec2 force = calculateTotalForce(time, p, ball);
+        handleMovement(time, force, ball, p);
 
-        if (isOffensiveState(ball, time)) {
-            handleOffensivePlay(time, ball, p);
+        if (isOffensive(ball, time)) {
+            executeOffense(time, ball, p);
         } else {
-            handleDefensivePlay(time, ball, p);
+            executeDefense(time, ball, p);
         }
+
         return CSSTAT_OK;
     }
 
-    private void adaptWeightsBasedOnGameState(long time) {
-        if (isOffensiveState(abstract_robot.getBall(time), time)) {
-            adaptTeamWeightsForOffense();
+    // === Sección de movimiento y decisiones ===
+
+    private void adaptWeights(long time, Vec2 ball) {
+        if (isOffensive(ball, time)) {
+            teamCoordinationWeight *= gameStateAdaptation;
+            proximityWeight /= gameStateAdaptation;
+            goalAlignmentWeight *= 1.5;
+            aggressivenessWeight *= 1.5;
         } else {
-            adaptTeamWeightsForDefense();
+            teamCoordinationWeight /= gameStateAdaptation;
+            proximityWeight *= gameStateAdaptation;
+            defensiveLineWeight *= 1.1;
         }
     }
 
-    private void adaptTeamWeightsForOffense() {
-        teamCoordinationWeight *= gameStateAdaptation;
-        proximityWeight /= gameStateAdaptation;
-        goalAlignmentWeight *= 1.5;
-        aggressivenessWeight *= 1.5;
+    private Vec2 calculateTotalForce(long time, PlayerParams p, Vec2 ball) {
+        Vec2 pos = abstract_robot.getPosition(time);
+        Vec2 force = new Vec2(0, 0);
+
+        if (ball != null && ball.r > FIELD_LENGTH * 1.2) return force;
+
+        addForce(force, new Vec2(-p.defenseWeight * pos.x, -p.defenseWeight * pos.y));
+        addForce(force, calculateAttackVector(pos, p));
+        addProximityForce(force, ball);
+        addAlignmentForce(force, time);
+        addCoordinationForce(force, pos, time);
+        return force;
     }
 
-    private void adaptTeamWeightsForDefense() {
-        teamCoordinationWeight /= gameStateAdaptation;
-        proximityWeight *= gameStateAdaptation;
-        defensiveLineWeight *= 1.1;
+    private void addForce(Vec2 base, Vec2 add) {
+        base.add(add);
     }
 
-    private void handlePlayerMovement(long time, Vec2 force, Vec2 ball, PlayerParams p) {
-        Vec2 closestOpponent = findClosestOpponent(time);
-        if (closestOpponent != null && closestOpponent.r < p.opponentAvoidance) {
-            Vec2 avoidanceForce = new Vec2(-closestOpponent.x, -closestOpponent.y);
-            avoidanceForce.setr(p.opponentAvoidance);
-            abstract_robot.setSteerHeading(time, avoidanceForce.t);
+    private void addProximityForce(Vec2 force, Vec2 ball) {
+        if (ball != null && ball.r > 0.01) {
+            Vec2 prox = new Vec2(ball);
+            prox.setr(proximityWeight / (Math.max(0.01, ball.r) * ball.r));
+            force.add(prox);
+        }
+    }
+
+    private void addAlignmentForce(Vec2 force, long time) {
+        Vec2 goal = abstract_robot.getOpponentsGoal(time);
+        if (goal != null) {
+            Vec2 align = new Vec2(goal);
+            align.setr(goalAlignmentWeight);
+            force.add(align);
+        }
+    }
+
+    private void addCoordinationForce(Vec2 force, Vec2 pos, long time) {
+        for (Vec2 mate : abstract_robot.getTeammates(time)) {
+            if (mate != null) {
+                Vec2 diff = new Vec2(mate);
+                diff.sub(pos);
+                double w = diff.r < IDEAL_DISTANCE ? -teamCoordinationWeight : teamCoordinationWeight;
+                diff.setr(w / diff.r);
+                force.add(diff);
+            }
+        }
+    }
+
+    private Vec2 calculateAttackVector(Vec2 pos, PlayerParams p) {
+        Vec2 result = new Vec2(0, 0);
+        addAttackTarget(pos, p, offensivePos1, result);
+        addAttackTarget(pos, p, offensivePos2, result);
+        return result;
+    }
+
+    private void addAttackTarget(Vec2 pos, PlayerParams p, Vec2 target, Vec2 total) {
+        Vec2 t = new Vec2(target);
+        t.sub(pos);
+        if (t.r != 0) {
+            t.setr(p.attackWeight * p.shootingAccuracy * aggressivenessWeight * 1.5 / (t.r * t.r));
+            total.add(t);
+        }
+    }
+
+    private void handleMovement(long time, Vec2 force, Vec2 ball, PlayerParams p) {
+        Vec2 closest = findClosestOpponent(time);
+        if (closest != null && closest.r < p.opponentAvoidance) {
+            Vec2 avoid = new Vec2(-closest.x, -closest.y);
+            avoid.setr(p.opponentAvoidance);
+            abstract_robot.setSteerHeading(time, avoid.t);
             abstract_robot.setSpeed(time, p.speed / 2);
             return;
         }
         if (force.r < p.forceLimit) {
-            abstract_robot.setSteerHeading(time, ball.t);
-            abstract_robot.setSpeed(time, 0.0);
+            abstract_robot.setSpeed(time, p.speed * 0.3); // evitar congelamiento
         } else {
             abstract_robot.setSteerHeading(time, getFreeDirection(force, RANGE, time));
             abstract_robot.setSpeed(time, p.speed);
         }
     }
 
-    private Vec2 calculateForces(long time, PlayerParams p, Vec2 ball) {
-        Vec2 pos = abstract_robot.getPosition(time);
-        Vec2 force = new Vec2(0, 0);
-        addDefensiveForce(pos, p, force);
-        addAttackForce(pos, p, force);
-        addProximityForce(ball, force);
-        addAlignmentForce(time, force);
-        addCoordinationForce(pos, time, force);
-        return force;
-    }
-
-    private void addDefensiveForce(Vec2 pos, PlayerParams p, Vec2 force) {
-        Vec2 defenseForce = new Vec2(-p.defenseWeight * pos.x, -p.defenseWeight * pos.y);
-        force.add(defenseForce);
-    }
-
-    private void addAttackForce(Vec2 pos, PlayerParams p, Vec2 force) {
-        force.add(calculateAttackForce(pos, p));
-    }
-
-    private void addProximityForce(Vec2 ball, Vec2 force) {
-        if (ball != null && ball.r != 0) {
-            Vec2 proximityForce = new Vec2(ball);
-            proximityForce.setr(proximityWeight / (ball.r * ball.r));
-            force.add(proximityForce);
-        }
-    }
-
-    private void addAlignmentForce(long time, Vec2 force) {
+    private void executeOffense(long time, Vec2 ball, PlayerParams p) {
         Vec2 goal = abstract_robot.getOpponentsGoal(time);
-        if (goal != null) {
-            Vec2 alignmentForce = new Vec2(goal);
-            alignmentForce.setr(goalAlignmentWeight);
-            force.add(alignmentForce);
-        }
-    }
+        Vec2 predicted = predictBall(ball, time);
+        double dist = distance(abstract_robot.getPosition(time), goal);
+        double align = alignmentScore(abstract_robot.getPosition(time), goal);
 
-    private void addCoordinationForce(Vec2 pos, long time, Vec2 force) {
-        Vec2 teamCoordinationForce = calculateTeamCoordinationForce(pos, time);
-        force.add(teamCoordinationForce);
-    }
-
-    private Vec2 calculateAttackForce(Vec2 pos, PlayerParams p) {
-        Vec2 force = new Vec2(0, 0);
-        calculateTargetForce(pos, p, offensivePos1, force);
-        calculateTargetForce(pos, p, offensivePos2, force);
-        return force;
-    }
-
-    private void calculateTargetForce(Vec2 pos, PlayerParams p, Vec2 target, Vec2 force) {
-        Vec2 targetForce = new Vec2(target);
-        targetForce.sub(pos);
-        if (targetForce.r != 0) {
-            targetForce.setr(p.attackWeight * p.shootingAccuracy * aggressivenessWeight * 1.5 / (targetForce.r * targetForce.r));
-            force.add(targetForce);
-        }
-    }
-
-    /**
-     * Retorna true si el estado es ofensivo, basándose en la posición de la pelota.
-     */
-    private boolean isOffensiveState(Vec2 ball, long time) {
-        Vec2 ownGoal = abstract_robot.getOurGoal(time);
-        Vec2 goal = abstract_robot.getOpponentsGoal(time);
-        if (ball == null || ownGoal == null || goal == null) {
-            return false;
-        }
-        return calculateDistance(ball, ownGoal) > calculateDistance(ball, goal);
-    }
-
-    /**
-     * Calcula la distancia Euclidiana entre dos puntos.
-     */
-    private double calculateDistance(Vec2 from, Vec2 to) {
-        Vec2 distance = new Vec2(from);
-        distance.sub(to);
-        return distance.r;
-    }
-
-    private Vec2 calculateTeamCoordinationForce(Vec2 pos, long time) {
-        Vec2[] teammates = abstract_robot.getTeammates(time);
-        Vec2 coordinationForce = new Vec2(0, 0);
-        for (Vec2 teammate : teammates) {
-            if (teammate != null) {
-                Vec2 toTeammate = new Vec2(teammate);
-                toTeammate.sub(pos);
-                double weight = toTeammate.r < IDEAL_DISTANCE ? -teamCoordinationWeight : teamCoordinationWeight;
-                toTeammate.setr(weight / toTeammate.r);
-                coordinationForce.add(toTeammate);
-            }
-        }
-        return coordinationForce;
-    }
-
-    /**
-     * Lógica ofensiva mejorada para incentivar disparos agresivos.
-     */
-    private void handleOffensivePlay(long time, Vec2 ball, PlayerParams p) {
-        Vec2 goal = abstract_robot.getOpponentsGoal(time);
-        Vec2 predictedBallPosition = predictBallPosition(ball, time);
-        double distToGoal = calculateDistance(abstract_robot.getPosition(time), goal);
-        double alignScore = calculateAlignmentScore(abstract_robot.getPosition(time), goal);
-        
-        // Si estamos cerca del arco o la pelota está en una posición favorable, disparar
-        if (distToGoal < CLOSE_TO_GOAL_DISTANCE * 1.2 || (alignScore > 0.4 && ball.r < FIELD_LENGTH / 2)) {
+        if (dist < CLOSE_TO_GOAL_DISTANCE * 1.2 || (align > 0.4 && ball.r < FIELD_LENGTH / 2)) {
             abstract_robot.setSteerHeading(time, goal.t);
             abstract_robot.setSpeed(time, p.speed * p.shootingAccuracy * aggressivenessWeight * 1.5);
             return;
         }
-        
-        // Si la pelota está cerca, buscar un pase ofensivo
+
         if (ball.r < p.passThreshold * aggressivenessWeight) {
-            Vec2 bestPassTarget = findBestPassTargetOffensive(time, predictBallPosition(ball, time), goal);
-            if (bestPassTarget != null) {
-                abstract_robot.setSteerHeading(time, bestPassTarget.t);
+            Vec2 pass = findBestPass(time, predictBall(ball, time), goal);
+            if (pass != null) {
+                abstract_robot.setSteerHeading(time, pass.t);
                 abstract_robot.setSpeed(time, p.speed * p.passingAccuracy * aggressivenessWeight);
                 return;
             }
         }
-        
-        // Por defecto, moverse hacia la pelota
-        if (predictedBallPosition != null) {
-            abstract_robot.setSteerHeading(time, predictedBallPosition.t);
-            abstract_robot.setSpeed(time, p.speed * p.positioning * aggressivenessWeight);
-        }
+
+        abstract_robot.setSteerHeading(time, predicted.t);
+        abstract_robot.setSpeed(time, p.speed * p.positioning * aggressivenessWeight);
     }
 
-    /**
-     * Lógica defensiva mejorada para reducir goles en contra.
-     */
-    private void handleDefensivePlay(long time, Vec2 ball, PlayerParams p) {
+    private void executeDefense(long time, Vec2 ball, PlayerParams p) {
         Vec2 ownGoal = abstract_robot.getOurGoal(time);
-        Vec2 predictedBallPosition = predictBallPosition(ball, time);
+        Vec2 predicted = predictBall(ball, time);
 
-        // Si la pelota está muy cerca de la propia portería, interceptarla
-        if (ownGoal != null && ball != null && calculateDistance(ball, ownGoal) < CLOSE_TO_GOAL_DISTANCE) {
+        if (ownGoal != null && ball != null && distance(ball, ownGoal) < CLOSE_TO_GOAL_DISTANCE) {
             abstract_robot.setSteerHeading(time, ball.t);
             abstract_robot.setSpeed(time, p.speed * 1.5);
             return;
         }
-        
-        // Si la pelota está en zona media, formar línea defensiva
+
         if (ownGoal != null && ball.r > FIELD_LENGTH / 4) {
-            Vec2 defensivePosition = new Vec2(ownGoal.x + defensiveLineWeight * aggressivenessWeight, ownGoal.y);
-            abstract_robot.setSteerHeading(time, defensivePosition.t);
+            Vec2 pos = new Vec2(ownGoal.x + defensiveLineWeight * aggressivenessWeight, ownGoal.y);
+            abstract_robot.setSteerHeading(time, pos.t);
             abstract_robot.setSpeed(time, p.speed / 2);
             return;
         }
-        
-        // Presionar al oponente más cercano si es oportuno
-        Vec2 closestOpponent = findClosestOpponent(time);
-        if (closestOpponent != null && aggressivenessWeight > 1.0) {
-            abstract_robot.setSteerHeading(time, closestOpponent.t);
+
+        Vec2 closest = findClosestOpponent(time);
+        if (closest != null && aggressivenessWeight > 1.0) {
+            abstract_robot.setSteerHeading(time, closest.t);
             abstract_robot.setSpeed(time, p.speed / 2 * aggressivenessWeight);
             return;
         }
-        
-        // Por defecto, moverse hacia la pelota
-        if (predictedBallPosition != null) {
-            abstract_robot.setSteerHeading(time, predictedBallPosition.t);
-            abstract_robot.setSpeed(time, p.speed);
-        }
+
+        abstract_robot.setSteerHeading(time, predicted.t);
+        abstract_robot.setSpeed(time, p.speed);
     }
 
-    private Vec2 predictBallPosition(Vec2 ball, long time) {
+    // === Utilidades ===
+
+    private boolean isOffensive(Vec2 ball, long time) {
+        Vec2 ourGoal = abstract_robot.getOurGoal(time);
+        Vec2 oppGoal = abstract_robot.getOpponentsGoal(time);
+        return ball != null && ourGoal != null && oppGoal != null &&
+               distance(ball, ourGoal) > distance(ball, oppGoal);
+    }
+
+    private double distance(Vec2 from, Vec2 to) {
+        Vec2 temp = new Vec2(from);
+        temp.sub(to);
+        return temp.r;
+    }
+
+    private double alignmentScore(Vec2 pos, Vec2 goal) {
+        Vec2 dir = new Vec2(goal);
+        dir.sub(pos);
+        return Math.cos(dir.t);
+    }
+
+    private Vec2 predictBall(Vec2 ball, long time) {
         Vec2 velocity = abstract_robot.getBall(time);
-        Vec2 predictedPosition = new Vec2(ball);
+        Vec2 predicted = new Vec2(ball);
         velocity.setr(velocity.r * 1.5);
-        predictedPosition.add(velocity);
-        predictedPosition.setr(predictedPosition.r * 1.2);
-        return predictedPosition;
+        predicted.add(velocity);
+        predicted.setr(predicted.r * 1.2);
+        return predicted;
     }
 
     private Vec2 findClosestOpponent(long time) {
         return findClosest(abstract_robot.getOpponents(time), abstract_robot.getPosition(time));
     }
 
-    private Vec2 findClosest(Vec2[] entities, Vec2 reference) {
-        return entities == null ? null : Arrays.stream(entities)
-                .filter(entity -> entity != null)
-                .min((e1, e2) -> Double.compare(calculateDistance(e1, reference), calculateDistance(e2, reference)))
+    private Vec2 findClosest(Vec2[] entities, Vec2 ref) {
+        return Arrays.stream(entities)
+                .filter(e -> e != null)
+                .min((a, b) -> Double.compare(distance(a, ref), distance(b, ref)))
                 .orElse(null);
+    }
+
+    private Vec2 findBestPass(long time, Vec2 ball, Vec2 goal) {
+        Vec2[] mates = abstract_robot.getTeammates(time);
+        return Arrays.stream(mates)
+                .filter(t -> t != null)
+                .min((t1, t2) -> Double.compare(passScore(t2, ball, goal), passScore(t1, ball, goal)))
+                .orElse(null);
+    }
+
+    private double passScore(Vec2 teammate, Vec2 ball, Vec2 goal) {
+        double align = alignmentScore(teammate, goal);
+        double dist = distance(teammate, ball);
+        return align / (dist + 0.001);
     }
 
     private double getFreeDirection(Vec2 force, double range, long time) {
         Vec2[] obstacles = abstract_robot.getObstacles(time);
         double step = Math.PI / 36;
-        for (double angle = -range; angle <= range; angle += step) {
-            Vec2 testDirection = new Vec2(force);
-            testDirection.sett(force.t + angle);
-            if (Arrays.stream(obstacles).noneMatch(obstacle -> isDirectionBlocked(testDirection, obstacle, range))) {
-                return testDirection.t;
-            }
+
+        for (int i = 0; i < 30; i++) {
+            double angle = -range + i * step;
+            Vec2 candidate = new Vec2(force);
+            candidate.sett(force.t + angle);
+
+            if (Arrays.stream(obstacles).noneMatch(o -> o != null && isBlocked(candidate, o, range)))
+                return candidate.t;
         }
-        return force.t;
+
+        return force.t + Math.random() * 0.1 - 0.05;
     }
 
-    private boolean isDirectionBlocked(Vec2 direction, Vec2 obstacle, double range) {
-        Vec2 relativeObstacle = new Vec2(obstacle);
-        relativeObstacle.sub(direction);
-        return relativeObstacle.r < range;
-    }
-
-    /**
-     * Calcula un score de alineación basado en el coseno del ángulo entre la posición y la portería.
-     * 1.0 indica alineación perfecta.
-     */
-    private double calculateAlignmentScore(Vec2 position, Vec2 goal) {
-        Vec2 directionToGoal = new Vec2(goal);
-        directionToGoal.sub(position);
-        return Math.cos(directionToGoal.t);
-    }
-
-    /**
-     * Encuentra el mejor objetivo de pase en estado ofensivo.
-     */
-    private Vec2 findBestPassTargetOffensive(long time, Vec2 predictedBallPosition, Vec2 goal) {
-        Vec2[] teammates = abstract_robot.getTeammates(time);
-        return Arrays.stream(teammates)
-                .filter(teammate -> teammate != null)
-                .min((t1, t2) -> {
-                    double align1 = calculateAlignmentScore(t1, goal);
-                    double align2 = calculateAlignmentScore(t2, goal);
-                    
-                    Vec2 t1Copy = new Vec2(t1);
-                    t1Copy.sub(predictedBallPosition);
-                    double dist1 = t1Copy.r;
-                    
-                    Vec2 t2Copy = new Vec2(t2);
-                    t2Copy.sub(predictedBallPosition);
-                    double dist2 = t2Copy.r;
-                    
-                    double score1 = align1 / (dist1 + 0.001);
-                    double score2 = align2 / (dist2 + 0.001);
-                    return Double.compare(score2, score1); 
-                })
-                .orElse(null);
+    private boolean isBlocked(Vec2 dir, Vec2 obs, double range) {
+        Vec2 rel = new Vec2(obs);
+        rel.sub(dir);
+        return rel.r < range;
     }
 }

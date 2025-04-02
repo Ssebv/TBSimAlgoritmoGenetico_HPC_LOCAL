@@ -2,13 +2,11 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
-import java.util.logging.ConsoleHandler;
-import java.util.logging.Handler;
-import java.util.logging.Level;
-import java.util.logging.LogRecord;
-import java.util.logging.Logger;
-import io.jenetics.DoubleGene;
+import java.util.logging.*;
+import java.util.stream.Collectors;
 import io.jenetics.engine.EvolutionResult;
+import io.jenetics.DoubleGene;
+import io.jenetics.Genotype;
 
 public class LogManager {
     private final Logger logger;
@@ -16,19 +14,12 @@ public class LogManager {
     private final Configuracion config;
     private final ExecutorService logExecutor;
 
-    // Constructor que recibe Logger, enableColors y la configuración
     public LogManager(Logger existingLogger, boolean enableColors, Configuracion config) {
         this.logger = existingLogger;
         this.enableColors = enableColors;
         this.config = config;
-        configureLogger();
-        // Executor de un solo hilo para mantener el orden de los mensajes sin bloquear el hilo principal
         this.logExecutor = Executors.newSingleThreadExecutor();
-    }
-
-    // Constructor secundario (sin colores)
-    public LogManager(Logger existingLogger, Configuracion config) {
-        this(existingLogger, false, config);
+        configureLogger();
     }
 
     public Configuracion getConfig() {
@@ -36,158 +27,159 @@ public class LogManager {
     }
 
     private void configureLogger() {
+        // Deshabilitar los handlers por defecto
         logger.setUseParentHandlers(false);
-        boolean hasConsole = false;
         for (Handler handler : logger.getHandlers()) {
-            if (handler instanceof ConsoleHandler) {
-                hasConsole = true;
-                break;
+            logger.removeHandler(handler);
+        }
+
+        // Usar ConsoleHandler para mostrar los logs en la consola
+        ConsoleHandler consoleHandler = new ConsoleHandler();
+        consoleHandler.setLevel(Level.ALL);
+        consoleHandler.setFormatter(new SimpleFormatter() {
+            @Override
+            public String format(LogRecord record) {
+                String clean = record.getMessage().replaceAll("[\\r\\n]+", " ").trim();
+                return clean.isEmpty() ? "" : clean + System.lineSeparator();
             }
-        }
-        if (!hasConsole) {
-            ConsoleHandler consoleHandler = new ConsoleHandler();
-            consoleHandler.setLevel(Level.ALL);
-            // Formatter que elimina saltos de línea internos y añade un único salto al final.
-            consoleHandler.setFormatter(new java.util.logging.SimpleFormatter() {
-                @Override
-                public String format(LogRecord record) {
-                    String msg = record.getMessage().replaceAll("[\\r\\n]+", " ").trim();
-                    return msg + "\n";
-                }
-            });
-            logger.addHandler(consoleHandler);
-        }
+        });
+        logger.addHandler(consoleHandler);
+
+        // Establecer nivel de log a INFO para mostrar todos los logs
         logger.setLevel(Level.ALL);
     }
 
-    /**
-     * Envía mensajes al logger de forma asíncrona y fuerza flush inmediato en todos los handlers.
-     */
     private void submitLog(Level level, String message) {
+        if (message == null || message.trim().isEmpty())
+            return;
         logExecutor.submit(() -> {
-            logger.log(level, message);
-            // Forzar flush inmediato en cada handler
-            for (Handler h : logger.getHandlers()) {
-                h.flush();
+            synchronized (logger) {
+                logger.log(level, message.trim());
+                for (Handler h : logger.getHandlers())
+                    h.flush();
             }
         });
     }
 
     public void logGeneracion(EvolutionResult<DoubleGene, Double> result,
-                              double avgFitness,
-                              double diversity,
-                              double worstFitness,
-                              long elapsedTime,
-                              FuncionEvaluacionJenetics fitnessEvaluator,
-                              CSVManager csvManager) {
+            double avgFitness, double diversity,
+            double worstFitness, long elapsedTime,
+            FuncionEvaluacionJenetics evaluator,
+            CSVManager csvManager) {
 
         int gen = GenerationTracker.getCurrentGeneration();
-        double bestFitGeneration = result.bestFitness();
-        double fitnessGlobal = fitnessEvaluator.getBestFitness();
+        double bestFit = result.bestFitness();
+        double globalFit = evaluator.getBestFitness();
 
-        submitLog(Level.INFO, formatWithColor("===============================================", "\u001B[34m"));
-        submitLog(Level.INFO, formatWithColor("[GENÉTICO] GENERACIÓN " + gen + ":", "\u001B[34m"));
-        submitLog(Level.INFO, formatWithColor("===============================================", "\u001B[34m"));
-        submitLog(Level.INFO, formatWithColor(String.format("[GENÉTICO]    Mejor Fitness Generación: %.2f", bestFitGeneration), "\u001B[32m"));
-        submitLog(Level.INFO, formatWithColor(String.format("[GENÉTICO]    Fitness Global:         %.2f", fitnessGlobal), "\u001B[32m"));
-        submitLog(Level.INFO, formatWithColor(String.format("[GENÉTICO]    Promedio Fitness:       %.2f", avgFitness), "\u001B[32m"));
-        submitLog(Level.INFO, formatWithColor(String.format("[GENÉTICO]    Diversidad:             %.2f", diversity), "\u001B[32m"));
-        // Aseguramos que el peor fitness no sea menor a 1
-        submitLog(Level.INFO, formatWithColor(String.format("[GENÉTICO]    Peor Fitness:           %.2f", Math.max(worstFitness, 1.0)), "\u001B[31m"));
-        submitLog(Level.INFO, formatWithColor(String.format("[GENÉTICO]    Tiempo Transcurrido:    %.2f s", (elapsedTime / 1000.0)), "\u001B[33m"));
-        submitLog(Level.INFO, formatWithColor("===============================================", "\u001B[34m"));
+        logHeader("GENERACIÓN " + gen);
+        logInfo(String.format("Mejor Fitness Generación: %.2f", bestFit));
+        logInfo(String.format("Fitness Global: %.2f", globalFit));
+        logInfo(String.format("Promedio Fitness: %.2f", avgFitness));
+        logInfo(String.format("Diversidad: %.2f", diversity));
+        logWarning(String.format("Peor Fitness: %.2f", Math.max(worstFitness, 1.0)));
+        logInfo(String.format("Tiempo Transcurrido: %.2f s", elapsedTime / 1000.0));
+        logLine();
 
-        csvManager.escribirLineaCSV(
-                gen,
-                bestFitGeneration,
-                fitnessGlobal,
-                avgFitness,
-                diversity,
-                Math.max(worstFitness, 1.0),
-                RuntimeConfig.getSystemCpuLoad(),
-                RuntimeConfig.getSystemMemoryLoad(),
-                elapsedTime,
-                fitnessEvaluator.getBestGolesFavor(),
-                fitnessEvaluator.getBestGolesContra()
-        );
+        // No pasamos el cromosoma a escribir en el CSV
+        csvManager.escribirLineaCSV(gen, bestFit, globalFit, avgFitness, diversity,
+                Math.max(worstFitness, 1.0), RuntimeConfig.getSystemCpuLoad(),
+                RuntimeConfig.getSystemMemoryLoad(), elapsedTime,
+                evaluator.getBestGolesFavor(), evaluator.getBestGolesContra(),
+                RuntimeConfig.getPerCoreLoad());
+    }
+
+    public void logResultadoPartido(FuncionEvaluacionJenetics.ResultadoPartido r) {
+        logHighlight(String.format("[RESULTADO] GF: %d | GC: %d | Fitness: %.2f",
+                r.getGolesFavor(), r.getGolesContra(), r.getFitness()));
+
+    }
+
+    public void logResumenFinal(int generacion, FuncionEvaluacionJenetics fitnessEvaluator) {
+        logHeader("RESUMEN FINAL");
+        logInfo("Generaciones ejecutadas: " + generacion);
+        logInfo(String.format("Mejor Fitness Global: %.2f", fitnessEvaluator.getBestFitness()));
+        logInfo("Goles a Favor: " + fitnessEvaluator.getBestGolesFavor());
+        logInfo("Goles en Contra: " + fitnessEvaluator.getBestGolesContra());
+
+        // Imprimir los mejores parámetros
+        logInfo("Mejores parámetros:");
+        StringBuilder params = new StringBuilder();
+        for (int i = 0; i < fitnessEvaluator.getBestParams().length; i++) {
+            params.append(String.format(" - Param %d: %.2f%n", i, fitnessEvaluator.getBestParams()[i]));
+        }
+        logInfo(params.toString());
+        logInfo("Mejor Cromosoma: " + fitnessEvaluator.getBestChromosome());
+
+        logLine();
     }
 
     public void logElitesSeleccionados(List<Double> elites) {
         if (elites.isEmpty()) {
-            submitLog(Level.INFO, formatWithColor("[ELITE] No se encontraron élites.", "\u001B[36m"));
-            return;
+            logInfo("[ELITE] No se encontraron élites.");
+        } else {
+            logInfo("[ELITE] Fitness de los seleccionados:");
+            elites.forEach(e -> logInfo(String.format(" - %.2f", e)));
         }
-        submitLog(Level.INFO, formatWithColor("[ELITE] Selección de élites:", "\u001B[36m"));
-        for (Double e : elites) {
-            submitLog(Level.INFO, formatWithColor(String.format("[ELITE]    Fitness: %.2f", e), "\u001B[33m"));
-        }
-    }
-
-    public void logResultadoPartido(FuncionEvaluacionJenetics.ResultadoPartido resultado) {
-        submitLog(Level.INFO, formatWithColor(
-                String.format("[RESULTADO PARTIDO] Goles Favor: %d, Goles Contra: %d, Fitness: %.2f",
-                              resultado.getGolesFavor(),
-                              resultado.getGolesContra(),
-                              resultado.getFitness()),
-                "\u001B[35m"
-        ));
-    }
-
-    public void logCheckpointGuardado(String filePath) {
-        submitLog(Level.INFO, formatWithColor("[CHECKPOINT] Guardado correctamente en " + filePath, "\u001B[32m"));
-    }
-
-    public void logResumenFinal(int currentGeneration, double bestFitness) {
-        submitLog(Level.INFO, formatWithColor("================== RESUMEN FINAL ==================", "\u001B[34m"));
-        submitLog(Level.INFO, formatWithColor("[INFO] Generaciones ejecutadas: " + currentGeneration, "\u001B[32m"));
-        submitLog(Level.INFO, formatWithColor(String.format("[INFO] Mejor Fitness Alcanzado: %.2f", bestFitness), "\u001B[32m"));
-        submitLog(Level.INFO, formatWithColor("==================================================", "\u001B[34m"));
     }
 
     public void logDetallesDelEntorno(boolean isHPC) {
-        submitLog(Level.INFO, formatWithColor("======================================================", "\u001B[34m"));
-        submitLog(Level.INFO, formatWithColor("[INFO] Configuración del Entorno", "\u001B[32m"));
-        submitLog(Level.INFO, formatWithColor("======================================================", "\u001B[34m"));
-
-        if (isHPC) {
-            submitLog(Level.INFO, formatWithColor("[HPC] Entorno HPC detectado (SLURM).", "\u001B[33m"));
-        } else {
-            submitLog(Level.INFO, formatWithColor("[LOCAL] Ejecutando en un entorno local:", "\u001B[36m"));
-            submitLog(Level.INFO, formatWithColor("[LOCAL] Sistema Operativo: " + System.getProperty("os.name")
-                    + " " + System.getProperty("os.version"), "\u001B[37m"));
-            submitLog(Level.INFO, formatWithColor("[LOCAL] Versión de Java: " + System.getProperty("java.version"), "\u001B[37m"));
-            submitLog(Level.INFO, formatWithColor("[LOCAL] CPUs disponibles: " + Runtime.getRuntime().availableProcessors(), "\u001B[37m"));
-        }
-        submitLog(Level.INFO, formatWithColor("======================================================", "\u001B[34m"));
+        logHeader("ENTORNO");
+        logInfo(isHPC ? "[HPC] Entorno detectado (SLURM)." : "[LOCAL] Ejecución en entorno local.");
+        logInfo("Sistema Operativo: " + System.getProperty("os.name") + " " + System.getProperty("os.version"));
+        logInfo("Versión de Java: " + System.getProperty("java.version"));
+        logInfo("CPUs (JVM): " + Runtime.getRuntime().availableProcessors());
+        logInfo("CPUs Config (config): " + config.getNumCores());
+        logLine();
     }
 
-    public void logInfo(String message) {
-        submitLog(Level.INFO, formatWithColor(message, "\u001B[37m"));
+    // Métodos de log con colores (solo para consola)
+    public void logInfo(String msg) {
+        submitLog(Level.INFO, format(msg, "\u001B[37m"));
     }
 
-    public void logWarning(String message) {
-        submitLog(Level.WARNING, formatWithColor(message, "\u001B[33m"));
+    public void logWarning(String msg) {
+        submitLog(Level.WARNING, format(msg, "\u001B[33m"));
     }
 
-    public void logError(String message) {
-        submitLog(Level.SEVERE, formatWithColor(message, "\u001B[31m"));
+    public void logError(String msg) {
+        submitLog(Level.SEVERE, format(msg, "\u001B[31m"));
     }
 
-    private String formatWithColor(String message, String ansiColor) {
-        if (!enableColors) {
-            return message;
-        }
-        return ansiColor + message + "\u001B[0m";
+    public void logHighlight(String m) {
+        submitLog(Level.INFO, format(m, "\u001B[35m"));
+    }
+
+    private void logHeader(String title) {
+        String line = "=".repeat(50);
+        submitLog(Level.INFO, format(line, "\u001B[34m"));
+        submitLog(Level.INFO, format("[INFO] " + title, "\u001B[34m"));
+        submitLog(Level.INFO, format(line, "\u001B[34m"));
+    }
+
+    private void logLine() {
+        submitLog(Level.INFO, format("-".repeat(50), "\u001B[34m"));
+    }
+
+    private String format(String msg, String color) {
+        return enableColors ? color + msg + "\u001B[0m" : msg;
     }
 
     public void shutdown() {
         logExecutor.shutdown();
         try {
-            if (!logExecutor.awaitTermination(60, TimeUnit.SECONDS)) {
+            if (!logExecutor.awaitTermination(5, TimeUnit.MINUTES)) {
+                logger.warning("Log executor no terminó a tiempo. Forzando cierre...");
                 logExecutor.shutdownNow();
+                if (!logExecutor.awaitTermination(60, TimeUnit.SECONDS)) {
+                    logger.severe("No se pudo cerrar el log executor.");
+                }
             }
-        } catch (InterruptedException e) {
+        } catch (InterruptedException ie) {
+            logger.severe("Interrumpido al cerrar log executor: " + ie.getMessage());
             logExecutor.shutdownNow();
+            Thread.currentThread().interrupt();
         }
+        for (Handler h : logger.getHandlers())
+            h.flush();
     }
 }
