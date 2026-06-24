@@ -310,3 +310,12 @@ Define el comportamiento del equipo de robots, modificando el BasicTeam base pro
 ---
 
 
+
+## Licencia
+
+El código original de este proyecto (carpetas `src/` y `analisis/`) se distribuye
+bajo la licencia **MIT** (ver [`LICENSE`](./LICENSE)).
+
+Los componentes de terceros incluidos en el repositorio —simuladores de referencia
+en `simuladores_avaluados/` (TeamBots/TBSim y otros) y las librerías en `lib/`—
+conservan sus respectivas licencias originales y no están cubiertos por la licencia MIT.
