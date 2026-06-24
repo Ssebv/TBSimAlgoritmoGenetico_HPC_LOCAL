@@ -46,7 +46,7 @@ La estructura principal del proyecto es la siguiente:
 - **img/**: Contiene imágenes utilizadas en la documentación (por ejemplo, capturas de simulación).  
 - **lib/**: Bibliotecas externas, incluyendo jenetics-7.2.0.jar.  
 - **nlhpc/**: Scripts o configuraciones para HPC (se dejó en stand-by debido a los límites de tiempo de 30 minutos).  
-- **resultados/**: Almacena salidas (CSV, logs, gráficos) de las simulaciones ejecutadas.  
+- **resultados/**: Almacena los CSV de salida de las simulaciones (incluidos los `local_stats*.csv` del experimento) y gráficos derivados.  
 - **simuladores_evaluados/**:  
   - **Robocup_Rescue/**: Versiones o pruebas con otro simulador.  
   - **TeamBot_Base/**: Contiene el TBSim base (gráfico).  
@@ -54,8 +54,7 @@ La estructura principal del proyecto es la siguiente:
   - **TeamBot_Soccer_Python/**: Scripts de Python para simulaciones “todos contra todos”.  
 - **src/**: Contiene el código fuente principal del proyecto (clases del algoritmo genético, lógica de TBSim adaptada, etc.).  
 - **teams/**: Directorio para configuraciones específicas de equipos.  
-- **simulacion.log**: Archivo donde se almacenan todos los logs generados durante la simulación, facilitando la depuración y el análisis de resultados.  
-- **.gitignore**: Lista de archivos y directorios que no se subirán al repositorio.
+- **.gitignore**: Lista de archivos y directorios que no se versionan. Las **salidas y artefactos de ejecución** (`*.log`, `*.ser`, `checkpoint.ser`, `bin/`, `.DS_Store`) se generan en tiempo de ejecución y quedan excluidos del repositorio para mantenerlo liviano.
 
 El proyecto también incluye un **Makefile** en la raíz para automatizar las tareas de compilación, ejecución, generación de documentación y empaquetado:
 

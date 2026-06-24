@@ -1,5 +1,16 @@
+# Compilados Java
 /bin/
-/.vscode/settings.json
+*.class
 
+# Salidas y artefactos de ejecución
+*.log
+*.ser
+checkpoint.ser
 
+# Python
+__pycache__/
+*.pyc
 
+# Sistema operativo / editor
+.DS_Store
+.vscode/settings.json
