@@ -32,9 +32,28 @@ Evaluar el rendimiento y la evolución de un algoritmo genético aplicado a la s
 ## Requerimientos
 
 - **Python:** 3.11 o superior  
-- **Java:** Versión "21.0.1" (2023-10-17 LTS)  
-- **Bibliotecas:** Jenetics (por ejemplo, jenetics-7.2.0.jar) y/o JGAP (según se utilice)  
-- **Herramientas de gráficos:** Excel, Python (matplotlib, seaborn), R, etc.
+- **Java:** 17.0.8.1 (LTS) — versión fijada en `.java-version`  
+- **Bibliotecas:** Jenetics (jenetics-7.2.0.jar; incluidas en `lib/`)  
+- **Herramientas de gráficos:** Python (matplotlib, seaborn), R, Excel, etc.
+
+## Inicio rápido
+
+```bash
+# 1. Compilar el código fuente (genera bin/)
+make
+
+# 2. Ejecutar el experimento
+make run                 # ejecuta MainJenetics directamente
+#  — o, con registro a archivo y manejo de interrupciones:
+./run_program.sh         # vuelca la salida a simulacion.log
+
+# 3. Limpiar los compilados
+make clean
+```
+
+> La simulación escribe sus métricas por generación en `local_stats.csv` (raíz).
+> Para reproducir los gráficos y el análisis, usa los scripts de `analisis/` sobre
+> los CSV de `resultados/`.
 
 ## Estructura del Proyecto
 
