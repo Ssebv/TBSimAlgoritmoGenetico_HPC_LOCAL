@@ -6,6 +6,9 @@
 *.log
 *.ser
 checkpoint.ser
+# CSV de salida en vivo (los resultados archivados están en resultados/)
+/local_stats.csv
+/hpc_stats.csv
 
 # Python
 __pycache__/
