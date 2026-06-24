@@ -1,0 +1,19 @@
+# === Clasificación de lenguaje (GitHub Linguist) ===
+# El experimento principal es Java (src/). El material de referencia y las
+# librerías de terceros se marcan como "vendored" para que no inflen las
+# estadísticas de lenguaje del repositorio.
+simuladores_avaluados/**  linguist-vendored
+lib/**                    linguist-vendored
+analisis/nlhpc/**         linguist-documentation
+
+# === Tratamiento binario (diffs limpios) ===
+*.jar    binary
+*.class  binary
+*.ser    binary
+*.cpgz   binary
+*.dsc    binary
+
+# === Normalización de fin de línea ===
+*.java   text eol=lf
+*.sh     text eol=lf
+*.py     text eol=lf
