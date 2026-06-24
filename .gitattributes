@@ -12,8 +12,3 @@ analisis/nlhpc/**         linguist-documentation
 *.ser    binary
 *.cpgz   binary
 *.dsc    binary
-
-# === Normalización de fin de línea ===
-*.java   text eol=lf
-*.sh     text eol=lf
-*.py     text eol=lf
