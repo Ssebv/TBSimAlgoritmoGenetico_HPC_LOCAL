@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "Si usas este software o sus resultados, por favor cítalo como se indica."
+type: software
+title: "TBSim Algoritmo Genético HPC/Local — Escalabilidad de algoritmos evolutivos paralelos"
+authors:
+  - family-names: "Allende Cuello"
+    given-names: "Sebastián Ignacio"
+year: 2026
+url: "https://github.com/Ssebv/TBSimAlgoritmoGenetico_HPC_LOCAL"
+license: MIT
+keywords:
+  - genetic-algorithm
+  - jenetics
+  - parallel-computing
+  - robocup
+  - teambots
+  - apple-silicon
+preferred-citation:
+  type: thesis
+  title: "Escalabilidad Computacional de Algoritmos Evolutivos Paralelos: Estudio Experimental en Optimización de Equipos de Fútbol Robótico"
+  authors:
+    - family-names: "Allende Cuello"
+      given-names: "Sebastián Ignacio"
+  institution:
+    name: "Universidad Finis Terrae, Facultad de Ingeniería"
+  year: 2026

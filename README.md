@@ -36,6 +36,27 @@ Evaluar el rendimiento y la evolución de un algoritmo genético aplicado a la s
 - **Bibliotecas:** Jenetics (jenetics-7.2.0.jar; incluidas en `lib/`)  
 - **Herramientas de gráficos:** Python (matplotlib, seaborn), R, Excel, etc.
 
+## Resultados principales
+
+El estudio ejecutó **12 configuraciones** (2/4/6/8 núcleos × poblaciones 50/100/500) de **3.000 generaciones** cada una sobre Apple M1:
+
+| Métrica | Resultado |
+|---|---|
+| **Speedup máximo** | **6,3×** (2C-Pop500: 1,90 s/gen → 8C-Pop50: 0,30 s/gen) |
+| Speedup iso-población (500) | ≈2× (1,90 → 0,94 s/gen) |
+| **Fitness máximo** | **150.000 pts** (todas las configuraciones con población 500) |
+| Perfiles óptimos | Velocidad: 8C-Pop50 (0,30 s) · Balance: 6C-Pop100 (0,74 s) · Calidad: Pop500 |
+| Correlaciones (Pearson) | núcleos↔tiempo −0,71 · población↔tiempo +0,58 · generación↔fitness +0,76 |
+
+> **Conclusión central: los núcleos dan velocidad, la población da calidad.**
+
+| Tiempo por generación | Trade-off fitness | Convergencia |
+|:---:|:---:|:---:|
+| ![Tiempos](./img/resultados/10_barras_tiempo.png) | ![Fitness](./img/resultados/09_heatmap_fitness_cores_poblacion.png) | ![Convergencia](./img/resultados/01_curva_aprendizaje.png) |
+
+> Nota: los tiempos absolutos corresponden a Apple M1 (2020, 4P+4E). En otros chips
+> el pipeline es reproducible pero los valores absolutos difieren.
+
 ## Inicio rápido
 
 ```bash
