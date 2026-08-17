@@ -73,8 +73,16 @@ make clean
 ```
 
 > La simulación escribe sus métricas por generación en `local_stats.csv` (raíz).
-> Para reproducir los gráficos y el análisis, usa los scripts de `analisis/` sobre
-> los CSV de `resultados/`.
+
+## Procedencia de los datos
+
+| Ubicación | Contenido |
+|---|---|
+| `resultados/local_stats*.csv` (main) | Corridas **exploratorias** (configs de prueba: 8C-Pop10/100/150, 1C-Pop300/400) usadas para calibrar el sistema. No corresponden al diseño factorial final. |
+| `ResultadosAlgoritmoGenetico{A,B}.csv` (rama `jeneticsParalela`) | Corridas **paralelas de validación** (250 gens): mediana 1,0 s/gen, consistente con el rango 0,30–1,90 s/gen del estudio. |
+| Experimento factorial final (12 configs × 3.000 gens) | Ejecutado sobre Apple M1 (2024). Los agregados por configuración se reportan en la tesis y en los gráficos de este README; cada corrida produce un `local_stats.csv` con el formato descrito arriba y es reproducible con `make run`. |
+
+Los scripts de `analisis/` generan los gráficos a partir de los CSV con el formato de `local_stats.csv`.
 
 ## Estructura del Proyecto
 
