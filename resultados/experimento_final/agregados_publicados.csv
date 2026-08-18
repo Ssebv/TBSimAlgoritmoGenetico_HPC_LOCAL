@@ -1,0 +1,6 @@
+config,cores,poblacion,s_por_gen,fitness_max,procedencia
+8C-Pop50,8,50,0.30,54776,"Tesis cap. 5.1 y 5.3 — perfil de máxima velocidad"
+6C-Pop100,6,100,0.74,54018,"Tesis cap. 5.1 y 5.3 — perfil de balance eficiencia-calidad"
+8C-Pop500,8,500,0.94,150000,"Tesis cap. 5.3 — perfil de máxima aptitud (8 núcleos)"
+2C-Pop500,2,500,1.90,150000,"Tesis cap. 5.1 — configuración más lenta del experimento"
+2C-Pop50,2,50,,46353,"Cifra canónica del proyecto: peor fitness del experimento (tiempo no publicado)"
