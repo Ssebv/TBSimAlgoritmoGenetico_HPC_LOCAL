@@ -1,0 +1,63 @@
+name: build
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  compilar-java:
+    name: Compilar el experimento (JDK 17)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Instalar JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Verificar librerías
+        run: make check-libs
+
+      - name: Compilar
+        run: make all
+
+      - name: Comprobar que la clase principal se generó
+        run: test -f bin/MainJenetics.class
+
+  verificar-analisis:
+    name: Verificar cifras y scripts de análisis
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Instalar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Instalar dependencias
+        run: pip install -r analisis/requirements.txt
+
+      # Comprueba la consistencia de las cifras publicadas (6,3x, iso-población
+      # 2x, tope de fitness). No requiere los CSV del experimento factorial.
+      - name: Verificar cifras de la tesis
+        run: python3 analisis/verificar_cifras.py
+
+      # Ejercita el pipeline de análisis sobre las corridas versionadas: valida
+      # que la conversión de tiempo acumulado a tiempo por generación y el
+      # soporte de ambos esquemas de CSV siguen funcionando.
+      - name: Ejercitar el recálculo sobre las corridas versionadas
+        run: python3 analisis/recompute_speedup.py 'resultados/local_stats*.csv'
+
+      - name: Generar figuras
+        run: python3 analisis/figuras.py --patron 'resultados/local_stats*.csv' --salida /tmp/figuras
+
+      - name: Comprobar que las figuras se escribieron
+        run: |
+          test -f /tmp/figuras/01_curva_aprendizaje.png
+          test -f /tmp/figuras/09_heatmap_fitness_cores_poblacion.png
+          test -f /tmp/figuras/10_barras_tiempo.png
