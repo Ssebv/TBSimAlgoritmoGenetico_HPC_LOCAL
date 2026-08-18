@@ -1,5 +1,8 @@
 # Algoritmo Genético TeamBots TBSim - Experimento Local
 
+[![build](https://github.com/Ssebv/TBSimAlgoritmoGenetico_HPC_LOCAL/actions/workflows/build.yml/badge.svg)](https://github.com/Ssebv/TBSimAlgoritmoGenetico_HPC_LOCAL/actions/workflows/build.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
+
 ## Descripción del Proyecto
 
 Este proyecto se centra en la aplicación de algoritmos genéticos en entornos locales, utilizando el simulador TBSim para modelar y optimizar el comportamiento de equipos de fútbol robótico. Aunque originalmente el proyecto estaba orientado a entornos de Computación de Alto Rendimiento (HPC), en este experimento se realizará la ejecución en un entorno local. Esto se debe a que en HPC las tareas están limitadas a 30 minutos y se usan checkpoints para reanudar la ejecución, mientras que en local se pueden ejecutar simulaciones completas y visualizar los resultados mediante gráficos para un análisis detallado. El trabajo queda abierto a futuras investigaciones en HPC.
@@ -8,7 +11,10 @@ Este proyecto se centra en la aplicación de algoritmos genéticos en entornos l
 
 Para el algoritmo genético se utilizó la librería **Jenetics**, ya que aunque se probó **JGAP** en versiones anteriores, esta última no se encuentra actualizada a la fecha. La elección de Jenetics permitió implementar un algoritmo más robusto y modular, adaptado a las necesidades actuales del proyecto, además de aprovechar el paralelismo para intentar utilizar el 100% de los recursos disponibles en el sistema donde se procesará la simulación.
 
-Dentro de la carpeta **simuladores_evaluados** se encuentran diferentes versiones del TBSim:
+Dentro de la carpeta **simuladores_avaluados** se encuentran las distribuciones de
+referencia evaluadas. El criterio de selección del simulador y del motor evolutivo
+está documentado en [`docs/seleccion_simulador.md`](./docs/seleccion_simulador.md).
+Versiones del TBSim consideradas:
 
 - **TBSim Basic (Gráfico):** Incluye una interfaz gráfica para visualizar las simulaciones.
 - **TBSim No Graphics:** Una versión sin interfaz gráfica, utilizada en este experimento para permitir ejecuciones más rápidas y eficientes en local.
@@ -81,9 +87,38 @@ make clean
 | `resultados/local_stats*.csv` (main) | Corridas **exploratorias** (configs de prueba: 8C-Pop10/100/150, 1C-Pop300/400) usadas para calibrar el sistema. No corresponden al diseño factorial final. |
 | `ResultadosAlgoritmoGenetico{A,B}.csv` (rama `jeneticsParalela`) | Corridas **paralelas de validación** (250 gens): mediana 1,0 s/gen, consistente con el rango 0,30–1,90 s/gen del estudio. |
 | Corridas de desarrollo con la escala final de fitness (ene-2025) | Recuperables del historial: `git show b20c50d -- 'local_stats*.csv' 'metricas_ag*.csv'` (fitness 100k–250k, previo al capping en 150k). |
-| Experimento factorial final (12 configs × 3.000 gens) | Ejecutado sobre Apple M1 (2024-2025); sus CSV no fueron versionados. Los agregados por configuración se reportan en la tesis y en los gráficos de este README; cada corrida es reproducible con `make run` (produce `local_stats.csv` con el formato descrito arriba). |
+| Experimento factorial final (12 configs × 3.000 gens) | Ejecutado sobre Apple M1 (2024-2025); sus CSV **no fueron versionados** —se ha verificado que no están en ningún punto del historial. Los agregados publicados en la tesis están en `resultados/experimento_final/agregados_publicados.csv` con su procedencia. Cada corrida es reproducible con `make run`, que emite el esquema **v2** (27 columnas, sin `Chromosoma`); las corridas archivadas usan el esquema **v1** (28 columnas). Ver [`resultados/README.md`](./resultados/README.md). |
 
-Los scripts de `analisis/` generan los gráficos a partir de los CSV con el formato de `local_stats.csv`.
+### ⚠️ La columna `Tiempo (s)` es acumulada
+
+`Tiempo (s)` registra el tiempo **total transcurrido** desde el inicio de la
+corrida, no el tiempo de cada generación. Para obtener el tiempo por generación
+hay que aplicar una diferencia (`.diff()`). Interpretarla directamente produce
+cifras de speedup infladas: ese error originó un speedup erróneo de 15,8x en
+versiones preliminares de este trabajo, frente al valor correcto de **6,3x**.
+
+Los scripts de `analisis/` aplican la corrección automáticamente. El diccionario
+de datos completo, con las dos versiones del esquema de CSV, está en
+[`resultados/README.md`](./resultados/README.md).
+
+## Reproducibilidad
+
+| Comando | Qué hace | ¿Necesita datos adicionales? |
+|---|---|---|
+| `python3 analisis/verificar_cifras.py` | Comprueba la consistencia de las cifras publicadas (speedup 6,3x, iso-población 2x, tope de fitness) contra `resultados/experimento_final/agregados_publicados.csv`, donde cada valor lleva su procedencia. | **No.** Funciona sobre el repositorio tal cual. |
+| `python3 analisis/recompute_speedup.py` | Recalcula la tabla de escalabilidad y el speedup desde los CSV crudos. | Sí: los CSV del experimento factorial. |
+| `python3 analisis/figuras.py` | Regenera las figuras 01, 09 y 10 de este README. | Sí para las figuras 09 y 10; la 01 funciona con cualquier corrida. |
+
+Ambos scripts aceptan `--patron`/argumento para operar sobre las corridas
+versionadas, p. ej. `'resultados/local_stats*.csv'`.
+
+```bash
+pip install -r analisis/requirements.txt
+python3 analisis/verificar_cifras.py
+```
+
+La integración continua compila el proyecto con JDK 17 y ejecuta estas
+verificaciones en cada push (ver [`.github/workflows/build.yml`](./.github/workflows/build.yml)).
 
 ## Estructura del Proyecto
 
@@ -341,11 +376,25 @@ Define el comportamiento del equipo de robots, modificando el BasicTeam base pro
 
 
 
-## Licencia
+## Licencia y atribución
 
-El código original de este proyecto (carpetas `src/` y `analisis/`) se distribuye
-bajo la licencia **MIT** (ver [`LICENSE`](./LICENSE)).
+Este experimento se construye sobre **TeamBots™**, software cuyo copyright
+pertenece a **Tucker Balch, Georgia Tech Research Corporation (GTRC) y Carnegie
+Mellon University (CMU)** —a quienes se reconoce expresamente como autores del
+simulador base— y que se redistribuye aquí conforme a sus propios términos:
 
-Los componentes de terceros incluidos en el repositorio —simuladores de referencia
-en `simuladores_avaluados/` (TeamBots/TBSim y otros) y las librerías en `lib/`—
-conservan sus respectivas licencias originales y no están cubiertos por la licencia MIT.
+> Copyright (c)1999, 2000 Tucker Balch, GTRC and CMU. All rights Reserved.
+
+El aviso de copyright completo de TeamBots, cuya distribución junto al software
+es obligatoria, está en [`THIRD_PARTY/TeamBots-COPYRIGHT.html`](./THIRD_PARTY/TeamBots-COPYRIGHT.html).
+
+La licencia **MIT** ([`LICENSE`](./LICENSE)) cubre **únicamente el trabajo
+original del autor**: el motor evolutivo e instrumentación de la raíz de `src/`,
+los scripts de `analisis/`, el `Makefile`, los scripts de ejecución y la
+documentación.
+
+**No** están cubiertos por MIT y conservan su licencia original:
+`src/EDU/**` (209 archivos de TeamBots/CORAL), `teams/**`, `robocup.dsc`,
+`simuladores_avaluados/**` y las librerías de `lib/`.
+
+El desglose completo, archivo por archivo, está en [`NOTICE.md`](./NOTICE.md).
