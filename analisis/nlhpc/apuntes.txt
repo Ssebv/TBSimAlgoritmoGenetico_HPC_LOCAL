@@ -132,7 +132,7 @@ ejercicio 1
 	#SBATCH --mem-per-cpu=2300MB
 	#SBATCH -o archivo_%j.out
 	#SBATCH -e archivo-%j.err
-	#SBATCH --mail-user=sallendec@outlook.com
+	#SBATCH --mail-user=usuario@ejemplo.com
 	#SBATCH --mail-type=ALL
 
 	export OMP_NUM_THREADS=20
@@ -162,7 +162,7 @@ cat pi_mpi.sh
 #SBATCH --mem-per-cpu=2300MB
 #SBATCH -o archivo1_%j.out
 #SBATCH -e archivo1_%j.err
-#SBATCH --mail-user=sallendec@outlook.com
+#SBATCH --mail-user=usuario@ejemplo.com
 #SBATCH --mail-type=ALL
 
 # ----- Toolchain ------
@@ -189,7 +189,7 @@ Ejercicio 3
 #SBATCH --mem-per-cpu=2300MB
 #SBATCH -o hybrid_%j.out
 #SBATCH -e hybrid_%j.err
-#SBATCH --mail-user=sallendec@outlook.com
+#SBATCH --mail-user=usuario@ejemplo.com
 #SBATCH --mail-type=ALL
 
 # ----- Toolchain ------
@@ -212,7 +212,7 @@ Ejemplo 4
 #SBATCH -n 1
 #SBATCH -c 1
 #SBATCH --mem-per-cpu=2300
-#SBATCH --mail-user=sallendec@outlook.com
+#SBATCH --mail-user=usuario@ejemplo.com
 #SBATCH --mail-type=ALL
 #SBATCH --array=1-100%10
 #SBATCH -o secuencial_array_%A_%a.out

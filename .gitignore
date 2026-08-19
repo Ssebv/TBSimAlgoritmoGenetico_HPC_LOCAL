@@ -17,3 +17,7 @@ __pycache__/
 # Sistema operativo / editor
 .DS_Store
 .vscode/settings.json
+
+# Artefactos de bytecode/binarios de los simuladores de referencia
+*.kotlin_metadata
+*.kotlin_builtins
