@@ -118,6 +118,27 @@ lea por índice fallará en silencio.
 | `local_stats1..7.csv` | Corridas **exploratorias** de calibración (1C-Pop300/400, 8C-Pop10/100/150). No pertenecen al diseño factorial |
 | `ResultadosAlgoritmoGenetico*.csv` | Corridas contra equipos rivales concretos y línea base secuencial |
 
+## Limitaciones de reproducibilidad (declaradas)
+
+Dos límites conocidos del experimento, relevantes para interpretar los datos:
+
+1. **Una sola corrida por configuración.** No hay réplicas. En consecuencia:
+   - las conclusiones de **tiempo** se apoyan en **3.000 mediciones por celda**
+     (σ ≈ 0,15 s) y son robustas;
+   - las de **calidad** se apoyan en **una única corrida evolutiva por celda**,
+     y por eso el fitness final no es monótono entre configuraciones. Para
+     comparar calidad deben usarse `fitness_cola_media` y `pct_gen_en_tope`.
+2. **No hay control de semilla.** El código no fija la semilla del generador
+   aleatorio, de modo que las corridas **no son reproducibles bit a bit**.
+   Además, los factores experimentales se fijaban editando las constantes de
+   `src/Configuracion.java` (`INITIAL_POPULATION_SIZE`, `MAX_GENERATIONS`); solo
+   el número de núcleos es configurable en ejecución (`-Dcores`). Por tanto
+   `make run` **no reproduce por sí solo** ninguna de las 12 celdas: con los
+   valores actuales ejecuta población 300 y 1.000 generaciones.
+
+Parametrizar la semilla y los factores, y repetir cada celda con varias
+semillas, es la primera línea de trabajo futuro.
+
 ## Reproducir las cifras
 
 ```bash
