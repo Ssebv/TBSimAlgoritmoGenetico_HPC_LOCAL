@@ -53,7 +53,7 @@ El estudio ejecutó **12 configuraciones** (2/4/6/8 núcleos × poblaciones 50/1
 | **Fitness final** | **150.000 pts** en las 4 configuraciones de población 500 |
 | Calidad sostenida | Generaciones en el tope: Pop50 **0,7 %** · Pop100 **1,8 %** · Pop500 **10,2 %** |
 | Perfiles óptimos | Velocidad: 8C-Pop50 (0,30 s) · Balance: 6C-Pop100 (0,49 s) · Calidad: Pop500 |
-| Correlaciones (Pearson) | núcleos↔tiempo −0,71 · población↔tiempo +0,58 · generación↔fitness +0,76 |
+| Correlaciones (Pearson) | núcleos↔tiempo **−0,71** · población↔tiempo **+0,58** · generación↔fitness **+0,60** |
 
 > **Conclusión central: los núcleos dan velocidad, la población da calidad.**
 

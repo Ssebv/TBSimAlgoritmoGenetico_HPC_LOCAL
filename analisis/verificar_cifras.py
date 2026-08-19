@@ -29,6 +29,9 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from tbsim_stats import (  # noqa: E402
     COL_CORES,
+    COL_FITNESS_GLOBAL,
+    COL_GEN,
+    COL_GOLES_FAVOR,
     COL_POP,
     FITNESS_TOPE,
     cargar_directorio,
@@ -130,6 +133,25 @@ def main() -> int:
                 print(f"     {cfg}: la tesis reporta {dec:.2f} s/gen, tomado del conjunto de")
                 print(f"     tiempo extendido; en el conjunto que generó las figuras es {obt:.2f}.")
             print("   No afecta al speedup máximo ni a las conclusiones.")
+
+    # --- 6. Correlaciones de Pearson declaradas ---
+    # Se comprueban explícitamente porque una de ellas estuvo mal atribuida:
+    # el histórico +0,76 corresponde a generación<->goles a favor, no a fitness.
+    print("\n6) Correlaciones de Pearson (sobre las 36.000 generaciones)")
+    todo = df.copy()
+    pares = [
+        ("núcleos ↔ tiempo", COL_CORES, "tiempo_gen", -0.71),
+        ("población ↔ tiempo", COL_POP, "tiempo_gen", 0.58),
+        ("generación ↔ fitness", COL_GEN, COL_FITNESS_GLOBAL, 0.60),
+    ]
+    for nombre, a, b, declarado in pares:
+        obt = todo[a].corr(todo[b])
+        ok = abs(obt - declarado) <= 0.05
+        print(f"  [{'OK  ' if ok else 'FALLA'}] {nombre}: r={obt:+.2f}  declarado={declarado:+.2f}")
+        ok_global.append(ok)
+    if COL_GOLES_FAVOR in todo.columns:
+        print(f"         (para referencia, generación ↔ goles a favor: "
+              f"r={todo[COL_GEN].corr(todo[COL_GOLES_FAVOR]):+.2f} — este es el 0,76 histórico)")
 
     total, pasadas = len(ok_global), sum(ok_global)
     print("\n" + "=" * 70)

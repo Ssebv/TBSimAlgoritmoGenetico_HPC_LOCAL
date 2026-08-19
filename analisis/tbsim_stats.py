@@ -42,6 +42,7 @@ COL_FITNESS_GEN = "Mejor Fitness Generación"
 COL_CORES = "CPUs (configurados)"
 COL_POP = "Population Size"
 COL_CROMOSOMA = "Chromosoma"
+COL_GOLES_FAVOR = "Goles Favor"
 
 _REQUERIDAS = [COL_GEN, COL_TIEMPO_ACUM, COL_CORES, COL_POP]
 
