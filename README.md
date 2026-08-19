@@ -48,13 +48,20 @@ El estudio ejecutó **12 configuraciones** (2/4/6/8 núcleos × poblaciones 50/1
 
 | Métrica | Resultado |
 |---|---|
-| **Speedup máximo** | **6,3×** (2C-Pop500: 1,90 s/gen → 8C-Pop50: 0,30 s/gen) |
+| **Speedup máximo** | **6,4×** (2C-Pop500: 1,90 s/gen → 8C-Pop50: 0,30 s/gen) |
 | Speedup iso-población (500) | ≈2× (1,90 → 0,94 s/gen) |
-| **Fitness máximo** | **150.000 pts** (todas las configuraciones con población 500) |
-| Perfiles óptimos | Velocidad: 8C-Pop50 (0,30 s) · Balance: 6C-Pop100 (0,74 s) · Calidad: Pop500 |
+| **Fitness final** | **150.000 pts** en las 4 configuraciones de población 500 |
+| Calidad sostenida | Generaciones en el tope: Pop50 **0,7 %** · Pop100 **1,8 %** · Pop500 **10,2 %** |
+| Perfiles óptimos | Velocidad: 8C-Pop50 (0,30 s) · Balance: 6C-Pop100 (0,49 s) · Calidad: Pop500 |
 | Correlaciones (Pearson) | núcleos↔tiempo −0,71 · población↔tiempo +0,58 · generación↔fitness +0,76 |
 
 > **Conclusión central: los núcleos dan velocidad, la población da calidad.**
+
+> Matiz importante: el mapa de calor muestra el fitness de la *última*
+> generación, que es ruidoso —`Fitness Global` no es acumulativo—, y por eso su
+> patrón no es monótono. Medida sobre la cola de la corrida, la relación entre
+> población y calidad es limpia y sin inversiones: 63.818 → 78.428 → 124.801
+> puntos para poblaciones de 50, 100 y 500.
 
 | Tiempo por generación | Trade-off fitness | Convergencia |
 |:---:|:---:|:---:|
@@ -87,30 +94,48 @@ make clean
 | `resultados/local_stats*.csv` (main) | Corridas **exploratorias** (configs de prueba: 8C-Pop10/100/150, 1C-Pop300/400) usadas para calibrar el sistema. No corresponden al diseño factorial final. |
 | `ResultadosAlgoritmoGenetico{A,B}.csv` (rama `jeneticsParalela`) | Corridas **paralelas de validación** (250 gens): mediana 1,0 s/gen, consistente con el rango 0,30–1,90 s/gen del estudio. |
 | Corridas de desarrollo con la escala final de fitness (ene-2025) | Recuperables del historial: `git show b20c50d -- 'local_stats*.csv' 'metricas_ag*.csv'` (fitness 100k–250k, previo al capping en 150k). |
-| Experimento factorial final (12 configs × 3.000 gens) | Ejecutado sobre Apple M1 (2024-2025); sus CSV **no fueron versionados** —se ha verificado que no están en ningún punto del historial. Los agregados publicados en la tesis están en `resultados/experimento_final/agregados_publicados.csv` con su procedencia. Cada corrida es reproducible con `make run`, que emite el esquema **v2** (27 columnas, sin `Chromosoma`); las corridas archivadas usan el esquema **v1** (28 columnas). Ver [`resultados/README.md`](./resultados/README.md). |
+| Experimento factorial final (12 configs × 3.000 gens) | **Versionado en `resultados/experimento_final/`** (recuperado en ago-2026 de un respaldo externo). Ejecutado sobre Apple M1 en 2024-2025. Formato v6: 17 columnas, `Tiempo (s)` ya por generación. Reproduce el 6,4× con `analisis/recompute_speedup.py`. |
 
-### ⚠️ La columna `Tiempo (s)` es acumulada
+### ⚠️ Dos advertencias sobre las columnas
 
-`Tiempo (s)` registra el tiempo **total transcurrido** desde el inicio de la
-corrida, no el tiempo de cada generación. Para obtener el tiempo por generación
-hay que aplicar una diferencia (`.diff()`). Interpretarla directamente produce
-cifras de speedup infladas: ese error originó un speedup erróneo de 15,8x en
-versiones preliminares de este trabajo, frente al valor correcto de **6,3x**.
+**`Tiempo (s)` no tiene una convención única.** En los `local_stats*.csv`
+(exploratorios) es el tiempo **acumulado**; en los `stats_*_v6*.csv` del
+experimento factorial ya es el **tiempo por generación**. Aplicar la convención
+equivocada falsea el resultado en ambos sentidos. Los scripts de `analisis/`
+**detectan** cuál es en lugar de asumirla.
 
-Los scripts de `analisis/` aplican la corrección automáticamente. El diccionario
-de datos completo, con las dos versiones del esquema de CSV, está en
+**`Fitness Global` no es el mejor histórico**: fluctúa entre generaciones, así
+que el valor de la última generación es un dato puntual y ruidoso. Es la
+métrica que usan las figuras publicadas, y explica su patrón no monótono. Para
+comparar calidad conviene usar la media de la cola o el porcentaje de
+generaciones en el tope, que `resumen_por_configuracion()` calcula.
+
+El diccionario de datos completo está en
 [`resultados/README.md`](./resultados/README.md).
+
+### Sobre el speedup histórico de 15,8×
+
+El diseño factorial se ejecutó más de una vez, con distinta duración de
+partido. La cifra errónea de 15,8× corresponde a `4,75 / 0,30`, del conjunto de
+**tiempo extendido**; el valor correcto, **6,4×** (`1,90 / 0,30`), sale del
+conjunto que generó las figuras, que es el versionado aquí y es recalculable
+con `analisis/recompute_speedup.py`.
 
 ## Reproducibilidad
 
-| Comando | Qué hace | ¿Necesita datos adicionales? |
-|---|---|---|
-| `python3 analisis/verificar_cifras.py` | Comprueba la consistencia de las cifras publicadas (speedup 6,3x, iso-población 2x, tope de fitness) contra `resultados/experimento_final/agregados_publicados.csv`, donde cada valor lleva su procedencia. | **No.** Funciona sobre el repositorio tal cual. |
-| `python3 analisis/recompute_speedup.py` | Recalcula la tabla de escalabilidad y el speedup desde los CSV crudos. | Sí: los CSV del experimento factorial. |
-| `python3 analisis/figuras.py` | Regenera las figuras 01, 09 y 10 de este README. | Sí para las figuras 09 y 10; la 01 funciona con cualquier corrida. |
+| Comando | Qué hace |
+|---|---|
+| `python3 analisis/verificar_cifras.py` | Recalcula todo desde los CSV crudos y lo contrasta con lo que afirma la tesis, señalando las discrepancias conocidas. |
+| `python3 analisis/recompute_speedup.py` | Tabla completa de las 12 configuraciones: tiempo por generación, speedup máximo (6,4×) e iso-población. |
+| `python3 analisis/figuras.py` | Regenera las figuras 01, 09 y 10 de este README. |
 
-Ambos scripts aceptan `--patron`/argumento para operar sobre las corridas
-versionadas, p. ej. `'resultados/local_stats*.csv'`.
+Los 12 CSV del experimento factorial están versionados en
+`resultados/experimento_final/`, de modo que **las tres órdenes funcionan sobre
+el repositorio tal cual**, sin datos externos. Los scripts originales con los
+que se generaron las figuras de la tesis se conservan en `analisis/originales/`.
+
+Todos aceptan `--patron`/argumento para operar sobre otro conjunto, p. ej.
+`'resultados/local_stats*.csv'` para las corridas exploratorias.
 
 ```bash
 pip install -r analisis/requirements.txt

@@ -4,16 +4,21 @@ tbsim_stats — carga y normalización de los CSV de telemetría del experimento
 Este módulo centraliza dos cosas que, hechas a mano, han producido errores en el
 pasado:
 
-1. **La columna `Tiempo (s)` es ACUMULADA, no por generación.**
-   Interpretarla como tiempo por generación fue el origen de un speedup
-   erróneo de 15,8x reportado en versiones preliminares de este trabajo. El
-   valor correcto es 6,3x. Usar siempre `tiempo_por_generacion()`, que aplica
-   `diff()` sobre la serie acumulada.
+1. **La columna `Tiempo (s)` cambia de significado según el formato.**
+   - En los CSV antiguos (`local_stats*.csv`, corridas exploratorias) es
+     **acumulada**: el tiempo total transcurrido desde el inicio.
+   - En los CSV del experimento factorial (`stats_*_v6*.csv`) ya es el
+     **tiempo por generación**.
 
-2. **Existen dos esquemas de CSV.** Las corridas archivadas (esquema v1) tienen
-   28 columnas e incluyen `Chromosoma`; el código actual emite 27 columnas sin
-   esa columna (ver `CSVManager.prepararCSV`). Todo acceso aquí es **por nombre
-   de columna**, nunca por posición, de modo que ambos esquemas funcionan.
+   Este módulo lo **detecta**, no lo asume: si la serie es monótona creciente
+   se aplica `diff()`; si fluctúa, se toma tal cual. Asumir lo uno o lo otro
+   produce cifras de speedup falsas en ambos sentidos.
+
+2. **Existen tres esquemas de CSV.** Las corridas archivadas (esquema v1)
+   tienen 28 columnas e incluyen `Chromosoma`; el código actual emite 27 sin
+   esa columna (ver `CSVManager.prepararCSV`); el experimento factorial usó un
+   formato reducido de 17 columnas (v6). Todo acceso aquí es **por nombre de
+   columna**, nunca por posición, de modo que los tres funcionan.
 
 Uso:
     from tbsim_stats import cargar_corrida, cargar_directorio
@@ -46,8 +51,28 @@ class FormatoCSVError(ValueError):
 
 
 def detectar_esquema(df: pd.DataFrame) -> str:
-    """Devuelve 'v1' (con Chromosoma, 28 col) o 'v2' (sin Chromosoma, 27 col)."""
-    return "v1" if COL_CROMOSOMA in df.columns else "v2"
+    """Devuelve 'v1' (con Chromosoma), 'v6' (formato reducido) o 'v2'."""
+    if COL_CROMOSOMA in df.columns:
+        return "v1"
+    if COL_FITNESS_GEN not in df.columns:
+        return "v6"
+    return "v2"
+
+
+def tiempo_es_acumulado(serie: pd.Series, tolerancia: float = 0.05) -> bool:
+    """Determina si `Tiempo (s)` es acumulada o ya viene por generación.
+
+    Una serie acumulada es monótona creciente salvo reanudaciones desde
+    checkpoint. Una serie por generación fluctúa: aproximadamente la mitad de
+    sus diferencias consecutivas son negativas.
+
+    Se decide por la proporción de diferencias negativas: por debajo de
+    `tolerancia` se considera acumulada.
+    """
+    dif = serie.diff().dropna()
+    if len(dif) == 0:
+        return True
+    return (dif < 0).mean() <= tolerancia
 
 
 def cargar_corrida(ruta: str) -> pd.DataFrame:
@@ -74,17 +99,22 @@ def cargar_corrida(ruta: str) -> pd.DataFrame:
 
     df = df.sort_values(COL_GEN).reset_index(drop=True)
 
-    # --- La corrección central: acumulado -> por generación ---
-    df["tiempo_gen"] = df[COL_TIEMPO_ACUM].diff()
-
-    # Un acumulado que decrece indica reinicio desde checkpoint o CSV concatenado.
-    if (df["tiempo_gen"] < 0).any():
-        n = int((df["tiempo_gen"] < 0).sum())
-        print(
-            f"  aviso: {os.path.basename(ruta)}: {n} salto(s) negativo(s) en el "
-            "tiempo acumulado (¿reanudación desde checkpoint?). Se descartan."
-        )
-        df.loc[df["tiempo_gen"] < 0, "tiempo_gen"] = pd.NA
+    # --- La corrección central: detectar la convención de la columna ---
+    if tiempo_es_acumulado(df[COL_TIEMPO_ACUM]):
+        df["tiempo_acumulado"] = True
+        df["tiempo_gen"] = df[COL_TIEMPO_ACUM].diff()
+        # Un acumulado que decrece indica reinicio desde checkpoint.
+        if (df["tiempo_gen"] < 0).any():
+            n = int((df["tiempo_gen"] < 0).sum())
+            print(
+                f"  aviso: {os.path.basename(ruta)}: {n} salto(s) negativo(s) en "
+                "el tiempo acumulado (¿reanudación desde checkpoint?). Se descartan."
+            )
+            df.loc[df["tiempo_gen"] < 0, "tiempo_gen"] = pd.NA
+    else:
+        # Ya viene por generación: usarla tal cual sería un error aplicar diff().
+        df["tiempo_acumulado"] = False
+        df["tiempo_gen"] = df[COL_TIEMPO_ACUM]
 
     df["esquema"] = detectar_esquema(df)
     df["config"] = (
@@ -116,8 +146,20 @@ def cargar_directorio(patron: str) -> pd.DataFrame:
     return pd.concat(marcos, ignore_index=True)
 
 
+# Tope de aptitud impuesto por la función de evaluación ("capping").
+FITNESS_TOPE = 150_000
+
+
 def resumen_por_configuracion(df: pd.DataFrame) -> pd.DataFrame:
-    """Agrega por (núcleos, población): tiempo medio/mediano por generación y fitness."""
+    """Agrega por (núcleos, población): tiempo por generación y calidad.
+
+    Sobre las métricas de fitness: pese a su nombre, `Fitness Global` NO es el
+    mejor histórico acumulado —fluctúa de una generación a otra—, de modo que
+    `fitness_final` (el valor de la última generación) es un snapshot ruidoso.
+    Las figuras publicadas usan esa métrica, y por eso muestran un patrón no
+    monótono. Para comparar la calidad entre configuraciones son preferibles
+    `fitness_cola_media` y `pct_gen_en_tope`, que son estables.
+    """
     agrupado = df.groupby([COL_CORES, COL_POP], as_index=False).agg(
         generaciones=(COL_GEN, "count"),
         s_por_gen_media=("tiempo_gen", "mean"),
@@ -125,7 +167,21 @@ def resumen_por_configuracion(df: pd.DataFrame) -> pd.DataFrame:
         s_por_gen_desv=("tiempo_gen", "std"),
         fitness_max=(COL_FITNESS_GLOBAL, "max"),
         fitness_final=(COL_FITNESS_GLOBAL, "last"),
+        fitness_mediana=(COL_FITNESS_GLOBAL, "median"),
     )
+
+    # Métricas robustas: media de la cola final y proporción de generaciones
+    # que alcanzan el tope. Se calculan aparte porque necesitan la serie entera.
+    robustas = []
+    for (c, p), g in df.groupby([COL_CORES, COL_POP]):
+        fg = g.sort_values(COL_GEN)[COL_FITNESS_GLOBAL]
+        robustas.append({
+            COL_CORES: c,
+            COL_POP: p,
+            "fitness_cola_media": fg.tail(500).mean(),
+            "pct_gen_en_tope": 100.0 * (fg >= FITNESS_TOPE).mean(),
+        })
+    agrupado = agrupado.merge(pd.DataFrame(robustas), on=[COL_CORES, COL_POP])
     agrupado["config"] = (
         agrupado[COL_CORES].astype(str) + "C-Pop" + agrupado[COL_POP].astype(str)
     )

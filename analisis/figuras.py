@@ -46,7 +46,7 @@ from tbsim_stats import (  # noqa: E402
     resumen_por_configuracion,
 )
 
-PATRON_POR_DEFECTO = "resultados/experimento_final/local_stats*.csv"
+PATRON_POR_DEFECTO = "resultados/experimento_final/stats_*.csv"
 NUCLEOS_DISENNO = [2, 4, 6, 8]
 POBLACIONES_DISENNO = [50, 100, 500]
 
@@ -80,7 +80,7 @@ def fig09_heatmap(resumen, salida: Path) -> None:
     for _, r in resumen.iterrows():
         i = nucleos.index(int(r[COL_CORES]))
         j = poblaciones.index(int(r[COL_POP]))
-        matriz[i, j] = r["fitness_max"]
+        matriz[i, j] = r["fitness_final"]
 
     maximo = np.nanmax(matriz) if not np.all(np.isnan(matriz)) else 1.0
 
@@ -90,7 +90,7 @@ def fig09_heatmap(resumen, salida: Path) -> None:
     ax.set_yticks(range(len(nucleos)), [str(c) for c in nucleos])
     ax.set_xlabel("Tamaño de población")
     ax.set_ylabel("Núcleos configurados")
-    ax.set_title("Fitness máximo alcanzado por configuración")
+    ax.set_title("Fitness final por configuración")
     for i in range(len(nucleos)):
         for j in range(len(poblaciones)):
             v = matriz[i, j]
@@ -100,7 +100,7 @@ def fig09_heatmap(resumen, salida: Path) -> None:
             else:
                 ax.text(j, i, f"{v:,.0f}", ha="center", va="center",
                         color="white" if v < maximo * 0.6 else "black", fontsize=9)
-    fig.colorbar(im, ax=ax, label="Fitness máximo")
+    fig.colorbar(im, ax=ax, label="Fitness final")
     fig.tight_layout()
     destino = salida / "09_heatmap_fitness_cores_poblacion.png"
     fig.savefig(destino, dpi=150)

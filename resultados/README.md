@@ -1,109 +1,132 @@
 # Datos de telemetría — diccionario y advertencias
 
-Este directorio contiene los CSV de telemetría generados por `CSVManager.java`
-durante las corridas del algoritmo genético.
+Este directorio contiene los CSV de telemetría del algoritmo genético.
 
 ---
 
-## ⚠️ Advertencia crítica: `Tiempo (s)` es ACUMULADO
+## ⚠️ Advertencia 1: `Tiempo (s)` cambia de significado según el formato
 
-**La columna `Tiempo (s)` NO es el tiempo por generación: es el tiempo total
-transcurrido desde el inicio de la corrida.**
+**No existe una única convención.** Antes de operar con esta columna hay que
+saber de qué corrida procede:
 
-Para obtener el tiempo por generación hay que aplicar una diferencia:
+| Formato | `Tiempo (s)` significa | Cómo obtener el tiempo por generación |
+|---|---|---|
+| `local_stats*.csv` (exploratorias) | Tiempo **acumulado** desde el inicio | `df["Tiempo (s)"].diff()` |
+| `stats_*_v6*.csv` (experimento factorial) | Ya es el **tiempo por generación** | usarla tal cual |
 
-```python
-df["tiempo_gen"] = df["Tiempo (s)"].diff()
-```
+Aplicar la convención equivocada produce cifras falsas **en ambos sentidos**:
+un `diff()` sobre una serie que ya es por generación descarta la mitad de las
+filas (las diferencias negativas) y subestima el tiempo; omitir el `diff()` en
+una serie acumulada lo dispara.
 
-Interpretar esa columna directamente como tiempo por generación produce cifras
-de speedup infladas. **Ese error concreto originó un speedup erróneo de 15,8x
-en versiones preliminares de este trabajo; la cifra correcta es 6,3x**, y existe
-una fe de erratas al respecto. Los scripts de `analisis/` aplican la corrección
-automáticamente a través de `tbsim_stats.cargar_corrida()`; se recomienda usarlos
-en lugar de leer los CSV a mano.
+`analisis/tbsim_stats.py` **detecta** la convención en lugar de asumirla: si la
+serie es monótona creciente aplica la diferencia, y si fluctúa la usa
+directamente. Se recomienda usar esos scripts en vez de leer los CSV a mano.
 
-Nota adicional: el valor de la **primera generación** incluye el arranque de la
-JVM y la carga del simulador, por lo que no es comparable con el resto. Los
-scripts lo descartan.
+## ⚠️ Advertencia 2: `Fitness Global` no es el mejor histórico
+
+Pese al nombre, la columna **no es acumulativa**: fluctúa entre generaciones
+(en 2C-Pop50 desciende en 1.271 de 3.000 generaciones). Es el mejor individuo
+*de esa generación*, no el mejor encontrado hasta el momento.
+
+Consecuencia: el **fitness de la última generación es un valor puntual y
+ruidoso**. Las figuras publicadas usan esa métrica —de ahí que el mapa de calor
+muestre un patrón no monótono, con 2C-Pop100 en 150.000 y 6C-Pop100 en 54.018—.
+Todas las configuraciones alcanzan el tope de 150.000 en algún momento.
+
+Para comparar la calidad entre configuraciones son preferibles las métricas
+estables que calcula `resumen_por_configuracion()`:
+
+- `fitness_cola_media` — media de las últimas 500 generaciones
+- `pct_gen_en_tope` — porcentaje de generaciones que alcanzan 150.000
+
+Con ellas el efecto de la población es limpio y monótono:
+
+| Población | Fitness (cola) | Generaciones en el tope |
+|---|---|---|
+| 50 | 63.818 | 0,7 % |
+| 100 | 78.428 | 1,8 % |
+| 500 | **124.801** | **10,2 %** |
 
 ---
 
-## Los dos esquemas de CSV
+## Los tres conjuntos del experimento factorial
 
-Existen dos formatos, ambos válidos. **Léelos siempre por nombre de columna,
-nunca por posición.**
+Durante el trabajo se ejecutó el diseño factorial (12 configuraciones ×
+3.000 generaciones) **más de una vez**, con distinta duración de partido:
 
-| Esquema | Columnas | `Chromosoma` | Dónde aparece |
+| Conjunto | 2C-Pop500 | 8C-Pop50 | Estado |
 |---|---|---|---|
-| **v1** | 28 | Sí (posición 12) | Corridas archivadas en este directorio |
-| **v2** | 27 | No | Salida del código actual |
+| **`finalload`** (versionado aquí) | 1,90 s/gen | 0,30 s/gen | **El que generó las figuras de la tesis** |
+| `timeext` / tiempo extendido | 4,75 s/gen | 0,30 s/gen | Re-ejecución; no versionada |
 
-La columna `Chromosoma` se eliminó deliberadamente de la salida (ver el
-comentario en `CSVManager.prepararCSV`) porque su tamaño dominaba el archivo.
-Como consecuencia, **todas las columnas posteriores a `Goles Contra` están
-desplazadas una posición entre ambos esquemas**: un script que lea por índice
-producirá resultados incorrectos en silencio.
+Esto explica el histórico **speedup erróneo de 15,8×**: es
+`4,75 / 0,30`, es decir, el conjunto de tiempo extendido. **No** se debió a
+confundir tiempo acumulado con tiempo por generación, como afirmaban versiones
+preliminares de la fe de erratas. El valor correcto, recalculable con
+`analisis/recompute_speedup.py`, es **6,4×** (`1,90 / 0,30`).
 
-### Columnas
+### Discrepancia conocida
+
+La tesis reporta el perfil de balance **6C-Pop100 = 0,74 s/gen**. Ese valor
+procede del conjunto de tiempo extendido; en el conjunto que generó las
+figuras, la misma configuración es **0,49 s/gen**. El fitness de esa celda
+(54.018) sí coincide en ambos. No afecta al speedup máximo ni a las
+conclusiones. `analisis/verificar_cifras.py` lo señala explícitamente.
+
+---
+
+## Esquemas de columnas
+
+Léelos siempre **por nombre de columna, nunca por posición**.
+
+| Esquema | Columnas | Distintivo | Dónde |
+|---|---|---|---|
+| **v1** | 28 | Incluye `Chromosoma` | Corridas archivadas en este directorio |
+| **v2** | 27 | Sin `Chromosoma` | Salida del código actual (`CSVManager`) |
+| **v6** | 17 | Formato reducido, sin `Mejor Fitness Generación` | Experimento factorial |
+
+La columna `Chromosoma` se eliminó deliberadamente de la salida (ver
+`CSVManager.prepararCSV`). Como consecuencia, **todas las columnas posteriores
+a `Goles Contra` están desplazadas una posición entre v1 y v2**: un script que
+lea por índice fallará en silencio.
+
+### Columnas principales
 
 | Columna | Descripción |
 |---|---|
 | `Generación` | Índice de la generación, desde 1 |
-| `Mejor Fitness Generación` | Mejor aptitud de esa generación |
-| `Fitness Global` | Mejor aptitud histórica acumulada |
-| `Fitness Promedio` | Aptitud media de la población |
-| `Diversidad` | Métrica de diversidad genética |
-| `Peor Fitness` | Peor aptitud de la generación |
-| `CPU (%)` | Uso agregado de CPU |
-| `Memoria (%)` | Uso de memoria |
-| `Tiempo (s)` | **ACUMULADO** desde el inicio (ver advertencia) |
-| `Goles Favor` / `Goles Contra` | Resultado de la simulación del mejor individuo |
-| `Chromosoma` | *(solo v1)* Vector de genes del mejor individuo |
-| `OS`, `OS Version`, `Java Version`, `OS Arquitectura` | Entorno de ejecución |
-| `CPUs (configurados)` | Núcleos asignados al paralelismo — **factor experimental** |
+| `Fitness Global` | Mejor individuo de la generación (**no** acumulativo — ver advertencia 2) |
+| `Tiempo (s)` | Acumulado **o** por generación según el formato (ver advertencia 1) |
+| `CPU (%)`, `Memoria (%)` | Uso de recursos |
+| `Goles Favor` / `Goles Contra` | Resultado de la simulación |
+| `CPUs (configurados)` | Núcleos asignados — **factor experimental** |
 | `Population Size` | Tamaño de población — **factor experimental** |
-| `Mutation Rate`, `Crossover Rate` | Tasas de variación |
-| `Core0 (%)` … `Core7 (%)` | Uso por núcleo individual |
+| `Core0 (%)` … `Core7 (%)` | Uso por núcleo |
+| `Mejor Fitness Generación`, `Fitness Promedio`, `Diversidad`, `Peor Fitness` | Solo v1/v2 |
+| `Chromosoma` | Solo v1 |
 
 ---
 
-## Qué contiene cada archivo
+## Contenido del directorio
 
-| Archivo | Configuración | Naturaleza |
-|---|---|---|
-| `local_stats1.csv` … `local_stats7.csv` | 1C-Pop300/400, 8C-Pop10/100/150 | Corridas **exploratorias** de calibración |
-| `ResultadosAlgoritmoGeneticoAIKHomo.csv` | — | Corrida contra el equipo AIKHomo |
-| `ResultadosAlgoritmoGeneticoBasicTeam.csv` | — | Corrida contra BasicTeam |
-| `ResultadosAlgoritmoGeneticoDoogHomoG_AIKHomo150Gens.csv` | — | Corrida de 150 generaciones |
-| `ResultadosAlgoritmoGenetico_FinalNoParalelo.csv` | Secuencial | Línea base sin paralelismo |
-| `experimento_final/agregados_publicados.csv` | 5 celdas | Agregados publicados en la tesis, con procedencia |
+| Archivo | Contenido |
+|---|---|
+| `experimento_final/stats_*_v6_finalload.csv` | **Los 12 CSV del diseño factorial** (2/4/6/8 núcleos × poblaciones 50/100/500), 3.000 generaciones cada uno |
+| `experimento_final/agregados_publicados.csv` | Lo que la tesis afirma, con la procedencia de cada valor |
+| `experimento_final/agregados_recalculados.csv` | La tabla completa recalculada desde los CSV crudos |
+| `local_stats1..7.csv` | Corridas **exploratorias** de calibración (1C-Pop300/400, 8C-Pop10/100/150). No pertenecen al diseño factorial |
+| `ResultadosAlgoritmoGenetico*.csv` | Corridas contra equipos rivales concretos y línea base secuencial |
 
-**Ninguna de las corridas versionadas pertenece al diseño factorial final.** Sus
-configuraciones (1 y 8 núcleos; poblaciones 10/100/150/300/400) no coinciden con
-el diseño de la tesis (2/4/6/8 núcleos × poblaciones 50/100/500).
-
----
-
-## El experimento factorial final
-
-Las 12 configuraciones × 3.000 generaciones que sustentan el capítulo 5 se
-ejecutaron en un equipo **Apple M1 entre 2024 y 2025** y **sus CSV no se
-versionaron**. Se ha verificado que no están en ningún punto del historial de
-este repositorio.
-
-Mientras tanto:
-
-- `analisis/verificar_cifras.py` comprueba la consistencia de las cifras
-  publicadas (6,3x, iso-población 2x, el tope de fitness) **sin necesidad de
-  esos datos**. Funciona hoy.
-- `analisis/recompute_speedup.py` y `analisis/figuras.py` los recalculan desde
-  cero **en cuanto se depositen** los CSV en `resultados/experimento_final/`,
-  sin cambios en el código.
-
-Si los archivos aparecen, basta con copiarlos ahí y ejecutar:
+## Reproducir las cifras
 
 ```bash
-python3 analisis/recompute_speedup.py
-python3 analisis/figuras.py
+pip install -r analisis/requirements.txt
+
+python3 analisis/verificar_cifras.py      # contrasta lo publicado con los datos crudos
+python3 analisis/recompute_speedup.py     # tabla completa + speedup 6,4x
+python3 analisis/figuras.py               # regenera las figuras del README
 ```
+
+Los scripts originales con los que se produjeron las figuras de la tesis se
+conservan, sin modificar, en `analisis/originales/`.

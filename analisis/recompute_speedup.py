@@ -29,6 +29,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from tbsim_stats import (  # noqa: E402
     COL_CORES,
+    FITNESS_TOPE,
     FormatoCSVError,
     COL_POP,
     cargar_directorio,
@@ -36,7 +37,7 @@ from tbsim_stats import (  # noqa: E402
     speedup,
 )
 
-PATRON_POR_DEFECTO = "resultados/experimento_final/local_stats*.csv"
+PATRON_POR_DEFECTO = "resultados/experimento_final/stats_*.csv"
 
 
 def main() -> int:
@@ -68,32 +69,50 @@ def main() -> int:
 
     print(f"Generaciones cargadas: {len(df)}")
     print(f"Esquema(s) de CSV detectado(s): {sorted(df['esquema'].unique())}")
-    print(
-        "\nNota: `Tiempo (s)` es ACUMULADO; el tiempo por generación se obtiene\n"
-        "por diferencia. La primera generación de cada corrida se descarta\n"
-        "(incluye arranque de JVM y carga del simulador).\n"
-    )
+    acum = sorted(df["tiempo_acumulado"].unique())
+    if acum == [True]:
+        print(
+            "\nConvención detectada: `Tiempo (s)` es ACUMULADO. El tiempo por\n"
+            "generación se obtiene por diferencia; la primera generación de cada\n"
+            "corrida se descarta (incluye arranque de JVM y carga del simulador).\n"
+        )
+    elif acum == [False]:
+        print(
+            "\nConvención detectada: `Tiempo (s)` ya viene POR GENERACIÓN; se usa\n"
+            "tal cual, sin aplicar diferencia.\n"
+        )
+    else:
+        print(
+            "\nConvención detectada: MIXTA entre archivos. Cada uno se trata según\n"
+            "su propia serie (acumulada -> diferencia; por generación -> tal cual).\n"
+        )
 
     resumen = resumen_por_configuracion(df)
 
-    print("=" * 78)
+    print("=" * 92)
     print(
-        f"{'Configuración':>16} {'Gens':>6} {'s/gen medio':>12} "
-        f"{'mediana':>9} {'σ':>7} {'Fitness máx':>13}"
+        f"{'Configuración':>14} {'Gens':>6} {'s/gen':>8} {'σ':>6} "
+        f"{'fit. final':>11} {'fit. cola':>11} {'% gen tope':>11}"
     )
-    print("=" * 78)
+    print("=" * 92)
     for _, r in resumen.iterrows():
         media = r["s_por_gen_media"]
-        med = r["s_por_gen_mediana"]
-        desv = r["s_por_gen_desv"]
-        fit = r["fitness_max"]
+        if media != media:  # NaN
+            print(f"{r['config']:>14} {int(r['generaciones']):>6} {'—':>8}")
+            continue
         print(
-            f"{r['config']:>16} {int(r['generaciones']):>6} "
-            f"{media:>12.2f} {med:>9.2f} {desv:>7.2f} {fit:>13,.0f}"
-            if media == media
-            else f"{r['config']:>16} {int(r['generaciones']):>6} {'—':>12}"
+            f"{r['config']:>14} {int(r['generaciones']):>6} "
+            f"{media:>8.2f} {r['s_por_gen_desv']:>6.2f} "
+            f"{r['fitness_final']:>11,.0f} {r['fitness_cola_media']:>11,.0f} "
+            f"{r['pct_gen_en_tope']:>10.1f}%"
         )
-    print("=" * 78)
+    print("=" * 92)
+    print(
+        "  fit. final = última generación (métrica de las figuras publicadas; es un\n"
+        "               snapshot ruidoso: `Fitness Global` no es el mejor histórico)\n"
+        "  fit. cola  = media de las últimas 500 generaciones  |  % gen tope = "
+        f"generaciones que alcanzan {FITNESS_TOPE:,}"
+    )
 
     try:
         s = speedup(resumen)
